@@ -44,6 +44,8 @@
       "damage": [150, 200],
       "status": "statdown",
       "statusChance": 1
+      "stattarget" : "atk"
+
     },
 
     {
@@ -64,6 +66,7 @@
       "damage": [0, 0],
       "status": "statup",
       "statusChance": 1.0
+      "stattarget" : "atk"
     },
 
     {
