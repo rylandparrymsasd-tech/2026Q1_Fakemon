@@ -43,8 +43,45 @@
       "speed": "fast",
       "damage": [150, 200],
       "status": "statdwn",
-      "statusChance": 1,
-      "statTarget" : "atk"
+      "statuses": [
+    {
+      "status": "statdwn",
+      "statusChance": 1
+      "statTarget": "atk"
+      
+    },
+   {
+      "status": "statdwn",
+      "statusChance": .8
+      "statTarget": "atk"
+      
+    },
+        {
+      "status": "statdwn",
+      "statusChance": 1
+      "statTarget": "speed"
+      
+    },
+        {
+      "status": "statdwn",
+      "statusChance": .8
+      "statTarget": "speed"
+      
+    },
+
+         {
+      "status": "statdwn",
+      "statusChance": 1
+      "statTarget": "defence"
+      
+    },
+        {
+      "status": "statdwn",
+      "statusChance": .8
+      "statTarget": "defence"
+      
+    },
+  ]
 
     },
 
@@ -78,6 +115,5 @@
       "status": "flinch",
       "statusChance": 1.0
     }
-    
   ]
 }
