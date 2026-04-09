@@ -206,8 +206,47 @@ h2, h1 { scroll-margin-top: 24px; }
 
 /* ── CHECKLIST ── */
 .checklist { list-style: none; margin: 12px 0; }
-.checklist li { display: flex; align-items: flex-start; gap: 12px; padding: 10px 14px; margin-bottom: 6px; background: var(--surface); border-radius: 10px; border: 1.5px solid var(--border); font-size: 15px; font-weight: 600; color: #333; }
-.checklist li::before { content: '☐'; font-size: 20px; color: #9090b0; flex-shrink: 0; line-height: 1.2; }
+.checklist li {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 10px 14px; margin-bottom: 6px;
+  background: var(--surface); border-radius: 10px;
+  border: 1.5px solid var(--border);
+  font-size: 15px; font-weight: 600; color: #333;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  user-select: none;
+}
+.checklist li:hover { background: #f4f4ff; border-color: #b0b0e0; }
+.checklist li.done { background: #edfff4; border-color: #22c55e; color: #166534; }
+.checklist li .cb-box {
+  flex-shrink: 0; width: 22px; height: 22px;
+  border: 2px solid #b0b0d0; border-radius: 6px;
+  background: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; margin-top: 1px;
+  transition: all 0.15s;
+}
+.checklist li.done .cb-box {
+  background: #22c55e; border-color: #16a34a; color: #fff;
+}
+.checklist-progress {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 14px; font-size: 13px; font-weight: 700; color: var(--muted);
+}
+.checklist-bar-track {
+  flex: 1; height: 8px; background: #e0e0f0; border-radius: 4px; overflow: hidden;
+}
+.checklist-bar-fill {
+  height: 100%; background: #22c55e; border-radius: 4px;
+  transition: width 0.35s ease;
+}
+.checklist-reset {
+  font-size: 11px; color: #aaa; background: none; border: 1px solid #ddd;
+  border-radius: 6px; padding: 3px 8px; cursor: pointer;
+  font-family: var(--font-b); font-weight: 600;
+  transition: color 0.15s, border-color 0.15s;
+}
+.checklist-reset:hover { color: #e85d20; border-color: #e85d20; }
 
 /* ── STRATEGY BOX ── */
 .strategy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 12px 0; }
@@ -386,6 +425,7 @@ h2, h1 { scroll-margin-top: 24px; }
       <li><a href="#s10">Strategy Tips</a></li>
       <li><a href="#s11">Final Checklist</a></li>
       <li><a href="#s12">🐛 Bug Testing Guide</a></li>
+      <li><a href="#s13">🔀 Opening Your Pull Request</a></li>
     </ol>
   </div>
 
@@ -1072,19 +1112,24 @@ h2, h1 { scroll-margin-top: 24px; }
       <div class="section-num">11</div>
       <h2>Final Checklist</h2>
     </div>
-    <p>Before you turn in your Fakemon, check every box:</p>
-    <ul class="checklist">
-      <li>My <strong>id</strong> has no spaces or special characters</li>
-      <li>My filename matches my id exactly — e.g. <code>blazkit.json</code> for id <code>"blazkit"</code></li>
-      <li>I added my filename to <code>fakemonlist.json</code></li>
-      <li>My Fakemon has between <strong>4 and 8 moves</strong></li>
-      <li>I have <strong>at least one move that deals damage</strong></li>
-      <li>All 5 stats are filled in (<strong>hp, power, speed, defense, accuracy</strong>)</li>
-      <li>Every <code>statup</code> or <code>statdwn</code> move has a <strong>statTarget</strong> field</li>
-      <li>I filled in <strong>createdBy</strong> with my full name</li>
-      <li>I picked an <strong>emoji</strong> for my Fakemon</li>
-      <li>I tested it in the game and <strong>it loads without errors</strong></li>
-      <li>My Fakemon has a <strong>description</strong> that shows its personality</li>
+    <p>Before you turn in your Fakemon, check every box. Your progress is saved automatically!</p>
+    <div class="checklist-progress">
+      <div class="checklist-bar-track"><div class="checklist-bar-fill" id="cl-bar" style="width:0%"></div></div>
+      <span id="cl-count">0 / 11</span>
+      <button class="checklist-reset" onclick="resetChecklist()">reset</button>
+    </div>
+    <ul class="checklist" id="checklist">
+      <li data-id="cl1" onclick="toggleCheck(this)"><span class="cb-box">✓</span><span>My <strong>id</strong> has no spaces or special characters</span></li>
+      <li data-id="cl2" onclick="toggleCheck(this)"><span class="cb-box">✓</span><span>My filename matches my id exactly — e.g. <code>blazkit.json</code> for id <code>"blazkit"</code></span></li>
+      <li data-id="cl3" onclick="toggleCheck(this)"><span class="cb-box">✓</span><span>I added my filename to <code>fakemonlist.json</code></span></li>
+      <li data-id="cl4" onclick="toggleCheck(this)"><span class="cb-box">✓</span><span>My Fakemon has between <strong>4 and 8 moves</strong></span></li>
+      <li data-id="cl5" onclick="toggleCheck(this)"><span class="cb-box">✓</span><span>I have <strong>at least one move that deals damage</strong></span></li>
+      <li data-id="cl6" onclick="toggleCheck(this)"><span class="cb-box">✓</span><span>All 5 stats are filled in (<strong>hp, power, speed, defense, accuracy</strong>)</span></li>
+      <li data-id="cl7" onclick="toggleCheck(this)"><span class="cb-box">✓</span><span>Every <code>statup</code> or <code>statdwn</code> move has a <strong>statTarget</strong> field</span></li>
+      <li data-id="cl8" onclick="toggleCheck(this)"><span class="cb-box">✓</span><span>I filled in <strong>createdBy</strong> with my full name</span></li>
+      <li data-id="cl9" onclick="toggleCheck(this)"><span class="cb-box">✓</span><span>I picked an <strong>emoji</strong> for my Fakemon</span></li>
+      <li data-id="cl10" onclick="toggleCheck(this)"><span class="cb-box">✓</span><span>I tested it in the game and <strong>it loads without errors in the debug panel</strong></span></li>
+      <li data-id="cl11" onclick="toggleCheck(this)"><span class="cb-box">✓</span><span>My Fakemon has a <strong>description</strong> that shows its personality</span></li>
     </ul>
     <div class="callout win" style="margin-top:20px; font-size:16px;"><span class="ci">🐉</span> Good luck, and have fun! The weirdest, most creative Fakemon are usually the most fun to battle with. Make it yours!</div>
   </div>
@@ -1107,7 +1152,7 @@ h2, h1 { scroll-margin-top: 24px; }
         <div class="wf-num">1</div>
         <div class="wf-content">
           <h4>Make your change in the editor</h4>
-          <p>Edit your <code>.json</code> file in the GitHub editor (or VS Code if you have it). Fix one thing at a time so you know what worked.</p>
+          <p>Edit your <code>.json</code> file in the <strong>github.dev editor</strong> (the browser-based editor that opens when you press <kbd class="kbd">.</kbd> on your repo, or navigate to <code>github.dev/your-repo-url</code>). Fix one thing at a time so you know what worked.</p>
         </div>
       </div>
       <div class="wf-step">
@@ -1121,7 +1166,20 @@ h2, h1 { scroll-margin-top: 24px; }
         <div class="wf-num">3</div>
         <div class="wf-content">
           <h4>Wait for GitHub Pages to rebuild — up to 2 minutes!</h4>
-          <p>After you push, GitHub has to rebuild the site. This takes anywhere from <strong>30 seconds to 2 minutes</strong>. There is no sound or notification — you just have to wait. If you reload immediately, you'll see your old file. Get a drink of water. Come back. Then reload.</p>
+          <p>After you push, GitHub has to rebuild the site. This takes anywhere from <strong>30 seconds to 2 minutes</strong>. There is no sound or notification — you just have to wait. If you reload immediately, you'll see your old file.</p>
+          <div id="gh-timer-wrap" style="margin-top:12px;">
+            <button id="gh-timer-btn" onclick="startGHTimer()" style="font-family:var(--font-h);font-size:14px;background:var(--card);color:var(--accent);border:none;border-radius:10px;padding:10px 20px;cursor:pointer;display:flex;align-items:center;gap:8px;transition:opacity 0.15s;">
+              ⏱ Start the 2-minute wait timer
+            </button>
+            <div id="gh-timer-panel" style="display:none;margin-top:12px;border:1.5px solid var(--border);border-radius:var(--radius);overflow:hidden;">
+              <div style="background:var(--card);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;">
+                <span style="font-family:var(--font-h);font-size:15px;color:var(--accent);">🌿 Growing while you wait…</span>
+                <span id="gh-timer-display" style="font-family:var(--font-c);font-size:20px;color:#fff;min-width:50px;text-align:right;">2:00</span>
+              </div>
+              <canvas id="fib-canvas" width="560" height="220" style="display:block;width:100%;background:#0d0d1a;"></canvas>
+              <div id="gh-timer-msg" style="background:#0d0d1a;padding:10px 16px;font-size:13px;color:#7070a0;text-align:center;font-weight:600;border-top:1px solid #1e1e38;">Waiting for GitHub Pages to rebuild…</div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="wf-step">
@@ -1492,48 +1550,347 @@ h2, h1 { scroll-margin-top: 24px; }
 
   </div><!-- /section 12 -->
 
+  <!-- ══ 13. OPENING YOUR PULL REQUEST ════════════════════════════════════════ -->
+  <div class="section" id="s13" style="border-top: 4px solid #22c55e; margin-top: 0;">
+    <div class="section-header" style="border-bottom-color: #22c55e;">
+      <div class="section-num" style="background:#0a3018; color:#56c87a;">13</div>
+      <h2>🔀 Opening Your Pull Request</h2>
+    </div>
+
+    <p>A <strong>pull request (PR)</strong> is how you officially submit your Fakemon to the shared class game. It's a request to merge your branch into the main game so everyone can fight against your creature.</p>
+
+    <div class="callout warn"><span class="ci">⚠️</span> <strong>Do NOT open a pull request until your Fakemon works.</strong> If you submit broken code, it can break the game for the whole class — not just you. Test first. PR second. Always.</div>
+
+    <h3 style="font-family:var(--font-h);font-size:20px;margin:22px 0 12px;color:var(--card);">Why test before you PR?</h3>
+
+    <p style="margin-bottom:14px;">When your pull request gets merged, your code goes into the <strong>shared main branch</strong> that everyone's game runs from. Think of it like this:</p>
+
+    <div class="strategy-grid" style="margin-bottom:18px;">
+      <div class="strat-card do">
+        <h4>✅ What a good PR looks like</h4>
+        <ul>
+          <li>Fakemon loads with no red errors in the debug panel</li>
+          <li>You can select it on the battle screen</li>
+          <li>You can actually finish a battle with it</li>
+          <li>Your checklist in Section 11 is fully checked off</li>
+          <li>The game still works after you added your Fakemon</li>
+        </ul>
+      </div>
+      <div class="strat-card dont">
+        <h4>❌ What breaks things for everyone</h4>
+        <ul>
+          <li>A JSON syntax error that stops the whole file list from loading</li>
+          <li>A filename in <code>fakemonlist.json</code> that doesn't exist</li>
+          <li>A Fakemon that crashes the battle engine mid-fight</li>
+          <li>Submitting and saying "I'll fix it later" — later never comes</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="font-family:var(--font-h);font-size:20px;margin:22px 0 12px;color:var(--card);">✅ The "Ready to PR" checklist</h3>
+    <p style="margin-bottom:10px;">Before you open the PR, you should be able to say yes to all of these:</p>
+
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:18px;">
+      <div style="display:flex;align-items:center;gap:10px;background:#edfff4;border:1.5px solid #22c55e;border-radius:10px;padding:10px 14px;font-size:14px;font-weight:700;color:#166534;">
+        <span style="font-size:18px;">🟢</span> I opened the game page and my Fakemon appeared on the selection screen
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;background:#edfff4;border:1.5px solid #22c55e;border-radius:10px;padding:10px 14px;font-size:14px;font-weight:700;color:#166534;">
+        <span style="font-size:18px;">🟢</span> The debug panel showed zero red (✗ ERROR) messages when the page loaded
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;background:#edfff4;border:1.5px solid #22c55e;border-radius:10px;padding:10px 14px;font-size:14px;font-weight:700;color:#166534;">
+        <span style="font-size:18px;">🟢</span> I selected my Fakemon and started a battle — it actually ran
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;background:#edfff4;border:1.5px solid #22c55e;border-radius:10px;padding:10px 14px;font-size:14px;font-weight:700;color:#166534;">
+        <span style="font-size:18px;">🟢</span> The battle ended properly (win or lose) — it didn't freeze
+      </div>
+    </div>
+
+    <h3 style="font-family:var(--font-h);font-size:20px;margin:22px 0 12px;color:var(--card);">How to open the pull request</h3>
+
+    <div class="workflow">
+      <div class="wf-step">
+        <div class="wf-num">1</div>
+        <div class="wf-content">
+          <h4>Make sure all your changes are committed and pushed</h4>
+          <p>In the <strong>github.dev editor</strong>, check the Source Control panel (the branch icon on the left sidebar). It should say <strong>0 changes</strong> — nothing pending. If there are changes listed, commit and push them first.</p>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">2</div>
+        <div class="wf-content">
+          <h4>Go to your repository on github.com</h4>
+          <p>Navigate to <code>github.com/your-username/your-repo</code>. GitHub will often show a yellow banner saying <em>"Your branch is ahead of main — Compare &amp; pull request."</em> If you see it, click that button.</p>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">3</div>
+        <div class="wf-content">
+          <h4>If no banner, click "Pull requests" → "New pull request"</h4>
+          <p>Click the <strong>Pull requests</strong> tab at the top of your repo, then the green <strong>New pull request</strong> button. Make sure the <strong>base</strong> branch is <code>main</code> and the <strong>compare</strong> branch is yours.</p>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">4</div>
+        <div class="wf-content">
+          <h4>Write a title and description</h4>
+          <p>Give your PR a clear title like <strong>"Add Blazkit — Fire type Fakemon"</strong>. In the description, briefly describe your Fakemon: its type, its strategy, and anything interesting about its moves. This helps your teacher review it.</p>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">5</div>
+        <div class="wf-content">
+          <h4>Click "Create pull request" — you're done!</h4>
+          <p>Your teacher will review it. They might leave comments asking you to fix something before it gets merged. Check back on the PR page to see if there's any feedback.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout tip"><span class="ci">💡</span> <strong>Can I update my PR after submitting?</strong> Yes! If your teacher asks for a fix, just make the change in the <strong>github.dev editor</strong>, commit and push, and the PR will automatically update. You don't need to close and reopen it.</div>
+
+    <div class="callout win"><span class="ci">🚀</span> Once your PR is merged, your Fakemon is officially part of the game. Everyone in the class can battle against it. That's your code, live, in a real shared project. That's real software development!</div>
+
+  </div><!-- /section 13 -->
+
 </div><!-- /page-wrap -->
 
 <script>
 // ════════════════════════════════════════════════════════════════════════
 //  COPY BUTTONS
-//  Works for both .example-card and .code-wrap blocks.
-//  Uses data-target to find which element to copy from.
 // ════════════════════════════════════════════════════════════════════════
 document.querySelectorAll('.copy-btn').forEach(btn => {
   btn.addEventListener('click', async function() {
     const targetId  = btn.getAttribute('data-target');
     const container = document.getElementById(targetId);
     if (!container) return;
-
-    // Get the raw text — innerText strips span tags cleanly
     const pre  = container.querySelector('pre');
     const text = (pre ? pre.innerText : container.innerText) || '';
-
     try {
       await navigator.clipboard.writeText(text);
     } catch (err) {
-      // Fallback for Chromebooks / older browsers
       const ta = document.createElement('textarea');
-      ta.value = text;
-      ta.style.position = 'fixed';
-      ta.style.opacity  = '0';
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand('copy');
-      document.body.removeChild(ta);
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      document.execCommand('copy'); document.body.removeChild(ta);
     }
-
-    // Visual feedback
     const orig = btn.innerHTML;
-    btn.innerHTML = '✅ Copied!';
-    btn.classList.add('copied');
-    setTimeout(() => {
-      btn.innerHTML = orig;
-      btn.classList.remove('copied');
-    }, 2000);
+    btn.innerHTML = '✅ Copied!'; btn.classList.add('copied');
+    setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); }, 2000);
   });
 });
+
+// ════════════════════════════════════════════════════════════════════════
+//  CHECKLIST — cookie-backed interactive checkboxes
+// ════════════════════════════════════════════════════════════════════════
+const COOKIE_KEY = 'fakemon_checklist_v1';
+const TOTAL_ITEMS = 11;
+
+function getCookie(name) {
+  const m = document.cookie.match('(?:^|;)\\s*' + name + '=([^;]*)');
+  return m ? decodeURIComponent(m[1]) : '';
+}
+function setCookie(name, val) {
+  const exp = new Date(Date.now() + 365 * 864e5).toUTCString();
+  document.cookie = name + '=' + encodeURIComponent(val) + ';path=/;expires=' + exp + ';SameSite=Lax';
+}
+
+function loadChecklist() {
+  const saved = getCookie(COOKIE_KEY);
+  const checked = saved ? saved.split(',') : [];
+  document.querySelectorAll('#checklist li').forEach(li => {
+    if (checked.includes(li.dataset.id)) {
+      li.classList.add('done');
+    }
+  });
+  updateChecklistProgress();
+}
+
+function saveChecklist() {
+  const checked = [];
+  document.querySelectorAll('#checklist li.done').forEach(li => checked.push(li.dataset.id));
+  setCookie(COOKIE_KEY, checked.join(','));
+}
+
+function toggleCheck(li) {
+  li.classList.toggle('done');
+  saveChecklist();
+  updateChecklistProgress();
+}
+
+function updateChecklistProgress() {
+  const done  = document.querySelectorAll('#checklist li.done').length;
+  const pct   = Math.round((done / TOTAL_ITEMS) * 100);
+  document.getElementById('cl-bar').style.width = pct + '%';
+  document.getElementById('cl-count').textContent = done + ' / ' + TOTAL_ITEMS;
+  if (done === TOTAL_ITEMS) {
+    document.getElementById('cl-count').textContent = '✅ All done!';
+    document.getElementById('cl-bar').style.background = '#22c55e';
+  }
+}
+
+function resetChecklist() {
+  if (!confirm('Reset all checkboxes?')) return;
+  document.querySelectorAll('#checklist li').forEach(li => li.classList.remove('done'));
+  saveChecklist();
+  updateChecklistProgress();
+}
+
+loadChecklist();
+
+// ════════════════════════════════════════════════════════════════════════
+//  FIBONACCI TREE — generative art wait timer
+//  Draws a growing Fibonacci-spiral tree on a canvas over 120 seconds.
+//  Each "tick" sprouts more branches using Fibonacci angle ratios.
+// ════════════════════════════════════════════════════════════════════════
+let timerInterval  = null;
+let timerSeconds   = 120;
+let fibAnimFrame   = null;
+let fibPhase       = 0;   // 0..1 overall progress
+
+const GOLDEN_ANGLE = 137.508 * Math.PI / 180;  // Fibonacci / golden angle
+
+function startGHTimer() {
+  if (timerInterval) return;
+  document.getElementById('gh-timer-btn').style.display   = 'none';
+  document.getElementById('gh-timer-panel').style.display = 'block';
+  timerSeconds = 120;
+  fibPhase     = 0;
+
+  const canvas = document.getElementById('fib-canvas');
+  // Make canvas crisp on HiDPI
+  const dpr = window.devicePixelRatio || 1;
+  const W   = canvas.offsetWidth  || 560;
+  const H   = canvas.offsetHeight || 220;
+  canvas.width  = W * dpr;
+  canvas.height = H * dpr;
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  function drawFibTree() {
+    ctx.clearRect(0, 0, W, H);
+
+    // Background gradient
+    const bg = ctx.createLinearGradient(0, 0, 0, H);
+    bg.addColorStop(0, '#0d0d1a');
+    bg.addColorStop(1, '#0a1a10');
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, W, H);
+
+    const progress = 1 - (timerSeconds / 120);  // 0→1 over 2 minutes
+
+    // Draw golden-angle spiral dots (like sunflower phyllotaxis)
+    const maxDots  = Math.floor(progress * 400);
+    const cx = W / 2;
+    const cy = H * 0.92;
+    const scale = Math.min(W, H) * 0.42;
+
+    for (let i = 0; i < maxDots; i++) {
+      const t     = i / 400;
+      const angle = i * GOLDEN_ANGLE;
+      const r     = Math.sqrt(i) / Math.sqrt(400) * scale * 0.55;
+
+      // Fibonacci tree branching: place dots along spiralling branches
+      const bx = cx + Math.sin(angle) * r;
+      const by = cy - Math.abs(Math.cos(angle * 0.5)) * r * 1.6 - r * 0.3;
+
+      const age   = (maxDots - i) / maxDots;  // older dots are dimmer
+      const hue   = 100 + i * 0.25;           // green → yellow gradient
+      const sat   = 60 + age * 30;
+      const light = 35 + age * 40;
+      const alpha = 0.15 + age * 0.75;
+      const size  = 1.2 + age * 2.2;
+
+      ctx.beginPath();
+      ctx.arc(bx, by, size, 0, Math.PI * 2);
+      ctx.fillStyle = `hsla(${hue % 360},${sat}%,${light}%,${alpha})`;
+      ctx.fill();
+    }
+
+    // Draw trunk and main branches as lines
+    function branch(x, y, angle, length, depth, maxDepth) {
+      if (depth > maxDepth || length < 2) return;
+      const endX = x + Math.cos(angle) * length;
+      const endY = y + Math.sin(angle) * length;
+      const t    = depth / maxDepth;
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.lineTo(endX, endY);
+      const hue   = 80 + depth * 15;
+      const alpha = 0.6 - t * 0.45;
+      const lw    = Math.max(0.5, (maxDepth - depth + 1) * 0.8);
+      ctx.strokeStyle = `hsla(${hue},55%,45%,${alpha})`;
+      ctx.lineWidth   = lw;
+      ctx.stroke();
+
+      // Fibonacci branching ratios: left branch is shorter by ~1/φ
+      const PHI  = 1.6180339887;
+      const dL   = 0.67;   // length decay
+      const dR   = dL / PHI * 1.05;
+      const spreadAngle = 0.38 + progress * 0.12;   // branches spread as time grows
+
+      branch(endX, endY, angle - spreadAngle, length * dL, depth + 1, maxDepth);
+      branch(endX, endY, angle + spreadAngle, length * dR, depth + 1, maxDepth);
+    }
+
+    // How many branch levels have grown in: 0 → 9 over 2 min
+    const maxDepth = Math.floor(progress * 9.5);
+    const trunkLen = H * 0.28 * (0.4 + progress * 0.6);
+
+    // Slight glow on trunk root
+    ctx.shadowColor = 'rgba(80,220,100,0.3)';
+    ctx.shadowBlur  = 8;
+    branch(cx, cy, -Math.PI / 2, trunkLen, 0, maxDepth);
+    ctx.shadowBlur  = 0;
+
+    // Bloom flowers at tips when near done
+    if (progress > 0.75) {
+      const bloom = (progress - 0.75) / 0.25;
+      const numFlowers = Math.floor(bloom * 18);
+      for (let f = 0; f < numFlowers; f++) {
+        const fi   = f / 18;
+        const fa   = fi * Math.PI * 4 + progress * 2;
+        const fr   = scale * 0.35 * Math.sqrt(fi);
+        const fx   = cx + Math.sin(fa) * fr;
+        const fy   = cy - fr * 1.4;
+        const fhue = 40 + fi * 80;
+        ctx.beginPath();
+        ctx.arc(fx, fy, 2.5 + bloom * 2, 0, Math.PI * 2);
+        ctx.fillStyle = `hsla(${fhue},90%,70%,${bloom * 0.9})`;
+        ctx.fill();
+      }
+    }
+  }
+
+  // Tick every second
+  timerInterval = setInterval(() => {
+    timerSeconds--;
+    const m   = Math.floor(timerSeconds / 60);
+    const s   = timerSeconds % 60;
+    const disp = document.getElementById('gh-timer-display');
+    const msg  = document.getElementById('gh-timer-msg');
+    disp.textContent = m + ':' + String(s).padStart(2, '0');
+    drawFibTree();
+
+    if (timerSeconds <= 30 && timerSeconds > 0) {
+      disp.style.color = '#f5c842';
+      msg.textContent  = '⏳ Almost there — nearly time to hard refresh!';
+      msg.style.color  = '#f5c842';
+    }
+    if (timerSeconds <= 0) {
+      clearInterval(timerInterval);
+      timerInterval = null;
+      disp.textContent = '✅ Done!';
+      disp.style.color = '#56c87a';
+      msg.textContent  = '🎉 Time\'s up! Hard refresh the game page now: Ctrl + Shift + R';
+      msg.style.color  = '#56c87a';
+      msg.style.fontWeight = '800';
+      drawFibTree();
+    }
+  }, 1000);
+
+  drawFibTree();  // draw frame 0 immediately
+}
+
 </script>
+-e 
 </body>
 </html>
