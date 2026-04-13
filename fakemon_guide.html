@@ -4,463 +4,400 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fakemon Design Guide</title>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=DM+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:      #f5f3ee;
+  --bg:      #f5f5fb;
   --surface: #ffffff;
-  --dark:    #1a1a2e;
-  --card:    #16213e;
-  --accent:  #f7c948;
+  --card:    #1e1e38;
+  --border:  #e0e0f0;
+  --accent:  #f5c842;
   --text:    #1a1a2e;
-  --muted:   #6b6b8a;
-  --border:  #dddde8;
-  --radius:  14px;
-  --font-h:  'Fredoka One', cursive;
-  --font-b:  'Nunito', sans-serif;
-  --font-c:  'Fira Mono', monospace;
-
-  /* type colors */
-  --fire:    #e8523a; --fire-bg:    #fff0ed;
-  --water:   #2e86de; --water-bg:   #edf5ff;
-  --air:     #7ec8e3; --air-bg:     #edfaff;
-  --earth:   #8b6914; --earth-bg:   #fef9ed;
-  --electric:#f7c948; --electric-bg:#fffbea;
-  --ice:     #5bc0eb; --ice-bg:     #edfaff;
-  --poison:  #a855f7; --poison-bg:  #f5edff;
-  --dark-t:  #475569; --dark-bg:    #f1f3f7;
-  --ghost:   #818cf8; --ghost-bg:   #f0f0ff;
-  --metal:   #94a3b8; --metal-bg:   #f4f6f8;
-  --nature:  #22c55e; --nature-bg:  #edfff4;
-  --normal:  #a0a0b0; --normal-bg:  #f7f7f9;
+  --muted:   #7070a0;
+  --fire:    #e85d20;   --fire-bg:    #fff4ee;
+  --water:   #2266ee;   --water-bg:   #eef3ff;
+  --air:     #22aa88;   --air-bg:     #eefaf6;
+  --earth:   #aa8822;   --earth-bg:   #fdf8ee;
+  --elec:    #cc9900;   --elec-bg:    #fffbea;
+  --ice:     #3399bb;   --ice-bg:     #eef7ff;
+  --poison:  #9933cc;   --poison-bg:  #f7eeff;
+  --dark:    #555580;   --dark-bg:    #f4f4f8;
+  --ghost:   #7755cc;   --ghost-bg:   #f4f0ff;
+  --metal:   #6688aa;   --metal-bg:   #f2f4f6;
+  --nature:  #2a8844;   --nature-bg:  #edfff4;
+  --normal:  #8888aa;   --normal-bg:  #f4f4f8;
+  --font-h: 'Fredoka One', sans-serif;
+  --font-b: 'DM Sans', sans-serif;
+  --font-c: 'Fira Code', monospace;
+  --radius: 14px;
 }
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-b);
-  font-size: 16px;
-  line-height: 1.65;
-}
-
-/* ── LAYOUT ── */
-.page-wrap { max-width: 860px; margin: 0 auto; padding: 0 20px 80px; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-b); line-height: 1.65; }
+body * { font-family: inherit; }
+code { font-family: var(--font-c); }
 
 /* ── HERO ── */
 .hero {
   background: var(--card);
-  color: #fff;
+  padding: 48px 24px 36px;
   text-align: center;
-  padding: 56px 24px 48px;
   margin-bottom: 40px;
-  border-radius: 0 0 32px 32px;
   position: relative;
   overflow: hidden;
 }
 .hero::before {
   content: '';
   position: absolute; inset: 0;
-  background: repeating-linear-gradient(
-    45deg,
-    transparent, transparent 40px,
-    rgba(247,201,72,0.04) 40px, rgba(247,201,72,0.04) 80px
-  );
+  background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(245,200,66,0.04) 10px, rgba(245,200,66,0.04) 20px);
 }
-.hero-emoji { font-size: 64px; display: block; margin-bottom: 12px; }
-.hero h1 {
-  font-family: var(--font-h);
-  font-size: clamp(28px, 6vw, 48px);
-  color: var(--accent);
-  letter-spacing: 1px;
-  margin-bottom: 8px;
-}
-.hero .tagline {
-  font-size: 18px;
-  color: rgba(255,255,255,0.7);
-  font-weight: 600;
-}
+.hero-emoji { font-size: 56px; display: block; margin-bottom: 12px; position: relative; }
+.hero h1 { font-family: var(--font-h); font-size: clamp(28px, 5vw, 44px); color: var(--accent); letter-spacing: 1px; position: relative; }
+.hero .tagline { color: rgba(255,255,255,0.6); font-size: 16px; margin-top: 8px; position: relative; }
 
-/* ── SECTION HEADERS ── */
-.section {
-  margin-bottom: 48px;
-}
-.section-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 20px;
-  padding-bottom: 12px;
-  border-bottom: 3px solid var(--accent);
-}
-.section-num {
-  background: var(--card);
-  color: var(--accent);
-  font-family: var(--font-h);
-  font-size: 18px;
-  width: 36px; height: 36px;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.section-header h2 {
-  font-family: var(--font-h);
-  font-size: clamp(20px, 4vw, 28px);
-  color: var(--card);
-  letter-spacing: 0.5px;
-}
+/* ── LAYOUT ── */
+.page-wrap { max-width: 860px; margin: 0 auto; padding: 0 20px 80px; }
+.section { background: var(--surface); border-radius: var(--radius); padding: 32px; margin-bottom: 28px; box-shadow: 0 2px 16px rgba(0,0,0,0.06); }
+.section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 3px solid var(--accent); }
+.section-num { background: var(--card); color: var(--accent); font-family: var(--font-h); font-size: 18px; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.section-header h2 { font-family: var(--font-h); font-size: clamp(20px, 4vw, 28px); color: var(--card); letter-spacing: 0.5px; }
 
 /* ── CALLOUT BOXES ── */
-.callout {
-  border-radius: var(--radius);
-  padding: 16px 20px;
-  margin: 16px 0;
-  font-size: 15px;
-  font-weight: 600;
-  border-left: 5px solid;
-}
-.callout.tip   { background: #fffbea; border-color: var(--accent); color: #7a5c00; }
-.callout.warn  { background: #fff0ed; border-color: var(--fire);   color: #8b2010; }
-.callout.info  { background: #edf5ff; border-color: var(--water);  color: #0d4a8b; }
-.callout.win   { background: #edfff4; border-color: var(--nature); color: #0a5e28; }
-.callout .ci   { font-size: 20px; margin-right: 8px; }
+.callout { border-radius: var(--radius); padding: 16px 20px; margin: 16px 0; font-size: 15px; font-weight: 600; border-left: 5px solid; }
+.callout.tip  { background: #fffbea; border-color: var(--accent); color: #7a5c00; }
+.callout.warn { background: #fff0ed; border-color: var(--fire);   color: #8b2010; }
+.callout.info { background: #edf5ff; border-color: var(--water);  color: #0d4a8b; }
+.callout.win  { background: #edfff4; border-color: var(--nature); color: #0a5e28; }
+.callout .ci  { font-size: 20px; margin-right: 8px; }
 
 /* ── TABLES ── */
-.guide-table {
-  width: 100%;
-  border-collapse: collapse;
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-  margin: 8px 0 16px;
-  font-size: 15px;
-}
+.guide-table { width: 100%; border-collapse: collapse; border-radius: var(--radius); overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.06); margin: 8px 0 16px; font-size: 15px; }
 .guide-table thead tr { background: var(--card); color: #fff; }
-.guide-table thead th {
-  padding: 12px 14px;
-  text-align: left;
-  font-family: var(--font-h);
-  font-size: 15px;
-  font-weight: 400;
-  letter-spacing: 0.3px;
-}
+.guide-table thead th { padding: 12px 14px; text-align: left; font-family: var(--font-h); font-size: 15px; font-weight: 400; letter-spacing: 0.3px; }
 .guide-table tbody tr:nth-child(even) { background: #f7f7fb; }
 .guide-table tbody tr:nth-child(odd)  { background: #ffffff; }
 .guide-table tbody tr:hover { background: #f0f0fa; }
-.guide-table td {
-  padding: 11px 14px;
-  border-bottom: 1px solid var(--border);
-  vertical-align: top;
-}
+.guide-table td { padding: 11px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
 .guide-table td:first-child { font-weight: 700; }
 .center { text-align: center; }
 
+/* ── CODE BLOCKS ── */
+.code-wrap { background: #13122a; border-radius: var(--radius); padding: 20px 22px; margin: 12px 0; overflow-x: auto; position: relative; }
+.code-wrap pre { font-family: var(--font-c); font-size: 13.5px; line-height: 1.7; color: #c8d0e8; white-space: pre; }
+.code-wrap .ck  { color: #f7c948; }   /* key */
+.code-wrap .cs  { color: #a8d8a8; }   /* string */
+.code-wrap .cn  { color: #f0a0a0; }   /* number */
+.code-wrap .cc  { color: #5060a0; }   /* comment */
+.code-wrap .cp  { color: #e8a060; }   /* punctuation */
+.code-wrap .cm  { color: #88aaff; }   /* new: multi-status key highlight */
+
+/* ── COPY BUTTON ── */
+.copy-btn {
+  position: absolute; top: 12px; right: 12px;
+  background: #2a2850; color: #a0b0e0;
+  border: 1px solid #3a3870; border-radius: 8px;
+  padding: 6px 14px; font-family: var(--font-b); font-weight: 600; font-size: 12px;
+  cursor: pointer; display: flex; align-items: center; gap: 5px;
+  transition: all 0.15s ease; z-index: 10;
+}
+.copy-btn:hover { background: #3a3870; color: #c8d8ff; border-color: #5a58c0; }
+.copy-btn.copied { background: #0a3018; color: #56c87a; border-color: #22c55e; }
+
 /* ── TYPE CHIPS ── */
-.type-chip {
-  display: inline-block;
-  padding: 3px 10px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.3px;
-}
-.chip-fire     { background: var(--fire-bg);     color: var(--fire);     border: 1.5px solid var(--fire); }
-.chip-water    { background: var(--water-bg);    color: var(--water);    border: 1.5px solid var(--water); }
-.chip-air      { background: var(--air-bg);      color: #1a8aaa;         border: 1.5px solid var(--air); }
-.chip-earth    { background: var(--earth-bg);    color: var(--earth);    border: 1.5px solid var(--earth); }
-.chip-electric { background: var(--electric-bg); color: #b08a00;         border: 1.5px solid var(--electric); }
-.chip-ice      { background: var(--ice-bg);      color: #1a6e9a;         border: 1.5px solid var(--ice); }
-.chip-poison   { background: var(--poison-bg);   color: var(--poison);   border: 1.5px solid var(--poison); }
-.chip-dark     { background: var(--dark-bg);     color: var(--dark-t);   border: 1.5px solid var(--dark-t); }
-.chip-ghost    { background: var(--ghost-bg);    color: var(--ghost);    border: 1.5px solid var(--ghost); }
-.chip-metal    { background: var(--metal-bg);    color: #546e8a;         border: 1.5px solid var(--metal); }
-.chip-nature   { background: var(--nature-bg);   color: #138a3e;         border: 1.5px solid var(--nature); }
-.chip-normal   { background: var(--normal-bg);   color: #606078;         border: 1.5px solid var(--normal); }
+.type-chip { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 13px; font-weight: 800; letter-spacing: 0.3px; }
+.chip-fire     { background: var(--fire-bg);    color: var(--fire);    border: 1.5px solid var(--fire); }
+.chip-water    { background: var(--water-bg);   color: var(--water);   border: 1.5px solid var(--water); }
+.chip-air      { background: var(--air-bg);     color: #1a8aaa;        border: 1.5px solid #2aabb8; }
+.chip-earth    { background: var(--earth-bg);   color: var(--earth);   border: 1.5px solid var(--earth); }
+.chip-electric { background: var(--elec-bg);    color: var(--elec);    border: 1.5px solid var(--elec); }
+.chip-ice      { background: var(--ice-bg);     color: var(--ice);     border: 1.5px solid var(--ice); }
+.chip-poison   { background: var(--poison-bg);  color: var(--poison);  border: 1.5px solid var(--poison); }
+.chip-dark     { background: var(--dark-bg);    color: var(--dark);    border: 1.5px solid var(--dark); }
+.chip-ghost    { background: var(--ghost-bg);   color: var(--ghost);   border: 1.5px solid var(--ghost); }
+.chip-metal    { background: var(--metal-bg);   color: var(--metal);   border: 1.5px solid var(--metal); }
+.chip-nature   { background: var(--nature-bg);  color: var(--nature);  border: 1.5px solid var(--nature); }
+.chip-normal   { background: var(--normal-bg);  color: var(--normal);  border: 1.5px solid var(--normal); }
 
-/* ── TYPE MATCHUP GRID ── */
-.matchup-grid {
-  overflow-x: auto;
-  margin: 16px 0;
+/* ── STAT GRID ── */
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin: 14px 0; }
+.stat-card { background: var(--bg); border: 1.5px solid var(--border); border-radius: var(--radius); padding: 14px; }
+.stat-name { font-family: var(--font-h); font-size: 16px; color: var(--card); margin-bottom: 4px; }
+.stat-emoji { margin-right: 4px; }
+.stat-field { font-family: var(--font-c); font-size: 11px; color: var(--muted); margin-bottom: 6px; background: #f0f0f8; padding: 2px 6px; border-radius: 4px; display: inline-block; }
+.stat-desc { font-size: 13px; color: #555; line-height: 1.5; margin-bottom: 6px; }
+.stat-range { font-size: 12px; color: var(--muted); font-weight: 700; }
+
+/* ── STATUS CARDS ── */
+.status-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 12px; margin: 16px 0; }
+.status-card { background: var(--bg); border: 1.5px solid; border-radius: var(--radius); padding: 14px; }
+.s-top { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.s-emoji { font-size: 24px; }
+.s-name { font-family: var(--font-h); font-size: 16px; }
+.s-tag { display: inline-block; font-size: 10px; font-weight: 800; padding: 2px 7px; border-radius: 6px; letter-spacing: 0.5px; margin-top: 2px; }
+.tag-primary   { background: #ffe0e0; color: #cc2222; }
+.tag-secondary { background: #e0e8ff; color: #2244cc; }
+.s-desc { font-size: 13px; line-height: 1.5; color: #444; }
+.s-dur  { font-size: 11px; color: var(--muted); margin-top: 6px; font-weight: 700; }
+
+/* ── STAT TARGET TABLE ── */
+.stat-target-table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 12px 0; }
+.stat-target-table th { background: #f0f0f8; padding: 8px 12px; text-align: left; border-bottom: 2px solid var(--border); font-family: var(--font-h); font-weight: 400; color: var(--card); }
+.stat-target-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+.stat-target-table tr:last-child td { border-bottom: none; }
+.stat-target-table .tt-val { font-family: var(--font-c); background: #f0f0f8; padding: 1px 5px; border-radius: 4px; font-size: 12px; }
+.stat-target-table .tt-up   { color: #22aa44; font-weight: 700; }
+.stat-target-table .tt-down { color: #cc2222; font-weight: 700; }
+
+/* ── EXAMPLE MOVE CARDS ── */
+.example-grid { display: grid; gap: 18px; margin: 16px 0; }
+.example-card {
+  background: #13122a;
+  border: 1.5px solid #2e2e50;
   border-radius: var(--radius);
-  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  overflow: hidden;
+  position: relative;
 }
-.matchup-grid table {
-  border-collapse: collapse;
-  font-size: 13px;
-  min-width: 560px;
+.example-label {
+  display: flex; justify-content: space-between; align-items: center;
+  background: #1a1835; padding: 10px 14px;
+  font-family: var(--font-h); font-size: 14px; color: var(--accent);
+  border-bottom: 1px solid #2e2e50;
 }
-.matchup-grid th, .matchup-grid td {
-  width: 52px; min-width: 44px;
-  height: 40px;
-  text-align: center;
-  padding: 4px 2px;
-  border: 1px solid rgba(255,255,255,0.15);
-}
-.matchup-grid .corner { background: var(--card); }
-.matchup-grid .atk-header {
-  background: #2a2a4a;
-  color: #fff;
-  font-family: var(--font-h);
-  font-size: 12px;
-  font-weight: 400;
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  padding: 8px 2px;
-  height: 72px;
-  vertical-align: bottom;
-}
-.matchup-grid .def-header {
-  background: #1a1a3a;
-  color: rgba(255,255,255,0.85);
-  font-family: var(--font-h);
-  font-size: 11px;
-  font-weight: 400;
-  white-space: nowrap;
-  padding: 6px 6px;
-}
-.matchup-grid .cell-strong { background: #d4edda; color: #1a6b2e; font-weight: 800; font-size: 14px; }
-.matchup-grid .cell-weak   { background: #f8d7da; color: #8b1a1a; font-weight: 800; font-size: 14px; }
-.matchup-grid .cell-normal { background: #f0f0f8; color: #8888aa; }
+.example-label span { font-family: var(--font-b); font-size: 11px; color: #7070a0; font-weight: 600; }
+.example-card pre { font-family: var(--font-c); font-size: 13px; line-height: 1.7; color: #c8d0e8; padding: 16px 18px; overflow-x: auto; white-space: pre; }
+.example-card .ck  { color: #f7c948; }
+.example-card .cs  { color: #a8d8a8; }
+.example-card .cn  { color: #f0a0a0; }
+.example-card .cc  { color: #5060a0; }
+.example-card .cp  { color: #e8a060; }
+.example-card .cm  { color: #88aaff; }
 
-.matchup-legend { display: flex; gap: 20px; margin-top: 10px; flex-wrap: wrap; }
-.legend-item { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; }
-.legend-swatch { width: 22px; height: 22px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; }
-.legend-strong { background: #d4edda; color: #1a6b2e; }
-.legend-weak   { background: #f8d7da; color: #8b1a1a; }
-.legend-normal { background: #f0f0f8; color: #8888aa; }
+/* ── SPEED TAGS ── */
+.speed-fast   { display:inline-block; padding:2px 8px; border-radius:12px; font-size:12px; font-weight:800; background:#edfff4; color:#138a3e; border:1px solid #22c55e; }
+.speed-medium { display:inline-block; padding:2px 8px; border-radius:12px; font-size:12px; font-weight:800; background:#fffbea; color:#b08a00; border:1px solid #f7c948; }
+.speed-slow   { display:inline-block; padding:2px 8px; border-radius:12px; font-size:12px; font-weight:800; background:#fff0ed; color:#b83020; border:1px solid #e8523a; }
 
-/* ── STAT CARDS ── */
-.stat-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 14px;
-  margin: 16px 0;
-}
-.stat-card {
-  background: var(--surface);
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius);
-  padding: 16px 18px;
-}
-.stat-card .stat-name {
-  font-family: var(--font-h);
-  font-size: 17px;
-  color: var(--card);
-  margin-bottom: 4px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.stat-card .stat-emoji { font-size: 22px; }
-.stat-card .stat-field {
-  font-family: var(--font-c);
-  font-size: 12px;
-  color: var(--muted);
-  margin-bottom: 8px;
-}
-.stat-card .stat-desc { font-size: 14px; color: #444; line-height: 1.5; }
-.stat-card .stat-range {
-  margin-top: 10px;
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--muted);
-  background: #f5f5fa;
-  padding: 4px 10px;
-  border-radius: 6px;
-  display: inline-block;
-}
+/* ── TYPE MATCHUP TABLE ── */
+.matchup-table { font-size: 12px; border-collapse: collapse; width: 100%; overflow-x: auto; display: block; }
+.matchup-table th, .matchup-table td { padding: 5px 6px; text-align: center; border: 1px solid var(--border); }
+.matchup-table thead th { background: var(--card); color: #ddd; font-size: 10px; }
+.matchup-table .strong  { background: #d4fce0; color: #1a5e2e; font-weight: 800; }
+.matchup-table .weak    { background: #fce0e0; color: #7a1010; font-weight: 800; }
+.matchup-table .neutral { color: #999; }
 
-/* ── STATUS EFFECT CARDS ── */
-.status-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 14px;
-  margin: 16px 0;
-}
-.status-card {
-  background: var(--surface);
-  border-radius: var(--radius);
-  padding: 16px 18px;
-  border: 1.5px solid var(--border);
-}
-.status-card .s-top {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 8px;
-}
-.status-card .s-emoji { font-size: 28px; line-height: 1; }
-.status-card .s-name {
-  font-family: var(--font-h);
-  font-size: 18px;
-  color: var(--card);
-}
-.status-card .s-tag {
-  font-size: 11px;
-  font-weight: 800;
-  padding: 2px 8px;
-  border-radius: 10px;
-  letter-spacing: 0.3px;
-}
-.tag-primary   { background: #fff0ed; color: var(--fire); border: 1px solid var(--fire); }
-.tag-secondary { background: #edf5ff; color: var(--water); border: 1px solid var(--water); }
-.status-card .s-desc { font-size: 14px; color: #444; line-height: 1.55; }
-.status-card .s-dur {
-  margin-top: 8px;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--muted);
-  font-family: var(--font-c);
-}
-
-/* ── CODE BLOCK ── */
-.code-wrap {
-  background: var(--card);
-  border-radius: var(--radius);
-  padding: 20px 22px;
-  margin: 12px 0;
-  overflow-x: auto;
-}
-.code-wrap pre {
-  font-family: var(--font-c);
-  font-size: 13.5px;
-  line-height: 1.7;
-  color: #c8d0e8;
-  white-space: pre;
-}
-.code-wrap .ck  { color: #f7c948; }  /* key */
-.code-wrap .cs  { color: #a8d8a8; }  /* string */
-.code-wrap .cn  { color: #f0a0a0; }  /* number */
-.code-wrap .cc  { color: #7070a0; }  /* comment */
-.code-wrap .cp  { color: #e8a060; }  /* punctuation */
+/* ── NAV ── */
+.toc { background: var(--card); border-radius: var(--radius); padding: 24px 28px; margin-bottom: 40px; color: #fff; }
+.toc h3 { font-family: var(--font-h); font-size: 20px; color: var(--accent); margin-bottom: 14px; }
+.toc ol { padding-left: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 20px; }
+@media (max-width: 520px) { .toc ol { grid-template-columns: 1fr; } }
+.toc a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; font-weight: 600; transition: color 0.12s; }
+.toc a:hover { color: var(--accent); }
+body { scroll-behavior: smooth; }
+h2, h1 { scroll-margin-top: 24px; }
 
 /* ── NAME/EMOJI LISTS ── */
-.name-columns {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 8px;
-  margin: 12px 0;
-}
-.name-pill {
-  background: var(--surface);
-  border: 1.5px solid var(--border);
-  border-radius: 8px;
-  padding: 7px 12px;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--card);
-  transition: background 0.12s, border-color 0.12s;
-  cursor: default;
-}
+.name-columns { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; margin: 12px 0; }
+.name-pill { background: var(--surface); border: 1.5px solid var(--border); border-radius: 8px; padding: 7px 12px; font-size: 14px; font-weight: 700; color: var(--card); cursor: default; }
 .name-pill:hover { background: #eeeeff; border-color: #9090cc; }
-
 .emoji-section { margin-bottom: 20px; }
-.emoji-section h4 {
-  font-family: var(--font-h);
-  font-size: 16px;
-  color: var(--muted);
-  margin-bottom: 8px;
-}
-.emoji-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.emoji-pill {
-  background: var(--surface);
-  border: 1.5px solid var(--border);
-  border-radius: 8px;
-  padding: 6px 10px;
-  font-size: 24px;
-  cursor: default;
-  transition: transform 0.1s;
-}
+.emoji-section h4 { font-family: var(--font-h); font-size: 16px; color: var(--muted); margin-bottom: 8px; }
+.emoji-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.emoji-pill { background: var(--surface); border: 1.5px solid var(--border); border-radius: 8px; padding: 6px 10px; font-size: 24px; cursor: default; transition: transform 0.1s; }
 .emoji-pill:hover { transform: scale(1.2); }
 
 /* ── CHECKLIST ── */
 .checklist { list-style: none; margin: 12px 0; }
 .checklist li {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 10px 14px;
-  margin-bottom: 6px;
-  background: var(--surface);
-  border-radius: 10px;
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 10px 14px; margin-bottom: 6px;
+  background: var(--surface); border-radius: 10px;
   border: 1.5px solid var(--border);
-  font-size: 15px;
-  font-weight: 600;
-  color: #333;
+  font-size: 15px; font-weight: 600; color: #333;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  user-select: none;
 }
-.checklist li::before {
-  content: '☐';
-  font-size: 20px;
-  color: #9090b0;
-  flex-shrink: 0;
-  line-height: 1.2;
+.checklist li:hover { background: #f4f4ff; border-color: #b0b0e0; }
+.checklist li.done { background: #edfff4; border-color: #22c55e; color: #166534; }
+.checklist li .cb-box {
+  flex-shrink: 0; width: 22px; height: 22px;
+  border: 2px solid #b0b0d0; border-radius: 6px;
+  background: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; margin-top: 1px;
+  transition: all 0.15s;
 }
+.checklist li.done .cb-box {
+  background: #22c55e; border-color: #16a34a; color: #fff;
+}
+.checklist-progress {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 14px; font-size: 13px; font-weight: 700; color: var(--muted);
+}
+.checklist-bar-track {
+  flex: 1; height: 8px; background: #e0e0f0; border-radius: 4px; overflow: hidden;
+}
+.checklist-bar-fill {
+  height: 100%; background: #22c55e; border-radius: 4px;
+  transition: width 0.35s ease;
+}
+.checklist-reset {
+  font-size: 11px; color: #aaa; background: none; border: 1px solid #ddd;
+  border-radius: 6px; padding: 3px 8px; cursor: pointer;
+  font-family: var(--font-b); font-weight: 600;
+  transition: color 0.15s, border-color 0.15s;
+}
+.checklist-reset:hover { color: #e85d20; border-color: #e85d20; }
 
 /* ── STRATEGY BOX ── */
-.strategy-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin: 12px 0;
-}
+.strategy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 12px 0; }
 @media (max-width: 560px) { .strategy-grid { grid-template-columns: 1fr; } }
-.strat-card {
-  border-radius: var(--radius);
-  padding: 16px 18px;
-}
-.strat-card.do    { background: #edfff4; border: 1.5px solid #22c55e; }
-.strat-card.dont  { background: #fff0f0; border: 1.5px solid #ef4444; }
-.strat-card h4 {
-  font-family: var(--font-h);
-  font-size: 16px;
-  margin-bottom: 10px;
-}
+.strat-card { border-radius: var(--radius); padding: 16px 18px; }
+.strat-card.do   { background: #edfff4; border: 1.5px solid #22c55e; }
+.strat-card.dont { background: #fff0f0; border: 1.5px solid #ef4444; }
+.strat-card h4 { font-family: var(--font-h); font-size: 16px; margin-bottom: 10px; }
 .strat-card.do h4   { color: #138a3e; }
 .strat-card.dont h4 { color: #b91c1c; }
 .strat-card ul { padding-left: 18px; font-size: 14px; line-height: 1.8; }
 
-/* ── MOVE SPEED TAGS ── */
-.speed-fast   { display:inline-block; padding:2px 8px; border-radius:12px; font-size:12px; font-weight:800; background:#edfff4; color:#138a3e; border:1px solid #22c55e; }
-.speed-medium { display:inline-block; padding:2px 8px; border-radius:12px; font-size:12px; font-weight:800; background:#fffbea; color:#b08a00; border:1px solid #f7c948; }
-.speed-slow   { display:inline-block; padding:2px 8px; border-radius:12px; font-size:12px; font-weight:800; background:#fff0ed; color:#b83020; border:1px solid #e8523a; }
+/* ── BUG TESTING SECTION ── */
 
-/* ── NAV ── */
-.toc {
-  background: var(--card);
+/* Debug log mock */
+.fake-debug {
+  background: #060610;
+  border: 1.5px solid #3a2a60;
   border-radius: var(--radius);
-  padding: 24px 28px;
-  margin-bottom: 40px;
-  color: #fff;
+  font-family: var(--font-c);
+  font-size: 12px;
+  overflow: hidden;
+  margin: 14px 0;
 }
-.toc h3 {
+.fake-debug-header {
+  background: #10082a;
+  padding: 7px 14px;
   font-family: var(--font-h);
-  font-size: 20px;
-  color: var(--accent);
-  margin-bottom: 14px;
+  font-size: 13px;
+  color: #a080f0;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #2a1a48;
+  display: flex; justify-content: space-between; align-items: center;
 }
-.toc ol {
-  padding-left: 20px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px 20px;
-}
-@media (max-width: 520px) { .toc ol { grid-template-columns: 1fr; } }
-.toc a {
-  color: rgba(255,255,255,0.8);
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 600;
-  transition: color 0.12s;
-}
-.toc a:hover { color: var(--accent); }
+.fake-debug-header span { color: #5040a0; font-size: 11px; font-family: var(--font-b); }
+.fake-debug-body { padding: 10px 14px; display: flex; flex-direction: column; gap: 3px; }
+.fdl { display: flex; gap: 8px; padding: 2px 5px; border-radius: 3px; }
+.fdl-ts   { color: #3a3460; font-size: 10px; white-space: nowrap; flex-shrink: 0; }
+.fdl-icon { flex-shrink: 0; }
+.fdl-msg  { flex: 1; word-break: break-word; }
+.fdl.dl-info   { background: rgba(0,60,140,.14); }
+.fdl.dl-ok     { background: rgba(0,90,50,.18); }
+.fdl.dl-warn   { background: rgba(130,90,0,.18); }
+.fdl.dl-error  { background: rgba(150,15,15,.22); }
+.fdl.dl-battle { background: rgba(20,90,55,.14); }
+.fdl.dl-score  { background: rgba(100,50,140,.16); }
+.fdl.dl-info   .fdl-icon, .fdl.dl-info   .fdl-msg { color: #80c0ff; }
+.fdl.dl-ok     .fdl-icon, .fdl.dl-ok     .fdl-msg { color: #56c87a; }
+.fdl.dl-warn   .fdl-icon, .fdl.dl-warn   .fdl-msg { color: #f5c842; font-weight: 600; }
+.fdl.dl-error  .fdl-icon, .fdl.dl-error  .fdl-msg { color: #ff6060; font-weight: 700; }
+.fdl.dl-battle .fdl-icon, .fdl.dl-battle .fdl-msg { color: #60d090; }
+.fdl.dl-score  .fdl-icon, .fdl.dl-score  .fdl-msg { color: #d890ff; }
+/* highlighted parts in debug messages */
+.fdl .hi-field  { background: #2a1040; color: #e0a0ff; padding: 0 4px; border-radius: 3px; }
+.fdl .hi-fix    { background: #0a2a10; color: #80ff80; padding: 0 4px; border-radius: 3px; }
+.fdl .hi-val    { background: #2a1800; color: #ffcc80; padding: 0 4px; border-radius: 3px; }
 
-body { scroll-behavior: smooth; }
-h2, h1 { scroll-margin-top: 24px; }
+/* Error scenario cards */
+.bug-grid { display: grid; gap: 16px; margin: 16px 0; }
+.bug-card {
+  border: 1.5px solid #e0d0f0;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.bug-card-header {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 16px;
+  background: #f8f4ff;
+  border-bottom: 1px solid #e0d0f0;
+}
+.bug-icon { font-size: 22px; flex-shrink: 0; }
+.bug-title { font-family: var(--font-h); font-size: 17px; color: #3a1a5a; }
+.bug-subtitle { font-size: 12px; color: var(--muted); font-weight: 600; }
+.bug-card-body { padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+.bug-label { font-size: 11px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+
+/* Workflow steps */
+.workflow { display: flex; flex-direction: column; gap: 0; margin: 16px 0; }
+.wf-step {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-bottom: none;
+  position: relative;
+}
+.wf-step:first-child { border-radius: var(--radius) var(--radius) 0 0; }
+.wf-step:last-child  { border-bottom: 1.5px solid var(--border); border-radius: 0 0 var(--radius) var(--radius); }
+.wf-step:only-child  { border-radius: var(--radius); border-bottom: 1.5px solid var(--border); }
+.wf-num {
+  background: var(--card); color: var(--accent);
+  font-family: var(--font-h); font-size: 14px;
+  width: 30px; height: 30px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 2px;
+}
+.wf-content h4 { font-family: var(--font-h); font-size: 16px; color: var(--card); margin-bottom: 4px; }
+.wf-content p  { font-size: 14px; color: #444; line-height: 1.55; }
+.wf-content code { font-family: var(--font-c); background: #f0f0f8; padding: 1px 5px; border-radius: 4px; font-size: 12px; }
+
+/* Key shortcut pill */
+.kbd {
+  display: inline-flex; align-items: center; gap: 3px;
+  font-family: var(--font-c); font-size: 12px; font-weight: 700;
+  background: #1e1e38; color: #f5c842;
+  padding: 3px 8px; border-radius: 6px;
+  border: 1.5px solid #3a3a60;
+  box-shadow: 0 2px 0 #0a0a18;
+  white-space: nowrap;
+}
+
+/* Filter tab example */
+.filter-tabs-demo { display: flex; gap: 6px; flex-wrap: wrap; margin: 8px 0; }
+.ftab {
+  font-family: var(--font-c); font-size: 11px; font-weight: 700;
+  padding: 4px 10px; border-radius: 6px; border: 1.5px solid;
+  cursor: default;
+}
+.ftab.t-all     { background: #1a1830; color: #c0c0e0; border-color: #4040a0; }
+.ftab.t-info    { background: rgba(0,60,140,.18); color: #80c0ff; border-color: #2060c0; }
+.ftab.t-battle  { background: rgba(20,90,55,.2);  color: #60d090; border-color: #208050; }
+.ftab.t-ok      { background: rgba(0,90,50,.2);   color: #56c87a; border-color: #22aa55; }
+.ftab.t-warn    { background: rgba(130,90,0,.2);  color: #f5c842; border-color: #c09000; }
+.ftab.t-error   { background: rgba(150,15,15,.22);color: #ff6060; border-color: #cc2020; }
+
+/* Github flow diagram */
+.gh-flow {
+  display: flex; align-items: center; gap: 0;
+  flex-wrap: wrap;
+  margin: 14px 0;
+  font-size: 13px;
+  font-weight: 700;
+}
+.gh-box {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  text-align: center;
+  min-width: 110px;
+}
+.gh-box .gh-icon { font-size: 22px; display: block; margin-bottom: 4px; }
+.gh-box .gh-label { font-size: 12px; color: var(--card); font-weight: 700; }
+.gh-box .gh-sub   { font-size: 10px; color: var(--muted); font-weight: 600; margin-top: 2px; }
+.gh-arr { font-size: 20px; color: var(--muted); padding: 0 4px; }
+.gh-time-label {
+  font-size: 11px; color: #b83020; font-weight: 800;
+  background: #fff0ed; border: 1px solid #e85d20;
+  border-radius: 6px; padding: 2px 7px;
+  white-space: nowrap;
+}
 </style>
 </head>
 <body>
@@ -478,7 +415,7 @@ h2, h1 { scroll-margin-top: 24px; }
     <ol>
       <li><a href="#s1">What is a Fakemon?</a></li>
       <li><a href="#s2">The 5 Stats</a></li>
-      <li><a href="#s3">Types & Matchups</a></li>
+      <li><a href="#s3">Types &amp; Matchups</a></li>
       <li><a href="#s4">Status Effects</a></li>
       <li><a href="#s5">Designing Moves</a></li>
       <li><a href="#s6">Naming Your Fakemon</a></li>
@@ -487,6 +424,8 @@ h2, h1 { scroll-margin-top: 24px; }
       <li><a href="#s9">Adding to the Game</a></li>
       <li><a href="#s10">Strategy Tips</a></li>
       <li><a href="#s11">Final Checklist</a></li>
+      <li><a href="#s12">🐛 Bug Testing Guide</a></li>
+      <li><a href="#s13">🔀 Opening Your Pull Request</a></li>
     </ol>
   </div>
 
@@ -541,7 +480,7 @@ h2, h1 { scroll-margin-top: 24px; }
       </div>
     </div>
 
-    <div class="callout tip"><span class="ci">💡</span> <strong>StatUp and StatDwn moves</strong> raise or lower these stats temporarily during battle. For example, a "Power Up" move might raise your Power stat by 20% for 3 turns — making all your damage moves hit harder while it lasts!</div>
+    <div class="callout tip"><span class="ci">💡</span> <strong>StatUp and StatDwn moves</strong> raise or lower a specific stat temporarily during battle. You pick <em>which</em> stat gets boosted using <code>statTarget</code> — see Section 5 for details!</div>
   </div>
 
   <!-- ══ 3. TYPES ══════════════════════════════════════════════════════════ -->
@@ -551,7 +490,6 @@ h2, h1 { scroll-margin-top: 24px; }
       <h2>Types &amp; Matchups</h2>
     </div>
     <p>Every Fakemon has a type. Types work like a big game of rock-paper-scissors — some types hit <strong style="color:#138a3e">super hard</strong> against certain types, and <strong style="color:#b91c1c">not very hard</strong> against others.</p>
-
     <p style="margin-top:14px; font-weight:700;">Here are all the types:</p>
     <div style="display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 20px;">
       <span class="type-chip chip-fire">🔥 Fire</span>
@@ -567,234 +505,7 @@ h2, h1 { scroll-margin-top: 24px; }
       <span class="type-chip chip-nature">🌿 Nature</span>
       <span class="type-chip chip-normal">⭐ Normal</span>
     </div>
-
-    <h3 style="font-family:var(--font-h); font-size:18px; margin-bottom:10px; color:var(--card);">Type Matchup Chart</h3>
-    <p style="font-size:14px; color:var(--muted); margin-bottom:8px;">Read it like this: find the <strong>attacker's type</strong> across the top, find the <strong>defender's type</strong> down the left side. Green = does extra damage. Red = does less damage.</p>
-
-    <div class="matchup-grid">
-      <table>
-        <thead>
-          <tr>
-            <th class="corner" style="width:72px;"></th>
-            <!-- Attacker headers -->
-            <th class="atk-header" style="background:#c0392b; color:#fff;">🔥 Fire</th>
-            <th class="atk-header" style="background:#2e86de; color:#fff;">💧 Water</th>
-            <th class="atk-header" style="background:#5ba4c0; color:#fff;">🌬️ Air</th>
-            <th class="atk-header" style="background:#8b6914; color:#fff;">🌍 Earth</th>
-            <th class="atk-header" style="background:#c9a800; color:#fff;">⚡ Elec</th>
-            <th class="atk-header" style="background:#3a9abf; color:#fff;">❄️ Ice</th>
-            <th class="atk-header" style="background:#9333d4; color:#fff;">🟣 Poison</th>
-            <th class="atk-header" style="background:#374151; color:#fff;">🌑 Dark</th>
-            <th class="atk-header" style="background:#6366f1; color:#fff;">👻 Ghost</th>
-            <th class="atk-header" style="background:#708090; color:#fff;">⚙️ Metal</th>
-            <th class="atk-header" style="background:#16a34a; color:#fff;">🌿 Nature</th>
-            <th class="atk-header" style="background:#888899; color:#fff;">⭐ Normal</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Fire defending -->
-          <tr>
-            <td class="def-header" style="background:#c0392b; color:#fff;">🔥 Fire</td>
-            <td class="cell-normal">—</td>   <!-- vs Fire atk -->
-            <td class="cell-strong">2×</td>  <!-- Water → Fire: strong -->
-            <td class="cell-normal">—</td>   <!-- Air → Fire -->
-            <td class="cell-normal">—</td>   <!-- Earth → Fire -->
-            <td class="cell-normal">—</td>   <!-- Electric → Fire -->
-            <td class="cell-strong">2×</td>  <!-- Ice → Fire: strong -->
-            <td class="cell-normal">—</td>   <!-- Poison → Fire -->
-            <td class="cell-normal">—</td>   <!-- Dark → Fire -->
-            <td class="cell-normal">—</td>   <!-- Ghost → Fire -->
-            <td class="cell-weak">½</td>     <!-- Metal → Fire: weak -->
-            <td class="cell-normal">—</td>   <!-- Nature → Fire -->
-            <td class="cell-normal">—</td>   <!-- Normal → Fire -->
-          </tr>
-          <!-- Water defending -->
-          <tr>
-            <td class="def-header" style="background:#2e86de; color:#fff;">💧 Water</td>
-            <td class="cell-weak">½</td>     <!-- Fire → Water: weak -->
-            <td class="cell-normal">—</td>   <!-- Water → Water -->
-            <td class="cell-normal">—</td>   <!-- Air → Water -->
-            <td class="cell-normal">—</td>   <!-- Earth → Water -->
-            <td class="cell-strong">2×</td>  <!-- Electric → Water: strong -->
-            <td class="cell-normal">—</td>   <!-- Ice → Water -->
-            <td class="cell-normal">—</td>   <!-- Poison → Water -->
-            <td class="cell-normal">—</td>   <!-- Dark → Water -->
-            <td class="cell-normal">—</td>   <!-- Ghost → Water -->
-            <td class="cell-normal">—</td>   <!-- Metal → Water -->
-            <td class="cell-strong">2×</td>  <!-- Nature → Water: strong -->
-            <td class="cell-normal">—</td>   <!-- Normal → Water -->
-          </tr>
-          <!-- Air defending -->
-          <tr>
-            <td class="def-header" style="background:#5ba4c0; color:#fff;">🌬️ Air</td>
-            <td class="cell-strong">2×</td>  <!-- Fire → Air: strong -->
-            <td class="cell-normal">—</td>   <!-- Water → Air -->
-            <td class="cell-normal">—</td>   <!-- Air → Air -->
-            <td class="cell-normal">—</td>   <!-- Earth → Air -->
-            <td class="cell-strong">2×</td>  <!-- Electric → Air: strong -->
-            <td class="cell-normal">—</td>   <!-- Ice → Air -->
-            <td class="cell-normal">—</td>   <!-- Poison → Air -->
-            <td class="cell-normal">—</td>   <!-- Dark → Air -->
-            <td class="cell-normal">—</td>   <!-- Ghost → Air -->
-            <td class="cell-normal">—</td>   <!-- Metal → Air -->
-            <td class="cell-weak">½</td>     <!-- Nature → Air: weak -->
-            <td class="cell-normal">—</td>   <!-- Normal → Air -->
-          </tr>
-          <!-- Earth defending -->
-          <tr>
-            <td class="def-header" style="background:#8b6914; color:#fff;">🌍 Earth</td>
-            <td class="cell-normal">—</td>   <!-- Fire → Earth -->
-            <td class="cell-strong">2×</td>  <!-- Water → Earth: strong -->
-            <td class="cell-normal">—</td>   <!-- Air → Earth -->
-            <td class="cell-normal">—</td>   <!-- Earth → Earth -->
-            <td class="cell-weak">½</td>     <!-- Electric → Earth: weak -->
-            <td class="cell-normal">—</td>   <!-- Ice → Earth -->
-            <td class="cell-normal">—</td>   <!-- Poison → Earth -->
-            <td class="cell-normal">—</td>   <!-- Dark → Earth -->
-            <td class="cell-normal">—</td>   <!-- Ghost → Earth -->
-            <td class="cell-normal">—</td>   <!-- Metal → Earth -->
-            <td class="cell-strong">2×</td>  <!-- Nature → Earth: strong -->
-            <td class="cell-normal">—</td>   <!-- Normal → Earth -->
-          </tr>
-          <!-- Electric defending -->
-          <tr>
-            <td class="def-header" style="background:#c9a800; color:#fff;">⚡ Electric</td>
-            <td class="cell-normal">—</td>   <!-- Fire → Electric -->
-            <td class="cell-weak">½</td>     <!-- Water → Electric: weak -->
-            <td class="cell-normal">—</td>   <!-- Air → Electric -->
-            <td class="cell-strong">2×</td>  <!-- Earth → Electric: strong -->
-            <td class="cell-normal">—</td>   <!-- Electric → Electric -->
-            <td class="cell-normal">—</td>   <!-- Ice → Electric -->
-            <td class="cell-normal">—</td>   <!-- Poison → Electric -->
-            <td class="cell-normal">—</td>   <!-- Dark → Electric -->
-            <td class="cell-normal">—</td>   <!-- Ghost → Electric -->
-            <td class="cell-strong">2×</td>  <!-- Metal → Electric: strong -->
-            <td class="cell-normal">—</td>   <!-- Nature → Electric -->
-            <td class="cell-normal">—</td>   <!-- Normal → Electric -->
-          </tr>
-          <!-- Ice defending -->
-          <tr>
-            <td class="def-header" style="background:#3a9abf; color:#fff;">❄️ Ice</td>
-            <td class="cell-strong">2×</td>  <!-- Fire → Ice: strong -->
-            <td class="cell-normal">—</td>   <!-- Water → Ice -->
-            <td class="cell-normal">—</td>   <!-- Air → Ice -->
-            <td class="cell-normal">—</td>   <!-- Earth → Ice -->
-            <td class="cell-normal">—</td>   <!-- Electric → Ice -->
-            <td class="cell-normal">—</td>   <!-- Ice → Ice -->
-            <td class="cell-normal">—</td>   <!-- Poison → Ice -->
-            <td class="cell-normal">—</td>   <!-- Dark → Ice -->
-            <td class="cell-normal">—</td>   <!-- Ghost → Ice -->
-            <td class="cell-strong">2×</td>  <!-- Metal → Ice: strong -->
-            <td class="cell-normal">—</td>   <!-- Nature → Ice -->
-            <td class="cell-normal">—</td>   <!-- Normal → Ice -->
-          </tr>
-          <!-- Poison defending -->
-          <tr>
-            <td class="def-header" style="background:#9333d4; color:#fff;">🟣 Poison</td>
-            <td class="cell-normal">—</td>   <!-- Fire → Poison -->
-            <td class="cell-normal">—</td>   <!-- Water → Poison -->
-            <td class="cell-normal">—</td>   <!-- Air → Poison -->
-            <td class="cell-strong">2×</td>  <!-- Earth → Poison: strong -->
-            <td class="cell-normal">—</td>   <!-- Electric → Poison -->
-            <td class="cell-normal">—</td>   <!-- Ice → Poison -->
-            <td class="cell-normal">—</td>   <!-- Poison → Poison -->
-            <td class="cell-normal">—</td>   <!-- Dark → Poison -->
-            <td class="cell-strong">2×</td>  <!-- Ghost → Poison: strong -->
-            <td class="cell-normal">—</td>   <!-- Metal → Poison -->
-            <td class="cell-weak">½</td>     <!-- Nature → Poison: weak -->
-            <td class="cell-normal">—</td>   <!-- Normal → Poison -->
-          </tr>
-          <!-- Dark defending -->
-          <tr>
-            <td class="def-header" style="background:#374151; color:#fff;">🌑 Dark</td>
-            <td class="cell-normal">—</td>   <!-- Fire → Dark -->
-            <td class="cell-normal">—</td>   <!-- Water → Dark -->
-            <td class="cell-normal">—</td>   <!-- Air → Dark -->
-            <td class="cell-normal">—</td>   <!-- Earth → Dark -->
-            <td class="cell-normal">—</td>   <!-- Electric → Dark -->
-            <td class="cell-normal">—</td>   <!-- Ice → Dark -->
-            <td class="cell-normal">—</td>   <!-- Poison → Dark -->
-            <td class="cell-normal">—</td>   <!-- Dark → Dark -->
-            <td class="cell-strong">2×</td>  <!-- Ghost → Dark: strong -->
-            <td class="cell-normal">—</td>   <!-- Metal → Dark -->
-            <td class="cell-normal">—</td>   <!-- Nature → Dark -->
-            <td class="cell-normal">—</td>   <!-- Normal → Dark -->
-          </tr>
-          <!-- Ghost defending -->
-          <tr>
-            <td class="def-header" style="background:#6366f1; color:#fff;">👻 Ghost</td>
-            <td class="cell-normal">—</td>   <!-- Fire → Ghost -->
-            <td class="cell-normal">—</td>   <!-- Water → Ghost -->
-            <td class="cell-normal">—</td>   <!-- Air → Ghost -->
-            <td class="cell-normal">—</td>   <!-- Earth → Ghost -->
-            <td class="cell-normal">—</td>   <!-- Electric → Ghost -->
-            <td class="cell-normal">—</td>   <!-- Ice → Ghost -->
-            <td class="cell-weak">½</td>     <!-- Poison → Ghost: weak -->
-            <td class="cell-strong">2×</td>  <!-- Dark → Ghost: strong -->
-            <td class="cell-strong">2×</td>  <!-- Ghost → Ghost: strong -->
-            <td class="cell-normal">—</td>   <!-- Metal → Ghost -->
-            <td class="cell-normal">—</td>   <!-- Nature → Ghost -->
-            <td class="cell-weak">½</td>     <!-- Normal → Ghost: weak -->
-          </tr>
-          <!-- Metal defending -->
-          <tr>
-            <td class="def-header" style="background:#708090; color:#fff;">⚙️ Metal</td>
-            <td class="cell-strong">2×</td>  <!-- Fire → Metal: strong -->
-            <td class="cell-normal">—</td>   <!-- Water → Metal -->
-            <td class="cell-normal">—</td>   <!-- Air → Metal -->
-            <td class="cell-normal">—</td>   <!-- Earth → Metal -->
-            <td class="cell-weak">½</td>     <!-- Electric → Metal: weak -->
-            <td class="cell-normal">—</td>   <!-- Ice → Metal -->
-            <td class="cell-normal">—</td>   <!-- Poison → Metal -->
-            <td class="cell-normal">—</td>   <!-- Dark → Metal -->
-            <td class="cell-normal">—</td>   <!-- Ghost → Metal -->
-            <td class="cell-normal">—</td>   <!-- Metal → Metal -->
-            <td class="cell-normal">—</td>   <!-- Nature → Metal -->
-            <td class="cell-normal">—</td>   <!-- Normal → Metal -->
-          </tr>
-          <!-- Nature defending -->
-          <tr>
-            <td class="def-header" style="background:#16a34a; color:#fff;">🌿 Nature</td>
-            <td class="cell-strong">2×</td>  <!-- Fire → Nature: strong -->
-            <td class="cell-weak">½</td>     <!-- Water → Nature: weak -->
-            <td class="cell-strong">2×</td>  <!-- Air → Nature: strong -->
-            <td class="cell-weak">½</td>     <!-- Earth → Nature: weak -->
-            <td class="cell-normal">—</td>   <!-- Electric → Nature -->
-            <td class="cell-strong">2×</td>  <!-- Ice → Nature: strong -->
-            <td class="cell-strong">2×</td>  <!-- Poison → Nature: strong -->
-            <td class="cell-normal">—</td>   <!-- Dark → Nature -->
-            <td class="cell-normal">—</td>   <!-- Ghost → Nature -->
-            <td class="cell-normal">—</td>   <!-- Metal → Nature -->
-            <td class="cell-normal">—</td>   <!-- Nature → Nature -->
-            <td class="cell-normal">—</td>   <!-- Normal → Nature -->
-          </tr>
-          <!-- Normal defending -->
-          <tr>
-            <td class="def-header" style="background:#888899; color:#fff;">⭐ Normal</td>
-            <td class="cell-normal">—</td>
-            <td class="cell-normal">—</td>
-            <td class="cell-normal">—</td>
-            <td class="cell-normal">—</td>
-            <td class="cell-normal">—</td>
-            <td class="cell-normal">—</td>
-            <td class="cell-normal">—</td>
-            <td class="cell-normal">—</td>
-            <td class="cell-normal">—</td>
-            <td class="cell-normal">—</td>
-            <td class="cell-normal">—</td>
-            <td class="cell-normal">—</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="matchup-legend">
-      <div class="legend-item"><div class="legend-swatch legend-strong">2×</div> Super effective — deals double damage</div>
-      <div class="legend-item"><div class="legend-swatch legend-weak">½</div> Not very effective — deals half damage</div>
-      <div class="legend-item"><div class="legend-swatch legend-normal">—</div> Normal damage</div>
-    </div>
-
-    <div class="callout info" style="margin-top:16px;"><span class="ci">📖</span> <strong>How to read it:</strong> Look across the top for the attacker's type. Look down the side for the defender's type. Where they meet is the result. Example: Fire attacking Nature = 2× (super effective!). Water attacking Nature = ½ (not very effective).</div>
+    <div class="callout info"><span class="ci">ℹ️</span> Type matchups give ×2 damage when super effective or ×0.5 when not very effective. Check the guide for the full matchup chart!</div>
   </div>
 
   <!-- ══ 4. STATUS EFFECTS ══════════════════════════════════════════════════ -->
@@ -803,171 +514,389 @@ h2, h1 { scroll-margin-top: 24px; }
       <div class="section-num">4</div>
       <h2>Status Effects</h2>
     </div>
-    <p>Status effects are conditions your moves can put on the enemy (or yourself!). They can turn the tide of a battle even when your damage isn't the highest.</p>
+    <p>Moves can apply status effects — special conditions that stick around for multiple turns and mess with a fighter's stats or actions. There are two categories:</p>
 
-    <h3 style="font-family:var(--font-h); font-size:18px; margin:16px 0 10px; color:#444;">Primary Statuses — Only one at a time!</h3>
-    <p style="font-size:14px; color:var(--muted); margin-bottom:14px;">A Fakemon can only have ONE primary status at a time. You can't poison AND burn the same enemy.</p>
-
+    <h3 style="font-family:var(--font-h);font-size:18px;margin:18px 0 10px;">🔴 Primary Statuses — Only one at a time!</h3>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:10px;">A Fakemon can only have one of these at once. If it already has burn, you can't also poison it.</p>
     <div class="status-grid">
-      <div class="status-card" style="border-color:#a855f7;">
-        <div class="s-top">
-          <span class="s-emoji">🟣</span>
-          <div>
-            <div class="s-name">Poison</div>
-            <span class="s-tag tag-primary">PRIMARY</span>
-          </div>
-        </div>
-        <div class="s-desc">The enemy loses <strong>8% of their max HP</strong> at the end of every turn. It adds up fast — a Fakemon with 100 HP loses 8 HP each turn!</div>
-        <div class="s-dur">⏱ Lasts until healed or battle ends</div>
+      <div class="status-card" style="border-color:#ff7050;">
+        <div class="s-top"><span class="s-emoji">🔴</span><div><div class="s-name">Burn</div><span class="s-tag tag-primary">PRIMARY</span></div></div>
+        <div class="s-desc">Deals 6% max HP damage every turn. Also <strong>lowers ATK by 20</strong> while active.</div>
+        <div class="s-dur">⏱ Lasts until cured</div>
       </div>
-      <div class="status-card" style="border-color:#e8523a;">
-        <div class="s-top">
-          <span class="s-emoji">🔴</span>
-          <div>
-            <div class="s-name">Burn</div>
-            <span class="s-tag tag-primary">PRIMARY</span>
-          </div>
-        </div>
-        <div class="s-desc">The enemy loses <strong>6% of their max HP</strong> per turn AND their Power stat is reduced — so their attacks hit softer too. Double trouble!</div>
-        <div class="s-dur">⏱ Lasts until healed or battle ends</div>
+      <div class="status-card" style="border-color:#9933cc;">
+        <div class="s-top"><span class="s-emoji">🟣</span><div><div class="s-name">Poison</div><span class="s-tag tag-primary">PRIMARY</span></div></div>
+        <div class="s-desc">Deals 8% max HP damage every turn — the deadliest damage-over-time status.</div>
+        <div class="s-dur">⏱ Lasts until cured</div>
       </div>
-      <div class="status-card" style="border-color:#f7c948;">
-        <div class="s-top">
-          <span class="s-emoji">⚡</span>
-          <div>
-            <div class="s-name">Paralyze</div>
-            <span class="s-tag tag-primary">PRIMARY</span>
-          </div>
-        </div>
-        <div class="s-desc">Each turn, the enemy has a <strong>35% chance of not being able to move at all</strong>. Their Speed stat also drops — so even if they do move, they might go second.</div>
-        <div class="s-dur">⏱ Lasts until healed or battle ends</div>
+      <div class="status-card" style="border-color:#f5c842;">
+        <div class="s-top"><span class="s-emoji">⚡</span><div><div class="s-name">Paralyze</div><span class="s-tag tag-primary">PRIMARY</span></div></div>
+        <div class="s-desc">35% chance to skip your turn each turn. Also <strong>lowers Speed by 30</strong> while active.</div>
+        <div class="s-dur">⏱ Lasts until cured</div>
       </div>
-      <div class="status-card" style="border-color:#5bc0eb;">
-        <div class="s-top">
-          <span class="s-emoji">💤</span>
-          <div>
-            <div class="s-name">Sleep</div>
-            <span class="s-tag tag-primary">PRIMARY</span>
-          </div>
-        </div>
-        <div class="s-desc">The enemy <strong>can't do anything for 2–3 turns</strong>. They just snooze while you attack freely! They wake up on their own when the turns run out.</div>
-        <div class="s-dur">⏱ 2–3 turns, then auto-wakes</div>
+      <div class="status-card" style="border-color:#6080d0;">
+        <div class="s-top"><span class="s-emoji">💤</span><div><div class="s-name">Sleep</div><span class="s-tag tag-primary">PRIMARY</span></div></div>
+        <div class="s-desc">Skips 2–3 turns completely. No moves, no actions. Then wakes up automatically.</div>
+        <div class="s-dur">⏱ 2–3 turns then wakes</div>
       </div>
     </div>
 
-    <h3 style="font-family:var(--font-h); font-size:18px; margin:20px 0 10px; color:#444;">Secondary Statuses — Can stack with primary ones!</h3>
-
+    <h3 style="font-family:var(--font-h);font-size:18px;margin:18px 0 10px;">🔵 Secondary Statuses — Can stack with primary ones!</h3>
     <div class="status-grid">
-      <div class="status-card" style="border-color:#818cf8;">
-        <div class="s-top">
-          <span class="s-emoji">😵</span>
-          <div>
-            <div class="s-name">Confuse</div>
-            <span class="s-tag tag-secondary">SECONDARY</span>
-          </div>
-        </div>
-        <div class="s-desc">The confused enemy has a <strong>33% chance of accidentally hurting themselves</strong> instead of attacking you. They might punch themselves in the face!</div>
-        <div class="s-dur">⏱ 2–4 turns, then wears off</div>
+      <div class="status-card" style="border-color:#d06090;">
+        <div class="s-top"><span class="s-emoji">😵</span><div><div class="s-name">Confuse</div><span class="s-tag tag-secondary">SECONDARY</span></div></div>
+        <div class="s-desc">33% chance to hurt itself (8–15 damage) instead of acting each turn.</div>
+        <div class="s-dur">⏱ 2–4 turns</div>
       </div>
-      <div class="status-card" style="border-color:#f77f00;">
-        <div class="s-top">
-          <span class="s-emoji">😦</span>
-          <div>
-            <div class="s-name">Flinch</div>
-            <span class="s-tag tag-secondary">SECONDARY</span>
-          </div>
-        </div>
-        <div class="s-desc">The enemy <strong>skips their move this turn</strong> because they flinched from being hit. Only works if your move hits first — fast moves flinch better!</div>
-        <div class="s-dur">⏱ Only the current turn</div>
+      <div class="status-card" style="border-color:#c8c060;">
+        <div class="s-top"><span class="s-emoji">😦</span><div><div class="s-name">Flinch</div><span class="s-tag tag-secondary">SECONDARY</span></div></div>
+        <div class="s-desc">Skips <em>one</em> action immediately. Only works if you attacked first this turn!</div>
+        <div class="s-dur">⏱ 1 turn only</div>
       </div>
-      <div class="status-card" style="border-color:#22c55e;">
-        <div class="s-top">
-          <span class="s-emoji">📈</span>
-          <div>
-            <div class="s-name">Stat Up</div>
-            <span class="s-tag tag-secondary">SECONDARY</span>
-          </div>
-        </div>
-        <div class="s-desc">Temporarily <strong>raises one of YOUR stats</strong> — like Power, Speed, or Defense. Decide in the move which stat goes up and by how much. Fades after a few turns.</div>
-        <div class="s-dur">⏱ 3 turns</div>
+      <div class="status-card" style="border-color:#56c87a;">
+        <div class="s-top"><span class="s-emoji">📈</span><div><div class="s-name">Stat Up</div><span class="s-tag tag-secondary">SECONDARY</span></div></div>
+        <div class="s-desc">Temporarily <strong>boosts one of YOUR OWN stats</strong>. You choose which stat with <code>statTarget</code>. See table below!</div>
+        <div class="s-dur">⏱ 3 turns then fades</div>
       </div>
-      <div class="status-card" style="border-color:#ef4444;">
-        <div class="s-top">
-          <span class="s-emoji">📉</span>
-          <div>
-            <div class="s-name">Stat Down</div>
-            <span class="s-tag tag-secondary">SECONDARY</span>
-          </div>
-        </div>
-        <div class="s-desc">Temporarily <strong>lowers one of the ENEMY's stats</strong> — like Power, Speed, or Accuracy. Makes them weaker or slower while the effect lasts.</div>
-        <div class="s-dur">⏱ 3 turns</div>
+      <div class="status-card" style="border-color:#e85d5d;">
+        <div class="s-top"><span class="s-emoji">📉</span><div><div class="s-name">Stat Down</div><span class="s-tag tag-secondary">SECONDARY</span></div></div>
+        <div class="s-desc">Temporarily <strong>lowers one of the ENEMY's stats</strong>. You choose which stat with <code>statTarget</code>. See table below!</div>
+        <div class="s-dur">⏱ 3 turns then fades</div>
       </div>
     </div>
 
-    <div class="callout warn"><span class="ci">⚠️</span> <strong>Important:</strong> Stacking the same status doesn't help! If your Fakemon has five sleep moves, the game treats them all as one — it only gives you credit for one sleep move. Variety is way more powerful than repetition!</div>
+    <!-- StatTarget table — NEW section -->
+    <h3 style="font-family:var(--font-h);font-size:18px;margin:20px 0 10px;">🎯 Which stat does statup / statdwn change?</h3>
+    <p style="font-size:14px;margin-bottom:10px;">When you create a <code>statup</code> or <code>statdwn</code> move, you must add a <code>statTarget</code> field to tell the game <em>which</em> stat to boost or lower. Each type only changes one specific stat!</p>
+
+    <table class="stat-target-table">
+      <thead>
+        <tr>
+          <th>statTarget value</th>
+          <th>Which stat changes</th>
+          <th class="tt-up">📈 statup effect</th>
+          <th class="tt-down">📉 statdwn effect</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code class="tt-val">"atk"</code> <em>or</em> <code class="tt-val">"power"</code></td>
+          <td>⚔️ Attack power</td>
+          <td class="tt-up">+20 ATK for 3 turns</td>
+          <td class="tt-down">−20 ATK for 3 turns</td>
+        </tr>
+        <tr>
+          <td><code class="tt-val">"speed"</code></td>
+          <td>💨 Speed</td>
+          <td class="tt-up">+20 SPD for 3 turns</td>
+          <td class="tt-down">−20 SPD for 3 turns</td>
+        </tr>
+        <tr>
+          <td><code class="tt-val">"defense"</code></td>
+          <td>🛡️ Defense</td>
+          <td class="tt-up">+15 DEF for 3 turns</td>
+          <td class="tt-down">−15 DEF for 3 turns</td>
+        </tr>
+        <tr>
+          <td><code class="tt-val">"accuracy"</code></td>
+          <td>🎯 Accuracy</td>
+          <td class="tt-up">+15 ACC for 3 turns</td>
+          <td class="tt-down">−15 ACC for 3 turns</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout warn"><span class="ci">⚠️</span> <strong>Important:</strong> Stacking the same status doesn't help! Having five sleep moves only counts as one. Variety is way more powerful than repetition!</div>
   </div>
 
-  <!-- ══ 5. MOVES ═══════════════════════════════════════════════════════════ -->
+  <!-- ══ 5. DESIGNING MOVES ══════════════════════════════════════════════════ -->
   <div class="section" id="s5">
     <div class="section-header">
       <div class="section-num">5</div>
       <h2>Designing Your Moves</h2>
     </div>
-    <p>Your Fakemon can have up to <strong>8 moves</strong>. Each move is an object inside the <code style="font-family:var(--font-c); background:#f0f0f8; padding:2px 6px; border-radius:4px;">"moves"</code> list of your JSON file.</p>
+    <p>Your Fakemon can have up to <strong>8 moves</strong>. Each move is an object inside the <code>"moves"</code> list of your JSON file.</p>
 
     <table class="guide-table" style="margin-top:16px;">
-      <thead>
-        <tr>
-          <th>Field</th>
-          <th>Required?</th>
-          <th>What to put here</th>
-        </tr>
-      </thead>
+      <thead><tr><th>Field</th><th>Required?</th><th>What to put here</th></tr></thead>
       <tbody>
+        <tr><td><code>id</code></td><td class="center">✅ Yes</td><td>A short nickname with no spaces — like <code>fire_bite</code>. Every move must have a different id.</td></tr>
+        <tr><td><code>name</code></td><td class="center">✅ Yes</td><td>The display name players see in battle, including an emoji!</td></tr>
+        <tr><td><code>desc</code></td><td class="center">💡 Rec.</td><td>A one-sentence description of what the move does.</td></tr>
+        <tr><td><code>speed</code></td><td class="center">✅ Yes</td><td><span class="speed-fast">fast</span> goes before everything · <span class="speed-medium">medium</span> is normal · <span class="speed-slow">slow</span> goes last (but hits harder)</td></tr>
+        <tr><td><code>damage</code></td><td class="center">✅ Yes</td><td>An array <code>[min, max]</code>. E.g. <code>[15, 25]</code> = 15 to 25 damage. Use <code>[0, 0]</code> for no damage. Use negative numbers like <code>[-25, -25]</code> to heal yourself!</td></tr>
+        <tr><td><code>status</code></td><td class="center">❌ No</td><td>One status to apply: <code>"poison"</code>, <code>"burn"</code>, <code>"paralyze"</code>, <code>"sleep"</code>, <code>"confuse"</code>, <code>"flinch"</code>, <code>"statup"</code>, <code>"statdwn"</code>. Use <code>null</code> for none.</td></tr>
+        <tr><td><code>statusChance</code></td><td class="center">❌ No</td><td>How likely the status is to apply. <code>1.0</code> = always. <code>0.5</code> = 50% chance. <code>0.35</code> = 35% chance. Use <code>0</code> if no status.</td></tr>
+        <tr><td><code>statTarget</code></td><td class="center">⚠️ If statup/dw</td><td>Which stat to boost or lower: <code>"atk"</code>, <code>"speed"</code>, <code>"defense"</code>, or <code>"accuracy"</code>. Required when status is <code>statup</code> or <code>statdwn</code>.</td></tr>
         <tr>
-          <td><code style="font-family:var(--font-c);">id</code></td>
-          <td class="center">✅ Yes</td>
-          <td>A short nickname with no spaces — like <code style="font-family:var(--font-c);">fire_bite</code> or <code style="font-family:var(--font-c);">thunder_kick</code>. Every move must have a different id.</td>
-        </tr>
-        <tr>
-          <td><code style="font-family:var(--font-c);">name</code></td>
-          <td class="center">✅ Yes</td>
-          <td>The name players see in battle, including an emoji! Example: <strong>"🔥 Ember Bite"</strong></td>
-        </tr>
-        <tr>
-          <td><code style="font-family:var(--font-c);">desc</code></td>
-          <td class="center">✅ Yes</td>
-          <td>A short 1–2 sentence description of what the move does.</td>
-        </tr>
-        <tr>
-          <td><code style="font-family:var(--font-c);">speed</code></td>
-          <td class="center">✅ Yes</td>
-          <td>
-            <span class="speed-fast">fast</span> goes first and hits 15% harder &nbsp;|&nbsp;
-            <span class="speed-medium">medium</span> is normal &nbsp;|&nbsp;
-            <span class="speed-slow">slow</span> goes last but can be extra powerful
-          </td>
-        </tr>
-        <tr>
-          <td><code style="font-family:var(--font-c);">damage</code></td>
-          <td class="center">✅ Yes</td>
-          <td>Two numbers: <code style="font-family:var(--font-c);">[min, max]</code>. The attack does a random amount between these. Use <code style="font-family:var(--font-c);">[0, 0]</code> for no damage, or <code style="font-family:var(--font-c);">[-25, -25]</code> to heal yourself 25 HP.</td>
-        </tr>
-        <tr>
-          <td><code style="font-family:var(--font-c);">status</code></td>
-          <td class="center">Optional</td>
-          <td>The status effect to apply. Choose from: <code style="font-family:var(--font-c);">poison</code>, <code style="font-family:var(--font-c);">burn</code>, <code style="font-family:var(--font-c);">paralyze</code>, <code style="font-family:var(--font-c);">sleep</code>, <code style="font-family:var(--font-c);">confuse</code>, <code style="font-family:var(--font-c);">flinch</code>, <code style="font-family:var(--font-c);">statup</code>, <code style="font-family:var(--font-c);">statdwn</code>. Use <code style="font-family:var(--font-c);">null</code> for no effect.</td>
-        </tr>
-        <tr>
-          <td><code style="font-family:var(--font-c);">statusChance</code></td>
-          <td class="center">Optional</td>
-          <td>How likely the status is to apply. <code style="font-family:var(--font-c);">1.0</code> = always works. <code style="font-family:var(--font-c);">0.5</code> = 50% chance. <code style="font-family:var(--font-c);">0.35</code> = 35% chance. Use <code style="font-family:var(--font-c);">0</code> if no status.</td>
+          <td><code>statuses</code></td>
+          <td class="center">🆕 Advanced</td>
+          <td>Apply <strong>multiple statuses at once</strong>! Instead of the <code>status</code> field, use an array. See examples below.</td>
         </tr>
       </tbody>
     </table>
 
-    <div class="callout tip"><span class="ci">💡</span> <strong>Strategy tip:</strong> A Fakemon with ALL damage moves has no tricks. A Fakemon with ALL status moves but no damage might never finish the fight. Mix it up — maybe 3–4 damage moves, 2 status moves, 1 stat move, and 1 heal move is a good balance!</div>
-  </div>
+    <div class="callout tip"><span class="ci">💡</span> <strong>Strategy tip:</strong> A Fakemon with ALL damage moves has no tricks. A Fakemon with ALL status moves but no damage might never finish the fight. Mix it up — try 3–4 damage moves, 1–2 status moves, 1 stat move, and 1 heal move!</div>
+
+    <h3 style="font-family:var(--font-h);font-size:20px;margin:24px 0 14px;">📚 Move Examples — click Copy to grab the code!</h3>
+
+    <div class="example-grid">
+
+      <!-- 1 plain damage -->
+      <div class="example-card" id="ex-basic-dmg">
+        <div class="example-label">🗡️ Basic Damage Move <span>Deals damage, nothing else</span></div>
+        <pre><span class="cp">{</span>
+  <span class="ck">"id"</span><span class="cp">:</span> <span class="cs">"slam"</span><span class="cp">,</span>
+  <span class="ck">"name"</span><span class="cp">:</span> <span class="cs">"💥 Slam"</span><span class="cp">,</span>
+  <span class="ck">"desc"</span><span class="cp">:</span> <span class="cs">"A powerful full-body slam."</span><span class="cp">,</span>
+  <span class="ck">"speed"</span><span class="cp">:</span> <span class="cs">"medium"</span><span class="cp">,</span>
+  <span class="ck">"damage"</span><span class="cp">: [</span><span class="cn">16</span><span class="cp">,</span> <span class="cn">22</span><span class="cp">],</span>
+  <span class="ck">"status"</span><span class="cp">:</span> <span class="cn">null</span><span class="cp">,</span>
+  <span class="ck">"statusChance"</span><span class="cp">:</span> <span class="cn">0</span>
+<span class="cp">}</span></pre>
+        <button class="copy-btn" data-target="ex-basic-dmg">📋 Copy</button>
+      </div>
+
+      <!-- 2 fast low dmg -->
+      <div class="example-card" id="ex-fast">
+        <div class="example-label">⚡ Fast Attack <span>Goes first, slightly less power</span></div>
+        <pre><span class="cp">{</span>
+  <span class="ck">"id"</span><span class="cp">:</span> <span class="cs">"quick_strike"</span><span class="cp">,</span>
+  <span class="ck">"name"</span><span class="cp">:</span> <span class="cs">"⚡ Quick Strike"</span><span class="cp">,</span>
+  <span class="ck">"desc"</span><span class="cp">:</span> <span class="cs">"Blazing fast hit that always goes first."</span><span class="cp">,</span>
+  <span class="ck">"speed"</span><span class="cp">:</span> <span class="cs">"fast"</span><span class="cp">,</span>
+  <span class="ck">"damage"</span><span class="cp">: [</span><span class="cn">10</span><span class="cp">,</span> <span class="cn">15</span><span class="cp">],</span>
+  <span class="ck">"status"</span><span class="cp">:</span> <span class="cn">null</span><span class="cp">,</span>
+  <span class="ck">"statusChance"</span><span class="cp">:</span> <span class="cn">0</span>
+<span class="cp">}</span></pre>
+        <button class="copy-btn" data-target="ex-fast">📋 Copy</button>
+      </div>
+
+      <!-- 3 slow big dmg -->
+      <div class="example-card" id="ex-slow">
+        <div class="example-label">🐌 Slow Heavy Hitter <span>Goes last, but hits the hardest</span></div>
+        <pre><span class="cp">{</span>
+  <span class="ck">"id"</span><span class="cp">:</span> <span class="cs">"mega_stomp"</span><span class="cp">,</span>
+  <span class="ck">"name"</span><span class="cp">:</span> <span class="cs">"🦶 Mega Stomp"</span><span class="cp">,</span>
+  <span class="ck">"desc"</span><span class="cp">:</span> <span class="cs">"Slow but devastatingly powerful."</span><span class="cp">,</span>
+  <span class="ck">"speed"</span><span class="cp">:</span> <span class="cs">"slow"</span><span class="cp">,</span>
+  <span class="ck">"damage"</span><span class="cp">: [</span><span class="cn">26</span><span class="cp">,</span> <span class="cn">34</span><span class="cp">],</span>
+  <span class="ck">"status"</span><span class="cp">:</span> <span class="cn">null</span><span class="cp">,</span>
+  <span class="ck">"statusChance"</span><span class="cp">:</span> <span class="cn">0</span>
+<span class="cp">}</span></pre>
+        <button class="copy-btn" data-target="ex-slow">📋 Copy</button>
+      </div>
+
+      <!-- 4 heal -->
+      <div class="example-card" id="ex-heal">
+        <div class="example-label">💊 Heal Move <span>Restore your own HP — damage values are negative</span></div>
+        <pre><span class="cp">{</span>
+  <span class="ck">"id"</span><span class="cp">:</span> <span class="cs">"recover"</span><span class="cp">,</span>
+  <span class="ck">"name"</span><span class="cp">:</span> <span class="cs">"💊 Recover"</span><span class="cp">,</span>
+  <span class="ck">"desc"</span><span class="cp">:</span> <span class="cs">"Channel energy to restore 25 HP."</span><span class="cp">,</span>
+  <span class="ck">"speed"</span><span class="cp">:</span> <span class="cs">"slow"</span><span class="cp">,</span>
+  <span class="ck">"damage"</span><span class="cp">: [</span><span class="cn">-25</span><span class="cp">,</span> <span class="cn">-25</span><span class="cp">],</span>
+  <span class="ck">"status"</span><span class="cp">:</span> <span class="cn">null</span><span class="cp">,</span>
+  <span class="ck">"statusChance"</span><span class="cp">:</span> <span class="cn">0</span>
+<span class="cp">}</span></pre>
+        <button class="copy-btn" data-target="ex-heal">📋 Copy</button>
+      </div>
+
+      <!-- 5 damage + status chance -->
+      <div class="example-card" id="ex-dmg-status">
+        <div class="example-label">🔥 Damage + Status Chance <span>Hits AND has a 30% chance to burn</span></div>
+        <pre><span class="cp">{</span>
+  <span class="ck">"id"</span><span class="cp">:</span> <span class="cs">"fire_fang"</span><span class="cp">,</span>
+  <span class="ck">"name"</span><span class="cp">:</span> <span class="cs">"🔥 Fire Fang"</span><span class="cp">,</span>
+  <span class="ck">"desc"</span><span class="cp">:</span> <span class="cs">"A biting attack with a 30% chance to burn."</span><span class="cp">,</span>
+  <span class="ck">"speed"</span><span class="cp">:</span> <span class="cs">"medium"</span><span class="cp">,</span>
+  <span class="ck">"damage"</span><span class="cp">: [</span><span class="cn">14</span><span class="cp">,</span> <span class="cn">20</span><span class="cp">],</span>
+  <span class="ck">"status"</span><span class="cp">:</span> <span class="cs">"burn"</span><span class="cp">,</span>
+  <span class="ck">"statusChance"</span><span class="cp">:</span> <span class="cn">0.3</span>
+<span class="cp">}</span></pre>
+        <button class="copy-btn" data-target="ex-dmg-status">📋 Copy</button>
+      </div>
+
+      <!-- 6 guaranteed status -->
+      <div class="example-card" id="ex-pure-status">
+        <div class="example-label">💤 Pure Status Move <span>No damage, always puts enemy to sleep</span></div>
+        <pre><span class="cp">{</span>
+  <span class="ck">"id"</span><span class="cp">:</span> <span class="cs">"lullaby"</span><span class="cp">,</span>
+  <span class="ck">"name"</span><span class="cp">:</span> <span class="cs">"💤 Lullaby"</span><span class="cp">,</span>
+  <span class="ck">"desc"</span><span class="cp">:</span> <span class="cs">"A haunting melody that sends the enemy to sleep."</span><span class="cp">,</span>
+  <span class="ck">"speed"</span><span class="cp">:</span> <span class="cs">"slow"</span><span class="cp">,</span>
+  <span class="ck">"damage"</span><span class="cp">: [</span><span class="cn">0</span><span class="cp">,</span> <span class="cn">0</span><span class="cp">],</span>
+  <span class="ck">"status"</span><span class="cp">:</span> <span class="cs">"sleep"</span><span class="cp">,</span>
+  <span class="ck">"statusChance"</span><span class="cp">:</span> <span class="cn">1.0</span>
+<span class="cp">}</span></pre>
+        <button class="copy-btn" data-target="ex-pure-status">📋 Copy</button>
+      </div>
+
+      <!-- 7 statup atk -->
+      <div class="example-card" id="ex-statup-atk">
+        <div class="example-label">📈 Boost YOUR Attack <span>statTarget: "atk" — raises your own attack power</span></div>
+        <pre><span class="cp">{</span>
+  <span class="ck">"id"</span><span class="cp">:</span> <span class="cs">"power_up"</span><span class="cp">,</span>
+  <span class="ck">"name"</span><span class="cp">:</span> <span class="cs">"📈 Power Up"</span><span class="cp">,</span>
+  <span class="ck">"desc"</span><span class="cp">:</span> <span class="cs">"Focuses energy to sharply raise attack power."</span><span class="cp">,</span>
+  <span class="ck">"speed"</span><span class="cp">:</span> <span class="cs">"fast"</span><span class="cp">,</span>
+  <span class="ck">"damage"</span><span class="cp">: [</span><span class="cn">0</span><span class="cp">,</span> <span class="cn">0</span><span class="cp">],</span>
+  <span class="ck">"status"</span><span class="cp">:</span> <span class="cs">"statup"</span><span class="cp">,</span>
+  <span class="ck">"statusChance"</span><span class="cp">:</span> <span class="cn">1.0</span><span class="cp">,</span>
+  <span class="ck">"statTarget"</span><span class="cp">:</span> <span class="cs">"atk"</span>
+<span class="cp">}</span></pre>
+        <button class="copy-btn" data-target="ex-statup-atk">📋 Copy</button>
+      </div>
+
+      <!-- 8 statup speed -->
+      <div class="example-card" id="ex-statup-spd">
+        <div class="example-label">📈 Boost YOUR Speed <span>statTarget: "speed" — you'll go first more often</span></div>
+        <pre><span class="cp">{</span>
+  <span class="ck">"id"</span><span class="cp">:</span> <span class="cs">"adrenaline"</span><span class="cp">,</span>
+  <span class="ck">"name"</span><span class="cp">:</span> <span class="cs">"💨 Adrenaline Rush"</span><span class="cp">,</span>
+  <span class="ck">"desc"</span><span class="cp">:</span> <span class="cs">"A burst of speed — now you always go first."</span><span class="cp">,</span>
+  <span class="ck">"speed"</span><span class="cp">:</span> <span class="cs">"fast"</span><span class="cp">,</span>
+  <span class="ck">"damage"</span><span class="cp">: [</span><span class="cn">0</span><span class="cp">,</span> <span class="cn">0</span><span class="cp">],</span>
+  <span class="ck">"status"</span><span class="cp">:</span> <span class="cs">"statup"</span><span class="cp">,</span>
+  <span class="ck">"statusChance"</span><span class="cp">:</span> <span class="cn">1.0</span><span class="cp">,</span>
+  <span class="ck">"statTarget"</span><span class="cp">:</span> <span class="cs">"speed"</span>
+<span class="cp">}</span></pre>
+        <button class="copy-btn" data-target="ex-statup-spd">📋 Copy</button>
+      </div>
+
+      <!-- 9 statup defense -->
+      <div class="example-card" id="ex-statup-def">
+        <div class="example-label">📈 Boost YOUR Defense <span>statTarget: "defense" — take less damage</span></div>
+        <pre><span class="cp">{</span>
+  <span class="ck">"id"</span><span class="cp">:</span> <span class="cs">"iron_skin"</span><span class="cp">,</span>
+  <span class="ck">"name"</span><span class="cp">:</span> <span class="cs">"🛡️ Iron Skin"</span><span class="cp">,</span>
+  <span class="ck">"desc"</span><span class="cp">:</span> <span class="cs">"Hardens the outer shell to take less damage."</span><span class="cp">,</span>
+  <span class="ck">"speed"</span><span class="cp">:</span> <span class="cs">"fast"</span><span class="cp">,</span>
+  <span class="ck">"damage"</span><span class="cp">: [</span><span class="cn">0</span><span class="cp">,</span> <span class="cn">0</span><span class="cp">],</span>
+  <span class="ck">"status"</span><span class="cp">:</span> <span class="cs">"statup"</span><span class="cp">,</span>
+  <span class="ck">"statusChance"</span><span class="cp">:</span> <span class="cn">1.0</span><span class="cp">,</span>
+  <span class="ck">"statTarget"</span><span class="cp">:</span> <span class="cs">"defense"</span>
+<span class="cp">}</span></pre>
+        <button class="copy-btn" data-target="ex-statup-def">📋 Copy</button>
+      </div>
+
+      <!-- 10 statdwn speed enemy -->
+      <div class="example-card" id="ex-statdwn-spd">
+        <div class="example-label">📉 Lower Enemy Speed <span>statTarget: "speed" — enemy stops going first</span></div>
+        <pre><span class="cp">{</span>
+  <span class="ck">"id"</span><span class="cp">:</span> <span class="cs">"mud_trap"</span><span class="cp">,</span>
+  <span class="ck">"name"</span><span class="cp">:</span> <span class="cs">"🌊 Mud Trap"</span><span class="cp">,</span>
+  <span class="ck">"desc"</span><span class="cp">:</span> <span class="cs">"Slathers the enemy in sticky mud. Slows them down."</span><span class="cp">,</span>
+  <span class="ck">"speed"</span><span class="cp">:</span> <span class="cs">"medium"</span><span class="cp">,</span>
+  <span class="ck">"damage"</span><span class="cp">: [</span><span class="cn">0</span><span class="cp">,</span> <span class="cn">0</span><span class="cp">],</span>
+  <span class="ck">"status"</span><span class="cp">:</span> <span class="cs">"statdwn"</span><span class="cp">,</span>
+  <span class="ck">"statusChance"</span><span class="cp">:</span> <span class="cn">1.0</span><span class="cp">,</span>
+  <span class="ck">"statTarget"</span><span class="cp">:</span> <span class="cs">"speed"</span>
+<span class="cp">}</span></pre>
+        <button class="copy-btn" data-target="ex-statdwn-spd">📋 Copy</button>
+      </div>
+
+      <!-- 11 statdwn atk enemy -->
+      <div class="example-card" id="ex-statdwn-atk">
+        <div class="example-label">📉 Lower Enemy Attack <span>statTarget: "atk" — enemy hits weaker</span></div>
+        <pre><span class="cp">{</span>
+  <span class="ck">"id"</span><span class="cp">:</span> <span class="cs">"intimidate"</span><span class="cp">,</span>
+  <span class="ck">"name"</span><span class="cp">:</span> <span class="cs">"😤 Intimidate"</span><span class="cp">,</span>
+  <span class="ck">"desc"</span><span class="cp">:</span> <span class="cs">"Lets out a terrifying roar. Lowers enemy ATK."</span><span class="cp">,</span>
+  <span class="ck">"speed"</span><span class="cp">:</span> <span class="cs">"fast"</span><span class="cp">,</span>
+  <span class="ck">"damage"</span><span class="cp">: [</span><span class="cn">0</span><span class="cp">,</span> <span class="cn">0</span><span class="cp">],</span>
+  <span class="ck">"status"</span><span class="cp">:</span> <span class="cs">"statdwn"</span><span class="cp">,</span>
+  <span class="ck">"statusChance"</span><span class="cp">:</span> <span class="cn">1.0</span><span class="cp">,</span>
+  <span class="ck">"statTarget"</span><span class="cp">:</span> <span class="cs">"atk"</span>
+<span class="cp">}</span></pre>
+        <button class="copy-btn" data-target="ex-statdwn-atk">📋 Copy</button>
+      </div>
+
+      <!-- 12 damage + flinch -->
+      <div class="example-card" id="ex-flinch">
+        <div class="example-label">😦 Damage + Flinch <span>Hits first AND makes enemy skip their turn</span></div>
+        <pre><span class="cp">{</span>
+  <span class="ck">"id"</span><span class="cp">:</span> <span class="cs">"headbutt"</span><span class="cp">,</span>
+  <span class="ck">"name"</span><span class="cp">:</span> <span class="cs">"🤕 Headbutt"</span><span class="cp">,</span>
+  <span class="ck">"desc"</span><span class="cp">:</span> <span class="cs">"Slams head-first. 40% chance the enemy flinches!"</span><span class="cp">,</span>
+  <span class="ck">"speed"</span><span class="cp">:</span> <span class="cs">"fast"</span><span class="cp">,</span>
+  <span class="ck">"damage"</span><span class="cp">: [</span><span class="cn">12</span><span class="cp">,</span> <span class="cn">18</span><span class="cp">],</span>
+  <span class="ck">"status"</span><span class="cp">:</span> <span class="cs">"flinch"</span><span class="cp">,</span>
+  <span class="ck">"statusChance"</span><span class="cp">:</span> <span class="cn">0.4</span>
+<span class="cp">}</span></pre>
+        <button class="copy-btn" data-target="ex-flinch">📋 Copy</button>
+      </div>
+
+      <!-- 13 MULTI-STATUS — the new feature! -->
+      <div class="example-card" id="ex-multi-status">
+        <div class="example-label">🆕 Multi-Status Move <span>Apply TWO statuses at once with the "statuses" array!</span></div>
+        <pre><span class="cp">{</span>
+  <span class="ck">"id"</span><span class="cp">:</span> <span class="cs">"cursed_strike"</span><span class="cp">,</span>
+  <span class="ck">"name"</span><span class="cp">:</span> <span class="cs">"💀 Cursed Strike"</span><span class="cp">,</span>
+  <span class="ck">"desc"</span><span class="cp">:</span> <span class="cs">"Hits AND poisons AND confuses the enemy!"</span><span class="cp">,</span>
+  <span class="ck">"speed"</span><span class="cp">:</span> <span class="cs">"slow"</span><span class="cp">,</span>
+  <span class="ck">"damage"</span><span class="cp">: [</span><span class="cn">14</span><span class="cp">,</span> <span class="cn">20</span><span class="cp">],</span>
+  <span class="cm">"statuses"</span><span class="cp">: [</span>
+    <span class="cp">{</span>
+      <span class="ck">"status"</span><span class="cp">:</span> <span class="cs">"poison"</span><span class="cp">,</span>
+      <span class="ck">"statusChance"</span><span class="cp">:</span> <span class="cn">0.6</span>
+    <span class="cp">},</span>
+    <span class="cp">{</span>
+      <span class="ck">"status"</span><span class="cp">:</span> <span class="cs">"confuse"</span><span class="cp">,</span>
+      <span class="ck">"statusChance"</span><span class="cp">:</span> <span class="cn">0.4</span>
+    <span class="cp">}</span>
+  <span class="cp">]</span>
+<span class="cp">}</span></pre>
+        <button class="copy-btn" data-target="ex-multi-status">📋 Copy</button>
+      </div>
+
+      <!-- 14 multi-status: damage + statdwn -->
+      <div class="example-card" id="ex-multi-dmg-down">
+        <div class="example-label">🆕 Damage + Stat Lower <span>Hits and lowers enemy speed at the same time</span></div>
+        <pre><span class="cp">{</span>
+  <span class="ck">"id"</span><span class="cp">:</span> <span class="cs">"chill_blast"</span><span class="cp">,</span>
+  <span class="ck">"name"</span><span class="cp">:</span> <span class="cs">"❄️ Chill Blast"</span><span class="cp">,</span>
+  <span class="ck">"desc"</span><span class="cp">:</span> <span class="cs">"Icy blast that damages AND slows the enemy down."</span><span class="cp">,</span>
+  <span class="ck">"speed"</span><span class="cp">:</span> <span class="cs">"medium"</span><span class="cp">,</span>
+  <span class="ck">"damage"</span><span class="cp">: [</span><span class="cn">12</span><span class="cp">,</span> <span class="cn">18</span><span class="cp">],</span>
+  <span class="cm">"statuses"</span><span class="cp">: [</span>
+    <span class="cp">{</span>
+      <span class="ck">"status"</span><span class="cp">:</span> <span class="cs">"statdwn"</span><span class="cp">,</span>
+      <span class="ck">"statusChance"</span><span class="cp">:</span> <span class="cn">0.5</span><span class="cp">,</span>
+      <span class="ck">"statTarget"</span><span class="cp">:</span> <span class="cs">"speed"</span>
+    <span class="cp">}</span>
+  <span class="cp">]</span>
+<span class="cp">}</span></pre>
+        <button class="copy-btn" data-target="ex-multi-dmg-down">📋 Copy</button>
+      </div>
+
+      <!-- 15 multi-status: pure support double buff -->
+      <div class="example-card" id="ex-multi-double-buff">
+        <div class="example-label">🆕 Double Self-Buff <span>Raise both attack AND defense in one move</span></div>
+        <pre><span class="cp">{</span>
+  <span class="ck">"id"</span><span class="cp">:</span> <span class="cs">"battle_stance"</span><span class="cp">,</span>
+  <span class="ck">"name"</span><span class="cp">:</span> <span class="cs">"🔱 Battle Stance"</span><span class="cp">,</span>
+  <span class="ck">"desc"</span><span class="cp">:</span> <span class="cs">"Enters a combat stance — ATK and DEF both rise!"</span><span class="cp">,</span>
+  <span class="ck">"speed"</span><span class="cp">:</span> <span class="cs">"fast"</span><span class="cp">,</span>
+  <span class="ck">"damage"</span><span class="cp">: [</span><span class="cn">0</span><span class="cp">,</span> <span class="cn">0</span><span class="cp">],</span>
+  <span class="cm">"statuses"</span><span class="cp">: [</span>
+    <span class="cp">{</span>
+      <span class="ck">"status"</span><span class="cp">:</span> <span class="cs">"statup"</span><span class="cp">,</span>
+      <span class="ck">"statusChance"</span><span class="cp">:</span> <span class="cn">1.0</span><span class="cp">,</span>
+      <span class="ck">"statTarget"</span><span class="cp">:</span> <span class="cs">"atk"</span>
+    <span class="cp">},</span>
+    <span class="cp">{</span>
+      <span class="ck">"status"</span><span class="cp">:</span> <span class="cs">"statup"</span><span class="cp">,</span>
+      <span class="ck">"statusChance"</span><span class="cp">:</span> <span class="cn">1.0</span><span class="cp">,</span>
+      <span class="ck">"statTarget"</span><span class="cp">:</span> <span class="cs">"defense"</span>
+    <span class="cp">}</span>
+  <span class="cp">]</span>
+<span class="cp">}</span></pre>
+        <button class="copy-btn" data-target="ex-multi-double-buff">📋 Copy</button>
+      </div>
+
+    </div><!-- /example-grid -->
+  </div><!-- /section 5 -->
 
   <!-- ══ 6. NAMING ══════════════════════════════════════════════════════════ -->
   <div class="section" id="s6">
@@ -975,91 +904,39 @@ h2, h1 { scroll-margin-top: 24px; }
       <div class="section-num">6</div>
       <h2>Naming Your Fakemon</h2>
     </div>
-    <p>A great Fakemon name is short, memorable, and gives a hint about what your creature does. Here are some tricks for coming up with one:</p>
-
+    <p>A great Fakemon name is short, memorable, and gives a hint about what your creature does. Here are some tricks:</p>
     <table class="guide-table" style="margin:14px 0;">
-      <thead>
-        <tr><th>Strategy</th><th>How it works</th><th>Example</th></tr>
-      </thead>
+      <thead><tr><th>Strategy</th><th>How it works</th><th>Example</th></tr></thead>
       <tbody>
-        <tr>
-          <td>Mash two words</td>
-          <td>Take an animal and an element, smoosh them together</td>
-          <td>Bear + Blizzard = <strong>Blizzear</strong></td>
-        </tr>
-        <tr>
-          <td>Sound matches vibe</td>
-          <td>K, X, Z sounds feel fierce. L, M, W sounds feel mysterious.</td>
-          <td><strong>Voltusk</strong> vs <strong>Glopple</strong></td>
-        </tr>
-        <tr>
-          <td>Name what it does</td>
-          <td>Think about its main attack or ability</td>
-          <td>Burns things → <strong>Embork</strong>, <strong>Scorchwing</strong></td>
-        </tr>
-        <tr>
-          <td>Just make it weird</td>
-          <td>Silly and fun is totally valid!</td>
-          <td><strong>Blobzap</strong>, <strong>Quakefuzz</strong>, <strong>Snorblast</strong></td>
-        </tr>
+        <tr><td>Mash two words</td><td>Take an animal and an element, smoosh them together</td><td>Bear + Blizzard = <strong>Blizzear</strong></td></tr>
+        <tr><td>Sound matches vibe</td><td>K, X, Z sounds feel fierce. Soft vowels feel cute.</td><td>Krixel (fierce) · Moofu (cute)</td></tr>
+        <tr><td>Latin/science words</td><td>Use a real word from science or another language</td><td>Ignis = fire → <strong>Ignaur</strong></td></tr>
+        <tr><td>Onomatopoeia</td><td>A name that sounds like what it does</td><td>Rumblok · Sizzlefang</td></tr>
       </tbody>
     </table>
-
-    <h3 style="font-family:var(--font-h); font-size:17px; margin:18px 0 10px; color:#444;">Ready-to-use name ideas — grab one!</h3>
-    <div class="name-columns">
-      <div class="name-pill">🔥 Scorchwing</div><div class="name-pill">💧 Frostmaw</div><div class="name-pill">⚡ Voltusk</div>
-      <div class="name-pill">🔥 Embork</div><div class="name-pill">💧 Glopple</div><div class="name-pill">⚡ Shockfin</div>
-      <div class="name-pill">🔥 Blazkit</div><div class="name-pill">💧 Sludgeclaw</div><div class="name-pill">⚡ Zapscale</div>
-      <div class="name-pill">🔥 Ashpelt</div><div class="name-pill">❄️ Glacidon</div><div class="name-pill">🌑 Darkwhelp</div>
-      <div class="name-pill">🔥 Flamecub</div><div class="name-pill">❄️ Drizclaw</div><div class="name-pill">🌑 Shadowmane</div>
-      <div class="name-pill">🔥 Pyreshell</div><div class="name-pill">❄️ Frostcub</div><div class="name-pill">👻 Crypthowl</div>
-      <div class="name-pill">🔥 Cinderfang</div><div class="name-pill">🟣 Fumewyrm</div><div class="name-pill">👻 Veilmaw</div>
-      <div class="name-pill">🔥 Infernox</div><div class="name-pill">🟣 Toxifrog</div><div class="name-pill">⚙️ Ironclaw</div>
-      <div class="name-pill">🔥 Brimblaze</div><div class="name-pill">🌿 Thornback</div><div class="name-pill">⚙️ Rustfang</div>
-      <div class="name-pill">🌬️ Galewing</div><div class="name-pill">🌿 Murkfin</div><div class="name-pill">⭐ Blobzap</div>
-    </div>
   </div>
 
-  <!-- ══ 7. EMOJIS ══════════════════════════════════════════════════════════ -->
+  <!-- ══ 7. EMOJI ══════════════════════════════════════════════════════════ -->
   <div class="section" id="s7">
     <div class="section-header">
       <div class="section-num">7</div>
       <h2>Picking an Emoji</h2>
     </div>
-    <p>Your Fakemon's emoji is its sprite — the big character that shows up in the battle screen! Pick something that matches your creature's personality. Just click to copy!</p>
-
+    <p>Your Fakemon's emoji is its avatar in the battle! Pick something that matches its type and personality.</p>
     <div class="emoji-section">
-      <h4>🔥 Fiery / Hot creatures</h4>
+      <h4>🔥 Fire / Fighting / Strong creatures</h4>
       <div class="emoji-row">
-        <span class="emoji-pill">🐗</span><span class="emoji-pill">🦊</span><span class="emoji-pill">🐲</span><span class="emoji-pill">🦁</span><span class="emoji-pill">🐯</span><span class="emoji-pill">🦅</span><span class="emoji-pill">🦎</span><span class="emoji-pill">🦂</span><span class="emoji-pill">🐺</span><span class="emoji-pill">🌋</span><span class="emoji-pill">💥</span><span class="emoji-pill">🔥</span>
+        <span class="emoji-pill">🦁</span><span class="emoji-pill">🐯</span><span class="emoji-pill">🦊</span><span class="emoji-pill">🐲</span><span class="emoji-pill">🦅</span><span class="emoji-pill">🦈</span><span class="emoji-pill">🔥</span><span class="emoji-pill">⚡</span><span class="emoji-pill">🌋</span><span class="emoji-pill">💥</span>
       </div>
     </div>
     <div class="emoji-section">
-      <h4>💧 Watery / Slippery creatures</h4>
+      <h4>💧 Water / Ice / Calm creatures</h4>
       <div class="emoji-row">
-        <span class="emoji-pill">🐸</span><span class="emoji-pill">🐙</span><span class="emoji-pill">🦑</span><span class="emoji-pill">🐠</span><span class="emoji-pill">🦈</span><span class="emoji-pill">🐬</span><span class="emoji-pill">🦭</span><span class="emoji-pill">🪼</span><span class="emoji-pill">🐡</span><span class="emoji-pill">🌊</span><span class="emoji-pill">🫧</span><span class="emoji-pill">🐳</span>
+        <span class="emoji-pill">🐋</span><span class="emoji-pill">🦭</span><span class="emoji-pill">🐬</span><span class="emoji-pill">🦑</span><span class="emoji-pill">🐙</span><span class="emoji-pill">🐢</span><span class="emoji-pill">❄️</span><span class="emoji-pill">💧</span><span class="emoji-pill">🌊</span><span class="emoji-pill">🫧</span>
       </div>
     </div>
     <div class="emoji-section">
-      <h4>❄️ Icy / Cold creatures</h4>
-      <div class="emoji-row">
-        <span class="emoji-pill">🐻‍❄️</span><span class="emoji-pill">🐧</span><span class="emoji-pill">🦢</span><span class="emoji-pill">🦦</span><span class="emoji-pill">🐋</span><span class="emoji-pill">🦣</span><span class="emoji-pill">❄️</span><span class="emoji-pill">🌨️</span><span class="emoji-pill">🏔️</span>
-      </div>
-    </div>
-    <div class="emoji-section">
-      <h4>⚡ Electric / Fast creatures</h4>
-      <div class="emoji-row">
-        <span class="emoji-pill">🐘</span><span class="emoji-pill">🦏</span><span class="emoji-pill">🦍</span><span class="emoji-pill">🐊</span><span class="emoji-pill">🦖</span><span class="emoji-pill">🤖</span><span class="emoji-pill">🦾</span><span class="emoji-pill">⚡</span><span class="emoji-pill">🌩️</span><span class="emoji-pill">🔌</span>
-      </div>
-    </div>
-    <div class="emoji-section">
-      <h4>🌿 Nature / Earthy creatures</h4>
-      <div class="emoji-row">
-        <span class="emoji-pill">🐢</span><span class="emoji-pill">🦋</span><span class="emoji-pill">🐛</span><span class="emoji-pill">🐝</span><span class="emoji-pill">🦔</span><span class="emoji-pill">🦕</span><span class="emoji-pill">🌱</span><span class="emoji-pill">🍄</span><span class="emoji-pill">🌿</span><span class="emoji-pill">🪴</span>
-      </div>
-    </div>
-    <div class="emoji-section">
-      <h4>🌑 Dark / Spooky creatures</h4>
+      <h4>👻 Dark / Spooky / Mysterious creatures</h4>
       <div class="emoji-row">
         <span class="emoji-pill">🦇</span><span class="emoji-pill">🕷️</span><span class="emoji-pill">🦉</span><span class="emoji-pill">🐍</span><span class="emoji-pill">👁️</span><span class="emoji-pill">🌑</span><span class="emoji-pill">💀</span><span class="emoji-pill">🪲</span><span class="emoji-pill">🦠</span><span class="emoji-pill">🐦‍⬛</span>
       </div>
@@ -1084,78 +961,90 @@ h2, h1 { scroll-margin-top: 24px; }
       <div class="section-num">8</div>
       <h2>The JSON Template</h2>
     </div>
-    <p>Copy the whole block below and fill it in. Save your file as <code style="font-family:var(--font-c); background:#f0f0f8; padding:2px 6px; border-radius:4px;">yourfakemon.json</code> where <code style="font-family:var(--font-c); background:#f0f0f8; padding:2px 6px; border-radius:4px;">yourfakemon</code> matches your Fakemon's <strong>id</strong> field exactly.</p>
+    <p>Copy the whole block below and fill it in. Save your file as <code>yourfakemon.json</code> where <code>yourfakemon</code> matches your Fakemon's <strong>id</strong> field exactly.</p>
 
     <div class="callout warn" style="margin:14px 0;"><span class="ci">⚠️</span> JSON is picky! Every quote, comma, and bracket must be in exactly the right place. If the game won't load your Fakemon, look for a missing comma or mismatched bracket.</div>
 
-    <div class="code-wrap"><pre
-><span class="cp">{</span>
-  <span class="ck">"id"</span><span class="cp">:</span> <span class="cs">"yourfakemon"</span><span class="cp">,</span>
-  <span class="ck">"name"</span><span class="cp">:</span> <span class="cs">"YourFakemon"</span><span class="cp">,</span>
-  <span class="ck">"createdBy"</span><span class="cp">:</span> <span class="cs">"Your Full Name"</span><span class="cp">,</span>
-  <span class="ck">"emoji"</span><span class="cp">:</span> <span class="cs">"🐲"</span><span class="cp">,</span>
-  <span class="ck">"type"</span><span class="cp">:</span> <span class="cs">"Fire"</span><span class="cp">,</span>
+    <div class="callout info" style="margin:14px 0;"><span class="ci">ℹ️</span> <strong>New!</strong> You can now boost or lower <em>any specific stat</em> using <code>statTarget</code>. And you can give a move <em>multiple statuses</em> at once using the <code>"statuses"</code> array instead of <code>"status"</code>!</div>
 
-  <span class="cc">// The five stats — adjust these numbers to build your Fakemon's personality</span>
-  <span class="ck">"hp"</span><span class="cp">:</span> <span class="cn">100</span><span class="cp">,</span>       <span class="cc">// Health: how much damage you can take (80-140)</span>
-  <span class="ck">"power"</span><span class="cp">:</span> <span class="cn">100</span><span class="cp">,</span>    <span class="cc">// Power: scales your damage output (80-120)</span>
-  <span class="ck">"speed"</span><span class="cp">:</span> <span class="cn">90</span><span class="cp">,</span>     <span class="cc">// Speed: who goes first on tied move speed (60-120)</span>
-  <span class="ck">"defense"</span><span class="cp">:</span> <span class="cn">10</span><span class="cp">,</span>  <span class="cc">// Defense: % damage reduction from incoming hits (0-40)</span>
-  <span class="ck">"accuracy"</span><span class="cp">:</span> <span class="cn">90</span><span class="cp">,</span> <span class="cc">// Accuracy: base % chance your moves will hit (70-100)</span>
-
+    <div class="code-wrap" id="block-main-template" style="margin-top:0;">
+      <button class="copy-btn" data-target="block-main-template">📋 Copy Template</button>
+      <pre><span class="cp">{</span>
+  <span class="ck">"id"</span><span class="cp">:</span>          <span class="cs">"yourfakemon"</span><span class="cp">,</span>
+  <span class="ck">"name"</span><span class="cp">:</span>        <span class="cs">"YourFakemon"</span><span class="cp">,</span>
+  <span class="ck">"createdBy"</span><span class="cp">:</span>   <span class="cs">"Your Full Name"</span><span class="cp">,</span>
+  <span class="ck">"emoji"</span><span class="cp">:</span>       <span class="cs">"🐲"</span><span class="cp">,</span>
+  <span class="ck">"type"</span><span class="cp">:</span>        <span class="cs">"Fire"</span><span class="cp">,</span>
   <span class="ck">"description"</span><span class="cp">:</span> <span class="cs">"A short description of your Fakemon."</span><span class="cp">,</span>
+  <span class="ck">"hp"</span><span class="cp">:</span>       <span class="cn">100</span><span class="cp">,</span>
+  <span class="ck">"power"</span><span class="cp">:</span>    <span class="cn">100</span><span class="cp">,</span>
+  <span class="ck">"speed"</span><span class="cp">:</span>    <span class="cn">90</span><span class="cp">,</span>
+  <span class="ck">"defense"</span><span class="cp">:</span>  <span class="cn">10</span><span class="cp">,</span>
+  <span class="ck">"accuracy"</span><span class="cp">:</span> <span class="cn">90</span><span class="cp">,</span>
 
   <span class="ck">"moves"</span><span class="cp">: [</span>
-
-    <span class="cc">// Move 1: A damage move with a status effect</span>
     <span class="cp">{</span>
-      <span class="ck">"id"</span><span class="cp">:</span> <span class="cs">"move_one"</span><span class="cp">,</span>
-      <span class="ck">"name"</span><span class="cp">:</span> <span class="cs">"🔥 Move Name"</span><span class="cp">,</span>
-      <span class="ck">"desc"</span><span class="cp">:</span> <span class="cs">"A biting attack with a chance to burn."</span><span class="cp">,</span>
-      <span class="ck">"speed"</span><span class="cp">:</span> <span class="cs">"medium"</span><span class="cp">,</span>
-      <span class="ck">"damage"</span><span class="cp">: [</span><span class="cn">14</span><span class="cp">,</span> <span class="cn">20</span><span class="cp">],</span>
-      <span class="ck">"status"</span><span class="cp">:</span> <span class="cs">"burn"</span><span class="cp">,</span>
-      <span class="ck">"statusChance"</span><span class="cp">:</span> <span class="cn">0.35</span>
-    <span class="cp">},</span>
-
-    <span class="cc">// Move 2: A plain fast attack</span>
-    <span class="cp">{</span>
-      <span class="ck">"id"</span><span class="cp">:</span> <span class="cs">"move_two"</span><span class="cp">,</span>
-      <span class="ck">"name"</span><span class="cp">:</span> <span class="cs">"⚔️ Quick Slash"</span><span class="cp">,</span>
-      <span class="ck">"desc"</span><span class="cp">:</span> <span class="cs">"A lightning-fast claw swipe. No frills."</span><span class="cp">,</span>
-      <span class="ck">"speed"</span><span class="cp">:</span> <span class="cs">"fast"</span><span class="cp">,</span>
-      <span class="ck">"damage"</span><span class="cp">: [</span><span class="cn">18</span><span class="cp">,</span> <span class="cn">24</span><span class="cp">],</span>
-      <span class="ck">"status"</span><span class="cp">:</span> <span class="cn">null</span><span class="cp">,</span>
+      <span class="ck">"id"</span><span class="cp">:</span>           <span class="cs">"move_one"</span><span class="cp">,</span>
+      <span class="ck">"name"</span><span class="cp">:</span>         <span class="cs">"🔥 Move One"</span><span class="cp">,</span>
+      <span class="ck">"desc"</span><span class="cp">:</span>         <span class="cs">"A straightforward attack."</span><span class="cp">,</span>
+      <span class="ck">"speed"</span><span class="cp">:</span>        <span class="cs">"medium"</span><span class="cp">,</span>
+      <span class="ck">"damage"</span><span class="cp">: [</span><span class="cn">15</span><span class="cp">,</span> <span class="cn">22</span><span class="cp">],</span>
+      <span class="ck">"status"</span><span class="cp">:</span>       <span class="cn">null</span><span class="cp">,</span>
       <span class="ck">"statusChance"</span><span class="cp">:</span> <span class="cn">0</span>
     <span class="cp">},</span>
-
-    <span class="cc">// Move 3: A heal move (negative damage = heals you!)</span>
     <span class="cp">{</span>
-      <span class="ck">"id"</span><span class="cp">:</span> <span class="cs">"move_three"</span><span class="cp">,</span>
-      <span class="ck">"name"</span><span class="cp">:</span> <span class="cs">"💊 Heal Move"</span><span class="cp">,</span>
-      <span class="ck">"desc"</span><span class="cp">:</span> <span class="cs">"Restore 25 HP."</span><span class="cp">,</span>
-      <span class="ck">"speed"</span><span class="cp">:</span> <span class="cs">"slow"</span><span class="cp">,</span>
+      <span class="ck">"id"</span><span class="cp">:</span>           <span class="cs">"move_two"</span><span class="cp">,</span>
+      <span class="ck">"name"</span><span class="cp">:</span>         <span class="cs">"🔥 Fire Bite"</span><span class="cp">,</span>
+      <span class="ck">"desc"</span><span class="cp">:</span>         <span class="cs">"A burning bite with a 30% chance to burn."</span><span class="cp">,</span>
+      <span class="ck">"speed"</span><span class="cp">:</span>        <span class="cs">"medium"</span><span class="cp">,</span>
+      <span class="ck">"damage"</span><span class="cp">: [</span><span class="cn">12</span><span class="cp">,</span> <span class="cn">18</span><span class="cp">],</span>
+      <span class="ck">"status"</span><span class="cp">:</span>       <span class="cs">"burn"</span><span class="cp">,</span>
+      <span class="ck">"statusChance"</span><span class="cp">:</span> <span class="cn">0.3</span>
+    <span class="cp">},</span>
+    <span class="cp">{</span>
+      <span class="ck">"id"</span><span class="cp">:</span>           <span class="cs">"move_three"</span><span class="cp">,</span>
+      <span class="ck">"name"</span><span class="cp">:</span>         <span class="cs">"💊 Recover"</span><span class="cp">,</span>
+      <span class="ck">"desc"</span><span class="cp">:</span>         <span class="cs">"Restores 25 HP."</span><span class="cp">,</span>
+      <span class="ck">"speed"</span><span class="cp">:</span>        <span class="cs">"slow"</span><span class="cp">,</span>
       <span class="ck">"damage"</span><span class="cp">: [</span><span class="cn">-25</span><span class="cp">,</span> <span class="cn">-25</span><span class="cp">],</span>
-      <span class="ck">"status"</span><span class="cp">:</span> <span class="cn">null</span><span class="cp">,</span>
+      <span class="ck">"status"</span><span class="cp">:</span>       <span class="cn">null</span><span class="cp">,</span>
       <span class="ck">"statusChance"</span><span class="cp">:</span> <span class="cn">0</span>
     <span class="cp">},</span>
-
-    <span class="cc">// Move 4: A pure status move (no damage)</span>
     <span class="cp">{</span>
-      <span class="ck">"id"</span><span class="cp">:</span> <span class="cs">"move_four"</span><span class="cp">,</span>
-      <span class="ck">"name"</span><span class="cp">:</span> <span class="cs">"😵 Confuse Ray"</span><span class="cp">,</span>
-      <span class="ck">"desc"</span><span class="cp">:</span> <span class="cs">"Scrambles the enemy's brain. No damage, just chaos."</span><span class="cp">,</span>
-      <span class="ck">"speed"</span><span class="cp">:</span> <span class="cs">"medium"</span><span class="cp">,</span>
+      <span class="ck">"id"</span><span class="cp">:</span>           <span class="cs">"move_four"</span><span class="cp">,</span>
+      <span class="ck">"name"</span><span class="cp">:</span>         <span class="cs">"📈 Power Up"</span><span class="cp">,</span>
+      <span class="ck">"desc"</span><span class="cp">:</span>         <span class="cs">"Sharply raises your own ATK."</span><span class="cp">,</span>
+      <span class="ck">"speed"</span><span class="cp">:</span>        <span class="cs">"fast"</span><span class="cp">,</span>
       <span class="ck">"damage"</span><span class="cp">: [</span><span class="cn">0</span><span class="cp">,</span> <span class="cn">0</span><span class="cp">],</span>
-      <span class="ck">"status"</span><span class="cp">:</span> <span class="cs">"confuse"</span><span class="cp">,</span>
-      <span class="ck">"statusChance"</span><span class="cp">:</span> <span class="cn">1.0</span>
+      <span class="ck">"status"</span><span class="cp">:</span>       <span class="cs">"statup"</span><span class="cp">,</span>
+      <span class="ck">"statusChance"</span><span class="cp">:</span> <span class="cn">1.0</span><span class="cp">,</span>
+      <span class="ck">"statTarget"</span><span class="cp">:</span>   <span class="cs">"atk"</span>
+    <span class="cp">},</span>
+    <span class="cp">{</span>
+      <span class="ck">"id"</span><span class="cp">:</span>           <span class="cs">"move_five"</span><span class="cp">,</span>
+      <span class="ck">"name"</span><span class="cp">:</span>         <span class="cs">"📉 Cinder Smoke"</span><span class="cp">,</span>
+      <span class="ck">"desc"</span><span class="cp">:</span>         <span class="cs">"Thick smoke clouds the enemy's vision."</span><span class="cp">,</span>
+      <span class="ck">"speed"</span><span class="cp">:</span>        <span class="cs">"medium"</span><span class="cp">,</span>
+      <span class="ck">"damage"</span><span class="cp">: [</span><span class="cn">0</span><span class="cp">,</span> <span class="cn">0</span><span class="cp">],</span>
+      <span class="ck">"status"</span><span class="cp">:</span>       <span class="cs">"statdwn"</span><span class="cp">,</span>
+      <span class="ck">"statusChance"</span><span class="cp">:</span> <span class="cn">1.0</span><span class="cp">,</span>
+      <span class="ck">"statTarget"</span><span class="cp">:</span>   <span class="cs">"speed"</span>
+    <span class="cp">},</span>
+    <span class="cp">{</span>
+      <span class="ck">"id"</span><span class="cp">:</span>    <span class="cs">"move_six"</span><span class="cp">,</span>
+      <span class="ck">"name"</span><span class="cp">:</span>  <span class="cs">"😵 Chaos Breath"</span><span class="cp">,</span>
+      <span class="ck">"desc"</span><span class="cp">:</span>  <span class="cs">"Hits, then may poison AND confuse!"</span><span class="cp">,</span>
+      <span class="ck">"speed"</span><span class="cp">:</span> <span class="cs">"slow"</span><span class="cp">,</span>
+      <span class="ck">"damage"</span><span class="cp">: [</span><span class="cn">10</span><span class="cp">,</span> <span class="cn">16</span><span class="cp">],</span>
+      <span class="cm">"statuses"</span><span class="cp">: [</span>
+        <span class="cp">{</span> <span class="ck">"status"</span><span class="cp">:</span> <span class="cs">"poison"</span><span class="cp">,</span>  <span class="ck">"statusChance"</span><span class="cp">:</span> <span class="cn">0.5</span> <span class="cp">},</span>
+        <span class="cp">{</span> <span class="ck">"status"</span><span class="cp">:</span> <span class="cs">"confuse"</span><span class="cp">,</span> <span class="ck">"statusChance"</span><span class="cp">:</span> <span class="cn">0.4</span> <span class="cp">}</span>
+      <span class="cp">]</span>
     <span class="cp">}</span>
 
-    <span class="cc">// Add more moves here, up to 8 total!</span>
-    <span class="cc">// Remember: put a comma after every } EXCEPT the last one.</span>
-
   <span class="cp">]</span>
-<span class="cp">}</span></pre></div>
+<span class="cp">}</span></pre>
+    </div>
   </div>
 
   <!-- ══ 9. ADDING TO GAME ═══════════════════════════════════════════════════ -->
@@ -1165,32 +1054,23 @@ h2, h1 { scroll-margin-top: 24px; }
       <h2>Adding Your Fakemon to the Game</h2>
     </div>
     <p>Two steps and you're in!</p>
-
     <table class="guide-table" style="margin:14px 0;">
       <thead><tr><th style="width:60px;">Step</th><th>What to do</th></tr></thead>
       <tbody>
-        <tr>
-          <td class="center" style="font-size:24px;">1️⃣</td>
-          <td>Put your file (e.g. <code style="font-family:var(--font-c);">myfakemon.json</code>) inside the <code style="font-family:var(--font-c);">fakemon/</code> folder.</td>
-        </tr>
-        <tr>
-          <td class="center" style="font-size:24px;">2️⃣</td>
-          <td>Open <code style="font-family:var(--font-c);">fakemon/fakemonlist.json</code> and add your Fakemon's id to the list.</td>
-        </tr>
+        <tr><td class="center" style="font-size:24px;">1️⃣</td><td>Put your file (e.g. <code>myfakemon.json</code>) inside the <code>fakemon/</code> folder.</td></tr>
+        <tr><td class="center" style="font-size:24px;">2️⃣</td><td>Open <code>fakemon/fakemonlist.json</code> and add your Fakemon's filename to the list.</td></tr>
       </tbody>
     </table>
-
-    <p>Here's what <code style="font-family:var(--font-c);">fakemonlist.json</code> looks like — just add your id at the end:</p>
-    <div class="code-wrap" style="margin-top:10px;"><pre
-><span class="cp">{</span>
-  <span class="ck">"fakemon"</span><span class="cp">: [</span>
-    <span class="cs">"embork"</span><span class="cp">,</span>
-    <span class="cs">"glopple"</span><span class="cp">,</span>
-    <span class="cs">"voltusk"</span><span class="cp">,</span>
-    <span class="cs">"yourfakemon"</span>   <span class="cc">// ← add yours here!</span>
-  <span class="cp">]</span>
-<span class="cp">}</span></pre></div>
-
+    <p>Here's what <code>fakemonlist.json</code> looks like — just add your filename at the end:</p>
+    <div class="code-wrap" id="block-fakemonlist" style="margin-top:10px;">
+      <button class="copy-btn" data-target="block-fakemonlist">📋 Copy</button>
+      <pre><span class="cp">[</span>
+  <span class="cs">"embork.json"</span><span class="cp">,</span>
+  <span class="cs">"glopple.json"</span><span class="cp">,</span>
+  <span class="cs">"voltusk.json"</span><span class="cp">,</span>
+  <span class="cs">"yourfakemon.json"</span>
+<span class="cp">]</span></pre>
+    </div>
     <div class="callout win"><span class="ci">🎮</span> Reload the game in your browser and your Fakemon will show up on the selection screen with its power level automatically calculated. Time to battle!</div>
   </div>
 
@@ -1200,34 +1080,30 @@ h2, h1 { scroll-margin-top: 24px; }
       <div class="section-num">10</div>
       <h2>Strategy Tips</h2>
     </div>
-    <p>The power system is smart — it actually simulates battles to score your Fakemon. Here's how to make something genuinely good:</p>
-
+    <p>The power system is smart — it actually simulates battles to score your Fakemon. Here's how to make a strong one:</p>
     <div class="strategy-grid">
       <div class="strat-card do">
-        <h4>✅ Do this</h4>
+        <h4>✅ DO</h4>
         <ul>
-          <li>Mix damage moves with status moves</li>
-          <li>Use different status types — variety counts!</li>
-          <li>Put strong attacks on <span class="speed-fast">fast</span> — they go first AND hit harder</li>
-          <li>Add a heal move if you have high HP</li>
-          <li>Use <span class="speed-slow">slow</span> moves for your big power moves</li>
-          <li>Think about your type matchup — Fire destroys Nature!</li>
+          <li>Mix damage, status, and stat moves</li>
+          <li>Include at least one heal move</li>
+          <li>Use <code>statup</code> to build power early</li>
+          <li>Use <code>statdwn</code> to cripple fast enemies</li>
+          <li>Use a <code>statTarget</code> that matches your playstyle</li>
         </ul>
       </div>
       <div class="strat-card dont">
-        <h4>❌ Don't bother with</h4>
+        <h4>❌ DON'T</h4>
         <ul>
-          <li>Five of the same sleep move — only counts once</li>
-          <li>All damage, no status — too predictable</li>
-          <li>All status, no damage — you'll never finish the fight</li>
-          <li>Crazy high HP hoping to outlast — the matchmaker adapts</li>
-          <li>Ignoring defense — even a little helps a lot</li>
-          <li>100% accuracy on everything — spread it around</li>
+          <li>Use 5 of the same move type</li>
+          <li>Forget a damage move entirely</li>
+          <li>Put all your power in super low HP</li>
+          <li>Skip the <code>statTarget</code> on a statup/statdwn move</li>
+          <li>Use <code>accuracy: 100</code> if you don't mean it</li>
         </ul>
       </div>
     </div>
-
-    <div class="callout tip"><span class="ci">🏆</span> The best Fakemon aren't necessarily the strongest — they're the most interesting to play! A clever design with good synergy between moves will beat a boring high-damage machine most of the time.</div>
+    <div class="callout tip"><span class="ci">💡</span> A clever design with good synergy between moves will beat a boring high-damage machine most of the time.</div>
   </div>
 
   <!-- ══ 11. CHECKLIST ════════════════════════════════════════════════════════ -->
@@ -1236,23 +1112,960 @@ h2, h1 { scroll-margin-top: 24px; }
       <div class="section-num">11</div>
       <h2>Final Checklist</h2>
     </div>
-    <p>Before you turn in your Fakemon, check every box:</p>
-    <ul class="checklist">
-      <li>My <strong>id</strong> has no spaces or special characters</li>
-      <li>My filename matches my id exactly — e.g. <code style="font-family:var(--font-c);">blazkit.json</code> for id <code style="font-family:var(--font-c);">"blazkit"</code></li>
-      <li>I added my filename to <code style="font-family:var(--font-c);">fakemonlist.json</code></li>
-      <li>My Fakemon has between <strong>4 and 8 moves</strong></li>
-      <li>I have <strong>at least one move that deals damage</strong></li>
-      <li>All 5 stats are filled in (<strong>hp, power, speed, defense, accuracy</strong>)</li>
-      <li>I filled in <strong>createdBy</strong> with my full name</li>
-      <li>I picked an <strong>emoji</strong> for my Fakemon</li>
-      <li>I tested it in the game and <strong>it loads without errors</strong></li>
-      <li>My Fakemon has a <strong>description</strong> that shows its personality</li>
+    <p>Before you turn in your Fakemon, check every box. Your progress is saved automatically!</p>
+    <div class="checklist-progress">
+      <div class="checklist-bar-track"><div class="checklist-bar-fill" id="cl-bar" style="width:0%"></div></div>
+      <span id="cl-count">0 / 11</span>
+      <button class="checklist-reset" onclick="resetChecklist()">reset</button>
+    </div>
+    <ul class="checklist" id="checklist">
+      <li data-id="cl1" onclick="toggleCheck(this)"><span class="cb-box">✓</span><span>My <strong>id</strong> has no spaces or special characters</span></li>
+      <li data-id="cl2" onclick="toggleCheck(this)"><span class="cb-box">✓</span><span>My filename matches my id exactly — e.g. <code>blazkit.json</code> for id <code>"blazkit"</code></span></li>
+      <li data-id="cl3" onclick="toggleCheck(this)"><span class="cb-box">✓</span><span>I added my filename to <code>fakemonlist.json</code></span></li>
+      <li data-id="cl4" onclick="toggleCheck(this)"><span class="cb-box">✓</span><span>My Fakemon has between <strong>4 and 8 moves</strong></span></li>
+      <li data-id="cl5" onclick="toggleCheck(this)"><span class="cb-box">✓</span><span>I have <strong>at least one move that deals damage</strong></span></li>
+      <li data-id="cl6" onclick="toggleCheck(this)"><span class="cb-box">✓</span><span>All 5 stats are filled in (<strong>hp, power, speed, defense, accuracy</strong>)</span></li>
+      <li data-id="cl7" onclick="toggleCheck(this)"><span class="cb-box">✓</span><span>Every <code>statup</code> or <code>statdwn</code> move has a <strong>statTarget</strong> field</span></li>
+      <li data-id="cl8" onclick="toggleCheck(this)"><span class="cb-box">✓</span><span>I filled in <strong>createdBy</strong> with my full name</span></li>
+      <li data-id="cl9" onclick="toggleCheck(this)"><span class="cb-box">✓</span><span>I picked an <strong>emoji</strong> for my Fakemon</span></li>
+      <li data-id="cl10" onclick="toggleCheck(this)"><span class="cb-box">✓</span><span>I tested it in the game and <strong>it loads without errors in the debug panel</strong></span></li>
+      <li data-id="cl11" onclick="toggleCheck(this)"><span class="cb-box">✓</span><span>My Fakemon has a <strong>description</strong> that shows its personality</span></li>
     </ul>
-
     <div class="callout win" style="margin-top:20px; font-size:16px;"><span class="ci">🐉</span> Good luck, and have fun! The weirdest, most creative Fakemon are usually the most fun to battle with. Make it yours!</div>
   </div>
 
+  <!-- ══ 12. BUG TESTING GUIDE ═══════════════════════════════════════════════ -->
+  <div class="section" id="s12" style="border-top: 4px solid #a855f7; margin-top: 0;">
+    <div class="section-header" style="border-bottom-color: #a855f7;">
+      <div class="section-num" style="background:#3a1a5a; color:#d090ff;">12</div>
+      <h2>🐛 Bug Testing Your Fakemon</h2>
+    </div>
+
+    <p>Something's not working? Don't panic — that's totally normal. This section will walk you through exactly how to find and fix problems with your Fakemon file.</p>
+
+    <!-- ── THE BASIC WORKFLOW ── -->
+    <h3 style="font-family:var(--font-h);font-size:20px;margin:22px 0 12px;color:var(--card);">📋 The Basic Testing Workflow</h3>
+    <p style="margin-bottom:14px;">Every time you make a change, follow these steps:</p>
+
+    <div class="workflow">
+      <div class="wf-step">
+        <div class="wf-num">1</div>
+        <div class="wf-content">
+          <h4>Make your change in the editor</h4>
+          <p>Edit your <code>.json</code> file in the <strong>github.dev editor</strong> (the browser-based editor that opens when you press <kbd class="kbd">.</kbd> on your repo, or navigate to <code>github.dev/your-repo-url</code>). Fix one thing at a time so you know what worked.</p>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">2</div>
+        <div class="wf-content">
+          <h4>Commit &amp; push to GitHub</h4>
+          <p>Your changes do NOT go live until you commit them. In GitHub Dev, click the <strong>Source Control</strong> panel (the branching icon on the left), write a short message like <code>fix missing comma</code>, then click <strong>Commit &amp; Push</strong>. If you skip this, the game will still show your old file!</p>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">3</div>
+        <div class="wf-content">
+          <h4>Wait for GitHub Pages to rebuild — up to 2 minutes!</h4>
+          <p>After you push, GitHub has to rebuild the site. This takes anywhere from <strong>30 seconds to 2 minutes</strong>. There is no sound or notification — you just have to wait. If you reload immediately, you'll see your old file.</p>
+          <div id="gh-timer-wrap" style="margin-top:12px;">
+            <button id="gh-timer-btn" onclick="startGHTimer()" style="font-family:var(--font-h);font-size:14px;background:var(--card);color:var(--accent);border:none;border-radius:10px;padding:10px 20px;cursor:pointer;display:flex;align-items:center;gap:8px;transition:opacity 0.15s;">
+              ⏱ Start the 2-minute wait timer
+            </button>
+            <div id="gh-timer-panel" style="display:none;margin-top:12px;border:1.5px solid var(--border);border-radius:var(--radius);overflow:hidden;">
+              <div style="background:var(--card);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;">
+                <span style="font-family:var(--font-h);font-size:15px;color:var(--accent);">🌿 Growing while you wait…</span>
+                <span id="gh-timer-display" style="font-family:var(--font-c);font-size:20px;color:#fff;min-width:50px;text-align:right;">2:00</span>
+              </div>
+              <canvas id="fib-canvas" width="560" height="220" style="display:block;width:100%;background:#0d0d1a;"></canvas>
+              <div id="gh-timer-msg" style="background:#0d0d1a;padding:10px 16px;font-size:13px;color:#7070a0;text-align:center;font-weight:600;border-top:1px solid #1e1e38;">Waiting for GitHub Pages to rebuild…</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">4</div>
+        <div class="wf-content">
+          <h4>Hard refresh the page — don't just press reload!</h4>
+          <p>Your browser keeps a copy of old files in its cache. A normal refresh just shows you that cached (old) copy. You need a <strong>hard refresh</strong> to force the browser to download the new files from GitHub. On a Chromebook:</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;align-items:center;">
+            <kbd class="kbd">Ctrl + Shift + R</kbd>
+            <span style="color:var(--muted);font-weight:700;">or</span>
+            <kbd class="kbd">Ctrl + F5</kbd>
+            <span style="color:var(--muted);font-weight:700;">or</span>
+            <span style="font-size:13px;color:#444;">Hold <kbd class="kbd">Ctrl</kbd> and click the reload button 🔄</span>
+          </div>
+          <p style="margin-top:8px;font-size:13px;color:#b83020;font-weight:700;">⚠️ If you're not hard refreshing, you might be testing OLD code and wasting your time!</p>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">5</div>
+        <div class="wf-content">
+          <h4>Check the debug panel</h4>
+          <p>Open the game page. The <strong>🐛 DEBUG</strong> panel at the top of the screen shows you exactly what happened when your file loaded. Red = broken. Yellow = warning. Green = good.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── GITHUB PAGES TIMING ── -->
+    <h3 style="font-family:var(--font-h);font-size:20px;margin:26px 0 12px;color:var(--card);">⏱ The GitHub Pages Delay — Why Can't I See My Changes?</h3>
+
+    <p style="margin-bottom:12px;">Your game is hosted on GitHub Pages. When you push a change, it doesn't appear instantly. Here's what's happening behind the scenes:</p>
+
+    <div class="gh-flow" style="gap:4px;flex-wrap:wrap;justify-content:center;padding:16px;background:var(--surface);border:1.5px solid var(--border);border-radius:var(--radius);">
+      <div class="gh-box">
+        <span class="gh-icon">✏️</span>
+        <div class="gh-label">You edit</div>
+        <div class="gh-sub">in GitHub Dev</div>
+      </div>
+      <div class="gh-arr">→</div>
+      <div class="gh-box">
+        <span class="gh-icon">📤</span>
+        <div class="gh-label">Commit &amp; Push</div>
+        <div class="gh-sub">saves to GitHub</div>
+      </div>
+      <div class="gh-arr">→</div>
+      <div class="gh-box" style="border-color:#f5c842;">
+        <span class="gh-icon">⚙️</span>
+        <div class="gh-label">GitHub rebuilds</div>
+        <div class="gh-sub" style="color:#b08a00;font-weight:800;">30 sec – 2 min</div>
+      </div>
+      <div class="gh-arr">→</div>
+      <div class="gh-box">
+        <span class="gh-icon">🌐</span>
+        <div class="gh-label">Site updates</div>
+        <div class="gh-sub">live on web</div>
+      </div>
+      <div class="gh-arr">→</div>
+      <div class="gh-box" style="border-color:#22c55e;">
+        <span class="gh-icon">🔄</span>
+        <div class="gh-label">Hard refresh</div>
+        <div class="gh-sub" style="color:#138a3e;font-weight:800;">Ctrl+Shift+R</div>
+      </div>
+    </div>
+
+    <div class="callout warn" style="margin-top:14px;"><span class="ci">⚠️</span> <strong>The #1 student mistake:</strong> Making a fix, reloading the page immediately, seeing the same error, and thinking the fix didn't work — when actually GitHub just hadn't rebuilt yet. Always wait the full 2 minutes and hard refresh!</div>
+
+    <div class="callout tip"><span class="ci">💡</span> You can check if GitHub is still building by going to your repo on github.com and clicking <strong>Actions</strong>. A yellow circle 🟡 means it's still building. A green checkmark ✅ means it's done.</div>
+
+    <!-- ── HOW TO READ THE DEBUG LOG ── -->
+    <h3 style="font-family:var(--font-h);font-size:20px;margin:26px 0 12px;color:var(--card);">🔍 How to Read the Debug Log</h3>
+
+    <p style="margin-bottom:10px;">The debug panel color-codes every message. Use the <strong>filter tabs</strong> to show only what you care about:</p>
+
+    <div class="filter-tabs-demo">
+      <span class="ftab t-all">ALL</span>
+      <span class="ftab t-info">ℹ INFO</span>
+      <span class="ftab t-battle">⚔ BATTLE</span>
+      <span class="ftab t-ok">✓ OK</span>
+      <span class="ftab t-warn">⚠ WARN</span>
+      <span class="ftab t-error">✗ ERROR</span>
+    </div>
+
+    <table class="guide-table" style="margin-top:12px;">
+      <thead><tr><th>Colour</th><th>What it means</th><th>When to click it</th></tr></thead>
+      <tbody>
+        <tr><td>🔵 Blue (INFO)</td><td>Normal background info — file loading, stats, turn details</td><td>You want to understand exactly what happened step by step</td></tr>
+        <tr><td>🟢 Green (OK)</td><td>Something succeeded — file loaded, status applied, Fakemon added</td><td>You want to confirm things worked</td></tr>
+        <tr><td>🟡 Yellow (WARN)</td><td>Not broken but something's missing or suspicious</td><td>Your Fakemon loads but something might be off — check first!</td></tr>
+        <tr><td>🔴 Red (ERROR)</td><td>Something failed — broken JSON, missing field, wrong value</td><td><strong>Always check this first.</strong> Errors are why your Fakemon won't load.</td></tr>
+        <tr><td>🟢 Teal (BATTLE)</td><td>Battle events — turns, damage, speed order</td><td>You want to understand what's happening mid-fight</td></tr>
+        <tr><td>🟣 Purple (SCORE)</td><td>Power level calculations</td><td>You want to see how strong your Fakemon scored</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout info"><span class="ci">ℹ️</span> <strong>Start here every time:</strong> Click the <strong>✗ ERROR</strong> filter tab first. If there are zero red messages, your file loaded correctly. Then click <strong>⚠ WARN</strong> to check for anything suspicious.</div>
+
+    <!-- ── COMMON ERRORS ── -->
+    <h3 style="font-family:var(--font-h);font-size:20px;margin:26px 0 12px;color:var(--card);">🚨 Common Errors &amp; How to Fix Them</h3>
+
+    <div class="bug-grid">
+
+      <!-- 1: JSON parse error -->
+      <div class="bug-card">
+        <div class="bug-card-header">
+          <div class="bug-icon">💥</div>
+          <div>
+            <div class="bug-title">Broken JSON — won't load at all</div>
+            <div class="bug-subtitle">Usually a missing comma, quote, or bracket</div>
+          </div>
+        </div>
+        <div class="bug-card-body">
+          <div>
+            <div class="bug-label">What you see in the debug log</div>
+            <div class="fake-debug">
+              <div class="fake-debug-header">🐛 DEBUG <span>filter: ✗ ERROR</span></div>
+              <div class="fake-debug-body">
+                <div class="fdl dl-error"><span class="fdl-ts">[00:01:04]</span><span class="fdl-icon">✗</span><span class="fdl-msg">FAILED to load <span class="hi-field">myfakemon.json</span>: <span class="hi-val">Invalid JSON: Unexpected token } in JSON at position 312</span></span></div>
+                <div class="fdl dl-error"><span class="fdl-ts">[00:01:04]</span><span class="fdl-icon">✗</span><span class="fdl-msg">File should end with } (closing curly brace)</span></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="bug-label">How to fix it</div>
+            <p style="font-size:14px;line-height:1.6;">Your JSON has a typo somewhere. The most common causes:</p>
+            <ul style="font-size:13px;padding-left:18px;line-height:2;margin-top:6px;">
+              <li><strong>Missing comma</strong> between two moves — every move except the last one needs a <code>,</code> after its closing <code>}</code></li>
+              <li><strong>Extra comma</strong> after the last move in the list — the last item before <code>]</code> must NOT have a comma</li>
+              <li><strong>Missing quote</strong> around a value — all text values need <code>"quotes"</code></li>
+              <li><strong>Using single quotes</strong> like <code>'fire'</code> — JSON only accepts <code>"double quotes"</code></li>
+              <li><strong>Mismatched brackets</strong> — every <code>{</code> needs a matching <code>}</code> and every <code>[</code> needs a <code>]</code></li>
+            </ul>
+            <div class="callout tip" style="margin-top:10px;font-size:13px;"><span class="ci">💡</span> Paste your JSON into <strong>jsonlint.com</strong> — it will point to the exact line with the problem!</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2: File not found -->
+      <div class="bug-card">
+        <div class="bug-card-header">
+          <div class="bug-icon">🔍</div>
+          <div>
+            <div class="bug-title">File not found (404 error)</div>
+            <div class="bug-subtitle">The game can't find your JSON file</div>
+          </div>
+        </div>
+        <div class="bug-card-body">
+          <div>
+            <div class="bug-label">What you see in the debug log</div>
+            <div class="fake-debug">
+              <div class="fake-debug-header">🐛 DEBUG <span>filter: ✗ ERROR</span></div>
+              <div class="fake-debug-body">
+                <div class="fdl dl-error"><span class="fdl-ts">[00:01:02]</span><span class="fdl-icon">✗</span><span class="fdl-msg">FAILED to load <span class="hi-field">fakemon/Blazkit.json</span>: <span class="hi-val">HTTP 404 — file not found</span></span></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="bug-label">How to fix it</div>
+            <ul style="font-size:13px;padding-left:18px;line-height:2;margin-top:4px;">
+              <li>Make sure your file is inside the <code>fakemon/</code> folder, not the root of the project</li>
+              <li>Check the filename in <code>fakemonlist.json</code> matches your file exactly — including capitals and the <code>.json</code> extension</li>
+              <li><strong>Capitalization matters!</strong> <code>Blazkit.json</code> ≠ <code>blazkit.json</code>. GitHub is case-sensitive.</li>
+              <li>Check that you actually committed and pushed the file — if you only saved it locally in GitHub Dev without committing, it won't exist on the server</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3: Wrong status -->
+      <div class="bug-card">
+        <div class="bug-card-header">
+          <div class="bug-icon">❓</div>
+          <div>
+            <div class="bug-title">Unknown status or bad statTarget</div>
+            <div class="bug-subtitle">A move has a typo in its status or statTarget value</div>
+          </div>
+        </div>
+        <div class="bug-card-body">
+          <div>
+            <div class="bug-label">What you see in the debug log</div>
+            <div class="fake-debug">
+              <div class="fake-debug-header">🐛 DEBUG <span>filter: ✗ ERROR</span></div>
+              <div class="fake-debug-body">
+                <div class="fdl dl-error"><span class="fdl-ts">[00:01:03]</span><span class="fdl-icon">✗</span><span class="fdl-msg">Move 3 (🔥 Fire Snap): unknown status <span class="hi-val">"Burn"</span> — did you mean <span class="hi-fix">"burn"</span>?</span></div>
+                <div class="fdl dl-error"><span class="fdl-ts">[00:01:03]</span><span class="fdl-icon">✗</span><span class="fdl-msg">Move 5 (📈 Power Up): "statTarget" must be one of: <span class="hi-fix">atk, speed, defense, accuracy</span></span></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="bug-label">How to fix it</div>
+            <p style="font-size:14px;margin-bottom:6px;">Status names and statTarget values are case-sensitive — all lowercase, no capitals:</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;font-size:13px;">
+              <code style="background:#f0f0f8;padding:2px 6px;border-radius:4px;">poison</code>
+              <code style="background:#f0f0f8;padding:2px 6px;border-radius:4px;">burn</code>
+              <code style="background:#f0f0f8;padding:2px 6px;border-radius:4px;">paralyze</code>
+              <code style="background:#f0f0f8;padding:2px 6px;border-radius:4px;">sleep</code>
+              <code style="background:#f0f0f8;padding:2px 6px;border-radius:4px;">confuse</code>
+              <code style="background:#f0f0f8;padding:2px 6px;border-radius:4px;">flinch</code>
+              <code style="background:#f0f0f8;padding:2px 6px;border-radius:4px;">statup</code>
+              <code style="background:#f0f0f8;padding:2px 6px;border-radius:4px;">statdwn</code>
+            </div>
+            <p style="font-size:13px;margin-top:8px;">Valid statTarget values: <code>atk</code> · <code>speed</code> · <code>defense</code> · <code>accuracy</code></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4: Missing statTarget -->
+      <div class="bug-card">
+        <div class="bug-card-header">
+          <div class="bug-icon">🎯</div>
+          <div>
+            <div class="bug-title">statup / statdwn move does nothing</div>
+            <div class="bug-subtitle">Forgot to add statTarget — it defaults to "atk" silently</div>
+          </div>
+        </div>
+        <div class="bug-card-body">
+          <div>
+            <div class="bug-label">What you see in the debug log (⚠ WARN tab)</div>
+            <div class="fake-debug">
+              <div class="fake-debug-header">🐛 DEBUG <span>filter: ⚠ WARN</span></div>
+              <div class="fake-debug-body">
+                <div class="fdl dl-warn"><span class="fdl-ts">[00:01:03]</span><span class="fdl-icon">⚠</span><span class="fdl-msg">Move 4 (🛡️ Iron Shell): has status <span class="hi-field">statup</span> but no <span class="hi-field">statTarget</span> — defaulting to <span class="hi-val">"atk"</span></span></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="bug-label">How to fix it</div>
+            <p style="font-size:14px;">Add <code>"statTarget": "defense"</code> (or whichever stat you meant to boost) to the move object. See the statTarget table in Section 4 for all options.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5: No damage move -->
+      <div class="bug-card">
+        <div class="bug-card-header">
+          <div class="bug-icon">⚔️</div>
+          <div>
+            <div class="bug-title">Fakemon loads but battles never end</div>
+            <div class="bug-subtitle">No damage moves — it can never knock out the enemy</div>
+          </div>
+        </div>
+        <div class="bug-card-body">
+          <div>
+            <div class="bug-label">What you see in the debug log (⚠ WARN tab)</div>
+            <div class="fake-debug">
+              <div class="fake-debug-header">🐛 DEBUG <span>filter: ⚠ WARN</span></div>
+              <div class="fake-debug-body">
+                <div class="fdl dl-warn"><span class="fdl-ts">[00:01:02]</span><span class="fdl-icon">⚠</span><span class="fdl-msg">No damage moves found — <span class="hi-val">Fakemon may never finish a fight</span></span></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="bug-label">How to fix it</div>
+            <p style="font-size:14px;">Add at least one move where <code>"damage"</code> has two positive numbers, like <code>[15, 22]</code>. A move with <code>[0, 0]</code> deals no damage.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6: Wrong type -->
+      <div class="bug-card">
+        <div class="bug-card-header">
+          <div class="bug-icon">🏷️</div>
+          <div>
+            <div class="bug-title">Unknown type error</div>
+            <div class="bug-subtitle">The type field has a typo or wrong capitalisation</div>
+          </div>
+        </div>
+        <div class="bug-card-body">
+          <div>
+            <div class="bug-label">What you see in the debug log</div>
+            <div class="fake-debug">
+              <div class="fake-debug-header">🐛 DEBUG <span>filter: ✗ ERROR</span></div>
+              <div class="fake-debug-body">
+                <div class="fdl dl-error"><span class="fdl-ts">[00:01:02]</span><span class="fdl-icon">✗</span><span class="fdl-msg">Unknown type <span class="hi-val">"fire"</span> — valid types: <span class="hi-fix">Fire, Water, Air, Earth, Electric, Ice, Poison, Dark, Ghost, Metal, Nature, Normal</span></span></div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="bug-label">How to fix it</div>
+            <p style="font-size:14px;">Type names start with a capital letter: <code>"Fire"</code> not <code>"fire"</code>, <code>"Electric"</code> not <code>"electric"</code>.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7: Fakemon not in list -->
+      <div class="bug-card">
+        <div class="bug-card-header">
+          <div class="bug-icon">📋</div>
+          <div>
+            <div class="bug-title">My Fakemon doesn't appear on the select screen</div>
+            <div class="bug-subtitle">File exists but wasn't added to fakemonlist.json</div>
+          </div>
+        </div>
+        <div class="bug-card-body">
+          <div>
+            <div class="bug-label">What you see in the debug log (ℹ INFO tab)</div>
+            <div class="fake-debug">
+              <div class="fake-debug-header">🐛 DEBUG <span>filter: ✓ OK</span></div>
+              <div class="fake-debug-body">
+                <div class="fdl dl-ok"><span class="fdl-ts">[00:01:01]</span><span class="fdl-icon">✓</span><span class="fdl-msg">fakemonlist.json OK — <span class="hi-val">3 entries found</span></span></div>
+                <div class="fdl dl-ok"><span class="fdl-ts">[00:01:02]</span><span class="fdl-icon">✓</span><span class="fdl-msg">Loaded <span class="hi-val">3 / 3</span> Fakemon successfully</span></div>
+              </div>
+            </div>
+            <p style="font-size:13px;color:var(--muted);margin-top:6px;">If the count doesn't include yours, your file isn't in the list.</p>
+          </div>
+          <div>
+            <div class="bug-label">How to fix it</div>
+            <p style="font-size:14px;">Open <code>fakemon/fakemonlist.json</code> and add your filename to the array. Make sure the filename matches exactly — including <code>.json</code> at the end and correct capitalisation.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8: Stale cache -->
+      <div class="bug-card">
+        <div class="bug-card-header">
+          <div class="bug-icon">🗄️</div>
+          <div>
+            <div class="bug-title">I fixed the bug but it's still broken!</div>
+            <div class="bug-subtitle">The browser is showing you an old cached version</div>
+          </div>
+        </div>
+        <div class="bug-card-body">
+          <div>
+            <div class="bug-label">What's happening</div>
+            <p style="font-size:14px;">Your browser saves copies of files so pages load faster. This is called a <strong>cache</strong>. When you update your file and reload normally, the browser often shows the old cached copy — not the new one you just uploaded. This makes it look like your fix didn't work even when it did!</p>
+          </div>
+          <div>
+            <div class="bug-label">How to hard refresh on a Chromebook</div>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px;">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <kbd class="kbd">Ctrl + Shift + R</kbd>
+                <span style="font-size:13px;color:#444;">Hard refresh (most reliable)</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;">
+                <kbd class="kbd">Ctrl + F5</kbd>
+                <span style="font-size:13px;color:#444;">Same as above, alternate shortcut</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+                <span style="font-size:13px;color:#444;">Hold <kbd class="kbd">Ctrl</kbd> and click the 🔄 reload button in the address bar</span>
+              </div>
+            </div>
+            <div class="callout warn" style="margin-top:10px;font-size:13px;"><span class="ci">⚠️</span> A normal reload (<kbd class="kbd">Ctrl + R</kbd> or the 🔄 button alone) is NOT enough. Always use Ctrl+Shift+R after pushing changes!</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /bug-grid -->
+
+    <!-- ── READING A SUCCESSFUL LOG ── -->
+    <h3 style="font-family:var(--font-h);font-size:20px;margin:26px 0 12px;color:var(--card);">✅ What a Healthy Debug Log Looks Like</h3>
+    <p style="margin-bottom:10px;">Here's what you want to see when everything is working. Switch to the <strong>✓ OK</strong> tab to check:</p>
+
+    <div class="fake-debug">
+      <div class="fake-debug-header">🐛 DEBUG <span>showing: all</span></div>
+      <div class="fake-debug-body">
+        <div class="fdl dl-ok"><span class="fdl-ts">[00:01:00]</span><span class="fdl-icon">✓</span><span class="fdl-msg">fakemon-battle.js loaded — starting up!</span></div>
+        <div class="fdl dl-info"><span class="fdl-ts">[00:01:01]</span><span class="fdl-icon">ℹ</span><span class="fdl-msg">Loading fakemonlist.json…</span></div>
+        <div class="fdl dl-ok"><span class="fdl-ts">[00:01:01]</span><span class="fdl-icon">✓</span><span class="fdl-msg">fakemonlist.json OK — 4 entries found</span></div>
+        <div class="fdl dl-info"><span class="fdl-ts">[00:01:02]</span><span class="fdl-icon">ℹ</span><span class="fdl-msg">Loading fakemon/myfakemon.json…</span></div>
+        <div class="fdl dl-ok"><span class="fdl-ts">[00:01:02]</span><span class="fdl-icon">✓</span><span class="fdl-msg">&nbsp; myfakemon.json loaded — power level: 58</span></div>
+        <div class="fdl dl-score"><span class="fdl-ts">[00:01:03]</span><span class="fdl-icon">⭐</span><span class="fdl-msg">&nbsp; Blazkit loaded — power level: 63</span></div>
+        <div class="fdl dl-ok"><span class="fdl-ts">[00:01:04]</span><span class="fdl-icon">✓</span><span class="fdl-msg">Loaded 4 / 4 Fakemon successfully</span></div>
+        <div class="fdl dl-ok"><span class="fdl-ts">[00:01:04]</span><span class="fdl-icon">✓</span><span class="fdl-msg">Select screen ready with 4 fighters</span></div>
+      </div>
+    </div>
+
+    <p style="margin-top:12px;font-size:14px;color:var(--muted);">No red messages. The loaded count (4/4) matches the list. Your power level appears. That's a healthy load!</p>
+
+    <div class="callout win" style="margin-top:18px;"><span class="ci">🎉</span> <strong>Got it working?</strong> Celebrate! Debugging is a real skill that professional developers use every day. Every error you fix makes you better at reading code.</div>
+
+  </div><!-- /section 12 -->
+
+  <!-- ══ 13. OPENING YOUR PULL REQUEST ════════════════════════════════════════ -->
+  <div class="section" id="s13" style="border-top: 4px solid #22c55e; margin-top: 0;">
+    <div class="section-header" style="border-bottom-color: #22c55e;">
+      <div class="section-num" style="background:#0a3018; color:#56c87a;">13</div>
+      <h2>🔀 Opening Your Pull Request</h2>
+    </div>
+
+    <p>A <strong>pull request (PR)</strong> is how you officially submit your Fakemon to the shared class game. It's a request to merge your branch into the main game so everyone can fight against your creature.</p>
+
+    <div class="callout warn"><span class="ci">⚠️</span> <strong>Do NOT open a pull request until your Fakemon works.</strong> If you submit broken code, it can break the game for the whole class — not just you. Test first. PR second. Always.</div>
+
+    <h3 style="font-family:var(--font-h);font-size:20px;margin:22px 0 12px;color:var(--card);">Why test before you PR?</h3>
+
+    <p style="margin-bottom:14px;">When your pull request gets merged, your code goes into the <strong>shared main branch</strong> that everyone's game runs from. Think of it like this:</p>
+
+    <div class="strategy-grid" style="margin-bottom:18px;">
+      <div class="strat-card do">
+        <h4>✅ What a good PR looks like</h4>
+        <ul>
+          <li>Fakemon loads with no red errors in the debug panel</li>
+          <li>You can select it on the battle screen</li>
+          <li>You can actually finish a battle with it</li>
+          <li>Your checklist in Section 11 is fully checked off</li>
+          <li>The game still works after you added your Fakemon</li>
+        </ul>
+      </div>
+      <div class="strat-card dont">
+        <h4>❌ What breaks things for everyone</h4>
+        <ul>
+          <li>A JSON syntax error that stops the whole file list from loading</li>
+          <li>A filename in <code>fakemonlist.json</code> that doesn't exist</li>
+          <li>A Fakemon that crashes the battle engine mid-fight</li>
+          <li>Submitting and saying "I'll fix it later" — later never comes</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="font-family:var(--font-h);font-size:20px;margin:22px 0 12px;color:var(--card);">✅ The "Ready to PR" checklist</h3>
+    <p style="margin-bottom:10px;">Before you open the PR, you should be able to say yes to all of these:</p>
+
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:18px;">
+      <div style="display:flex;align-items:center;gap:10px;background:#edfff4;border:1.5px solid #22c55e;border-radius:10px;padding:10px 14px;font-size:14px;font-weight:700;color:#166534;">
+        <span style="font-size:18px;">🟢</span> I opened the game page and my Fakemon appeared on the selection screen
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;background:#edfff4;border:1.5px solid #22c55e;border-radius:10px;padding:10px 14px;font-size:14px;font-weight:700;color:#166534;">
+        <span style="font-size:18px;">🟢</span> The debug panel showed zero red (✗ ERROR) messages when the page loaded
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;background:#edfff4;border:1.5px solid #22c55e;border-radius:10px;padding:10px 14px;font-size:14px;font-weight:700;color:#166534;">
+        <span style="font-size:18px;">🟢</span> I selected my Fakemon and started a battle — it actually ran
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;background:#edfff4;border:1.5px solid #22c55e;border-radius:10px;padding:10px 14px;font-size:14px;font-weight:700;color:#166534;">
+        <span style="font-size:18px;">🟢</span> The battle ended properly (win or lose) — it didn't freeze
+      </div>
+    </div>
+
+    <h3 style="font-family:var(--font-h);font-size:20px;margin:22px 0 12px;color:var(--card);">How to open the pull request</h3>
+
+    <div class="workflow">
+      <div class="wf-step">
+        <div class="wf-num">1</div>
+        <div class="wf-content">
+          <h4>Make sure all your changes are committed and pushed</h4>
+          <p>In the <strong>github.dev editor</strong>, check the Source Control panel (the branch icon on the left sidebar). It should say <strong>0 changes</strong> — nothing pending. If there are changes listed, commit and push them first.</p>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">2</div>
+        <div class="wf-content">
+          <h4>Go to your repository on github.com</h4>
+          <p>Navigate to <code>github.com/your-username/your-repo</code>. GitHub will often show a yellow banner saying <em>"Your branch is ahead of main — Compare &amp; pull request."</em> If you see it, click that button.</p>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">3</div>
+        <div class="wf-content">
+          <h4>If no banner, click "Pull requests" → "New pull request"</h4>
+          <p>Click the <strong>Pull requests</strong> tab at the top of your repo, then the green <strong>New pull request</strong> button. Make sure the <strong>base</strong> branch is <code>main</code> and the <strong>compare</strong> branch is yours.</p>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">4</div>
+        <div class="wf-content">
+          <h4>Write a title and description</h4>
+          <p>Give your PR a clear title like <strong>"Add Blazkit — Fire type Fakemon"</strong>. In the description, briefly describe your Fakemon: its type, its strategy, and anything interesting about its moves. This helps your teacher review it.</p>
+        </div>
+      </div>
+      <div class="wf-step">
+        <div class="wf-num">5</div>
+        <div class="wf-content">
+          <h4>Click "Create pull request" — you're done!</h4>
+          <p>Your teacher will review it. They might leave comments asking you to fix something before it gets merged. Check back on the PR page to see if there's any feedback.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout tip"><span class="ci">💡</span> <strong>Can I update my PR after submitting?</strong> Yes! If your teacher asks for a fix, just make the change in the <strong>github.dev editor</strong>, commit and push, and the PR will automatically update. You don't need to close and reopen it.</div>
+
+    <div class="callout win"><span class="ci">🚀</span> Once your PR is merged, your Fakemon is officially part of the game. Everyone in the class can battle against it. That's your code, live, in a real shared project. That's real software development!</div>
+
+  </div><!-- /section 13 -->
+
 </div><!-- /page-wrap -->
+
+<script>
+// ════════════════════════════════════════════════════════════════════════
+//  COPY BUTTONS
+// ════════════════════════════════════════════════════════════════════════
+document.querySelectorAll('.copy-btn').forEach(btn => {
+  btn.addEventListener('click', async function() {
+    const targetId  = btn.getAttribute('data-target');
+    const container = document.getElementById(targetId);
+    if (!container) return;
+    const pre  = container.querySelector('pre');
+    const text = (pre ? pre.innerText : container.innerText) || '';
+    try {
+      await navigator.clipboard.writeText(text);
+    } catch (err) {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      document.execCommand('copy'); document.body.removeChild(ta);
+    }
+    const orig = btn.innerHTML;
+    btn.innerHTML = '✅ Copied!'; btn.classList.add('copied');
+    setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); }, 2000);
+  });
+});
+
+// ════════════════════════════════════════════════════════════════════════
+//  CHECKLIST — cookie-backed interactive checkboxes
+// ════════════════════════════════════════════════════════════════════════
+const COOKIE_KEY = 'fakemon_checklist_v1';
+const TOTAL_ITEMS = 11;
+
+function getCookie(name) {
+  const m = document.cookie.match('(?:^|;)\\s*' + name + '=([^;]*)');
+  return m ? decodeURIComponent(m[1]) : '';
+}
+function setCookie(name, val) {
+  const exp = new Date(Date.now() + 365 * 864e5).toUTCString();
+  document.cookie = name + '=' + encodeURIComponent(val) + ';path=/;expires=' + exp + ';SameSite=Lax';
+}
+
+function loadChecklist() {
+  const saved = getCookie(COOKIE_KEY);
+  const checked = saved ? saved.split(',') : [];
+  document.querySelectorAll('#checklist li').forEach(li => {
+    if (checked.includes(li.dataset.id)) {
+      li.classList.add('done');
+    }
+  });
+  updateChecklistProgress();
+}
+
+function saveChecklist() {
+  const checked = [];
+  document.querySelectorAll('#checklist li.done').forEach(li => checked.push(li.dataset.id));
+  setCookie(COOKIE_KEY, checked.join(','));
+}
+
+function toggleCheck(li) {
+  li.classList.toggle('done');
+  saveChecklist();
+  updateChecklistProgress();
+}
+
+function updateChecklistProgress() {
+  const done  = document.querySelectorAll('#checklist li.done').length;
+  const pct   = Math.round((done / TOTAL_ITEMS) * 100);
+  document.getElementById('cl-bar').style.width = pct + '%';
+  document.getElementById('cl-count').textContent = done + ' / ' + TOTAL_ITEMS;
+  if (done === TOTAL_ITEMS) {
+    document.getElementById('cl-count').textContent = '✅ All done!';
+    document.getElementById('cl-bar').style.background = '#22c55e';
+  }
+}
+
+function resetChecklist() {
+  if (!confirm('Reset all checkboxes?')) return;
+  document.querySelectorAll('#checklist li').forEach(li => li.classList.remove('done'));
+  saveChecklist();
+  updateChecklistProgress();
+}
+
+loadChecklist();
+
+// ════════════════════════════════════════════════════════════════════════
+//  FIBONACCI FOREST — generative art wait timer
+//  Multiple spirals sprout from random ground positions at 60fps (rAF).
+//  Each picks tall-and-narrow vs wide-and-sprawling. Branches grow
+//  tip-first, stop when they collide with something, and shed particles.
+// ════════════════════════════════════════════════════════════════════════
+let timerInterval = null;
+let timerSeconds  = 120;
+let rafHandle     = null;
+
+const PHI          = 1.6180339887;
+const GOLDEN_ANGLE = 137.508 * Math.PI / 180;
+
+function startGHTimer() {
+  if (timerInterval) return;
+  document.getElementById('gh-timer-btn').style.display   = 'none';
+  document.getElementById('gh-timer-panel').style.display = 'block';
+  timerSeconds = 120;
+
+  const canvas = document.getElementById('fib-canvas');
+  const dpr    = window.devicePixelRatio || 1;
+  const W      = canvas.offsetWidth  || 560;
+  const H      = canvas.offsetHeight || 220;
+  canvas.width  = W * dpr;
+  canvas.height = H * dpr;
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+
+  // ── Coarse collision grid ────────────────────────────────────────────
+  const GRID = 4;
+  const GW   = Math.ceil(W / GRID);
+  const GH   = Math.ceil(H / GRID);
+  const occupied = new Uint8Array(GW * GH);
+
+  function markOccupied(x, y, r) {
+    const x0 = Math.max(0, Math.floor((x - r) / GRID));
+    const x1 = Math.min(GW - 1, Math.ceil((x + r) / GRID));
+    const y0 = Math.max(0, Math.floor((y - r) / GRID));
+    const y1 = Math.min(GH - 1, Math.ceil((y + r) / GRID));
+    for (let gy = y0; gy <= y1; gy++)
+      for (let gx = x0; gx <= x1; gx++)
+        occupied[gy * GW + gx] = 1;
+  }
+
+  function isOccupied(x, y) {
+    const gx = Math.floor(x / GRID);
+    const gy = Math.floor(y / GRID);
+    if (gx < 0 || gx >= GW || gy < 0 || gy >= GH) return true;
+    return occupied[gy * GW + gx] === 1;
+  }
+
+  const GROUND_Y = H - 14;
+  for (let x = 0; x < W; x++) markOccupied(x, GROUND_Y + 2, 1);
+
+  // ── Branch ───────────────────────────────────────────────────────────
+  class Branch {
+    constructor(x, y, angle, length, depth, spiral) {
+      this.x       = x;  this.y     = y;
+      this.angle   = angle;
+      this.maxLen  = length;
+      this.drawn   = 0;
+      this.depth   = depth;
+      this.spiral  = spiral;
+      this.alive   = true;
+      this.children= [];
+      this.spawned = false;
+      this.speed   = Math.max(1.5, 7 - depth * 0.7) * (0.6 + Math.random() * 0.8);
+    }
+    get done()  { return this.drawn >= this.maxLen; }
+    get tipX()  { return this.x + Math.cos(this.angle) * this.drawn; }
+    get tipY()  { return this.y + Math.sin(this.angle) * this.drawn; }
+
+    advance() {
+      if (!this.alive || this.done) return;
+      const step = Math.min(this.speed, this.maxLen - this.drawn);
+      const nx = this.x + Math.cos(this.angle) * (this.drawn + step);
+      const ny = this.y + Math.sin(this.angle) * (this.drawn + step);
+      if (this.depth > 0 && this.drawn > 6 && isOccupied(nx, ny)) {
+        this.alive = false;
+        this.drawn = this.maxLen;
+        return;
+      }
+      this.drawn += step;
+      markOccupied(this.tipX, this.tipY, Math.max(1, 3 - this.depth * 0.35));
+    }
+
+    spawnChildren() {
+      if (this.spawned || this.depth >= this.spiral.maxDepth) return;
+      this.spawned = true;
+      const sp     = this.spiral;
+      const spread = sp.tall
+        ? 0.26 + this.depth * 0.035
+        : 0.50 + this.depth * 0.022;
+      const lenL   = this.maxLen * (sp.tall ? 0.73 : 0.66);
+      const lenR   = lenL / PHI;
+      this.children.push(
+        new Branch(this.tipX, this.tipY, this.angle - spread, lenL, this.depth + 1, sp),
+        new Branch(this.tipX, this.tipY, this.angle + spread, lenR, this.depth + 1, sp)
+      );
+    }
+  }
+
+  // ── Spiral / tree ────────────────────────────────────────────────────
+  class Spiral {
+    constructor(rootX, tall, hueBase, delayFrames) {
+      this.rootX    = rootX;
+      this.tall     = tall;
+      this.hueBase  = hueBase;
+      this.delay    = delayFrames;
+      this.age      = 0;
+      this.maxDepth = tall ? 9 : 7;
+      this.particles= [];
+
+      const lean   = (tall ? 0.06 : 0.22) * (Math.random() < 0.5 ? 1 : -1);
+      const tLen   = tall
+        ? H * (0.30 + Math.random() * 0.24)
+        : H * (0.13 + Math.random() * 0.12);
+      this.trunk   = new Branch(rootX, GROUND_Y, -Math.PI / 2 + lean, tLen, 0, this);
+      this.active  = false;
+    }
+
+    gather(b) {
+      const out = [b];
+      b.children.forEach(c => out.push(...this.gather(c)));
+      return out;
+    }
+
+    tick() {
+      this.age++;
+      if (this.age < this.delay) return;
+      this.active = true;
+      this.gather(this.trunk).forEach(b => {
+        b.advance();
+        if (b.done && !b.spawned) b.spawnChildren();
+      });
+      if (Math.random() < 0.55) {
+        const live = this.gather(this.trunk).filter(b => b.alive && !b.done);
+        if (live.length) {
+          const t = live[Math.floor(Math.random() * live.length)];
+          this.particles.push({
+            x: t.tipX, y: t.tipY,
+            vx: (Math.random() - 0.5) * 1.0,
+            vy: -Math.random() * 1.6 - 0.4,
+            life: 1,
+            hue: this.hueBase + Math.random() * 35,
+            size: 1.2 + Math.random() * 1.8
+          });
+        }
+      }
+      this.particles = this.particles.filter(p => {
+        p.x += p.vx; p.y += p.vy; p.vy += 0.05; p.life -= 0.022;
+        return p.life > 0;
+      });
+    }
+
+    draw(ctx, time) {
+      if (!this.active) return;
+      this.drawB(ctx, this.trunk, time);
+      this.particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `hsla(${p.hue % 360},82%,72%,${p.life * 0.92})`;
+        ctx.fill();
+      });
+    }
+
+    drawB(ctx, b, time) {
+      if (b.drawn < 0.5) { b.children.forEach(c => this.drawB(ctx, c, time)); return; }
+      const d  = Math.min(b.drawn, b.maxLen);
+      const ex = b.x + Math.cos(b.angle) * d;
+      const ey = b.y + Math.sin(b.angle) * d;
+      const t  = b.depth / this.maxDepth;
+      const hue= this.hueBase + b.depth * 16 + Math.sin(time * 0.0015 + b.depth) * 10;
+      const lw = Math.max(0.5, (this.maxDepth - b.depth + 1) * (this.tall ? 0.88 : 0.72));
+      ctx.beginPath();
+      ctx.moveTo(b.x, b.y);
+      ctx.lineTo(ex, ey);
+      ctx.strokeStyle = `hsla(${hue % 360},62%,${36 + t * 30}%,${0.5 + (1-t) * 0.45})`;
+      ctx.lineWidth   = lw;
+      ctx.stroke();
+      if (b.alive && !b.done) {
+        const g = Math.sin(time * 0.014 + b.depth * 0.7) * 0.5 + 0.5;
+        ctx.beginPath();
+        ctx.arc(ex, ey, 1.8 + g * 1.2, 0, Math.PI * 2);
+        ctx.fillStyle = `hsla(${hue % 360},92%,82%,${0.65 + g * 0.3})`;
+        ctx.fill();
+      }
+      b.children.forEach(c => this.drawB(ctx, c, time));
+    }
+  }
+
+  // ── Sunflower phyllotaxis cluster ────────────────────────────────────
+  class PhylloCluster {
+    constructor(cx, cy, hueBase, delayFrames, maxDots, scale) {
+      this.cx = cx; this.cy = cy;
+      this.hueBase = hueBase;
+      this.delay   = delayFrames;
+      this.maxDots = maxDots;
+      this.scale   = scale;
+      this.dots    = 0;
+      this.age     = 0;
+    }
+    tick() {
+      this.age++;
+      if (this.age >= this.delay && this.dots < this.maxDots)
+        this.dots = Math.min(this.maxDots, this.dots + 4);
+    }
+    draw(ctx) {
+      for (let i = 0; i < this.dots; i++) {
+        const angle = i * GOLDEN_ANGLE;
+        const r     = Math.sqrt(i) / Math.sqrt(this.maxDots) * this.scale;
+        const x     = this.cx + Math.cos(angle) * r;
+        const y     = this.cy - Math.abs(Math.sin(angle * 0.5)) * r * 0.9;
+        if (y > GROUND_Y || y < 0) continue;
+        const age = (this.dots - i) / this.dots;
+        const hue = (this.hueBase + i * 0.5) % 360;
+        ctx.beginPath();
+        ctx.arc(x, y, 1.1 + age * 1.9, 0, Math.PI * 2);
+        ctx.fillStyle = `hsla(${hue},76%,${48 + age * 26}%,${0.18 + age * 0.72})`;
+        ctx.fill();
+      }
+    }
+  }
+
+  // ── Deterministic RNG ─────────────────────────────────────────────────
+  function rng(seed) {
+    let s = (seed * 2654435761) >>> 0;
+    return (s >>> 0) / 4294967296;
+  }
+
+  // ── Spawn spirals ─────────────────────────────────────────────────────
+  const spiralDefs = [
+    { xFrac:0.50, tall:true,  hue:100, frame:0   },
+    { xFrac:0.18, tall:false, hue:130, frame:90  },
+    { xFrac:0.80, tall:true,  hue:88,  frame:140 },
+    { xFrac:0.35, tall:false, hue:148, frame:220 },
+    { xFrac:0.65, tall:true,  hue:112, frame:310 },
+    { xFrac:0.08, tall:true,  hue:95,  frame:420 },
+    { xFrac:0.92, tall:false, hue:138, frame:520 },
+    { xFrac:0.28, tall:true,  hue:105, frame:660 },
+    { xFrac:0.72, tall:false, hue:120, frame:820 },
+    { xFrac:0.55, tall:true,  hue:92,  frame:1050},
+    { xFrac:0.42, tall:false, hue:155, frame:1400},
+    { xFrac:0.15, tall:false, hue:118, frame:1900},
+  ];
+
+  const spirals = spiralDefs.map(d =>
+    new Spiral(d.xFrac * W, d.tall, d.hue, d.frame)
+  );
+
+  // ── Spawn phyllotaxis clusters ────────────────────────────────────────
+  const clusters = Array.from({ length: 14 }, (_, i) =>
+    new PhylloCluster(
+      rng(i * 7 + 1) * W * 0.88 + W * 0.06,
+      GROUND_Y - rng(i * 7 + 2) * 6,
+      78 + rng(i * 7 + 3) * 64,
+      Math.floor(rng(i * 7 + 4) * 1800),
+      35 + Math.floor(rng(i * 7 + 5) * 65),
+      16 + rng(i * 7 + 6) * 26
+    )
+  );
+
+  // ── Firefly stars ─────────────────────────────────────────────────────
+  const stars = Array.from({ length: 55 }, (_, i) => ({
+    x:    rng(i * 3 + 90) * W,
+    y:    rng(i * 3 + 91) * GROUND_Y * 0.82,
+    size: 0.4 + rng(i * 3 + 92) * 1.3,
+    phase:rng(i * 3 + 93) * Math.PI * 2
+  }));
+
+  // ── Main RAF loop ─────────────────────────────────────────────────────
+  function loop(time) {
+    rafHandle = requestAnimationFrame(loop);
+
+    const bg = ctx.createLinearGradient(0, 0, 0, H);
+    bg.addColorStop(0, '#040810');
+    bg.addColorStop(0.65, '#060f06');
+    bg.addColorStop(1, '#091409');
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, W, H);
+
+    stars.forEach(s => {
+      const a = 0.25 + 0.45 * Math.sin(time * 0.0007 + s.phase);
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(200,230,255,${a})`;
+      ctx.fill();
+    });
+
+    ctx.shadowColor = 'rgba(50,200,60,0.45)';
+    ctx.shadowBlur  = 7;
+    ctx.beginPath();
+    ctx.moveTo(0, GROUND_Y); ctx.lineTo(W, GROUND_Y);
+    ctx.strokeStyle = 'rgba(55,190,55,0.55)';
+    ctx.lineWidth   = 1;
+    ctx.stroke();
+    ctx.shadowBlur  = 0;
+
+    clusters.forEach(c => { c.tick(); c.draw(ctx); });
+    spirals.forEach(s  => { s.tick(); s.draw(ctx, time); });
+  }
+
+  timerInterval = setInterval(() => {
+    timerSeconds--;
+    const m    = Math.floor(timerSeconds / 60);
+    const s    = timerSeconds % 60;
+    const disp = document.getElementById('gh-timer-display');
+    const msg  = document.getElementById('gh-timer-msg');
+    disp.textContent = m + ':' + String(s).padStart(2, '0');
+    if (timerSeconds <= 30 && timerSeconds > 0) {
+      disp.style.color = '#f5c842';
+      msg.textContent  = '⏳ Almost there — nearly time to hard refresh!';
+      msg.style.color  = '#f5c842';
+    }
+    if (timerSeconds <= 0) {
+      clearInterval(timerInterval);
+      cancelAnimationFrame(rafHandle);
+      timerInterval = null; rafHandle = null;
+      disp.textContent     = '✅ Done!';
+      disp.style.color     = '#56c87a';
+      msg.textContent      = "🎉 Time's up! Hard refresh the game page now: Ctrl + Shift + R";
+      msg.style.color      = '#56c87a';
+      msg.style.fontWeight = '800';
+    }
+  }, 1000);
+
+  loop(0);
+}
+
+
+</script>
 </body>
 </html>

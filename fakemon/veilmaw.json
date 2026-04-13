@@ -1,0 +1,90 @@
+{
+  "id": "veilmaw",
+  "name": "Veilmaw",
+  "createdBy": "Ms. Herrick",
+  "emoji": "👻",
+  "type": "Ghost",
+  "hp": 95,
+  "atk": 100,
+  "speed": 100,
+  "defense": 12,
+  "accuracy": 88,
+  "color": "#6B4FA8",
+  "description": "A floating spectral jaw that phases through walls and bites things it probably shouldn't. Middling in every way, unsettling in every way.",
+  "moves": [
+    {
+      "id": "phantom_bite",
+      "name": "👻 Phantom Bite",
+      "desc": "Phases through defenses for a direct ghostly chomp.",
+      "speed": "medium",
+      "damage": [16, 22],
+      "status": null,
+      "statusChance": 0
+    },
+    {
+      "id": "soul_drain",
+      "name": "🩸 Soul Drain",
+      "desc": "Siphons life energy from the enemy.",
+      "speed": "slow",
+      "damage": [14, 18],
+      "status": null,
+      "statusChance": 0
+    },
+    {
+      "id": "haunt",
+      "name": "😱 Haunt",
+      "desc": "Whispers terrifying things. Confuses and unnerves the enemy.",
+      "speed": "fast",
+      "damage": [0, 0],
+      "status": "confuse",
+      "statusChance": 1.0
+    },
+    {
+      "id": "nightmare_spore",
+      "name": "💤 Nightmare Spore",
+      "desc": "Releases spores that cause vivid nightmares. High sleep chance.",
+      "speed": "slow",
+      "damage": [0, 0],
+      "status": "sleep",
+      "statusChance": 0.75
+    },
+    {
+      "id": "veil_step",
+      "name": "📈 Veil Step",
+      "desc": "Slips between dimensions, sharpening reflexes. Speed rises.",
+      "speed": "fast",
+      "damage": [0, 0],
+      "status": "statup",
+      "statusChance": 1.0,
+      "statTarget": "speed"
+    },
+    {
+      "id": "dread_gaze",
+      "name": "📉 Dread Gaze",
+      "desc": "Hollow eye contact weakens the enemy's will. Lowers ATK.",
+      "speed": "medium",
+      "damage": [0, 0],
+      "status": "statdwn",
+      "statusChance": 1.0,
+      "statTarget": "atk"
+    },
+    {
+      "id": "ecto_pulse",
+      "name": "⚡ Ecto Pulse",
+      "desc": "Fires a burst of ectoplasmic energy. May paralyze.",
+      "speed": "medium",
+      "damage": [12, 18],
+      "status": "paralyze",
+      "statusChance": 0.3
+    },
+    {
+      "id": "phase_heal",
+      "name": "💊 Phase Heal",
+      "desc": "Phases into the spirit realm briefly, returning restored.",
+      "speed": "slow",
+      "damage": [-22, -22],
+      "status": null,
+      "statusChance": 0
+    }
+  ]
+}

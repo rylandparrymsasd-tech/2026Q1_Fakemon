@@ -74,10 +74,12 @@ h1 {
   letter-spacing: 1px;
 }
 
-/* ── DEBUG WINDOW ── */
+/* ═══════════════════════════════════════════════════════════════
+   DEBUG WINDOW  (colored + filter tabs)
+═══════════════════════════════════════════════════════════════ */
 #debug-panel {
   width: 100%; max-width: 660px;
-  background: #0a0a14;
+  background: #060610;
   border: 1.5px solid #3a2a60;
   border-radius: var(--r);
   margin-bottom: 18px;
@@ -87,18 +89,36 @@ h1 {
 }
 #debug-header {
   display: flex; justify-content: space-between; align-items: center;
-  padding: 8px 14px;
-  background: #14103a;
+  padding: 7px 12px;
+  background: #10082a;
   cursor: pointer;
   user-select: none;
+  gap: 8px;
 }
 #debug-header-label {
   font-family: var(--px); font-size: 7px; color: #a080f0; letter-spacing: 1px;
+  white-space: nowrap;
 }
+#debug-controls { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.debug-filter-btn {
+  font-family: var(--px); font-size: 6px; letter-spacing: 0.5px;
+  background: none; border: 1px solid #3a2a60; border-radius: 4px;
+  padding: 3px 7px; cursor: pointer; transition: all 0.15s;
+  white-space: nowrap;
+}
+.debug-filter-btn.active  { border-color: currentColor; filter: brightness(1.4); }
+.debug-filter-btn.active.f-all      { color: #c0c0e0; }
+.debug-filter-btn.active.f-info     { color: #80c0ff; }
+.debug-filter-btn.active.f-battle   { color: #60d090; }
+.debug-filter-btn.active.f-ok       { color: #56c87a; }
+.debug-filter-btn.active.f-warn     { color: #f5c842; }
+.debug-filter-btn.active.f-error    { color: #e85d5d; }
+.debug-filter-btn:not(.active)      { color: #444468; }
 #debug-toggle {
   font-family: var(--px); font-size: 7px; color: #7060b0;
   background: none; border: 1px solid #3a2a60; border-radius: 4px;
   padding: 3px 8px; cursor: pointer; transition: color 0.15s, border-color 0.15s;
+  white-space: nowrap;
 }
 #debug-toggle:hover { color: #a080f0; border-color: #a080f0; }
 #debug-body {
@@ -110,19 +130,41 @@ h1 {
   gap: 2px;
 }
 #debug-body.collapsed { display: none; }
-.dlog { padding: 2px 0; line-height: 1.5; border-bottom: 1px solid #1a1430; }
+.dlog {
+  padding: 3px 6px; line-height: 1.5;
+  border-bottom: 1px solid #0e0a1e;
+  border-radius: 3px;
+  display: flex; gap: 8px; align-items: baseline;
+}
 .dlog:last-child { border-bottom: none; }
-.dlog-info  { color: #80c0ff; }
-.dlog-ok    { color: #56c87a; }
-.dlog-warn  { color: #f5c842; }
-.dlog-error { color: #e85d5d; font-weight: bold; }
-.dlog-score { color: #f0a0f0; }
-.dlog-battle{ color: #c0c0e0; }
+.dlog-ts   { color: #3a3460; font-size: 10px; white-space: nowrap; flex-shrink: 0; }
+.dlog-icon { flex-shrink: 0; }
+.dlog-msg  { flex: 1; word-break: break-word; }
+
+/* Type colours */
+.dlog-info   { background: rgba(0,80,160,0.12); }
+.dlog-info   .dlog-icon, .dlog-info   .dlog-msg { color: #80c0ff; }
+.dlog-ok     { background: rgba(0,100,60,0.14); }
+.dlog-ok     .dlog-icon, .dlog-ok     .dlog-msg { color: #56c87a; }
+.dlog-warn   { background: rgba(140,100,0,0.16); }
+.dlog-warn   .dlog-icon, .dlog-warn   .dlog-msg { color: #f5c842; font-weight: 600; }
+.dlog-error  { background: rgba(160,20,20,0.20); }
+.dlog-error  .dlog-icon, .dlog-error  .dlog-msg { color: #ff6060; font-weight: 700; }
+.dlog-score  { background: rgba(120,60,160,0.14); }
+.dlog-score  .dlog-icon, .dlog-score  .dlog-msg { color: #d890ff; }
+.dlog-battle { background: rgba(30,100,60,0.12); }
+.dlog-battle .dlog-icon, .dlog-battle .dlog-msg { color: #60d090; }
+/* hidden by filter */
+.dlog.filtered-out { display: none; }
+
+#debug-tabs { padding: 6px 10px; background: #0a0616; display: flex; gap: 4px; flex-wrap: wrap; }
 #debug-clear {
-  font-family: var(--px); font-size: 7px; color: #503060;
-  background: none; border: none; cursor: pointer; padding: 3px 8px;
+  font-family: var(--px); font-size: 6px; color: #503060;
+  background: none; border: 1px solid #2a1040; border-radius: 4px;
+  padding: 3px 8px; cursor: pointer; transition: color 0.15s;
 }
 #debug-clear:hover { color: #a080f0; }
+#debug-count { color: #5040a0; font-size: 9px; }
 
 /* ── SELECT ── */
 #screen-select h2 {
@@ -150,45 +192,23 @@ h1 {
 .fakemon-choice:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 6px 20px rgba(245,200,66,0.12); }
 .fakemon-choice.selected { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent), 0 6px 20px rgba(245,200,66,0.18); }
 .choice-emoji { font-size: 38px; display: block; margin-bottom: 8px; }
-.choice-name { font-family: var(--px); font-size: 7px; color: var(--text); margin-bottom: 5px; letter-spacing: 1px; }
-.choice-type { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px; display: inline-block; margin-bottom: 6px; }
-.choice-power { font-size: 10px; color: var(--muted); margin-bottom: 4px; }
-.power-bar-wrap { background: #111122; border-radius: 3px; height: 4px; overflow: hidden; margin-bottom: 6px; }
-.power-bar { height: 100%; border-radius: 3px; background: var(--accent); }
-.choice-desc { font-size: 10px; color: var(--muted); line-height: 1.5; }
-.choice-creator { font-size: 9px; color: #444466; margin-top: 5px; }
+.choice-name { font-family: var(--px); font-size: 7px; color: var(--text); margin-bottom: 4px; letter-spacing: 1px; }
+.choice-type { font-size: 10px; color: var(--muted); }
+.choice-power { font-size: 10px; color: var(--accent); margin-top: 4px; }
 
-/* ── TYPE STYLES ── */
-.type-Fire     { background:#3d1a10; color:#f08060; border:1px solid #f08060; }
-.type-Water    { background:#0e1e3a; color:#60a0f0; border:1px solid #60a0f0; }
-.type-Air      { background:#0e2030; color:#7ec8e3; border:1px solid #7ec8e3; }
-.type-Earth    { background:#2a1e08; color:#c8a040; border:1px solid #c8a040; }
-.type-Electric { background:#2e2200; color:#f5c842; border:1px solid #f5c842; }
-.type-Ice      { background:#0e1e2e; color:#80d8f0; border:1px solid #80d8f0; }
-.type-Poison   { background:#1e0e2e; color:#b07edc; border:1px solid #b07edc; }
-.type-Dark     { background:#1a1020; color:#9070c0; border:1px solid #9070c0; }
-.type-Ghost    { background:#1a1a38; color:#818cf8; border:1px solid #818cf8; }
-.type-Metal    { background:#1a1e24; color:#94b4c8; border:1px solid #94b4c8; }
-.type-Nature   { background:#0e2010; color:#60d060; border:1px solid #60d060; }
-.type-Normal   { background:#1e1e1e; color:#a0a0a0; border:1px solid #a0a0a0; }
+#matchup-hint { text-align:center; font-size:12px; margin:10px 0; min-height:20px; }
+#matchup-hint.fair   { color:#56c87a; }
+#matchup-hint.uneven { color:#e8943a; }
+#matchup-hint.hard   { color:#e85d5d; }
 
 #start-btn {
-  display: block; width: 100%; margin-top: 18px; padding: 14px;
-  font-family: var(--px); font-size: 9px; letter-spacing: 2px;
-  color: var(--bg); background: var(--accent);
-  border: none; border-radius: var(--r); cursor: pointer;
-  transition: background 0.15s, transform 0.1s;
+  display:block; width:100%; margin-top:12px;
+  font-family:var(--px); font-size:9px; letter-spacing:2px;
+  padding:14px; background:var(--accent); color:var(--bg);
+  border:none; border-radius:var(--r); cursor:pointer; transition:background 0.15s;
 }
-#start-btn:hover:not(:disabled) { background: #ffd655; transform: translateY(-1px); }
-#start-btn:disabled { opacity: 0.3; cursor: default; transform: none; }
-
-#matchup-hint {
-  margin-top: 10px; font-size: 11px; color: var(--muted);
-  text-align: center; min-height: 18px; transition: color 0.2s;
-}
-#matchup-hint.fair   { color: var(--green); }
-#matchup-hint.uneven { color: var(--orange); }
-#matchup-hint.stomp  { color: var(--red); }
+#start-btn:disabled { background:#2e2e50; color:#555580; cursor:default; }
+#start-btn:not(:disabled):hover { background:#ffd655; }
 
 /* ── BATTLE ── */
 .battle-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; gap: 6px; }
@@ -296,6 +316,20 @@ h1 {
   .fighter-card { padding:8px; }
   .fighter-emoji-wrap { font-size:34px; }
 }
+
+/* ── Type chip colours ── */
+.type-Fire     { background:#3a1200; color:#ff8050; border:1px solid #cc4422; }
+.type-Water    { background:#0a1a3a; color:#60b0ff; border:1px solid #2255cc; }
+.type-Air      { background:#0a2a1a; color:#70e0a0; border:1px solid #22aa66; }
+.type-Earth    { background:#1a1200; color:#c0a050; border:1px solid #886622; }
+.type-Electric { background:#2a2000; color:#f5c842; border:1px solid #cc9900; }
+.type-Ice      { background:#0a1e2a; color:#a0e0f0; border:1px solid #3399bb; }
+.type-Poison   { background:#1a0a2a; color:#c060f0; border:1px solid #9933cc; }
+.type-Dark     { background:#0e0e18; color:#9090c0; border:1px solid #555580; }
+.type-Ghost    { background:#150e28; color:#b080f0; border:1px solid #7755cc; }
+.type-Metal    { background:#181a22; color:#a0b0c0; border:1px solid #6688aa; }
+.type-Nature   { background:#0a1e0a; color:#70d060; border:1px solid #448844; }
+.type-Normal   { background:#1a1a2a; color:#9090b0; border:1px solid #555570; }
 </style>
 </head>
 <body>
@@ -304,12 +338,23 @@ h1 {
 <h1>⚔ FAKEMON BATTLE</h1>
 <p class="subtitle">choose your fighter</p>
 
-<!-- ── DEBUG PANEL ── -->
+<!-- ═══════════════════════════════════════════════════════
+     DEBUG PANEL  — colored + filterable
+     Students: this panel helps you spot problems in your
+     JSON file. Use the filter tabs to find errors quickly!
+════════════════════════════════════════════════════════ -->
 <div id="debug-panel">
   <div id="debug-header" onclick="toggleDebug()">
-    <span id="debug-header-label">🐛 DEBUG CONSOLE <span id="debug-count" style="color:#7060b0;">(0 messages)</span></span>
-    <div style="display:flex;gap:6px;align-items:center;">
-      <button id="debug-clear" onclick="event.stopPropagation();clearDebug()">CLEAR</button>
+    <span id="debug-header-label">🐛 DEBUG <span id="debug-count">(0)</span></span>
+    <div id="debug-controls" onclick="event.stopPropagation()">
+      <!-- filter tabs -->
+      <button class="debug-filter-btn f-all active"    onclick="setFilter('all')">ALL</button>
+      <button class="debug-filter-btn f-info"          onclick="setFilter('info')">ℹ INFO</button>
+      <button class="debug-filter-btn f-battle"        onclick="setFilter('battle')">⚔ BATTLE</button>
+      <button class="debug-filter-btn f-ok"            onclick="setFilter('ok')">✓ OK</button>
+      <button class="debug-filter-btn f-warn"          onclick="setFilter('warn')">⚠ WARN</button>
+      <button class="debug-filter-btn f-error"         onclick="setFilter('error')">✗ ERROR</button>
+      <button id="debug-clear"                         onclick="clearDebug()">CLEAR</button>
       <button id="debug-toggle">HIDE ▲</button>
     </div>
   </div>
@@ -327,7 +372,7 @@ h1 {
 
 <div id="screen-battle" class="hidden">
   <div class="battle-header">
-    <button class="icon-btn home-btn" onclick="if(confirm('Return to home?')) window.location.href='index.html'">🏠 HOME</button>
+    <button class="icon-btn home-btn" onclick="if(confirm('Return to home?'))window.location.href='index.html'">🏠 HOME</button>
     <span class="turn-badge" id="turn-label">TURN 1</span>
     <button class="icon-btn" id="flee-btn">✕ FLEE</button>
   </div>
@@ -379,25 +424,56 @@ h1 {
 <script>
 // ════════════════════════════════════════════════════════════════════════
 //  DEBUG SYSTEM
+//  Students: Use dlog(message, type) anywhere in this file to print
+//  a message to the debug panel above!
+//
+//  Types:
+//    'info'   — general info (blue)       e.g. dlog('Game started', 'info')
+//    'ok'     — success (green)           e.g. dlog('File loaded!', 'ok')
+//    'warn'   — warning (yellow)          e.g. dlog('Missing field', 'warn')
+//    'error'  — something broke (red)     e.g. dlog('File not found!', 'error')
+//    'battle' — battle events (teal)      e.g. dlog('Turn 1 started', 'battle')
+//    'score'  — scoring/calc (purple)     e.g. dlog('Power = 72', 'score')
 // ════════════════════════════════════════════════════════════════════════
+
 let debugCollapsed = false;
-let debugMsgCount = 0;
+let debugMsgCount  = 0;
+let activeFilter   = 'all';
+
+const DEBUG_ICONS = { info:'ℹ', ok:'✓', warn:'⚠', error:'✗', score:'⭐', battle:'⚔' };
 
 function dlog(msg, type = 'info') {
   debugMsgCount++;
   const body = document.getElementById('debug-body');
-  const el = document.createElement('div');
+  const el   = document.createElement('div');
   el.className = `dlog dlog-${type}`;
-  const ts = new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
-  const prefix = { info: 'ℹ', ok: '✓', warn: '⚠', error: '✗', score: '⭐', battle: '⚔' }[type] || 'ℹ';
-  el.textContent = `[${ts}] ${prefix} ${msg}`;
+  el.dataset.type = type;
+
+  const ts     = new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  const icon   = DEBUG_ICONS[type] || 'ℹ';
+
+  el.innerHTML = `<span class="dlog-ts">[${ts}]</span><span class="dlog-icon">${icon}</span><span class="dlog-msg">${escHtmlDebug(String(msg))}</span>`;
+
+  // Apply current filter
+  if (activeFilter !== 'all' && type !== activeFilter) {
+    el.classList.add('filtered-out');
+  }
+
   body.appendChild(el);
   body.scrollTop = body.scrollHeight;
-  document.getElementById('debug-count').textContent = `(${debugMsgCount} messages)`;
-  // Also log to real console for devs
+
+  // Update count badge
+  const visible = body.querySelectorAll('.dlog:not(.filtered-out)').length;
+  document.getElementById('debug-count').textContent = `(${debugMsgCount} total, ${visible} shown)`;
+
+  // Mirror to real browser console (useful if devtools ever available)
   if (type === 'error') console.error(`[FAKEMON] ${msg}`);
   else if (type === 'warn') console.warn(`[FAKEMON] ${msg}`);
-  else console.log(`[FAKEMON] ${msg}`);
+  else console.log(`[FAKEMON][${type}] ${msg}`);
+}
+
+function escHtmlDebug(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
 function toggleDebug() {
@@ -409,8 +485,33 @@ function toggleDebug() {
 function clearDebug() {
   document.getElementById('debug-body').innerHTML = '';
   debugMsgCount = 0;
-  document.getElementById('debug-count').textContent = '(0 messages)';
+  document.getElementById('debug-count').textContent = '(0 total, 0 shown)';
   dlog('Debug log cleared.', 'info');
+}
+
+// Filter tabs — click a tab to show only that type of message
+function setFilter(type) {
+  activeFilter = type;
+
+  // Update tab button styles
+  document.querySelectorAll('.debug-filter-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  const activeBtn = document.querySelector(`.debug-filter-btn.f-${type}`);
+  if (activeBtn) activeBtn.classList.add('active');
+
+  // Show/hide existing messages
+  document.querySelectorAll('.dlog').forEach(el => {
+    const t = el.dataset.type || 'info';
+    el.classList.toggle('filtered-out', type !== 'all' && t !== type);
+  });
+
+  // Update visible count
+  const body = document.getElementById('debug-body');
+  const visible = body.querySelectorAll('.dlog:not(.filtered-out)').length;
+  document.getElementById('debug-count').textContent = `(${debugMsgCount} total, ${visible} shown)`;
+
+  dlog(`Filter set to: ${type}`, 'info');
 }
 
 // ════════════════════════════════════════════════════════════════════════
@@ -421,10 +522,29 @@ const STATUS_EMOJI = {
   poison:'🟣', burn:'🔴', paralyze:'⚡',
   sleep:'💤',  confuse:'😵', statup:'📈', statdwn:'📉', flinch:'😦',
 };
-
+const STATUS_CHIP_CLASS = {
+  poison:'status-poison', burn:'status-burn', paralyze:'status-paralyze',
+  sleep:'status-sleep', confuse:'status-confuse', statup:'status-statup',
+  statdwn:'status-statdwn', flinch:'status-flinch',
+};
 const PRIMARY_STATUSES = ['poison', 'burn', 'paralyze', 'sleep'];
 const SPEED_ORDER = { fast: 1, medium: 2, slow: 3 };
 const SPEED_MULT  = { fast: 1.15, medium: 1.0, slow: 0.88 };
+
+// ════════════════════════════════════════════════════════════════════════
+//  MULTI-STATUS HELPER
+//  Reads a move's statuses in either old (status field) or new
+//  (statuses array) format and returns a unified array.
+// ════════════════════════════════════════════════════════════════════════
+function getMoveStatuses(move) {
+  if (Array.isArray(move.statuses) && move.statuses.length > 0) {
+    return move.statuses;
+  }
+  if (move.status) {
+    return [{ status: move.status, statusChance: move.statusChance ?? 1.0, statTarget: move.statTarget ?? null }];
+  }
+  return [];
+}
 
 // ════════════════════════════════════════════════════════════════════════
 //  MATCHMAKING
@@ -440,118 +560,148 @@ function pickEnemy(player, allFakemon) {
 
 function matchupLabel(pPow, ePow) {
   const diff = Math.abs(pPow - ePow);
-  if (diff <= 10) return { text: '⚖️ Balanced matchup!',       cls: 'fair'   };
-  if (diff <= 25) return { text: '⚠️ Slightly uneven matchup.', cls: 'uneven' };
-  return               { text: '💀 Tough matchup — good luck.', cls: 'stomp'  };
+  if (diff <= 10) return { text: '⚖️ Balanced matchup!',        cls: 'fair'   };
+  if (diff <= 25) return { text: '⚠️ Slightly uneven matchup.',  cls: 'uneven' };
+  return               { text: '💀 Tough matchup — good luck.', cls: 'hard'   };
 }
 
 // ════════════════════════════════════════════════════════════════════════
-//  DATA LOADING
+//  LOAD FAKEMON
 // ════════════════════════════════════════════════════════════════════════
 
-let ALL_FAKEMON = [];
-let selectedId  = null;
-let state       = null;
+let ALL_FAKEMON  = [];
+let selectedId   = null;
+let state        = null;
 
 async function loadAll() {
-  dlog('Starting Fakemon data load…', 'info');
+  dlog('Loading fakemonlist.json…', 'info');
+  console.log('[DEBUG] loadAll() function started');
+  
+  let list;
   try {
-    dlog('Fetching fakemon/fakemonlist.json…', 'info');
-    const listRes  = await fetch('fakemon/fakemonlist.json');
-    if (!listRes.ok) throw new Error(`fakemonlist.json returned HTTP ${listRes.status}`);
-    const listData = await listRes.json();
-    dlog(`fakemonlist.json loaded OK — ${listData.fakemon.length} entries: ${listData.fakemon.join(', ')}`, 'ok');
-
-    const results = await Promise.allSettled(
-      listData.fakemon.map(id => loadOneFakemon(id))
-    );
-
-    const loaded = [];
-    results.forEach((r, i) => {
-      if (r.status === 'fulfilled' && r.value) loaded.push(r.value);
-      else dlog(`Failed to load fakemon index ${i} (${listData.fakemon[i]}): ${r.reason}`, 'error');
-    });
-
-    if (loaded.length === 0) throw new Error('No Fakemon loaded successfully!');
-    dlog(`${loaded.length} / ${listData.fakemon.length} Fakemon loaded successfully`, loaded.length === listData.fakemon.length ? 'ok' : 'warn');
-
-    dlog('Running power level simulations (200 battles each)…', 'info');
-    ALL_FAKEMON = loaded.map(f => {
-      const power = FakemonScorer.calcPowerLevel(f);
-      dlog(`${f.name} (${f.id}): Power Level = ${power}  [Type:${f.type} HP:${f.hp} ATK:${f.atk ?? f.power ?? 100} SPD:${f.speed ?? 90} DEF:${f.defense ?? 10} ACC:${f.accuracy ?? 90}]`, 'score');
-      return { ...f, _power: power };
-    });
-
-    dlog('All power levels calculated. Building select screen…', 'ok');
-    buildSelectScreen();
-    show('screen-select');
-  } catch (e) {
-    dlog(`FATAL LOAD ERROR: ${e.message}`, 'error');
-    document.getElementById('screen-loading').textContent =
-      'Error loading fakemon. Check the debug console below and make sure the fakemon/ folder is present.';
-    console.error(e);
+    console.log('[DEBUG] Attempting to fetch: fakemon/fakemonlist.json');
+    const r = await fetch('fakemon/fakemonlist.json');
+    
+    console.log('[DEBUG] Fetch response status:', r.status, r.statusText);
+    console.log('[DEBUG] Response OK?', r.ok);
+    
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    
+    const data = await r.json();
+    console.log('[DEBUG] Raw JSON data received:', data);
+    console.log('[DEBUG] Type of data:', typeof data);
+    console.log('[DEBUG] Is data an array?', Array.isArray(data));
+    
+    // Extract the fakemon array from the object
+    if (data.fakemon && Array.isArray(data.fakemon)) {
+      console.log('[DEBUG] Found fakemon array in data.fakemon');
+      list = data.fakemon;
+      console.log('[DEBUG] Original fakemon names:', list);
+      
+      // Add .json extension to each filename
+      list = list.map(name => {
+        const withExtension = name.endsWith('.json') ? name : `${name}.json`;
+        console.log(`[DEBUG] Mapping: "${name}" -> "${withExtension}"`);
+        return withExtension;
+      });
+      
+      console.log(`[DEBUG] Processed ${list.length} fakemon names with .json extension`);
+    } else if (Array.isArray(data)) {
+      console.log('[DEBUG] Data is directly an array');
+      list = data;
+    } else {
+      console.error('[DEBUG] Unexpected JSON structure:', data);
+      throw new Error('JSON does not contain a fakemon array');
+    }
+    
+    console.log('[DEBUG] Final list array:', list);
+    dlog(`fakemonlist.json OK — ${list.length} entries found`, 'ok');
+    
+  } catch(e) {
+    console.error('[DEBUG] Error:', e);
+    dlog(`FAILED to load fakemonlist.json: ${e.message}`, 'error');
+    document.getElementById('screen-loading').textContent = '⚠ Could not load fakemonlist.json';
+    return;
   }
+
+  if (!Array.isArray(list) || list.length === 0) {
+    console.error('[DEBUG] Invalid list:', list);
+    dlog('fakemonlist.json has no valid entries!', 'error');
+    document.getElementById('screen-loading').textContent = '⚠ No Fakemon found';
+    return;
+  }
+
+  console.log(`[DEBUG] Loading ${list.length} Fakemon files...`);
+  
+  const results = await Promise.allSettled(
+    list.map(filename => loadOneFakemon(filename))
+  );
+
+  results.forEach((result, i) => {
+    if (result.status === 'fulfilled' && result.value) {
+      ALL_FAKEMON.push(result.value);
+      console.log(`[DEBUG] Loaded: ${result.value.name}`);
+    } else {
+      console.error(`[DEBUG] Failed: ${list[i]}`, result.reason);
+    }
+  });
+
+  dlog(`Loaded ${ALL_FAKEMON.length} / ${list.length} Fakemon successfully`, ALL_FAKEMON.length > 0 ? 'ok' : 'error');
+
+  if (ALL_FAKEMON.length < 2) {
+    dlog('Need at least 2 valid Fakemon to start a battle!', 'error');
+    document.getElementById('screen-loading').textContent = '⚠ Need at least 2 valid Fakemon.';
+    return;
+  }
+
+  buildSelectScreen();
+  show('screen-select');
 }
 
-async function loadOneFakemon(id) {
-  dlog(`Loading fakemon/${id}.json…`, 'info');
+async function loadOneFakemon(filename) {
+  dlog(`Loading fakemon/${filename}…`, 'info');
   try {
-    const res = await fetch(`fakemon/${id}.json`);
-    if (!res.ok) {
-      dlog(`  ✗ fakemon/${id}.json — HTTP ${res.status} (file not found?)`, 'error');
-      return null;
-    }
-    let data;
-    try {
-      data = await res.json();
-    } catch (jsonErr) {
-      dlog(`  ✗ fakemon/${id}.json — INVALID JSON: ${jsonErr.message}`, 'error');
-      dlog(`    Tip: Check for missing commas, unclosed brackets, or mismatched quotes in ${id}.json`, 'warn');
-      return null;
-    }
+    const r = await fetch(`fakemon/${filename}`);
+    if (!r.ok) throw new Error(`HTTP ${r.status} for fakemon/${filename}`);
+    const data = await r.json();
+
     // Validate
-    const { errors, warnings, valid } = FakemonScorer.validateFakemon(data);
-    if (warnings.length > 0) {
-      warnings.forEach(w => dlog(`  ⚠ ${id}.json warning: ${w}`, 'warn'));
-    }
-    if (!valid) {
-      errors.forEach(e => dlog(`  ✗ ${id}.json error: ${e}`, 'error'));
-      dlog(`  ${id}.json has ${errors.length} error(s) — skipping this Fakemon`, 'error');
+    const { errors, warnings } = FakemonScorer.validateFakemon(data);
+    warnings.forEach(w => dlog(`  ⚠ ${filename}: ${w}`, 'warn'));
+    if (errors.length > 0) {
+      errors.forEach(e => dlog(`  ✗ ${filename}: ${e}`, 'error'));
+      dlog(`  ${filename} has ${errors.length} error(s) — skipping`, 'error');
       return null;
     }
-    dlog(`  ✓ fakemon/${id}.json loaded and validated OK (${data.name})`, 'ok');
+
+    // Power level
+    const power = FakemonScorer.calcPowerLevel(data);
+    data._power = power;
+    dlog(`  ${data.name} loaded — power level: ${power}`, 'score');
     return data;
-  } catch (e) {
-    dlog(`  ✗ Unexpected error loading ${id}.json: ${e.message}`, 'error');
+  } catch(e) {
+    dlog(`FAILED to load ${filename}: ${e.message}`, 'error');
     return null;
   }
 }
 
-// ════════════════════════════════════════════════════════════════════════
-//  SELECT SCREEN
-// ════════════════════════════════════════════════════════════════════════
-
 function buildSelectScreen() {
-  const grid   = document.getElementById('fakemon-grid');
-  const maxPow = Math.max(...ALL_FAKEMON.map(f => f._power));
+  const grid = document.getElementById('fakemon-grid');
   grid.innerHTML = '';
   ALL_FAKEMON.forEach(f => {
-    const pct = Math.round((f._power / maxPow) * 100);
-    const el  = document.createElement('div');
-    el.className  = 'fakemon-choice';
-    el.dataset.id = f.id;
-    el.innerHTML  = `
+    const card = document.createElement('div');
+    card.className = 'fakemon-choice';
+    card.dataset.id = f.id;
+    card.innerHTML = `
       <span class="choice-emoji">${f.emoji || '❓'}</span>
       <div class="choice-name">${f.name}</div>
-      <span class="choice-type type-${f.type || 'Normal'}">${f.type || 'Normal'}</span>
-      <div class="choice-power">Power: ${f._power}</div>
-      <div class="power-bar-wrap"><div class="power-bar" style="width:${pct}%"></div></div>
-      <p class="choice-desc">${f.description || ''}</p>
-      <div class="choice-creator">by ${f.createdBy || 'Unknown'}</div>
+      <div class="choice-type">${f.type || ''}</div>
+      <div class="choice-power">⭐ PWR ${f._power}</div>
     `;
-    el.onclick = () => selectFakemon(f.id);
-    grid.appendChild(el);
+    card.onclick = () => selectFakemon(f.id);
+    grid.appendChild(card);
   });
+  dlog(`Select screen ready with ${ALL_FAKEMON.length} fighters`, 'ok');
 }
 
 function selectFakemon(id) {
@@ -580,6 +730,7 @@ document.getElementById('start-btn').onclick = () => {
 function mkFighter(f) {
   // Accept both "atk" (new) and "power" (legacy) field names
   const atkVal = f.atk ?? f.power ?? 100;
+  dlog(`  mkFighter: ${f.name} — ATK=${atkVal} HP=${f.hp ?? 100} SPD=${f.speed ?? 90} DEF=${f.defense ?? 10} ACC=${f.accuracy ?? 90}`, 'info');
   return {
     ...f,
     hp:    f.hp    ?? 100,
@@ -595,8 +746,9 @@ function mkFighter(f) {
     statuses:     [],
     sleepTurns:   0,
     confuseTurns: 0,
-    statupTurns:  0,
-    statdwnTurns: 0,
+    // Per-stat tracking so each stat type can expire independently
+    statupTurns:  { atk: 0, speed: 0, defense: 0, accuracy: 0 },
+    statdwnTurns: { atk: 0, speed: 0, defense: 0, accuracy: 0 },
     flinched:     false,
   };
 }
@@ -613,9 +765,11 @@ const effAccuracy = f => Math.max(10,  Math.min(100, f.accuracy + f.accuracyMod)
 function startBattle(playerId) {
   const pBase = ALL_FAKEMON.find(f => f.id === playerId);
   const eBase = pickEnemy(pBase, ALL_FAKEMON);
-  dlog(`Battle starting: ${pBase.name} (PWR ${pBase._power}) vs ${eBase.name} (PWR ${eBase._power})`, 'battle');
-  dlog(`Player stats — HP:${pBase.hp} ATK:${pBase.atk ?? pBase.power ?? 100} SPD:${pBase.speed ?? 90} DEF:${pBase.defense ?? 10} ACC:${pBase.accuracy ?? 90}`, 'battle');
-  dlog(`Enemy stats  — HP:${eBase.hp} ATK:${eBase.atk ?? eBase.power ?? 100} SPD:${eBase.speed ?? 90} DEF:${eBase.defense ?? 10} ACC:${eBase.accuracy ?? 90}`, 'battle');
+  dlog(`=== BATTLE START ===`, 'battle');
+  dlog(`${pBase.name} (PWR ${pBase._power}) vs ${eBase.name} (PWR ${eBase._power})`, 'battle');
+  dlog(`Player: HP=${pBase.hp} ATK=${pBase.atk ?? pBase.power ?? 100} SPD=${pBase.speed ?? 90} DEF=${pBase.defense ?? 10} ACC=${pBase.accuracy ?? 90}`, 'battle');
+  dlog(`Enemy:  HP=${eBase.hp} ATK=${eBase.atk ?? eBase.power ?? 100} SPD=${eBase.speed ?? 90} DEF=${eBase.defense ?? 10} ACC=${eBase.accuracy ?? 90}`, 'battle');
+
   state = {
     player: mkFighter(pBase),
     enemy:  mkFighter(eBase),
@@ -633,6 +787,8 @@ function startBattle(playerId) {
 function buildMoveGrid() {
   const grid = document.getElementById('moves-grid');
   grid.innerHTML = '';
+  dlog(`Building move grid for ${state.player.name} (${state.player.moves.length} moves)`, 'info');
+
   state.player.moves.forEach(move => {
     const btn     = document.createElement('button');
     btn.className = 'move-btn';
@@ -642,16 +798,25 @@ function buildMoveGrid() {
       : (move.damage && move.damage[1] > 0)
         ? `${move.damage[0]}–${move.damage[1]} dmg`
         : 'No damage';
+
+    // Build status hint for display (supports multi-status)
+    const statuses = getMoveStatuses(move);
+    const statusHint = statuses.map(se =>
+      `${STATUS_EMOJI[se.status] || ''}${se.status}${se.statusChance < 1 ? ` (${Math.round(se.statusChance * 100)}%)` : ''}`
+    ).join(' + ');
+
     btn.innerHTML = `
       <div class="mn">${move.name}</div>
       <div class="md">${move.desc || dmgText}</div>
       <div class="ms">
         <span class="speed-${move.speed || 'medium'}">${move.speed || 'medium'}</span>
-        ${move.status ? ` · ${STATUS_EMOJI[move.status] || ''}${move.status}${move.statusChance ? ` (${Math.round(move.statusChance * 100)}%)` : ''}` : ''}
+        ${statusHint ? ` · ${statusHint}` : ''}
       </div>
     `;
     btn.onclick = () => doPlayerMove(move);
     grid.appendChild(btn);
+
+    dlog(`  Move: ${move.name} | spd=${move.speed} | dmg=${JSON.stringify(move.damage)} | statuses: ${statuses.length > 0 ? JSON.stringify(statuses) : 'none'}`, 'info');
   });
 }
 
@@ -671,14 +836,15 @@ async function doPlayerMove(move) {
   const { player, enemy } = state;
   const enemyMove = enemy.moves[rand(0, enemy.moves.length - 1)];
 
-  dlog(`Turn ${state.turn}: ${player.name} uses [${move.name}] | ${enemy.name} uses [${enemyMove.name}]`, 'battle');
+  dlog(`--- Turn ${state.turn} ---`, 'battle');
+  dlog(`${player.name} → [${move.name}]  |  ${enemy.name} → [${enemyMove.name}]`, 'battle');
 
   const tierP = SPEED_ORDER[move.speed]      || 2;
   const tierE = SPEED_ORDER[enemyMove.speed] || 2;
   const playerFirst = tierP < tierE
     || (tierP === tierE && effSpeed(player) >= effSpeed(enemy));
 
-  dlog(`  Speed order: ${player.name} tier=${tierP} eff-spd=${effSpeed(player)} | ${enemy.name} tier=${tierE} eff-spd=${effSpeed(enemy)} → ${playerFirst ? player.name : enemy.name} goes first`, 'battle');
+  dlog(`Speed: ${player.name} tier=${tierP} eff=${effSpeed(player)} | ${enemy.name} tier=${tierE} eff=${effSpeed(enemy)} → ${playerFirst ? player.name : enemy.name} goes first`, 'battle');
 
   let log = '';
   if (playerFirst) {
@@ -704,7 +870,7 @@ async function doPlayerMove(move) {
   setLog(log.trim() || '…');
   render();
 
-  dlog(`  After turn: ${player.name} HP=${player.hp}/${player.maxHp} | ${enemy.name} HP=${enemy.hp}/${enemy.maxHp}`, 'battle');
+  dlog(`End of turn: ${player.name} HP=${player.hp}/${player.maxHp} | ${enemy.name} HP=${enemy.hp}/${enemy.maxHp}`, 'battle');
 
   if (!state.over) {
     state.busy = false;
@@ -719,7 +885,7 @@ async function runAction(attacker, defender, move, emojiId, wentFirst) {
   if (attacker.flinched) {
     attacker.flinched = false;
     msg += ` 😦 ${attacker.name} flinched and couldn't move!`;
-    dlog(`  ${attacker.name} flinched — skipping action`, 'battle');
+    dlog(`  ${attacker.name} flinched — turn skipped`, 'battle');
     render();
     return msg;
   }
@@ -735,9 +901,12 @@ async function runAction(attacker, defender, move, emojiId, wentFirst) {
   animatePop(emojiId);
   await delay(280);
 
-  if (Math.random() * 100 > effAccuracy(attacker)) {
+  // Accuracy check
+  const accRoll = Math.random() * 100;
+  const accThreshold = effAccuracy(attacker);
+  if (accRoll > accThreshold) {
     msg += ` ${attacker.name}'s move missed!`;
-    dlog(`  ${attacker.name} missed! (accuracy=${effAccuracy(attacker)}%)`, 'battle');
+    dlog(`  ${attacker.name} missed! (rolled ${accRoll.toFixed(1)}, needed ≤ ${accThreshold})`, 'warn');
     render();
     return msg;
   }
@@ -745,53 +914,73 @@ async function runAction(attacker, defender, move, emojiId, wentFirst) {
   const isHeal = move.damage && move.damage[1] < 0;
 
   if (isHeal) {
+    // ── Heal move ──
     const amt = Math.abs(move.damage[0]);
+    const before = attacker.hp;
     attacker.hp = Math.min(attacker.maxHp, attacker.hp + amt);
     msg += ` 💊 ${attacker.name} recovered ${amt} HP!`;
-    dlog(`  ${attacker.name} healed ${amt} HP (now ${attacker.hp}/${attacker.maxHp})`, 'battle');
+    dlog(`  ${attacker.name} healed: ${before} → ${attacker.hp} / ${attacker.maxHp}`, 'ok');
 
   } else if (move.damage && move.damage[1] > 0) {
+    // ── Damage move ──
     const base    = rand(move.damage[0], move.damage[1]);
     const { dmg, typeMsg } = dealDamage(attacker, defender, base, move.speed);
-    const typeEffectText = typeMsg.includes('Super') ? ' [SUPER EFFECTIVE]' : typeMsg.includes('not very') ? ' [NOT VERY EFFECTIVE]' : '';
+    const typeTag = typeMsg.includes('Super') ? ' [SUPER EFFECTIVE]' : typeMsg.includes('not very') ? ' [NOT VERY EFFECTIVE]' : '';
     msg += ` ${move.name} dealt ${dmg} damage!${typeMsg}`;
-    dlog(`  ${attacker.name} → ${defender.name}: ${move.name} base=${base} final=${dmg}${typeEffectText} (def HP: ${defender.hp+dmg}→${defender.hp})`, 'battle');
+    dlog(`  ${attacker.name}→${defender.name}: ${move.name} base=${base} final=${dmg}${typeTag} | defender HP: ${defender.hp + dmg}→${defender.hp}`, 'battle');
 
-    if (move.status && move.statusChance && Math.random() < move.statusChance) {
-      const tgt = (move.status === 'statup') ? attacker : defender;
-      if (move.status === 'flinch') {
-        if (wentFirst) {
-          defender.flinched = true;
-          msg += ` 😦 ${defender.name} flinched!`;
-          dlog(`  ${defender.name} flinched!`, 'battle');
+    // Apply all statuses from this damage move
+    for (const se of getMoveStatuses(move)) {
+      if (!se.statusChance) continue;
+      const roll = Math.random();
+      if (roll < se.statusChance) {
+        if (se.status === 'flinch') {
+          if (wentFirst) {
+            defender.flinched = true;
+            msg += ` 😦 ${defender.name} flinched!`;
+            dlog(`  ${defender.name} flinched!`, 'battle');
+          }
+        } else {
+          const tgt = (se.status === 'statup') ? attacker : defender;
+          applyStatus(tgt, se.status, se.statTarget || null);
+          msg += ` ${STATUS_EMOJI[se.status] || ''} ${tgt.name}: ${se.status}!`;
+          dlog(`  Status applied: ${se.status}${se.statTarget ? ` (${se.statTarget})` : ''} → ${tgt.name}`, 'ok');
         }
       } else {
-        applyStatus(tgt, move.status, move.statTarget || null);
-        msg += ` ${STATUS_EMOJI[move.status] || ''} ${tgt.name} is ${move.status}!`;
-        dlog(`  Status applied: ${move.status} → ${tgt.name}`, 'battle');
+        dlog(`  ${se.status} proc'd but missed (rolled ${roll.toFixed(2)}, needed < ${se.statusChance})`, 'info');
       }
     }
 
-  } else if (move.status) {
-    if (move.status === 'statup') {
-      applyStatus(attacker, 'statup', move.statTarget || 'atk');
-      const t = move.statTarget || 'atk';
-      msg += ` 📈 ${attacker.name}'s ${t} rose!`;
-      dlog(`  ${attacker.name} used stat-up (${t})`, 'battle');
-    } else if (move.status === 'statdwn') {
-      applyStatus(defender, 'statdwn', move.statTarget || 'atk');
-      const t = move.statTarget || 'atk';
-      msg += ` 📉 ${defender.name}'s ${t} fell!`;
-      dlog(`  ${defender.name} got stat-down (${t})`, 'battle');
-    } else {
-      const chance = move.statusChance ?? 1.0;
-      if (Math.random() < chance) {
-        applyStatus(defender, move.status, move.statTarget || null);
-        msg += ` ${move.name}: ${STATUS_EMOJI[move.status] || ''} ${defender.name} is ${move.status}!`;
-        dlog(`  ${defender.name} got status: ${move.status}`, 'battle');
+  } else {
+    // ── Pure status move ──
+    const statuses = getMoveStatuses(move);
+    if (statuses.length === 0) {
+      msg += ` ${move.name} did nothing… (no damage and no status?)`;
+      dlog(`  WARNING: move "${move.name}" has no damage and no status — is it configured correctly?`, 'warn');
+    }
+
+    for (const se of getMoveStatuses(move)) {
+      const chance = se.statusChance ?? 1.0;
+      const roll   = Math.random();
+      if (roll < chance) {
+        if (se.status === 'statup') {
+          const t = se.statTarget || 'atk';
+          applyStatus(attacker, 'statup', t);
+          msg += ` 📈 ${attacker.name}'s ${t} rose!`;
+          dlog(`  ${attacker.name} stat-UP: ${t}`, 'ok');
+        } else if (se.status === 'statdwn') {
+          const t = se.statTarget || 'atk';
+          applyStatus(defender, 'statdwn', t);
+          msg += ` 📉 ${defender.name}'s ${t} fell!`;
+          dlog(`  ${defender.name} stat-DOWN: ${t}`, 'ok');
+        } else {
+          applyStatus(defender, se.status, se.statTarget || null);
+          msg += ` ${STATUS_EMOJI[se.status] || ''} ${defender.name} is ${se.status}!`;
+          dlog(`  Status applied: ${se.status} → ${defender.name}`, 'ok');
+        }
       } else {
-        msg += ` ${move.name} missed!`;
-        dlog(`  ${move.name} status missed (chance was ${chance})`, 'battle');
+        msg += ` ${move.name} missed! (${se.status})`;
+        dlog(`  ${se.status} status missed (rolled ${roll.toFixed(2)}, needed < ${chance})`, 'info');
       }
     }
   }
@@ -808,6 +997,7 @@ function dealDamage(attacker, defender, base, moveSpeed) {
   const defMult   = 1 - effDefense(defender) / 100;
   const raw = Math.max(1, Math.round(base * atkMult * spdMult * typeMult * defMult));
   defender.hp = Math.max(0, defender.hp - raw);
+  dlog(`  Damage calc: base=${base} × atk${atkMult.toFixed(2)} × spd${spdMult.toFixed(2)} × type${typeMult} × def${defMult.toFixed(2)} = ${raw}`, 'info');
 
   let typeMsg = '';
   if (typeMult === 2)   typeMsg = ' <span class="type-super">Super effective!</span>';
@@ -818,69 +1008,84 @@ function dealDamage(attacker, defender, base, moveSpeed) {
 // ── Status application ────────────────────────────────────────────────────
 function applyStatus(fighter, status, statTarget) {
   if (status === 'flinch') { fighter.flinched = true; return; }
-  if (fighter.statuses.includes(status)) return;
+  if (fighter.statuses.includes(status)) {
+    dlog(`  ${fighter.name} already has ${status} — not stacking`, 'info');
+    return;
+  }
   if (PRIMARY_STATUSES.includes(status) &&
-      PRIMARY_STATUSES.some(s => fighter.statuses.includes(s))) return;
+      PRIMARY_STATUSES.some(s => fighter.statuses.includes(s))) {
+    dlog(`  ${fighter.name} already has a primary status — ${status} blocked`, 'info');
+    return;
+  }
 
   fighter.statuses.push(status);
+  dlog(`  → ${fighter.name} gains status: ${status}${statTarget ? ` (target: ${statTarget})` : ''}`, 'ok');
 
-  if (status === 'sleep')    { fighter.sleepTurns   = rand(2, 3); }
-  if (status === 'confuse')  { fighter.confuseTurns = rand(2, 4); }
-  if (status === 'paralyze') { fighter.speedMod    -= 30; }
-  if (status === 'burn')     { fighter.atkMod      -= 20; }
+  if (status === 'sleep')    { fighter.sleepTurns   = rand(2, 3); dlog(`  sleepTurns set to ${fighter.sleepTurns}`, 'info'); }
+  if (status === 'confuse')  { fighter.confuseTurns = rand(2, 4); dlog(`  confuseTurns set to ${fighter.confuseTurns}`, 'info'); }
+  if (status === 'paralyze') { fighter.speedMod -= 30;   dlog(`  paralyze: speed −30 (now ${effSpeed(fighter)})`, 'info'); }
+  if (status === 'burn')     { fighter.atkMod   -= 20;   dlog(`  burn: atk −20 (now ${effAtk(fighter)})`, 'info'); }
 
   if (status === 'statup') {
     const t = statTarget || 'atk';
-    if (t === 'atk' || t === 'power') { fighter.atkMod      += 20; fighter.statupTurns = 3; }
-    if (t === 'speed')    { fighter.speedMod    += 20; fighter.statupTurns = 3; }
-    if (t === 'defense')  { fighter.defenseMod  += 15; fighter.statupTurns = 3; }
-    if (t === 'accuracy') { fighter.accuracyMod += 15; fighter.statupTurns = 3; }
+    if (t === 'atk' || t === 'power') { fighter.atkMod      += 20; fighter.statupTurns.atk      = 3; dlog(`  statup: atk +20 for 3 turns (now ${effAtk(fighter)})`, 'info'); }
+    if (t === 'speed')                { fighter.speedMod    += 20; fighter.statupTurns.speed    = 3; dlog(`  statup: speed +20 for 3 turns (now ${effSpeed(fighter)})`, 'info'); }
+    if (t === 'defense')              { fighter.defenseMod  += 15; fighter.statupTurns.defense  = 3; dlog(`  statup: defense +15 for 3 turns (now ${effDefense(fighter)})`, 'info'); }
+    if (t === 'accuracy')             { fighter.accuracyMod += 15; fighter.statupTurns.accuracy = 3; dlog(`  statup: accuracy +15 for 3 turns (now ${effAccuracy(fighter)})`, 'info'); }
   }
   if (status === 'statdwn') {
     const t = statTarget || 'atk';
-    if (t === 'atk' || t === 'power') { fighter.atkMod      -= 20; fighter.statdwnTurns = 3; }
-    if (t === 'speed')    { fighter.speedMod    -= 20; fighter.statdwnTurns = 3; }
-    if (t === 'defense')  { fighter.defenseMod  -= 15; fighter.statdwnTurns = 3; }
-    if (t === 'accuracy') { fighter.accuracyMod -= 15; fighter.statdwnTurns = 3; }
+    if (t === 'atk' || t === 'power') { fighter.atkMod      -= 20; fighter.statdwnTurns.atk      = 3; dlog(`  statdwn: atk −20 for 3 turns (now ${effAtk(fighter)})`, 'info'); }
+    if (t === 'speed')                { fighter.speedMod    -= 20; fighter.statdwnTurns.speed    = 3; dlog(`  statdwn: speed −20 for 3 turns (now ${effSpeed(fighter)})`, 'info'); }
+    if (t === 'defense')              { fighter.defenseMod  -= 15; fighter.statdwnTurns.defense  = 3; dlog(`  statdwn: defense −15 for 3 turns (now ${effDefense(fighter)})`, 'info'); }
+    if (t === 'accuracy')             { fighter.accuracyMod -= 15; fighter.statdwnTurns.accuracy = 3; dlog(`  statdwn: accuracy −15 for 3 turns (now ${effAccuracy(fighter)})`, 'info'); }
   }
 }
 
 function removeStatus(fighter, status) {
   fighter.statuses = fighter.statuses.filter(s => s !== status);
+  dlog(`  ${fighter.name} lost status: ${status}`, 'info');
 }
 
 // ── Pre-action checks ─────────────────────────────────────────────────────
 function canAct(fighter) {
   if (fighter.statuses.includes('sleep')) {
     fighter.sleepTurns--;
+    dlog(`  ${fighter.name} sleep tick (${fighter.sleepTurns} turns left)`, 'info');
     if (fighter.sleepTurns <= 0) {
       removeStatus(fighter, 'sleep');
       return { can: true, msg: ` 💤 ${fighter.name} woke up!` };
     }
     return { can: false, msg: ` 💤 ${fighter.name} is fast asleep…` };
   }
-  if (fighter.statuses.includes('paralyze') && Math.random() < 0.35)
+  if (fighter.statuses.includes('paralyze') && Math.random() < 0.35) {
+    dlog(`  ${fighter.name} paralysis triggered — skipping turn`, 'info');
     return { can: false, msg: ` ⚡ ${fighter.name} is paralyzed and can't move!` };
+  }
   if (fighter.statuses.includes('confuse') && Math.random() < 0.33) {
     const dmg = rand(8, 15);
     fighter.hp = Math.max(0, fighter.hp - dmg);
+    dlog(`  ${fighter.name} hurt itself from confusion (${dmg} dmg)`, 'warn');
     return { can: false, msg: ` 😵 ${fighter.name} hurt itself for ${dmg}!` };
   }
   return { can: true, msg: '' };
 }
 
-// ── End-of-turn ticks ─────────────────────────────────────────────────────
+// ── End-of-turn status ticks ──────────────────────────────────────────────
 function tickStatuses(fighter) {
   let msg = '';
+
   if (fighter.statuses.includes('burn')) {
     const d = Math.round(fighter.maxHp * 0.06);
     fighter.hp = Math.max(0, fighter.hp - d);
     msg += ` 🔴 ${fighter.name} took ${d} burn damage!`;
+    dlog(`  ${fighter.name} burn tick: −${d} HP`, 'info');
   }
   if (fighter.statuses.includes('poison')) {
     const d = Math.round(fighter.maxHp * 0.08);
     fighter.hp = Math.max(0, fighter.hp - d);
     msg += ` 🟣 ${fighter.name} took ${d} poison damage!`;
+    dlog(`  ${fighter.name} poison tick: −${d} HP`, 'info');
   }
   if (fighter.statuses.includes('confuse')) {
     fighter.confuseTurns--;
@@ -889,28 +1094,47 @@ function tickStatuses(fighter) {
       msg += ` 😵 ${fighter.name} snapped out of confusion!`;
     }
   }
-  if (fighter.statuses.includes('statup')) {
-    fighter.statupTurns--;
-    if (fighter.statupTurns <= 0) {
-      fighter.atkMod      = Math.max(0, fighter.atkMod      - 20);
-      fighter.speedMod    = Math.max(0, fighter.speedMod    - 20);
-      fighter.defenseMod  = Math.max(0, fighter.defenseMod  - 15);
-      fighter.accuracyMod = Math.max(0, fighter.accuracyMod - 15);
-      removeStatus(fighter, 'statup');
-      msg += ` 📈 Stat boost faded for ${fighter.name}.`;
+
+  // Per-stat statup expiry
+  let anyStatup = false;
+  for (const stat of ['atk','speed','defense','accuracy']) {
+    if (fighter.statupTurns[stat] > 0) {
+      fighter.statupTurns[stat]--;
+      anyStatup = true;
+      if (fighter.statupTurns[stat] === 0) {
+        if (stat === 'atk')      fighter.atkMod      = Math.max(0, fighter.atkMod      - 20);
+        if (stat === 'speed')    fighter.speedMod    = Math.max(0, fighter.speedMod    - 20);
+        if (stat === 'defense')  fighter.defenseMod  = Math.max(0, fighter.defenseMod  - 15);
+        if (stat === 'accuracy') fighter.accuracyMod = Math.max(0, fighter.accuracyMod - 15);
+        dlog(`  ${fighter.name} statup[${stat}] expired`, 'info');
+        msg += ` 📈 ${fighter.name}'s ${stat} boost faded.`;
+      } else {
+        anyStatup = true; // still active
+      }
     }
   }
-  if (fighter.statuses.includes('statdwn')) {
-    fighter.statdwnTurns--;
-    if (fighter.statdwnTurns <= 0) {
-      fighter.atkMod      = Math.min(0, fighter.atkMod      + 20);
-      fighter.speedMod    = Math.min(0, fighter.speedMod    + 20);
-      fighter.defenseMod  = Math.min(0, fighter.defenseMod  + 15);
-      fighter.accuracyMod = Math.min(0, fighter.accuracyMod + 15);
-      removeStatus(fighter, 'statdwn');
-      msg += ` 📉 Stat drop faded for ${fighter.name}.`;
+  if (!anyStatup && fighter.statuses.includes('statup')) removeStatus(fighter, 'statup');
+
+  // Per-stat statdown expiry
+  let anyStatdwn = false;
+  for (const stat of ['atk','speed','defense','accuracy']) {
+    if (fighter.statdwnTurns[stat] > 0) {
+      fighter.statdwnTurns[stat]--;
+      anyStatdwn = true;
+      if (fighter.statdwnTurns[stat] === 0) {
+        if (stat === 'atk')      fighter.atkMod      = Math.min(0, fighter.atkMod      + 20);
+        if (stat === 'speed')    fighter.speedMod    = Math.min(0, fighter.speedMod    + 20);
+        if (stat === 'defense')  fighter.defenseMod  = Math.min(0, fighter.defenseMod  + 15);
+        if (stat === 'accuracy') fighter.accuracyMod = Math.min(0, fighter.accuracyMod + 15);
+        dlog(`  ${fighter.name} statdwn[${stat}] expired`, 'info');
+        msg += ` 📉 ${fighter.name}'s ${stat} drop faded.`;
+      } else {
+        anyStatdwn = true;
+      }
     }
   }
+  if (!anyStatdwn && fighter.statuses.includes('statdwn')) removeStatus(fighter, 'statdwn');
+
   return msg;
 }
 
@@ -923,7 +1147,8 @@ function checkDead() {
 
 function endBattle(playerWon) {
   state.over = true;
-  dlog(`Battle ended: ${playerWon ? state.player.name + ' WON' : state.player.name + ' LOST'} after ${state.turn} turns`, playerWon ? 'ok' : 'warn');
+  dlog(`=== BATTLE END: ${playerWon ? state.player.name + ' WON 🏆' : state.player.name + ' LOST 💀'} after ${state.turn} turns ===`,
+       playerWon ? 'ok' : 'warn');
   render();
   setTimeout(() => {
     const res = document.getElementById('over-result');
@@ -947,12 +1172,6 @@ function endBattle(playerWon) {
 // ════════════════════════════════════════════════════════════════════════
 //  RENDER
 // ════════════════════════════════════════════════════════════════════════
-
-const STATUS_CHIP_CLASS = {
-  poison:'status-poison', burn:'status-burn', paralyze:'status-paralyze',
-  sleep:'status-sleep', confuse:'status-confuse', statup:'status-statup',
-  statdwn:'status-statdwn', flinch:'status-flinch',
-};
 
 function render() {
   ['player', 'enemy'].forEach(side => {
@@ -989,44 +1208,56 @@ function render() {
 
   const diff = state.player._power - state.enemy._power;
   document.getElementById('power-diff-label').textContent =
-    diff > 0 ? `▲ +${diff}` : diff < 0 ? `▼ ${diff}` : `= even`;
+    diff > 0 ? `▲ +${diff}` : diff < 0 ? `▼ ${diff}` : '≈ even';
 }
 
-// ════════════════════════════════════════════════════════════════════════
-//  UTILITIES
-// ════════════════════════════════════════════════════════════════════════
-
-function setLog(msg) {
-  document.getElementById('log').innerHTML = msg;
+function setLog(html) {
+  document.getElementById('log').innerHTML = html;
 }
-function disableMoves(d) { document.querySelectorAll('.move-btn').forEach(b => b.disabled = d); }
+
+function disableMoves(disabled) {
+  document.querySelectorAll('.move-btn').forEach(b => b.disabled = disabled);
+}
+
 function animatePop(id) {
   const el = document.getElementById(id);
   if (!el) return;
+  el.classList.remove('pop');
+  void el.offsetWidth;
   el.classList.add('pop');
-  setTimeout(() => el.classList.remove('pop'), 240);
+  setTimeout(() => el.classList.remove('pop'), 300);
 }
+
+// ════════════════════════════════════════════════════════════════════════
+//  SCREEN MANAGEMENT
+// ════════════════════════════════════════════════════════════════════════
+
 function show(id) {
-  ['screen-loading','screen-select','screen-battle','screen-over']
-    .forEach(s => document.getElementById(s).classList.toggle('hidden', s !== id));
+  ['screen-loading','screen-select','screen-battle','screen-over'].forEach(s => {
+    const el = document.getElementById(s);
+    if (el) el.classList.toggle('hidden', s !== id);
+  });
+  dlog(`Screen: ${id}`, 'info');
 }
 
 document.getElementById('flee-btn').onclick = () => {
-  if (confirm('Flee the battle?')) resetToSelect();
+  if (confirm('Flee the battle?')) {
+    dlog('Player fled the battle.', 'warn');
+    show('screen-select');
+    state = null;
+  }
 };
-document.getElementById('play-again-btn').onclick = resetToSelect;
 
-function resetToSelect() {
-  selectedId = null;
-  buildSelectScreen();
-  document.getElementById('matchup-hint').textContent = '';
-  document.getElementById('matchup-hint').className   = '';
-  document.getElementById('start-btn').disabled = true;
-  dlog('Returned to select screen', 'info');
+document.getElementById('play-again-btn').onclick = () => {
+  dlog('Play again — returning to select screen', 'info');
   show('screen-select');
-}
+  state = null;
+};
 
-dlog('Page loaded — starting Fakemon loader', 'info');
+// ════════════════════════════════════════════════════════════════════════
+//  BOOT
+// ════════════════════════════════════════════════════════════════════════
+dlog('fakemon-battle.js loaded — starting up!', 'ok');
 loadAll();
 </script>
 </body>

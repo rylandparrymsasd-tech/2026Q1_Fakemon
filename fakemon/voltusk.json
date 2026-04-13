@@ -2,107 +2,90 @@
   "id": "voltusk",
   "name": "Voltusk",
   "createdBy": "Ms. Herrick",
-  "emoji": "\ud83d\udc18",
+  "emoji": "🐘",
   "type": "Electric",
   "hp": 110,
+  "atk": 100,
+  "speed": 80,
+  "defense": 15,
+  "accuracy": 88,
   "color": "#BA7517",
   "description": "A mammoth crackling with static charge. Its tusks act as lightning rods.",
   "moves": [
     {
       "id": "tusk_charge",
-      "name": "\u2694\ufe0f Tusk Charge",
+      "name": "⚔️ Tusk Charge",
       "desc": "Thundering full-body charge.",
       "speed": "medium",
-      "damage": [
-        18,
-        24
-      ],
+      "damage": [18, 24],
       "status": null,
       "statusChance": 0
     },
     {
       "id": "stun_spore",
-      "name": "\u26a1 Stun Spore",
-      "desc": "Releases a cloud of electric spores.",
+      "name": "⚡ Stun Spore",
+      "desc": "Releases a cloud of electric spores that paralyze on contact.",
       "speed": "medium",
-      "damage": [
-        0,
-        0
-      ],
+      "damage": [0, 0],
       "status": "paralyze",
       "statusChance": 1.0
     },
     {
       "id": "charge_up",
-      "name": "\ud83d\udcc8 Charge Up",
+      "name": "📈 Charge Up",
       "desc": "Stores electricity, sharply raising ATK.",
       "speed": "slow",
-      "damage": [
-        0,
-        0
-      ],
+      "damage": [0, 0],
       "status": "statup",
-      "statusChance": 1.0
+      "statusChance": 1.0,
+      "statTarget": "atk"
     },
     {
       "id": "static_heal",
-      "name": "\ud83d\udc8a Static Heal",
+      "name": "💊 Static Heal",
       "desc": "Channels stored energy into self-repair.",
       "speed": "slow",
-      "damage": [
-        -25,
-        -25
-      ],
+      "damage": [-25, -25],
       "status": null,
       "statusChance": 0
     },
     {
       "id": "thunder_gaze",
-      "name": "\ud83d\ude35 Thunder Gaze",
+      "name": "😵 Thunder Gaze",
       "desc": "Overwhelming electric aura confuses the enemy.",
       "speed": "fast",
-      "damage": [
-        0,
-        0
-      ],
+      "damage": [0, 0],
       "status": "confuse",
       "statusChance": 1.0
     },
     {
       "id": "thunder_stomp",
-      "name": "\ud83c\udf29\ufe0f Thunder Stomp",
+      "name": "🌩️ Thunder Stomp",
       "desc": "A ground-shaking stomp with electric discharge. May paralyze.",
       "speed": "slow",
-      "damage": [
-        20,
-        26
-      ],
+      "damage": [20, 26],
       "status": "paralyze",
       "statusChance": 0.3
     },
     {
       "id": "overcharge",
-      "name": "\ud83d\udcc8 Overcharge",
-      "desc": "Pushes electrical output beyond safe limits. ATK surges.",
+      "name": "⚡ Overcharge",
+      "desc": "Pushes electrical output beyond safe limits. Speed surges.",
       "speed": "fast",
-      "damage": [
-        0,
-        0
-      ],
+      "damage": [0, 0],
       "status": "statup",
-      "statusChance": 1.0
+      "statusChance": 1.0,
+      "statTarget": "speed"
     },
     {
       "id": "iron_wall",
-      "name": "\ud83d\udee1\ufe0f Iron Wall",
+      "name": "🛡️ Iron Wall",
       "desc": "Magnetizes hide to deflect blows. Lowers enemy ATK.",
       "speed": "slow",
-      "damage": [
-        0,
-        0
-      ],
+      "damage": [0, 0],
       "status": "statdwn",
-      "statusChance": 1.0
+      "statusChance": 1.0,
+      "statTarget": "atk"
     }
   ]
 }
