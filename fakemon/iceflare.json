@@ -42,7 +42,6 @@
       "desc": "An extremely fast move that does small ammounts of damage, and lowers opponents stats",
       "speed": "fast",
       "damage": [150, 200],
-      "status": "statdwn",
       "statuses": [
     {
       "status": "statdwn",
