@@ -18,7 +18,7 @@
       "desc":         "A poisonous scratch.",
       "speed":        "high",
       "damage": [10, 60],
-      "status":       poison,
+      "status":       "poison",
       "statusChance": 80
     },
     {
@@ -36,7 +36,7 @@
       "desc":         ".Pop a Stim and go full health",
       "speed":        "slow",
       "damage": [-20, -20],
-      "status":       confuse,
+      "status":       "confuse",
       "statusChance": 0.3
     },
     {
@@ -62,7 +62,7 @@
     {
       "id":    "damage",
       "name":  "😵 Emotional Damage",
-      "desc":  "Emotional Damage!",
+      "desc":  "Ethan noooooooooooo",
       "speed": "medium",
       "damage": [10, 10],
       "statuses": [
