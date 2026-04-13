@@ -6,6 +6,11 @@
 // Win rate (0–100) is the power score. All 5 stats, type matchups, flinch,
 // accuracy, and defense are implemented here to match the game engine exactly.
 //
+// MULTI-STATUS SUPPORT: moves may now have either:
+//   - "status": "poison"  (single, old format — still works)
+//   - "statuses": [ { "status":"poison", "statusChance":0.5 },
+//                   { "status":"statdwn","statusChance":1.0,"statTarget":"speed" } ]
+//
 // FakemonScorer.calcPowerLevel(fakemon) → integer 0–100
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -74,6 +79,20 @@ const FakemonScorer = (() => {
   // ── Primary statuses ──────────────────────────────────────────────────────
   const PRIMARY = ['poison', 'burn', 'paralyze', 'sleep'];
 
+  // ── Normalise move statuses to a flat array ───────────────────────────────
+  // Handles old single-status format AND new multi-status "statuses" array.
+  function getMoveStatuses(move) {
+    // New format: move.statuses = [ { status, statusChance, statTarget }, ... ]
+    if (Array.isArray(move.statuses) && move.statuses.length > 0) {
+      return move.statuses;
+    }
+    // Old format: move.status / move.statusChance / move.statTarget
+    if (move.status) {
+      return [{ status: move.status, statusChance: move.statusChance ?? 1.0, statTarget: move.statTarget ?? null }];
+    }
+    return [];
+  }
+
   // ── Benchmark ─────────────────────────────────────────────────────────────
   const BENCHMARK = {
     id: '__benchmark__',
@@ -108,8 +127,9 @@ const FakemonScorer = (() => {
       statuses:     [],
       sleepTurns:   0,
       confuseTurns: 0,
-      statupTurns:  0,
-      statdwnTurns: 0,
+      // Per-stat statup/down tracking (one entry per stat type)
+      statupTurns:  { atk: 0, speed: 0, defense: 0, accuracy: 0 },
+      statdwnTurns: { atk: 0, speed: 0, defense: 0, accuracy: 0 },
       flinched:     false,
     };
   }
@@ -126,17 +146,18 @@ const FakemonScorer = (() => {
     if (status === 'burn')     { f.atkMod      -= 20; }
     if (status === 'statup') {
       const t = statTarget || 'atk';
-      if (t === 'atk' || t === 'power') { f.atkMod      += 20; f.statupTurns = 3; }
-      if (t === 'speed')    { f.speedMod    += 20; f.statupTurns = 3; }
-      if (t === 'defense')  { f.defenseMod  += 15; f.statupTurns = 3; }
-      if (t === 'accuracy') { f.accuracyMod += 15; f.statupTurns = 3; }
+      if (t === 'atk' || t === 'power') { f.atkMod      += 20; f.statupTurns.atk      = 3; }
+      if (t === 'speed')                { f.speedMod    += 20; f.statupTurns.speed    = 3; }
+      if (t === 'defense')              { f.defenseMod  += 15; f.statupTurns.defense  = 3; }
+      if (t === 'accuracy')             { f.accuracyMod += 15; f.statupTurns.accuracy = 3; }
+      // Keep the 'statup' status label active if any stat is still boosted
     }
     if (status === 'statdwn') {
       const t = statTarget || 'atk';
-      if (t === 'atk' || t === 'power') { f.atkMod      -= 20; f.statdwnTurns = 3; }
-      if (t === 'speed')    { f.speedMod    -= 20; f.statdwnTurns = 3; }
-      if (t === 'defense')  { f.defenseMod  -= 15; f.statdwnTurns = 3; }
-      if (t === 'accuracy') { f.accuracyMod -= 15; f.statdwnTurns = 3; }
+      if (t === 'atk' || t === 'power') { f.atkMod      -= 20; f.statdwnTurns.atk      = 3; }
+      if (t === 'speed')                { f.speedMod    -= 20; f.statdwnTurns.speed    = 3; }
+      if (t === 'defense')              { f.defenseMod  -= 15; f.statdwnTurns.defense  = 3; }
+      if (t === 'accuracy')             { f.accuracyMod -= 15; f.statdwnTurns.accuracy = 3; }
     }
   }
 
@@ -189,17 +210,21 @@ const FakemonScorer = (() => {
       const base = rng(move.damage[0], move.damage[1]);
       const dmg  = calcDamage(attacker, defender, base, move.speed);
       defender.hp = Math.max(0, defender.hp - dmg);
-      if (move.status && move.statusChance && Math.random() < move.statusChance) {
-        const tgt = (move.status === 'statup') ? attacker : defender;
-        applyStatus(tgt, move.status, move.statTarget || null);
+      // Apply all statuses from this move
+      for (const se of getMoveStatuses(move)) {
+        if (se.statusChance && Math.random() < se.statusChance) {
+          const tgt = (se.status === 'statup') ? attacker : defender;
+          applyStatus(tgt, se.status, se.statTarget || null);
+        }
       }
       return;
     }
 
-    if (move.status) {
-      const tgt    = (move.status === 'statup') ? attacker : defender;
-      const chance = move.statusChance ?? 1.0;
-      if (Math.random() < chance) applyStatus(tgt, move.status, move.statTarget || null);
+    // Pure status move — apply all statuses
+    for (const se of getMoveStatuses(move)) {
+      const tgt    = (se.status === 'statup') ? attacker : defender;
+      const chance = se.statusChance ?? 1.0;
+      if (Math.random() < chance) applyStatus(tgt, se.status, se.statTarget || null);
     }
   }
 
@@ -211,25 +236,38 @@ const FakemonScorer = (() => {
       f.confuseTurns--;
       if (f.confuseTurns <= 0) removeStatus(f, 'confuse');
     }
-    if (f.statuses.includes('statup')) {
-      f.statupTurns--;
-      if (f.statupTurns <= 0) {
-        f.atkMod      = Math.max(0, f.atkMod      - 20);
-        f.defenseMod  = Math.max(0, f.defenseMod  - 15);
-        f.accuracyMod = Math.max(0, f.accuracyMod - 15);
-        removeStatus(f, 'statup');
+
+    // Per-stat statup decay
+    let anyStatup = false;
+    for (const stat of ['atk','speed','defense','accuracy']) {
+      if (f.statupTurns[stat] > 0) {
+        f.statupTurns[stat]--;
+        anyStatup = true;
+        if (f.statupTurns[stat] === 0) {
+          if (stat === 'atk')      f.atkMod      = Math.max(0, f.atkMod      - 20);
+          if (stat === 'speed')    f.speedMod    = Math.max(0, f.speedMod    - 20);
+          if (stat === 'defense')  f.defenseMod  = Math.max(0, f.defenseMod  - 15);
+          if (stat === 'accuracy') f.accuracyMod = Math.max(0, f.accuracyMod - 15);
+        }
       }
     }
-    if (f.statuses.includes('statdwn')) {
-      f.statdwnTurns--;
-      if (f.statdwnTurns <= 0) {
-        f.atkMod      = Math.min(0, f.atkMod      + 20);
-        f.speedMod    = Math.min(0, f.speedMod    + 20);
-        f.defenseMod  = Math.min(0, f.defenseMod  + 15);
-        f.accuracyMod = Math.min(0, f.accuracyMod + 15);
-        removeStatus(f, 'statdwn');
+    if (!anyStatup) removeStatus(f, 'statup');
+
+    // Per-stat statdwn decay
+    let anyStatdwn = false;
+    for (const stat of ['atk','speed','defense','accuracy']) {
+      if (f.statdwnTurns[stat] > 0) {
+        f.statdwnTurns[stat]--;
+        anyStatdwn = true;
+        if (f.statdwnTurns[stat] === 0) {
+          if (stat === 'atk')      f.atkMod      = Math.min(0, f.atkMod      + 20);
+          if (stat === 'speed')    f.speedMod    = Math.min(0, f.speedMod    + 20);
+          if (stat === 'defense')  f.defenseMod  = Math.min(0, f.defenseMod  + 15);
+          if (stat === 'accuracy') f.accuracyMod = Math.min(0, f.accuracyMod + 15);
+        }
       }
     }
+    if (!anyStatdwn) removeStatus(f, 'statdwn');
   }
 
   // ── AI move scorer ────────────────────────────────────────────────────────
@@ -249,11 +287,13 @@ const FakemonScorer = (() => {
       const mid  = (move.damage[0] + move.damage[1]) / 2;
       score += calcDamage(self, opponent, mid, move.speed);
     }
-    if (move.status && (move.statusChance ?? 0) > 0) {
-      const tgtSelf = move.status === 'statup';
-      const tgt = tgtSelf ? self : opponent;
-      if (!tgt.statuses.includes(move.status)) {
-        score += (STATUS_VALUE[move.status] || 5) * move.statusChance;
+    for (const se of getMoveStatuses(move)) {
+      if ((se.statusChance ?? 0) > 0) {
+        const tgtSelf = se.status === 'statup';
+        const tgt = tgtSelf ? self : opponent;
+        if (!tgt.statuses.includes(se.status)) {
+          score += (STATUS_VALUE[se.status] || 5) * se.statusChance;
+        }
       }
     }
     return score;
@@ -291,6 +331,7 @@ const FakemonScorer = (() => {
           const hpBefore = defender.hp;
           executeMove(attacker, defender, move);
           const didDamage = defender.hp < hpBefore;
+          // Flinch from damage moves still uses old single-status check for benchmark compat
           if (didDamage && move.status === 'flinch' && move.statusChance && Math.random() < move.statusChance) {
             defender.flinched = true;
           }
@@ -342,6 +383,9 @@ const FakemonScorer = (() => {
       if (!hasDmg) warnings.push('No damage moves found — Fakemon may never finish a fight');
 
       const ids = new Set();
+      const VALID_STATUSES = ['poison','burn','paralyze','sleep','confuse','flinch','statup','statdwn',null,undefined];
+      const VALID_STAT_TARGETS = ['atk','power','speed','defense','accuracy',null,undefined];
+
       f.moves.forEach((m, i) => {
         const mLabel = `Move ${i+1} (${m.name || m.id || 'unnamed'})`;
         if (!m.id) errors.push(`${mLabel}: missing "id" field`);
@@ -355,11 +399,24 @@ const FakemonScorer = (() => {
           if (typeof m.damage[0] !== 'number' || typeof m.damage[1] !== 'number') errors.push(`${mLabel}: both damage values must be numbers`);
           if (m.damage[0] > m.damage[1] && m.damage[1] > 0) warnings.push(`${mLabel}: damage min (${m.damage[0]}) is greater than max (${m.damage[1]})`);
         }
-        if (m.statusChance !== undefined && (typeof m.statusChance !== 'number' || m.statusChance < 0 || m.statusChance > 1)) {
-          errors.push(`${mLabel}: "statusChance" must be a number between 0 and 1`);
+
+        // Validate statuses — supports both old (status field) and new (statuses array)
+        if (Array.isArray(m.statuses)) {
+          m.statuses.forEach((se, si) => {
+            const seLabel = `${mLabel} status[${si}]`;
+            if (!VALID_STATUSES.includes(se.status)) errors.push(`${seLabel}: unknown status "${se.status}"`);
+            if (se.statusChance !== undefined && (typeof se.statusChance !== 'number' || se.statusChance < 0 || se.statusChance > 1))
+              errors.push(`${seLabel}: "statusChance" must be a number 0–1`);
+            if ((se.status === 'statup' || se.status === 'statdwn') && se.statTarget && !VALID_STAT_TARGETS.includes(se.statTarget))
+              errors.push(`${seLabel}: "statTarget" must be one of: atk, speed, defense, accuracy`);
+          });
+        } else {
+          if (m.statusChance !== undefined && (typeof m.statusChance !== 'number' || m.statusChance < 0 || m.statusChance > 1))
+            errors.push(`${mLabel}: "statusChance" must be a number between 0 and 1`);
+          if (!VALID_STATUSES.includes(m.status)) errors.push(`${mLabel}: unknown status "${m.status}"`);
+          if ((m.status === 'statup' || m.status === 'statdwn') && m.statTarget && !VALID_STAT_TARGETS.includes(m.statTarget))
+            errors.push(`${mLabel}: "statTarget" must be one of: atk, speed, defense, accuracy`);
         }
-        const VALID_STATUSES = ['poison','burn','paralyze','sleep','confuse','flinch','statup','statdwn',null,undefined];
-        if (!VALID_STATUSES.includes(m.status)) errors.push(`${mLabel}: unknown status "${m.status}"`);
       });
     }
 
@@ -380,6 +437,6 @@ const FakemonScorer = (() => {
 
   function rng(a, b) { return Math.floor(Math.random() * (b - a + 1)) + a; }
 
-  return { calcPowerLevel, typeMultiplier, validateFakemon };
+  return { calcPowerLevel, typeMultiplier, validateFakemon, getMoveStatuses };
 
 })();

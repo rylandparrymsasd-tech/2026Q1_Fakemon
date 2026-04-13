@@ -5,13 +5,17 @@
   "emoji": "🐻‍❄️",
   "type": "Ice",
   "hp": 105,
+  "atk": 100,
+  "speed": 75,
+  "defense": 20,
+  "accuracy": 88,
   "color": "#185FA5",
   "description": "A bear cub with fur as hard as frozen iron. Slow, but hits like a glacier.",
   "moves": [
     {
       "id": "ice_shard",
       "name": "❄️ Ice Shard",
-      "desc": "Spits a frozen pellet. May paralyze.",
+      "desc": "Spits a frozen pellet. May paralyze with the cold shock.",
       "speed": "fast",
       "damage": [16, 20],
       "status": "paralyze",
@@ -20,11 +24,11 @@
     {
       "id": "bear_slam",
       "name": "⚔️ Bear Slam",
-      "desc": "Full-body drop onto the enemy.",
+      "desc": "Full-body drop onto the enemy. May cause flinch.",
       "speed": "medium",
       "damage": [18, 24],
-      "status": null,
-      "statusChance": 0
+      "status": "flinch",
+      "statusChance": 0.35
     },
     {
       "id": "glacial_heal",
@@ -36,13 +40,13 @@
       "statusChance": 0
     },
     {
-      "id": "freeze_stomp",
-      "name": "⚡ Freeze Stomp",
-      "desc": "A heavy stomp that radiates paralysing cold.",
+      "id": "freeze_aura",
+      "name": "🌨️ Freeze Aura",
+      "desc": "Radiates numbing cold — enemy may fall into frozen sleep.",
       "speed": "slow",
       "damage": [0, 0],
-      "status": "paralyze",
-      "statusChance": 1.0
+      "status": "sleep",
+      "statusChance": 0.75
     },
     {
       "id": "power_up",
@@ -51,12 +55,13 @@
       "speed": "fast",
       "damage": [0, 0],
       "status": "statup",
-      "statusChance": 1.0
+      "statusChance": 1.0,
+      "statTarget": "atk"
     },
     {
       "id": "frost_breath",
       "name": "🌬️ Frost Breath",
-      "desc": "Exhales freezing air. May put enemy to sleep.",
+      "desc": "Exhales freezing air that deals damage and may put enemy to sleep.",
       "speed": "medium",
       "damage": [14, 20],
       "status": "sleep",
@@ -69,16 +74,17 @@
       "speed": "slow",
       "damage": [0, 0],
       "status": "statdwn",
-      "statusChance": 1.0
+      "statusChance": 1.0,
+      "statTarget": "atk"
     },
     {
-      "id": "blizzard_lull",
-      "name": "💤 Blizzard Lull",
-      "desc": "Whips up a numbing snowstorm. High sleep chance.",
+      "id": "glacial_crush",
+      "name": "🧊 Glacial Crush",
+      "desc": "A slow, devastating body press. The heaviest hit in Frostcub's arsenal.",
       "speed": "slow",
-      "damage": [0, 0],
-      "status": "sleep",
-      "statusChance": 0.8
+      "damage": [22, 30],
+      "status": null,
+      "statusChance": 0
     }
   ]
 }

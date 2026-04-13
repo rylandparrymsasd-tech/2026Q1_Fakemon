@@ -2,107 +2,88 @@
   "id": "embork",
   "name": "Embork",
   "createdBy": "Ms. Herrick",
-  "emoji": "\ud83d\udc17",
+  "emoji": "🐗",
   "type": "Fire",
   "hp": 100,
+  "atk": 105,
+  "speed": 90,
+  "defense": 10,
+  "accuracy": 90,
   "color": "#E24B4A",
   "description": "A boar wreathed in smoldering embers. Its bristles ignite when threatened.",
   "moves": [
     {
       "id": "tusk_slam",
-      "name": "\u2694\ufe0f Tusk Slam",
-      "desc": "Charges and gores the enemy.",
+      "name": "⚔️ Tusk Slam",
+      "desc": "Charges and gores the enemy hard. May cause flinch.",
       "speed": "fast",
-      "damage": [
-        18,
-        24
-      ],
-      "status": null,
-      "statusChance": 0
+      "damage": [18, 24],
+      "status": "flinch",
+      "statusChance": 0.3
     },
     {
       "id": "ember_bite",
-      "name": "\ud83d\udd25 Ember Bite",
+      "name": "🔥 Ember Bite",
       "desc": "Scorching bite with a chance to burn.",
       "speed": "medium",
-      "damage": [
-        14,
-        20
-      ],
+      "damage": [14, 20],
       "status": "burn",
       "statusChance": 0.35
     },
     {
       "id": "confuse_ray",
-      "name": "\ud83d\ude35 Confuse Ray",
+      "name": "😵 Confuse Ray",
       "desc": "Disorients the enemy with heat shimmer.",
       "speed": "medium",
-      "damage": [
-        0,
-        0
-      ],
+      "damage": [0, 0],
       "status": "confuse",
       "statusChance": 1.0
     },
     {
       "id": "heal_pulse",
-      "name": "\ud83d\udc8a Heal Pulse",
+      "name": "💊 Heal Pulse",
       "desc": "Draws warmth from the earth to restore HP.",
       "speed": "slow",
-      "damage": [
-        -25,
-        -25
-      ],
+      "damage": [-25, -25],
       "status": null,
       "statusChance": 0
     },
     {
       "id": "poison_tusk",
-      "name": "\ud83d\udc89 Poison Tusk",
+      "name": "💉 Poison Tusk",
       "desc": "Venomous gore with a chance to poison.",
       "speed": "medium",
-      "damage": [
-        10,
-        14
-      ],
+      "damage": [10, 14],
       "status": "poison",
       "statusChance": 0.6
     },
     {
       "id": "spark_stomp",
-      "name": "\u26a1 Spark Stomp",
+      "name": "⚡ Spark Stomp",
       "desc": "Static hoof-slam that may paralyze.",
       "speed": "slow",
-      "damage": [
-        0,
-        0
-      ],
+      "damage": [0, 0],
       "status": "paralyze",
       "statusChance": 1.0
     },
     {
       "id": "ember_lull",
-      "name": "\ud83d\udca4 Ember Lull",
+      "name": "💤 Ember Lull",
       "desc": "Warm smoke drifts over the enemy, inducing sleep.",
       "speed": "slow",
-      "damage": [
-        0,
-        0
-      ],
+      "damage": [0, 0],
       "status": "sleep",
       "statusChance": 0.8
     },
     {
       "id": "wild_charge",
-      "name": "\ud83d\udcc8 Wild Charge",
+      "name": "📈 Wild Charge",
       "desc": "Embork works itself into a frenzy, raising ATK.",
       "speed": "fast",
-      "damage": [
-        0,
-        0
-      ],
+      "damage": [0, 0],
       "status": "statup",
-      "statusChance": 1.0
+      "statusChance": 1.0,
+      "statTarget": "atk"
     }
   ]
 }

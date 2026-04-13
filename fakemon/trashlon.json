@@ -1,0 +1,71 @@
+{
+  "id": "trashlon",
+  "name": "Trashlon",
+  "createdBy": "Ms. Herrick",
+  "emoji": "🗑️",
+  "type": "Normal",
+  "hp": 65,
+  "atk": 55,
+  "speed": 40,
+  "defense": 2,
+  "accuracy": 60,
+  "color": "#8B8B6B",
+  "description": "A sentient trash can that somehow entered the tournament. It smells terrible. Its moves rarely work. Everyone feels a little bad for it.",
+  "moves": [
+    {
+      "id": "feeble_bonk",
+      "name": "💫 Feeble Bonk",
+      "desc": "Weakly bumps into the enemy. Occasionally does something.",
+      "speed": "slow",
+      "damage": [4, 9],
+      "status": null,
+      "statusChance": 0
+    },
+    {
+      "id": "stale_gust",
+      "name": "💨 Stale Gust",
+      "desc": "Exhales a puff of truly awful air. May confuse, mostly just stinks.",
+      "speed": "slow",
+      "damage": [0, 0],
+      "status": "confuse",
+      "statusChance": 0.3
+    },
+    {
+      "id": "lid_slam",
+      "name": "🪣 Lid Slam",
+      "desc": "Slams its lid down. Loud, slow, unimpressive.",
+      "speed": "slow",
+      "damage": [8, 12],
+      "status": "flinch",
+      "statusChance": 0.1
+    },
+    {
+      "id": "garbage_toss",
+      "name": "🍌 Garbage Toss",
+      "desc": "Hurls rotting debris. May poison. Probably won't.",
+      "speed": "slow",
+      "damage": [5, 10],
+      "status": "poison",
+      "statusChance": 0.2
+    },
+    {
+      "id": "pity_heal",
+      "name": "💊 Pity Heal",
+      "desc": "Digs through itself and finds a slightly less rotten snack. Restores a little HP.",
+      "speed": "slow",
+      "damage": [-10, -10],
+      "status": null,
+      "statusChance": 0
+    },
+    {
+      "id": "sad_eyes",
+      "name": "🥺 Sad Eyes",
+      "desc": "Stares with hollow desperation. Lowers enemy ATK through sheer pity.",
+      "speed": "slow",
+      "damage": [0, 0],
+      "status": "statdwn",
+      "statusChance": 0.5,
+      "statTarget": "atk"
+    }
+  ]
+}
