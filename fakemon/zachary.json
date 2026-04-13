@@ -1,14 +1,14 @@
 {
- "id": "zachary",
+ "id": "zachary.json",
  "name": "Manic Macho Legs Cat",
  "createdBy": " zachary villanueva"
  "type": "Fire",
 
 
- "hp": 500,
+ "hp": 430,
  "power": 500,
  "speed": 50,
- "defense": 250,
+ "defense": 350,
  "accuracy": 1000,
 
 
@@ -25,7 +25,7 @@
      "speed": "slow",
      "damage": [110, 130],
      "status": "burn",
-     "statusChance": 1
+     "statusChance": 0.99
    },
 
 
