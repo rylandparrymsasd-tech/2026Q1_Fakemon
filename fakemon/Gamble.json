@@ -1,0 +1,53 @@
+{
+  "id": "voltusk",
+  "name": "Gambler",
+  "createdBy": "Sean McGarry",
+  "emoji": "🎰",
+  "type": "Normal",
+
+  
+  "hp": 40,       
+  "power": 95,    
+  "speed": 70,     
+  "defense": 20,  
+  "accuracy": 60, 
+
+  "description": "Only real gamblers choose this one...",
+
+  "moves": [
+
+    
+    {
+      "id": "RIGGED",
+      "name": "This game is RIGGED",
+      "desc": "):<",
+      "speed": "fast",
+      "damage": [-25, -40],
+      "status": "statup",
+      "statusChance": 0.8
+    },
+
+    
+    {
+      "id": "GAMBLING",
+      "name": "GAMBLING TIME",
+      "desc": "Totallynotrigged..... (wink, wink)",
+      "speed": "medium",
+      "damage": [-50, 95],
+      "status": "burn",
+      "statusChance": 0.4
+    },
+
+    
+    {
+      "id": "Recovery",
+      "name": "Revovery",
+      "desc": "You need time to recover your finacial and mental health.",
+      "speed": "slow",
+      "damage": [-10, -20],
+      "status": "statdwn",
+      "statusChance": 0.65
+    }
+   
+  ]
+}

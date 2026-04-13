@@ -33,7 +33,7 @@
       "name": "Glock",
       "desc": "Uh Oh, you made Walter angry...",
       "speed": "fast",
-      "damage": [15, 40],
+      "damage": [14, 35],
       "status": null,
       "statusChance": 0
     },
