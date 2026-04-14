@@ -75,7 +75,7 @@ h1 {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   DEBUG WINDOW  (colored + filter tabs)
+   DEBUG PANEL
 ═══════════════════════════════════════════════════════════════ */
 #debug-panel {
   width: 100%; max-width: 660px;
@@ -107,13 +107,13 @@ h1 {
   white-space: nowrap;
 }
 .debug-filter-btn.active  { border-color: currentColor; filter: brightness(1.4); }
-.debug-filter-btn.active.f-all      { color: #c0c0e0; }
-.debug-filter-btn.active.f-info     { color: #80c0ff; }
-.debug-filter-btn.active.f-battle   { color: #60d090; }
-.debug-filter-btn.active.f-ok       { color: #56c87a; }
-.debug-filter-btn.active.f-warn     { color: #f5c842; }
-.debug-filter-btn.active.f-error    { color: #e85d5d; }
-.debug-filter-btn:not(.active)      { color: #444468; }
+.debug-filter-btn.active.f-all    { color: #c0c0e0; }
+.debug-filter-btn.active.f-info   { color: #80c0ff; }
+.debug-filter-btn.active.f-battle { color: #60d090; }
+.debug-filter-btn.active.f-ok     { color: #56c87a; }
+.debug-filter-btn.active.f-warn   { color: #f5c842; }
+.debug-filter-btn.active.f-error  { color: #e85d5d; }
+.debug-filter-btn:not(.active)    { color: #444468; }
 #debug-toggle {
   font-family: var(--px); font-size: 7px; color: #7060b0;
   background: none; border: 1px solid #3a2a60; border-radius: 4px;
@@ -140,8 +140,6 @@ h1 {
 .dlog-ts   { color: #3a3460; font-size: 10px; white-space: nowrap; flex-shrink: 0; }
 .dlog-icon { flex-shrink: 0; }
 .dlog-msg  { flex: 1; word-break: break-word; }
-
-/* Type colours */
 .dlog-info   { background: rgba(0,80,160,0.12); }
 .dlog-info   .dlog-icon, .dlog-info   .dlog-msg { color: #80c0ff; }
 .dlog-ok     { background: rgba(0,100,60,0.14); }
@@ -154,17 +152,13 @@ h1 {
 .dlog-score  .dlog-icon, .dlog-score  .dlog-msg { color: #d890ff; }
 .dlog-battle { background: rgba(30,100,60,0.12); }
 .dlog-battle .dlog-icon, .dlog-battle .dlog-msg { color: #60d090; }
-/* hidden by filter */
 .dlog.filtered-out { display: none; }
-
-#debug-tabs { padding: 6px 10px; background: #0a0616; display: flex; gap: 4px; flex-wrap: wrap; }
 #debug-clear {
   font-family: var(--px); font-size: 6px; color: #503060;
   background: none; border: 1px solid #2a1040; border-radius: 4px;
   padding: 3px 8px; cursor: pointer; transition: color 0.15s;
 }
 #debug-clear:hover { color: #a080f0; }
-#debug-count { color: #5040a0; font-size: 9px; }
 
 /* ── SELECT ── */
 #screen-select h2 {
@@ -188,6 +182,7 @@ h1 {
   cursor: pointer;
   transition: border-color 0.15s, transform 0.1s, box-shadow 0.15s;
   text-align: center;
+  position: relative;
 }
 .fakemon-choice:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 6px 20px rgba(245,200,66,0.12); }
 .fakemon-choice.selected { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent), 0 6px 20px rgba(245,200,66,0.18); }
@@ -196,7 +191,36 @@ h1 {
 .choice-type { font-size: 10px; color: var(--muted); }
 .choice-power { font-size: 10px; color: var(--accent); margin-top: 4px; }
 
-#matchup-hint { text-align:center; font-size:12px; margin:10px 0; min-height:20px; }
+/* ── OPPONENT PICKER ── */
+#opponent-section {
+  margin-top: 20px;
+  animation: fadeIn 0.25s ease;
+}
+@keyframes fadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+#opponent-section h2 { margin-bottom: 8px; }
+.opponent-sub {
+  font-size: 11px; color: var(--muted); text-align: center; margin-bottom: 12px;
+}
+.fakemon-choice.recommended {
+  border-color: var(--green);
+  box-shadow: 0 0 0 1px var(--green), 0 4px 16px rgba(86,200,122,0.18);
+}
+.fakemon-choice.opponent-selected {
+  border-color: #80d0ff;
+  box-shadow: 0 0 0 2px #80d0ff, 0 6px 20px rgba(128,208,255,0.2);
+}
+.recommended-badge {
+  position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
+  font-family: var(--px); font-size: 5px; letter-spacing: 0.5px;
+  color: var(--green); background: rgba(86,200,122,0.12);
+  border: 1px solid var(--green); border-radius: 4px;
+  padding: 2px 6px; white-space: nowrap;
+}
+.matchup-badge {
+  font-size: 9px; margin-top: 4px;
+}
+
+#matchup-hint { text-align:center; font-size:12px; margin:10px 0 0; min-height:20px; }
 #matchup-hint.fair   { color:#56c87a; }
 #matchup-hint.uneven { color:#e8943a; }
 #matchup-hint.hard   { color:#e85d5d; }
@@ -228,8 +252,6 @@ h1 {
 .stat-mini { font-size:8px; color:var(--muted); white-space:nowrap; }
 .stat-mini span { color:var(--text); font-weight:600; }
 .statuses { display:flex; flex-wrap:wrap; gap:4px; min-height:24px; }
-
-/* ── STATUS CHIPS with color-coded glow pulse ── */
 .status-chip {
   font-size:9px; font-weight:700; padding:3px 8px; border-radius:6px;
   border: 1.5px solid; animation: statusPulse 2.2s ease-in-out infinite;
@@ -293,68 +315,229 @@ h1 {
   text-align:center; padding:40px 20px;
   background:var(--card); border:1.5px solid var(--border); border-radius:var(--r);
 }
-#over-result { font-family:var(--px); font-size:clamp(10px,3vw,18px); margin-bottom:14px; line-height:1.6; }
-#over-details { font-size:12px; color:var(--muted); margin-bottom:8px; }
-#over-msg { font-size:13px; color:var(--muted); margin-bottom:24px; line-height:1.7; }
+#over-result { font-family:var(--px); font-size:clamp(14px,4vw,22px); margin-bottom:12px; }
+#over-details { font-size:12px; color:var(--muted); margin-bottom:12px; }
+#over-msg { font-size:13px; margin-bottom:24px; }
 #play-again-btn {
-  font-family:var(--px); font-size:9px; letter-spacing:2px;
-  padding:12px 24px; background:var(--accent); color:var(--bg);
+  display:inline-block; font-family:var(--px); font-size:9px; letter-spacing:2px;
+  padding:12px 28px; background:var(--accent); color:var(--bg);
   border:none; border-radius:var(--r); cursor:pointer; transition:background 0.15s;
-  margin-right: 10px;
 }
 #play-again-btn:hover { background:#ffd655; }
 #home-from-over {
-  font-family:var(--px); font-size:9px; letter-spacing:2px;
-  padding:12px 24px; background: transparent; color: var(--muted);
-  border: 1px solid var(--border); border-radius:var(--r); cursor:pointer; transition: all 0.15s;
-  text-decoration: none; display: inline-block;
+  display:block; margin-top:14px; font-family:var(--px); font-size:8px;
+  color:var(--muted); text-decoration:none;
+  transition:color 0.15s;
 }
-#home-from-over:hover { color: var(--accent); border-color: var(--accent); }
+#home-from-over:hover { color: var(--accent); }
 
-@media(max-width:480px) {
-  .arena { gap:4px; }
-  .fighter-card { padding:8px; }
-  .fighter-emoji-wrap { font-size:34px; }
+/* type badge colours */
+.type-Fire    { background:#2e1008; color:#ff7050; }
+.type-Water   { background:#081830; color:#60a0ff; }
+.type-Grass   { background:#0a2010; color:#56c87a; }
+.type-Electric{ background:#2a2200; color:#f5c842; }
+.type-Ice     { background:#0a1a28; color:#80d8f0; }
+.type-Rock    { background:#2a2218; color:#c8b060; }
+.type-Ground  { background:#2a1e0a; color:#e0a060; }
+.type-Flying  { background:#181828; color:#a0a0f0; }
+.type-Psychic { background:#2a0a18; color:#f080b0; }
+.type-Dark    { background:#181018; color:#908090; }
+.type-Ghost   { background:#180a28; color:#9060d0; }
+.type-Dragon  { background:#0a0a28; color:#6060e0; }
+.type-Steel   { background:#181828; color:#a0a8b0; }
+.type-Poison  { background:#1e0a2e; color:#c060f0; }
+.type-Bug     { background:#141e08; color:#90c030; }
+.type-Fighting{ background:#2a0808; color:#e06040; }
+.type-Normal  { background:#181820; color:#c8c8d0; }
+
+/* ═══════════════════════════════════════════════════════════════
+   TEST FAKEMON PANEL
+═══════════════════════════════════════════════════════════════ */
+#tester-panel {
+  width: 100%; max-width: 660px;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r);
+  margin-bottom: 18px;
+  overflow: hidden;
+}
+#tester-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 9px 14px;
+  background: #141428;
+  cursor: pointer;
+  user-select: none;
+  gap: 8px;
+}
+#tester-header-label {
+  font-family: var(--px); font-size: 7px; color: var(--accent); letter-spacing: 1px;
+}
+#tester-toggle {
+  font-family: var(--px); font-size: 7px; color: var(--muted);
+  background: none; border: 1px solid var(--border); border-radius: 4px;
+  padding: 3px 8px; cursor: pointer; transition: color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+#tester-toggle:hover { color: var(--accent); border-color: var(--accent); }
+#tester-body { padding: 14px; }
+#tester-body.collapsed { display: none; }
+#tester-instructions {
+  font-size: 12px; color: var(--muted); line-height: 1.6; margin-bottom: 10px;
+}
+#tester-instructions strong { color: var(--text); }
+#json-input {
+  width: 100%; height: 180px;
+  background: #060610; color: #a0d0ff;
+  border: 1.5px solid #2a2a50; border-radius: var(--rs);
+  padding: 10px 12px; font-family: 'Courier New', monospace; font-size: 11px;
+  line-height: 1.6; resize: vertical; outline: none;
+  transition: border-color 0.15s;
+}
+#json-input:focus { border-color: var(--accent); }
+#json-input::placeholder { color: #30305a; }
+#tester-run-btn {
+  display: block; width: 100%; margin-top: 10px;
+  font-family: var(--px); font-size: 8px; letter-spacing: 1px;
+  padding: 11px; background: #1a1a40; color: var(--accent);
+  border: 1.5px solid var(--accent); border-radius: var(--r);
+  cursor: pointer; transition: background 0.15s, color 0.15s;
+}
+#tester-run-btn:hover { background: var(--accent); color: var(--bg); }
+#tester-run-btn:disabled { opacity: 0.4; cursor: default; }
+
+/* Report */
+#tester-report { margin-top: 14px; animation: fadeIn 0.2s ease; }
+.report-hero {
+  display: flex; align-items: center; gap: 16px;
+  background: var(--card); border: 1.5px solid var(--border);
+  border-radius: var(--r); padding: 14px 16px; margin-bottom: 12px;
+}
+.report-emoji { font-size: 52px; line-height: 1; flex-shrink: 0; }
+.report-info { flex: 1; min-width: 0; }
+.report-name {
+  font-family: var(--px); font-size: 10px; color: var(--text);
+  letter-spacing: 1px; margin-bottom: 4px; word-break: break-all;
+}
+.report-meta { font-size: 11px; color: var(--muted); margin-bottom: 8px; }
+.report-meta span { color: var(--text); }
+.power-bar-wrap { margin-top: 4px; }
+.power-bar-label {
+  display: flex; justify-content: space-between;
+  font-family: var(--px); font-size: 7px; color: var(--muted); margin-bottom: 4px;
+}
+.power-bar-track {
+  background: #111122; border-radius: 4px; height: 10px;
+  overflow: hidden; border: 1px solid var(--border);
+}
+.power-bar-fill {
+  height: 100%; border-radius: 4px;
+  transition: width 0.7s cubic-bezier(0.22,0.61,0.36,1);
+}
+.power-rating {
+  font-family: var(--px); font-size: 8px; margin-top: 5px; display: block;
 }
 
-/* ── Type chip colours ── */
-.type-Fire     { background:#3a1200; color:#ff8050; border:1px solid #cc4422; }
-.type-Water    { background:#0a1a3a; color:#60b0ff; border:1px solid #2255cc; }
-.type-Air      { background:#0a2a1a; color:#70e0a0; border:1px solid #22aa66; }
-.type-Earth    { background:#1a1200; color:#c0a050; border:1px solid #886622; }
-.type-Electric { background:#2a2000; color:#f5c842; border:1px solid #cc9900; }
-.type-Ice      { background:#0a1e2a; color:#a0e0f0; border:1px solid #3399bb; }
-.type-Poison   { background:#1a0a2a; color:#c060f0; border:1px solid #9933cc; }
-.type-Dark     { background:#0e0e18; color:#9090c0; border:1px solid #555580; }
-.type-Ghost    { background:#150e28; color:#b080f0; border:1px solid #7755cc; }
-.type-Metal    { background:#181a22; color:#a0b0c0; border:1px solid #6688aa; }
-.type-Nature   { background:#0a1e0a; color:#70d060; border:1px solid #448844; }
-.type-Normal   { background:#1a1a2a; color:#9090b0; border:1px solid #555570; }
+.report-stats-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 12px;
+}
+.stat-cell {
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--rs);
+  padding: 8px 10px; text-align: center;
+}
+.stat-cell .sc-label { font-size: 9px; color: var(--muted); margin-bottom: 3px; }
+.stat-cell .sc-val   { font-family: var(--px); font-size: 10px; color: var(--text); }
+.stat-cell .sc-bar   {
+  height: 4px; border-radius: 2px; margin-top: 4px;
+  background: var(--border); overflow: hidden;
+}
+.stat-cell .sc-fill  { height: 100%; border-radius: 2px; transition: width 0.5s ease; }
+
+.report-moves { margin-bottom: 12px; }
+.report-section-title {
+  font-family: var(--px); font-size: 7px; color: var(--muted);
+  letter-spacing: 1px; margin-bottom: 8px;
+}
+.move-row {
+  display: flex; align-items: flex-start; gap: 8px;
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--rs);
+  padding: 8px 10px; margin-bottom: 6px; font-size: 12px;
+}
+.move-row:last-child { margin-bottom: 0; }
+.move-row-name { font-weight: 600; color: var(--text); min-width: 0; flex: 1; }
+.move-row-detail { font-size: 10px; color: var(--muted); margin-top: 1px; }
+.move-row-badge {
+  font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 4px;
+  border: 1px solid; white-space: nowrap; flex-shrink: 0; margin-top: 1px;
+}
+.mb-fast   { background:#0a2010; color:#56c87a; border-color:#56c87a; }
+.mb-medium { background:#2a2200; color:#f5c842; border-color:#f5c842; }
+.mb-slow   { background:#2a0808; color:#e85d5d; border-color:#e85d5d; }
+
+.report-issues { margin-bottom: 4px; }
+.issue-row {
+  display: flex; align-items: flex-start; gap: 8px;
+  padding: 7px 10px; border-radius: var(--rs); margin-bottom: 5px;
+  font-size: 12px; line-height: 1.5;
+}
+.issue-row:last-child { margin-bottom: 0; }
+.issue-error { background: rgba(160,20,20,0.18); border: 1px solid #6a2020; }
+.issue-error .issue-icon { color: #ff6060; }
+.issue-error .issue-msg  { color: #ff9090; }
+.issue-warn  { background: rgba(140,100,0,0.14); border: 1px solid #504010; }
+.issue-warn  .issue-icon { color: #f5c842; }
+.issue-warn  .issue-msg  { color: #d0a030; }
+.issue-ok    { background: rgba(0,100,60,0.14); border: 1px solid #1a4a28; }
+.issue-ok    .issue-icon { color: #56c87a; }
+.issue-ok    .issue-msg  { color: #80c890; }
+.issue-icon  { flex-shrink: 0; font-weight: 700; }
+
+.report-type-table { margin-bottom: 12px; }
+.type-matchup-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 5px;
+}
+.type-cell {
+  text-align: center; padding: 5px 4px; border-radius: var(--rs);
+  border: 1px solid var(--border); font-size: 10px;
+}
+.type-cell .tc-type  { font-weight: 600; margin-bottom: 2px; }
+.type-cell .tc-mult  { font-family: var(--px); font-size: 8px; }
+.tc-super { background: rgba(0,100,60,0.2);  border-color: #2a6040; }
+.tc-super .tc-mult  { color: #56c87a; }
+.tc-weak  { background: rgba(160,20,20,0.18); border-color: #6a2020; }
+.tc-weak  .tc-mult  { color: #ff6060; }
+.tc-norm  { background: var(--card); }
+.tc-norm  .tc-mult  { color: var(--muted); }
+
+.report-computing {
+  text-align: center; padding: 20px;
+  font-family: var(--px); font-size: 8px; color: var(--muted); letter-spacing: 1px;
+}
 </style>
 </head>
 <body>
 
-<a href="index.html" class="home-link">← HOME</a>
+<a class="home-link" href="index.html">← HOME</a>
 <h1>⚔ FAKEMON BATTLE</h1>
-<p class="subtitle">choose your fighter</p>
+<p class="subtitle">choose your fighter and battle!</p>
 
-<!-- ═══════════════════════════════════════════════════════
-     DEBUG PANEL  — colored + filterable
-     Students: this panel helps you spot problems in your
-     JSON file. Use the filter tabs to find errors quickly!
-════════════════════════════════════════════════════════ -->
+<!-- ════════════════════════════════════════════════════════════════
+     DEBUG PANEL
+     Students: This shows you what the game is doing step by step.
+     Green = good, Yellow = warning, Red = error.
+     Use the filter buttons to find problems fast!
+     Click the header bar to hide/show it.
+════════════════════════════════════════════════════════════════ -->
 <div id="debug-panel">
   <div id="debug-header" onclick="toggleDebug()">
     <span id="debug-header-label">🐛 DEBUG <span id="debug-count">(0)</span></span>
     <div id="debug-controls" onclick="event.stopPropagation()">
-      <!-- filter tabs -->
-      <button class="debug-filter-btn f-all active"    onclick="setFilter('all')">ALL</button>
-      <button class="debug-filter-btn f-info"          onclick="setFilter('info')">ℹ INFO</button>
-      <button class="debug-filter-btn f-battle"        onclick="setFilter('battle')">⚔ BATTLE</button>
-      <button class="debug-filter-btn f-ok"            onclick="setFilter('ok')">✓ OK</button>
-      <button class="debug-filter-btn f-warn"          onclick="setFilter('warn')">⚠ WARN</button>
-      <button class="debug-filter-btn f-error"         onclick="setFilter('error')">✗ ERROR</button>
-      <button id="debug-clear"                         onclick="clearDebug()">CLEAR</button>
+      <button class="debug-filter-btn f-all active"  onclick="setFilter('all')">ALL</button>
+      <button class="debug-filter-btn f-info"        onclick="setFilter('info')">ℹ INFO</button>
+      <button class="debug-filter-btn f-battle"      onclick="setFilter('battle')">⚔ BATTLE</button>
+      <button class="debug-filter-btn f-ok"          onclick="setFilter('ok')">✓ OK</button>
+      <button class="debug-filter-btn f-warn"        onclick="setFilter('warn')">⚠ WARN</button>
+      <button class="debug-filter-btn f-error"       onclick="setFilter('error')">✗ ERROR</button>
+      <button id="debug-clear"                       onclick="clearDebug()">CLEAR</button>
       <button id="debug-toggle">HIDE ▲</button>
     </div>
   </div>
@@ -363,11 +546,47 @@ h1 {
 
 <div id="screen-loading">loading fakemon…</div>
 
+<!-- ════════════════════════════════════════════════════════════════
+     TEST FAKEMON PANEL
+     Students: Paste your fakemon JSON here to check for errors
+     and see your power level BEFORE adding it to the class game!
+════════════════════════════════════════════════════════════════ -->
+<div id="tester-panel">
+  <div id="tester-header" onclick="toggleTester()">
+    <span id="tester-header-label">🧪 TEST YOUR FAKEMON</span>
+    <button id="tester-toggle" onclick="event.stopPropagation();toggleTester()">SHOW ▼</button>
+  </div>
+  <div id="tester-body" class="collapsed">
+    <p id="tester-instructions">
+      <strong>Paste the entire contents of your .json file below</strong> and click Analyze.
+      You'll get a full report: errors, warnings, stats, moves, type matchups, and your power level.
+      Fix any red errors before submitting your pull request!
+    </p>
+    <textarea id="json-input" spellcheck="false" placeholder='Paste your fakemon JSON here, e.g.:
+{
+  "id": "myfakemon",
+  "name": "MyFakemon",
+  "type": "Fire",
+  "emoji": "🔥",
+  ...
+}'></textarea>
+    <button id="tester-run-btn" onclick="runTester()">▶ ANALYZE FAKEMON</button>
+    <div id="tester-report"></div>
+  </div>
+</div>
+
 <div id="screen-select" class="hidden">
-  <h2>▸ pick your fakemon</h2>
+  <h2>▸ pick YOUR fakemon</h2>
   <div class="fakemon-grid" id="fakemon-grid"></div>
-  <div id="matchup-hint"></div>
-  <button id="start-btn" disabled>▶ BATTLE!</button>
+
+  <!-- opponent picker — appears after player picks their fakemon -->
+  <div id="opponent-section" class="hidden">
+    <h2 style="font-family:var(--px);font-size:8px;color:var(--muted);letter-spacing:1px;margin-bottom:6px;text-align:center;">▸ pick your OPPONENT</h2>
+    <p class="opponent-sub">⭐ RECOMMENDED is the closest power match. You can pick anyone!</p>
+    <div class="fakemon-grid" id="opponent-grid"></div>
+    <div id="matchup-hint"></div>
+    <button id="start-btn" disabled>▶ BATTLE!</button>
+  </div>
 </div>
 
 <div id="screen-battle" class="hidden">
@@ -424,16 +643,17 @@ h1 {
 <script>
 // ════════════════════════════════════════════════════════════════════════
 //  DEBUG SYSTEM
-//  Students: Use dlog(message, type) anywhere in this file to print
+//
+//  Students: Use dlog(message, type) anywhere in this file to add
 //  a message to the debug panel above!
 //
 //  Types:
-//    'info'   — general info (blue)       e.g. dlog('Game started', 'info')
-//    'ok'     — success (green)           e.g. dlog('File loaded!', 'ok')
-//    'warn'   — warning (yellow)          e.g. dlog('Missing field', 'warn')
-//    'error'  — something broke (red)     e.g. dlog('File not found!', 'error')
-//    'battle' — battle events (teal)      e.g. dlog('Turn 1 started', 'battle')
-//    'score'  — scoring/calc (purple)     e.g. dlog('Power = 72', 'score')
+//    'info'   — general info (blue)     e.g. dlog('Game started', 'info')
+//    'ok'     — success (green)         e.g. dlog('File loaded!', 'ok')
+//    'warn'   — warning (yellow)        e.g. dlog('Missing field', 'warn')
+//    'error'  — something broke (red)   e.g. dlog('File not found!', 'error')
+//    'battle' — battle events (teal)    e.g. dlog('Turn 1 started', 'battle')
+//    'score'  — scoring/calc (purple)   e.g. dlog('Power = 72', 'score')
 // ════════════════════════════════════════════════════════════════════════
 
 let debugCollapsed = false;
@@ -446,27 +666,21 @@ function dlog(msg, type = 'info') {
   debugMsgCount++;
   const body = document.getElementById('debug-body');
   const el   = document.createElement('div');
-  el.className = `dlog dlog-${type}`;
+  el.className   = `dlog dlog-${type}`;
   el.dataset.type = type;
 
-  const ts     = new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
-  const icon   = DEBUG_ICONS[type] || 'ℹ';
-
+  const ts   = new Date().toLocaleTimeString('en-US', { hour12:false, hour:'2-digit', minute:'2-digit', second:'2-digit' });
+  const icon = DEBUG_ICONS[type] || 'ℹ';
   el.innerHTML = `<span class="dlog-ts">[${ts}]</span><span class="dlog-icon">${icon}</span><span class="dlog-msg">${escHtmlDebug(String(msg))}</span>`;
 
-  // Apply current filter
-  if (activeFilter !== 'all' && type !== activeFilter) {
-    el.classList.add('filtered-out');
-  }
+  if (activeFilter !== 'all' && type !== activeFilter) el.classList.add('filtered-out');
 
   body.appendChild(el);
   body.scrollTop = body.scrollHeight;
 
-  // Update count badge
   const visible = body.querySelectorAll('.dlog:not(.filtered-out)').length;
   document.getElementById('debug-count').textContent = `(${debugMsgCount} total, ${visible} shown)`;
 
-  // Mirror to real browser console (useful if devtools ever available)
   if (type === 'error') console.error(`[FAKEMON] ${msg}`);
   else if (type === 'warn') console.warn(`[FAKEMON] ${msg}`);
   else console.log(`[FAKEMON][${type}] ${msg}`);
@@ -480,6 +694,7 @@ function toggleDebug() {
   debugCollapsed = !debugCollapsed;
   document.getElementById('debug-body').classList.toggle('collapsed', debugCollapsed);
   document.getElementById('debug-toggle').textContent = debugCollapsed ? 'SHOW ▼' : 'HIDE ▲';
+  dlog(`Debug panel ${debugCollapsed ? 'collapsed' : 'expanded'}`, 'info');
 }
 
 function clearDebug() {
@@ -489,29 +704,18 @@ function clearDebug() {
   dlog('Debug log cleared.', 'info');
 }
 
-// Filter tabs — click a tab to show only that type of message
 function setFilter(type) {
   activeFilter = type;
-
-  // Update tab button styles
-  document.querySelectorAll('.debug-filter-btn').forEach(btn => {
-    btn.classList.remove('active');
-  });
+  document.querySelectorAll('.debug-filter-btn').forEach(btn => btn.classList.remove('active'));
   const activeBtn = document.querySelector(`.debug-filter-btn.f-${type}`);
   if (activeBtn) activeBtn.classList.add('active');
-
-  // Show/hide existing messages
   document.querySelectorAll('.dlog').forEach(el => {
     const t = el.dataset.type || 'info';
     el.classList.toggle('filtered-out', type !== 'all' && t !== type);
   });
-
-  // Update visible count
-  const body = document.getElementById('debug-body');
+  const body    = document.getElementById('debug-body');
   const visible = body.querySelectorAll('.dlog:not(.filtered-out)').length;
   document.getElementById('debug-count').textContent = `(${debugMsgCount} total, ${visible} shown)`;
-
-  dlog(`Filter set to: ${type}`, 'info');
 }
 
 // ════════════════════════════════════════════════════════════════════════
@@ -533,13 +737,9 @@ const SPEED_MULT  = { fast: 1.15, medium: 1.0, slow: 0.88 };
 
 // ════════════════════════════════════════════════════════════════════════
 //  MULTI-STATUS HELPER
-//  Reads a move's statuses in either old (status field) or new
-//  (statuses array) format and returns a unified array.
 // ════════════════════════════════════════════════════════════════════════
 function getMoveStatuses(move) {
-  if (Array.isArray(move.statuses) && move.statuses.length > 0) {
-    return move.statuses;
-  }
+  if (Array.isArray(move.statuses) && move.statuses.length > 0) return move.statuses;
   if (move.status) {
     return [{ status: move.status, statusChance: move.statusChance ?? 1.0, statTarget: move.statTarget ?? null }];
   }
@@ -555,7 +755,9 @@ function pickEnemy(player, allFakemon) {
     .filter(f => f.id !== player.id)
     .sort((a, b) => Math.abs(a._power - player._power) - Math.abs(b._power - player._power));
   const pool = candidates.slice(0, Math.min(2, candidates.length));
-  return pool[Math.floor(Math.random() * pool.length)];
+  const chosen = pool[Math.floor(Math.random() * pool.length)];
+  dlog(`pickEnemy: recommended "${chosen.name}" (PWR ${chosen._power}) for "${player.name}" (PWR ${player._power})`, 'info');
+  return chosen;
 }
 
 function matchupLabel(pPow, ePow) {
@@ -569,91 +771,74 @@ function matchupLabel(pPow, ePow) {
 //  LOAD FAKEMON
 // ════════════════════════════════════════════════════════════════════════
 
-let ALL_FAKEMON  = [];
-let selectedId   = null;
-let state        = null;
+let ALL_FAKEMON   = [];
+let selectedId    = null;
+let selectedEnemyId = null;
+let state         = null;
 
 async function loadAll() {
+  dlog('=== GAME BOOT ===', 'ok');
   dlog('Loading fakemonlist.json…', 'info');
-  console.log('[DEBUG] loadAll() function started');
-  
+
   let list;
   try {
-    console.log('[DEBUG] Attempting to fetch: fakemon/fakemonlist.json');
+    dlog('Fetching fakemon/fakemonlist.json…', 'info');
     const r = await fetch('fakemon/fakemonlist.json');
-    
-    console.log('[DEBUG] Fetch response status:', r.status, r.statusText);
-    console.log('[DEBUG] Response OK?', r.ok);
-    
-    if (!r.ok) throw new Error(`HTTP ${r.status}`);
-    
+    dlog(`HTTP response: ${r.status} ${r.statusText}`, r.ok ? 'info' : 'error');
+    if (!r.ok) throw new Error(`HTTP ${r.status} — fakemonlist.json not found`);
+
     const data = await r.json();
-    console.log('[DEBUG] Raw JSON data received:', data);
-    console.log('[DEBUG] Type of data:', typeof data);
-    console.log('[DEBUG] Is data an array?', Array.isArray(data));
-    
-    // Extract the fakemon array from the object
+    dlog(`Raw JSON type: ${typeof data}, is array: ${Array.isArray(data)}`, 'info');
+
     if (data.fakemon && Array.isArray(data.fakemon)) {
-      console.log('[DEBUG] Found fakemon array in data.fakemon');
-      list = data.fakemon;
-      console.log('[DEBUG] Original fakemon names:', list);
-      
-      // Add .json extension to each filename
-      list = list.map(name => {
-        const withExtension = name.endsWith('.json') ? name : `${name}.json`;
-        console.log(`[DEBUG] Mapping: "${name}" -> "${withExtension}"`);
-        return withExtension;
-      });
-      
-      console.log(`[DEBUG] Processed ${list.length} fakemon names with .json extension`);
+      list = data.fakemon.map(name => name.endsWith('.json') ? name : `${name}.json`);
+      dlog(`Found fakemon array with ${list.length} entries: ${data.fakemon.join(', ')}`, 'ok');
     } else if (Array.isArray(data)) {
-      console.log('[DEBUG] Data is directly an array');
       list = data;
+      dlog(`JSON is a direct array with ${list.length} entries`, 'ok');
     } else {
-      console.error('[DEBUG] Unexpected JSON structure:', data);
-      throw new Error('JSON does not contain a fakemon array');
+      throw new Error('JSON does not contain a "fakemon" array — check fakemonlist.json format');
     }
-    
-    console.log('[DEBUG] Final list array:', list);
-    dlog(`fakemonlist.json OK — ${list.length} entries found`, 'ok');
-    
+
+    dlog(`fakemonlist.json OK — ${list.length} entries`, 'ok');
   } catch(e) {
-    console.error('[DEBUG] Error:', e);
     dlog(`FAILED to load fakemonlist.json: ${e.message}`, 'error');
-    document.getElementById('screen-loading').textContent = '⚠ Could not load fakemonlist.json';
+    dlog('Check: does the file exist? Is it valid JSON? Does it have a "fakemon" array?', 'warn');
+    document.getElementById('screen-loading').textContent = '⚠ Could not load fakemonlist.json — check debug panel!';
     return;
   }
 
   if (!Array.isArray(list) || list.length === 0) {
-    console.error('[DEBUG] Invalid list:', list);
     dlog('fakemonlist.json has no valid entries!', 'error');
     document.getElementById('screen-loading').textContent = '⚠ No Fakemon found';
     return;
   }
 
-  console.log(`[DEBUG] Loading ${list.length} Fakemon files...`);
-  
-  const results = await Promise.allSettled(
-    list.map(filename => loadOneFakemon(filename))
-  );
+  dlog(`Loading ${list.length} Fakemon files…`, 'info');
+  const results = await Promise.allSettled(list.map(filename => loadOneFakemon(filename)));
 
   results.forEach((result, i) => {
     if (result.status === 'fulfilled' && result.value) {
       ALL_FAKEMON.push(result.value);
-      console.log(`[DEBUG] Loaded: ${result.value.name}`);
-    } else {
-      console.error(`[DEBUG] Failed: ${list[i]}`, result.reason);
+    } else if (result.status === 'rejected') {
+      dlog(`Promise rejected for ${list[i]}: ${result.reason}`, 'error');
     }
   });
 
   dlog(`Loaded ${ALL_FAKEMON.length} / ${list.length} Fakemon successfully`, ALL_FAKEMON.length > 0 ? 'ok' : 'error');
 
+  if (ALL_FAKEMON.length === 0) {
+    dlog('No Fakemon loaded at all! Fix errors above first.', 'error');
+    document.getElementById('screen-loading').textContent = '⚠ No valid Fakemon loaded — check debug panel!';
+    return;
+  }
   if (ALL_FAKEMON.length < 2) {
-    dlog('Need at least 2 valid Fakemon to start a battle!', 'error');
+    dlog('Need at least 2 valid Fakemon to battle. Fix the errors above!', 'error');
     document.getElementById('screen-loading').textContent = '⚠ Need at least 2 valid Fakemon.';
     return;
   }
 
+  dlog(`All Fakemon ready. Power levels: ${ALL_FAKEMON.map(f => `${f.name}=${f._power}`).join(', ')}`, 'score');
   buildSelectScreen();
   show('screen-select');
 }
@@ -662,22 +847,57 @@ async function loadOneFakemon(filename) {
   dlog(`Loading fakemon/${filename}…`, 'info');
   try {
     const r = await fetch(`fakemon/${filename}`);
+    dlog(`  ${filename}: HTTP ${r.status}`, r.ok ? 'info' : 'error');
     if (!r.ok) throw new Error(`HTTP ${r.status} for fakemon/${filename}`);
-    const data = await r.json();
 
-    // Validate
+    let raw;
+    try {
+      raw = await r.text();
+      dlog(`  ${filename}: raw JSON length = ${raw.length} characters`, 'info');
+    } catch (e) {
+      throw new Error(`Could not read file body: ${e.message}`);
+    }
+
+    let data;
+    try {
+      data = JSON.parse(raw);
+    } catch (jsonErr) {
+      dlog(`  ${filename}: JSON PARSE ERROR — ${jsonErr.message}`, 'error');
+      dlog(`  Common causes: missing comma, extra comma, unclosed bracket, or comment in JSON`, 'warn');
+      // Show a small snippet around the problem area if possible
+      const match = jsonErr.message.match(/position (\d+)/);
+      if (match) {
+        const pos = parseInt(match[1]);
+        const snippet = raw.substring(Math.max(0, pos - 30), pos + 30).replace(/\n/g, '↵');
+        dlog(`  Context around error: …${snippet}…`, 'warn');
+      }
+      return null;
+    }
+
+    // Check required fields individually with helpful messages
+    dlog(`  ${filename}: checking required fields…`, 'info');
+    if (!data.id)    dlog(`  ${filename}: WARNING — missing "id" field`, 'warn');
+    if (!data.name)  dlog(`  ${filename}: WARNING — missing "name" field`, 'warn');
+    if (!data.type)  dlog(`  ${filename}: WARNING — missing "type" field`, 'warn');
+    if (!data.emoji) dlog(`  ${filename}: WARNING — missing "emoji" field`, 'warn');
+    if (!data.moves || !Array.isArray(data.moves)) {
+      dlog(`  ${filename}: WARNING — missing or invalid "moves" array`, 'warn');
+    } else {
+      dlog(`  ${filename}: has ${data.moves.length} moves: ${data.moves.map(m => m.name || m.id || '?').join(', ')}`, 'info');
+    }
+
+    // Validate via FakemonScorer
     const { errors, warnings } = FakemonScorer.validateFakemon(data);
     warnings.forEach(w => dlog(`  ⚠ ${filename}: ${w}`, 'warn'));
     if (errors.length > 0) {
       errors.forEach(e => dlog(`  ✗ ${filename}: ${e}`, 'error'));
-      dlog(`  ${filename} has ${errors.length} error(s) — skipping`, 'error');
+      dlog(`  ${filename} has ${errors.length} error(s) — skipping. Fix errors above!`, 'error');
       return null;
     }
 
-    // Power level
     const power = FakemonScorer.calcPowerLevel(data);
     data._power = power;
-    dlog(`  ${data.name} loaded — power level: ${power}`, 'score');
+    dlog(`  ✓ ${data.name} loaded — type=${data.type} hp=${data.hp ?? 100} atk=${data.atk ?? data.power ?? 100} spd=${data.speed ?? 90} def=${data.defense ?? 10} acc=${data.accuracy ?? 90} power=${power}`, 'score');
     return data;
   } catch(e) {
     dlog(`FAILED to load ${filename}: ${e.message}`, 'error');
@@ -685,9 +905,14 @@ async function loadOneFakemon(filename) {
   }
 }
 
+// ════════════════════════════════════════════════════════════════════════
+//  SELECT SCREEN
+// ════════════════════════════════════════════════════════════════════════
+
 function buildSelectScreen() {
   const grid = document.getElementById('fakemon-grid');
   grid.innerHTML = '';
+  dlog(`Building player select grid with ${ALL_FAKEMON.length} options…`, 'info');
   ALL_FAKEMON.forEach(f => {
     const card = document.createElement('div');
     card.className = 'fakemon-choice';
@@ -698,29 +923,90 @@ function buildSelectScreen() {
       <div class="choice-type">${f.type || ''}</div>
       <div class="choice-power">⭐ PWR ${f._power}</div>
     `;
-    card.onclick = () => selectFakemon(f.id);
+    card.onclick = () => selectPlayerFakemon(f.id);
     grid.appendChild(card);
   });
-  dlog(`Select screen ready with ${ALL_FAKEMON.length} fighters`, 'ok');
+  dlog(`Player select screen ready with ${ALL_FAKEMON.length} choices`, 'ok');
 }
 
-function selectFakemon(id) {
+function selectPlayerFakemon(id) {
   selectedId = id;
-  document.querySelectorAll('.fakemon-choice').forEach(el =>
+  selectedEnemyId = null;
+
+  document.querySelectorAll('#fakemon-grid .fakemon-choice').forEach(el =>
     el.classList.toggle('selected', el.dataset.id === id)
   );
-  document.getElementById('start-btn').disabled = false;
+
   const player = ALL_FAKEMON.find(f => f.id === id);
-  const enemy  = pickEnemy(player, ALL_FAKEMON);
-  const hint   = document.getElementById('matchup-hint');
+  dlog(`Player selected: ${player.name} (id="${player.id}", PWR ${player._power}, type=${player.type})`, 'info');
+  dlog(`  Stats — HP:${player.hp ?? 100} ATK:${player.atk ?? player.power ?? 100} SPD:${player.speed ?? 90} DEF:${player.defense ?? 10} ACC:${player.accuracy ?? 90}`, 'info');
+  dlog(`  Moves: ${player.moves.map(m => `${m.name}(${m.speed || 'medium'})`).join(', ')}`, 'info');
+
+  buildOpponentGrid(player);
+
+  document.getElementById('opponent-section').classList.remove('hidden');
+  document.getElementById('start-btn').disabled = true;
+}
+
+function buildOpponentGrid(player) {
+  const grid = document.getElementById('opponent-grid');
+  grid.innerHTML = '';
+
+  const recommended = pickEnemy(player, ALL_FAKEMON);
+  dlog(`Building opponent grid — recommended: ${recommended.name} (PWR ${recommended._power})`, 'info');
+
+  ALL_FAKEMON.filter(f => f.id !== player.id).forEach(f => {
+    const card = document.createElement('div');
+    const isRec = f.id === recommended.id;
+    card.className = 'fakemon-choice' + (isRec ? ' recommended' : '');
+    card.dataset.id = f.id;
+
+    const { text: matchText, cls: matchCls } = matchupLabel(player._power, f._power);
+    const powerDiff = f._power - player._power;
+    const diffStr = powerDiff > 0 ? `+${powerDiff}` : `${powerDiff}`;
+
+    card.innerHTML = `
+      ${isRec ? '<span class="recommended-badge">⭐ RECOMMENDED</span>' : ''}
+      <span class="choice-emoji" style="margin-top:${isRec ? '14px' : '0'}">${f.emoji || '❓'}</span>
+      <div class="choice-name">${f.name}</div>
+      <div class="choice-type">${f.type || ''}</div>
+      <div class="choice-power">PWR ${f._power} (${diffStr})</div>
+      <div class="matchup-badge ${matchCls}" style="color:${matchCls === 'fair' ? 'var(--green)' : matchCls === 'uneven' ? 'var(--orange)' : 'var(--red)'}">${matchText}</div>
+    `;
+    card.onclick = () => selectOpponentFakemon(f.id, player);
+    grid.appendChild(card);
+  });
+  dlog(`Opponent grid built with ${ALL_FAKEMON.length - 1} options`, 'ok');
+}
+
+function selectOpponentFakemon(id, player) {
+  selectedEnemyId = id;
+
+  document.querySelectorAll('#opponent-grid .fakemon-choice').forEach(el =>
+    el.classList.toggle('opponent-selected', el.dataset.id === id)
+  );
+
+  const enemy = ALL_FAKEMON.find(f => f.id === id);
+  const hint  = document.getElementById('matchup-hint');
   const { text, cls } = matchupLabel(player._power, enemy._power);
   hint.textContent = text;
   hint.className   = cls;
-  dlog(`Selected: ${player.name} (PWR ${player._power}) — likely opponent: ${enemy.name} (PWR ${enemy._power})`, 'info');
+
+  document.getElementById('start-btn').disabled = false;
+
+  const isRec = enemy.id === pickEnemy(player, ALL_FAKEMON).id;
+  dlog(`Opponent selected: ${enemy.name} (id="${enemy.id}", PWR ${enemy._power}, type=${enemy.type})${isRec ? ' — this is the recommended pick' : ' — custom pick'}`, 'info');
+  dlog(`  Matchup: ${player.name}(${player._power}) vs ${enemy.name}(${enemy._power}) — ${text}`, 'info');
+  dlog(`  Type matchup: ${player.type} vs ${enemy.type} — type multiplier: ${FakemonScorer.typeMultiplier(player.type, enemy.type)}x`, 'info');
 }
 
 document.getElementById('start-btn').onclick = () => {
-  if (selectedId) startBattle(selectedId);
+  if (selectedId && selectedEnemyId) {
+    dlog(`Start button clicked — player="${selectedId}" enemy="${selectedEnemyId}"`, 'info');
+    startBattle(selectedId, selectedEnemyId);
+  } else {
+    dlog('Start button clicked but no opponent selected!', 'warn');
+  }
 };
 
 // ════════════════════════════════════════════════════════════════════════
@@ -728,25 +1014,26 @@ document.getElementById('start-btn').onclick = () => {
 // ════════════════════════════════════════════════════════════════════════
 
 function mkFighter(f) {
-  // Accept both "atk" (new) and "power" (legacy) field names
   const atkVal = f.atk ?? f.power ?? 100;
-  dlog(`  mkFighter: ${f.name} — ATK=${atkVal} HP=${f.hp ?? 100} SPD=${f.speed ?? 90} DEF=${f.defense ?? 10} ACC=${f.accuracy ?? 90}`, 'info');
+  dlog(`  mkFighter: "${f.name}" — HP=${f.hp ?? 100} ATK=${atkVal} SPD=${f.speed ?? 90} DEF=${f.defense ?? 10} ACC=${f.accuracy ?? 90} TYPE=${f.type || 'Normal'}`, 'info');
+  if (f.atk === undefined && f.power !== undefined) {
+    dlog(`  ${f.name}: using legacy "power" field (${f.power}) as atk — consider updating to "atk"`, 'warn');
+  }
+  if (!f.moves || f.moves.length === 0) {
+    dlog(`  ${f.name}: WARNING — has no moves! This will likely crash during battle.`, 'error');
+  }
   return {
     ...f,
-    hp:    f.hp    ?? 100,
-    maxHp: f.hp    ?? 100,
+    hp:       f.hp    ?? 100,
+    maxHp:    f.hp    ?? 100,
     atk:      atkVal,
     speed:    f.speed    ?? 90,
     defense:  f.defense  ?? 10,
     accuracy: f.accuracy ?? 90,
-    atkMod:      0,
-    speedMod:    0,
-    defenseMod:  0,
-    accuracyMod: 0,
+    atkMod:      0, speedMod:    0, defenseMod:  0, accuracyMod: 0,
     statuses:     [],
     sleepTurns:   0,
     confuseTurns: 0,
-    // Per-stat tracking so each stat type can expire independently
     statupTurns:  { atk: 0, speed: 0, defense: 0, accuracy: 0 },
     statdwnTurns: { atk: 0, speed: 0, defense: 0, accuracy: 0 },
     flinched:     false,
@@ -762,13 +1049,18 @@ const effAccuracy = f => Math.max(10,  Math.min(100, f.accuracy + f.accuracyMod)
 //  BATTLE START
 // ════════════════════════════════════════════════════════════════════════
 
-function startBattle(playerId) {
+function startBattle(playerId, enemyId) {
   const pBase = ALL_FAKEMON.find(f => f.id === playerId);
-  const eBase = pickEnemy(pBase, ALL_FAKEMON);
+  const eBase = ALL_FAKEMON.find(f => f.id === enemyId);
+
+  if (!pBase) { dlog(`startBattle ERROR: player id "${playerId}" not found in ALL_FAKEMON!`, 'error'); return; }
+  if (!eBase) { dlog(`startBattle ERROR: enemy id "${enemyId}" not found in ALL_FAKEMON!`, 'error'); return; }
+
   dlog(`=== BATTLE START ===`, 'battle');
-  dlog(`${pBase.name} (PWR ${pBase._power}) vs ${eBase.name} (PWR ${eBase._power})`, 'battle');
-  dlog(`Player: HP=${pBase.hp} ATK=${pBase.atk ?? pBase.power ?? 100} SPD=${pBase.speed ?? 90} DEF=${pBase.defense ?? 10} ACC=${pBase.accuracy ?? 90}`, 'battle');
-  dlog(`Enemy:  HP=${eBase.hp} ATK=${eBase.atk ?? eBase.power ?? 100} SPD=${eBase.speed ?? 90} DEF=${eBase.defense ?? 10} ACC=${eBase.accuracy ?? 90}`, 'battle');
+  dlog(`${pBase.name} (PWR ${pBase._power}, ${pBase.type}) vs ${eBase.name} (PWR ${eBase._power}, ${eBase.type})`, 'battle');
+  dlog(`Type matchup: ${pBase.type} → ${eBase.type} = ${FakemonScorer.typeMultiplier(pBase.type, eBase.type)}x | ${eBase.type} → ${pBase.type} = ${FakemonScorer.typeMultiplier(eBase.type, pBase.type)}x`, 'battle');
+  dlog(`Player moves: ${pBase.moves.map(m => `${m.name}(${m.speed || 'medium'}, ${JSON.stringify(m.damage)})`).join(' | ')}`, 'battle');
+  dlog(`Enemy moves: ${eBase.moves.map(m => `${m.name}(${m.speed || 'medium'}, ${JSON.stringify(m.damage)})`).join(' | ')}`, 'battle');
 
   state = {
     player: mkFighter(pBase),
@@ -777,6 +1069,9 @@ function startBattle(playerId) {
     busy: false,
     over: false,
   };
+
+  dlog(`Fighter state created — player HP=${state.player.hp} | enemy HP=${state.enemy.hp}`, 'ok');
+
   buildMoveGrid();
   render();
   const { text } = matchupLabel(pBase._power, eBase._power);
@@ -789,7 +1084,13 @@ function buildMoveGrid() {
   grid.innerHTML = '';
   dlog(`Building move grid for ${state.player.name} (${state.player.moves.length} moves)`, 'info');
 
-  state.player.moves.forEach(move => {
+  if (!state.player.moves || state.player.moves.length === 0) {
+    dlog(`ERROR: ${state.player.name} has no moves — cannot build move grid!`, 'error');
+    grid.innerHTML = '<p style="color:var(--red);font-size:12px;padding:8px;">No moves found! Check your Fakemon JSON.</p>';
+    return;
+  }
+
+  state.player.moves.forEach((move, idx) => {
     const btn     = document.createElement('button');
     btn.className = 'move-btn';
     const isHeal  = move.damage && move.damage[1] < 0;
@@ -799,8 +1100,7 @@ function buildMoveGrid() {
         ? `${move.damage[0]}–${move.damage[1]} dmg`
         : 'No damage';
 
-    // Build status hint for display (supports multi-status)
-    const statuses = getMoveStatuses(move);
+    const statuses   = getMoveStatuses(move);
     const statusHint = statuses.map(se =>
       `${STATUS_EMOJI[se.status] || ''}${se.status}${se.statusChance < 1 ? ` (${Math.round(se.statusChance * 100)}%)` : ''}`
     ).join(' + ');
@@ -816,8 +1116,9 @@ function buildMoveGrid() {
     btn.onclick = () => doPlayerMove(move);
     grid.appendChild(btn);
 
-    dlog(`  Move: ${move.name} | spd=${move.speed} | dmg=${JSON.stringify(move.damage)} | statuses: ${statuses.length > 0 ? JSON.stringify(statuses) : 'none'}`, 'info');
+    dlog(`  Move [${idx}]: "${move.name}" speed=${move.speed || 'medium'} damage=${JSON.stringify(move.damage)} statuses=${statuses.length > 0 ? JSON.stringify(statuses) : 'none'}`, 'info');
   });
+  dlog(`Move grid built with ${state.player.moves.length} buttons`, 'ok');
 }
 
 // ════════════════════════════════════════════════════════════════════════
@@ -829,22 +1130,32 @@ const clamp = (v, mn, mx) => Math.max(mn, Math.min(mx, v));
 const delay = ms => new Promise(r => setTimeout(r, ms));
 
 async function doPlayerMove(move) {
-  if (state.busy || state.over) return;
+  if (state.busy || state.over) {
+    dlog(`Move click ignored — busy=${state.busy} over=${state.over}`, 'info');
+    return;
+  }
   state.busy = true;
   disableMoves(true);
 
   const { player, enemy } = state;
+
+  if (!enemy.moves || enemy.moves.length === 0) {
+    dlog(`ERROR: enemy "${enemy.name}" has no moves — cannot pick enemy action!`, 'error');
+    state.busy = false;
+    disableMoves(false);
+    return;
+  }
+
   const enemyMove = enemy.moves[rand(0, enemy.moves.length - 1)];
 
   dlog(`--- Turn ${state.turn} ---`, 'battle');
-  dlog(`${player.name} → [${move.name}]  |  ${enemy.name} → [${enemyMove.name}]`, 'battle');
+  dlog(`Player chose: [${move.name}]  |  Enemy chose: [${enemyMove.name}]`, 'battle');
 
   const tierP = SPEED_ORDER[move.speed]      || 2;
   const tierE = SPEED_ORDER[enemyMove.speed] || 2;
-  const playerFirst = tierP < tierE
-    || (tierP === tierE && effSpeed(player) >= effSpeed(enemy));
+  const playerFirst = tierP < tierE || (tierP === tierE && effSpeed(player) >= effSpeed(enemy));
 
-  dlog(`Speed: ${player.name} tier=${tierP} eff=${effSpeed(player)} | ${enemy.name} tier=${tierE} eff=${effSpeed(enemy)} → ${playerFirst ? player.name : enemy.name} goes first`, 'battle');
+  dlog(`Speed check: ${player.name} tier=${tierP} eff=${effSpeed(player)} | ${enemy.name} tier=${tierE} eff=${effSpeed(enemy)} → ${playerFirst ? player.name : enemy.name} goes FIRST`, 'battle');
 
   let log = '';
   if (playerFirst) {
@@ -860,6 +1171,7 @@ async function doPlayerMove(move) {
   }
 
   if (!state.over) {
+    dlog(`End-of-turn status ticks for both fighters…`, 'battle');
     log += tickStatuses(player);
     log += tickStatuses(enemy);
     render();
@@ -870,7 +1182,9 @@ async function doPlayerMove(move) {
   setLog(log.trim() || '…');
   render();
 
-  dlog(`End of turn: ${player.name} HP=${player.hp}/${player.maxHp} | ${enemy.name} HP=${enemy.hp}/${enemy.maxHp}`, 'battle');
+  dlog(`End of turn ${state.turn - 1}: ${player.name} HP=${player.hp}/${player.maxHp} | ${enemy.name} HP=${enemy.hp}/${enemy.maxHp}`, 'battle');
+  dlog(`  ${player.name} statuses: [${player.statuses.join(', ') || 'none'}] | mods: ATK${player.atkMod} SPD${player.speedMod} DEF${player.defenseMod} ACC${player.accuracyMod}`, 'info');
+  dlog(`  ${enemy.name} statuses: [${enemy.statuses.join(', ') || 'none'}] | mods: ATK${enemy.atkMod} SPD${enemy.speedMod} DEF${enemy.defenseMod} ACC${enemy.accuracyMod}`, 'info');
 
   if (!state.over) {
     state.busy = false;
@@ -881,6 +1195,8 @@ async function doPlayerMove(move) {
 // ── Run one fighter's action ──────────────────────────────────────────────
 async function runAction(attacker, defender, move, emojiId, wentFirst) {
   let msg = '';
+
+  dlog(`  runAction: ${attacker.name} uses [${move.name}] on ${defender.name} (wentFirst=${wentFirst})`, 'battle');
 
   if (attacker.flinched) {
     attacker.flinched = false;
@@ -893,7 +1209,7 @@ async function runAction(attacker, defender, move, emojiId, wentFirst) {
   const actResult = canAct(attacker);
   msg += actResult.msg;
   if (!actResult.can) {
-    dlog(`  ${attacker.name} couldn't act: ${actResult.msg.trim()}`, 'battle');
+    dlog(`  ${attacker.name} couldn't act: "${actResult.msg.trim()}"`, 'battle');
     render();
     return msg;
   }
@@ -904,9 +1220,10 @@ async function runAction(attacker, defender, move, emojiId, wentFirst) {
   // Accuracy check
   const accRoll = Math.random() * 100;
   const accThreshold = effAccuracy(attacker);
+  dlog(`  Accuracy roll: ${accRoll.toFixed(1)} vs threshold ${accThreshold} — ${accRoll <= accThreshold ? 'HIT' : 'MISS'}`, 'info');
   if (accRoll > accThreshold) {
     msg += ` ${attacker.name}'s move missed!`;
-    dlog(`  ${attacker.name} missed! (rolled ${accRoll.toFixed(1)}, needed ≤ ${accThreshold})`, 'warn');
+    dlog(`  ${attacker.name} MISSED! (rolled ${accRoll.toFixed(1)}, needed ≤ ${accThreshold})`, 'warn');
     render();
     return msg;
   }
@@ -915,39 +1232,46 @@ async function runAction(attacker, defender, move, emojiId, wentFirst) {
 
   if (isHeal) {
     // ── Heal move ──
-    const amt = Math.abs(move.damage[0]);
+    const amt    = Math.abs(move.damage[0]);
     const before = attacker.hp;
-    attacker.hp = Math.min(attacker.maxHp, attacker.hp + amt);
+    attacker.hp  = Math.min(attacker.maxHp, attacker.hp + amt);
     msg += ` 💊 ${attacker.name} recovered ${amt} HP!`;
-    dlog(`  ${attacker.name} healed: ${before} → ${attacker.hp} / ${attacker.maxHp}`, 'ok');
+    dlog(`  ${attacker.name} HEALED: ${before} → ${attacker.hp} / ${attacker.maxHp} (+${amt} HP)`, 'ok');
 
   } else if (move.damage && move.damage[1] > 0) {
     // ── Damage move ──
     const base    = rand(move.damage[0], move.damage[1]);
+    dlog(`  Damage roll: ${base} (range ${move.damage[0]}–${move.damage[1]})`, 'info');
     const { dmg, typeMsg } = dealDamage(attacker, defender, base, move.speed);
     const typeTag = typeMsg.includes('Super') ? ' [SUPER EFFECTIVE]' : typeMsg.includes('not very') ? ' [NOT VERY EFFECTIVE]' : '';
     msg += ` ${move.name} dealt ${dmg} damage!${typeMsg}`;
-    dlog(`  ${attacker.name}→${defender.name}: ${move.name} base=${base} final=${dmg}${typeTag} | defender HP: ${defender.hp + dmg}→${defender.hp}`, 'battle');
+    dlog(`  ${attacker.name}→${defender.name}: ${move.name} base=${base} final=${dmg}${typeTag} | ${defender.name} HP: ${defender.hp + dmg}→${defender.hp}`, 'battle');
 
     // Apply all statuses from this damage move
     for (const se of getMoveStatuses(move)) {
-      if (!se.statusChance) continue;
+      if (!se.statusChance) {
+        dlog(`  Status "${se.status}" has no statusChance — skipping`, 'warn');
+        continue;
+      }
       const roll = Math.random();
+      dlog(`  Status proc "${se.status}": rolled ${roll.toFixed(2)}, needed < ${se.statusChance} — ${roll < se.statusChance ? 'TRIGGERED' : 'missed'}`, 'info');
       if (roll < se.statusChance) {
         if (se.status === 'flinch') {
           if (wentFirst) {
             defender.flinched = true;
             msg += ` 😦 ${defender.name} flinched!`;
-            dlog(`  ${defender.name} flinched!`, 'battle');
+            dlog(`  ${defender.name} FLINCHED!`, 'battle');
+          } else {
+            dlog(`  Flinch not applied — ${attacker.name} did NOT go first`, 'info');
           }
         } else {
           const tgt = (se.status === 'statup') ? attacker : defender;
           applyStatus(tgt, se.status, se.statTarget || null);
           msg += ` ${STATUS_EMOJI[se.status] || ''} ${tgt.name}: ${se.status}!`;
-          dlog(`  Status applied: ${se.status}${se.statTarget ? ` (${se.statTarget})` : ''} → ${tgt.name}`, 'ok');
+          dlog(`  Status APPLIED: ${se.status}${se.statTarget ? ` (${se.statTarget})` : ''} → ${tgt.name}`, 'ok');
         }
       } else {
-        dlog(`  ${se.status} proc'd but missed (rolled ${roll.toFixed(2)}, needed < ${se.statusChance})`, 'info');
+        dlog(`  Status "${se.status}" did not proc (rolled ${roll.toFixed(2)}, needed < ${se.statusChance})`, 'info');
       }
     }
 
@@ -955,32 +1279,34 @@ async function runAction(attacker, defender, move, emojiId, wentFirst) {
     // ── Pure status move ──
     const statuses = getMoveStatuses(move);
     if (statuses.length === 0) {
-      msg += ` ${move.name} did nothing… (no damage and no status?)`;
-      dlog(`  WARNING: move "${move.name}" has no damage and no status — is it configured correctly?`, 'warn');
+      msg += ` ${move.name} did nothing… (no damage and no status defined!)`;
+      dlog(`  WARNING: move "${move.name}" has no damage AND no status — check your JSON!`, 'warn');
+      dlog(`  Fix: add "damage":[0,0] and a "status" field, or damage values > 0`, 'warn');
     }
 
     for (const se of getMoveStatuses(move)) {
       const chance = se.statusChance ?? 1.0;
       const roll   = Math.random();
+      dlog(`  Pure-status "${se.status}": rolled ${roll.toFixed(2)}, needed < ${chance} — ${roll < chance ? 'TRIGGERED' : 'missed'}`, 'info');
       if (roll < chance) {
         if (se.status === 'statup') {
           const t = se.statTarget || 'atk';
           applyStatus(attacker, 'statup', t);
           msg += ` 📈 ${attacker.name}'s ${t} rose!`;
-          dlog(`  ${attacker.name} stat-UP: ${t}`, 'ok');
+          dlog(`  ${attacker.name} STAT-UP: ${t}`, 'ok');
         } else if (se.status === 'statdwn') {
           const t = se.statTarget || 'atk';
           applyStatus(defender, 'statdwn', t);
           msg += ` 📉 ${defender.name}'s ${t} fell!`;
-          dlog(`  ${defender.name} stat-DOWN: ${t}`, 'ok');
+          dlog(`  ${defender.name} STAT-DOWN: ${t}`, 'ok');
         } else {
           applyStatus(defender, se.status, se.statTarget || null);
           msg += ` ${STATUS_EMOJI[se.status] || ''} ${defender.name} is ${se.status}!`;
-          dlog(`  Status applied: ${se.status} → ${defender.name}`, 'ok');
+          dlog(`  Status APPLIED: ${se.status} → ${defender.name}`, 'ok');
         }
       } else {
         msg += ` ${move.name} missed! (${se.status})`;
-        dlog(`  ${se.status} status missed (rolled ${roll.toFixed(2)}, needed < ${chance})`, 'info');
+        dlog(`  Status "${se.status}" missed (rolled ${roll.toFixed(2)}, needed < ${chance})`, 'info');
       }
     }
   }
@@ -991,14 +1317,13 @@ async function runAction(attacker, defender, move, emojiId, wentFirst) {
 
 // ── Damage formula ────────────────────────────────────────────────────────
 function dealDamage(attacker, defender, base, moveSpeed) {
-  const atkMult   = effAtk(attacker) / 100;
-  const spdMult   = SPEED_MULT[moveSpeed] || 1.0;
-  const typeMult  = FakemonScorer.typeMultiplier(attacker.type, defender.type);
-  const defMult   = 1 - effDefense(defender) / 100;
+  const atkMult  = effAtk(attacker) / 100;
+  const spdMult  = SPEED_MULT[moveSpeed] || 1.0;
+  const typeMult = FakemonScorer.typeMultiplier(attacker.type, defender.type);
+  const defMult  = 1 - effDefense(defender) / 100;
   const raw = Math.max(1, Math.round(base * atkMult * spdMult * typeMult * defMult));
   defender.hp = Math.max(0, defender.hp - raw);
-  dlog(`  Damage calc: base=${base} × atk${atkMult.toFixed(2)} × spd${spdMult.toFixed(2)} × type${typeMult} × def${defMult.toFixed(2)} = ${raw}`, 'info');
-
+  dlog(`  Damage calc: base=${base} × atkMult=${atkMult.toFixed(2)} × spdMult=${spdMult.toFixed(2)} × typeMult=${typeMult} × defMult=${defMult.toFixed(2)} = ${raw} (defender ${attacker.type}→${defender.type})`, 'info');
   let typeMsg = '';
   if (typeMult === 2)   typeMsg = ' <span class="type-super">Super effective!</span>';
   if (typeMult === 0.5) typeMsg = ' <span class="type-weak">Not very effective.</span>';
@@ -1007,65 +1332,77 @@ function dealDamage(attacker, defender, base, moveSpeed) {
 
 // ── Status application ────────────────────────────────────────────────────
 function applyStatus(fighter, status, statTarget) {
-  if (status === 'flinch') { fighter.flinched = true; return; }
+  dlog(`  applyStatus: trying to give "${status}" to ${fighter.name} (statTarget=${statTarget || 'none'})`, 'info');
+  if (status === 'flinch') { fighter.flinched = true; dlog(`  ${fighter.name} will flinch next turn`, 'ok'); return; }
   if (fighter.statuses.includes(status)) {
-    dlog(`  ${fighter.name} already has ${status} — not stacking`, 'info');
+    dlog(`  ${fighter.name} already has "${status}" — not stacking`, 'info');
     return;
   }
-  if (PRIMARY_STATUSES.includes(status) &&
-      PRIMARY_STATUSES.some(s => fighter.statuses.includes(s))) {
-    dlog(`  ${fighter.name} already has a primary status — ${status} blocked`, 'info');
+  if (PRIMARY_STATUSES.includes(status) && PRIMARY_STATUSES.some(s => fighter.statuses.includes(s))) {
+    dlog(`  ${fighter.name} already has a primary status — "${status}" blocked`, 'info');
     return;
   }
 
   fighter.statuses.push(status);
-  dlog(`  → ${fighter.name} gains status: ${status}${statTarget ? ` (target: ${statTarget})` : ''}`, 'ok');
+  dlog(`  ${fighter.name} now has status: ${fighter.statuses.join(', ')}`, 'ok');
 
-  if (status === 'sleep')    { fighter.sleepTurns   = rand(2, 3); dlog(`  sleepTurns set to ${fighter.sleepTurns}`, 'info'); }
-  if (status === 'confuse')  { fighter.confuseTurns = rand(2, 4); dlog(`  confuseTurns set to ${fighter.confuseTurns}`, 'info'); }
-  if (status === 'paralyze') { fighter.speedMod -= 30;   dlog(`  paralyze: speed −30 (now ${effSpeed(fighter)})`, 'info'); }
-  if (status === 'burn')     { fighter.atkMod   -= 20;   dlog(`  burn: atk −20 (now ${effAtk(fighter)})`, 'info'); }
-
+  if (status === 'sleep') {
+    fighter.sleepTurns = rand(2, 3);
+    dlog(`  ${fighter.name} will sleep for ${fighter.sleepTurns} turns`, 'info');
+  }
+  if (status === 'confuse') {
+    fighter.confuseTurns = rand(2, 4);
+    dlog(`  ${fighter.name} confused for ${fighter.confuseTurns} turns`, 'info');
+  }
+  if (status === 'paralyze') {
+    fighter.speedMod -= 30;
+    dlog(`  ${fighter.name} paralyzed — speed −30 (now eff ${effSpeed(fighter)})`, 'info');
+  }
+  if (status === 'burn') {
+    fighter.atkMod -= 20;
+    dlog(`  ${fighter.name} burned — ATK −20 (now eff ${effAtk(fighter)})`, 'info');
+  }
   if (status === 'statup') {
     const t = statTarget || 'atk';
-    if (t === 'atk' || t === 'power') { fighter.atkMod      += 20; fighter.statupTurns.atk      = 3; dlog(`  statup: atk +20 for 3 turns (now ${effAtk(fighter)})`, 'info'); }
-    if (t === 'speed')                { fighter.speedMod    += 20; fighter.statupTurns.speed    = 3; dlog(`  statup: speed +20 for 3 turns (now ${effSpeed(fighter)})`, 'info'); }
-    if (t === 'defense')              { fighter.defenseMod  += 15; fighter.statupTurns.defense  = 3; dlog(`  statup: defense +15 for 3 turns (now ${effDefense(fighter)})`, 'info'); }
-    if (t === 'accuracy')             { fighter.accuracyMod += 15; fighter.statupTurns.accuracy = 3; dlog(`  statup: accuracy +15 for 3 turns (now ${effAccuracy(fighter)})`, 'info'); }
+    if (t === 'atk' || t === 'power')  { fighter.atkMod      += 20; fighter.statupTurns.atk      = 3; dlog(`  statup: atk +20 for 3 turns (now eff ${effAtk(fighter)})`, 'info'); }
+    if (t === 'speed')                 { fighter.speedMod    += 20; fighter.statupTurns.speed    = 3; dlog(`  statup: speed +20 for 3 turns (now eff ${effSpeed(fighter)})`, 'info'); }
+    if (t === 'defense')               { fighter.defenseMod  += 15; fighter.statupTurns.defense  = 3; dlog(`  statup: defense +15 for 3 turns (now eff ${effDefense(fighter)})`, 'info'); }
+    if (t === 'accuracy')              { fighter.accuracyMod += 15; fighter.statupTurns.accuracy = 3; dlog(`  statup: accuracy +15 for 3 turns (now eff ${effAccuracy(fighter)})`, 'info'); }
   }
   if (status === 'statdwn') {
     const t = statTarget || 'atk';
-    if (t === 'atk' || t === 'power') { fighter.atkMod      -= 20; fighter.statdwnTurns.atk      = 3; dlog(`  statdwn: atk −20 for 3 turns (now ${effAtk(fighter)})`, 'info'); }
-    if (t === 'speed')                { fighter.speedMod    -= 20; fighter.statdwnTurns.speed    = 3; dlog(`  statdwn: speed −20 for 3 turns (now ${effSpeed(fighter)})`, 'info'); }
-    if (t === 'defense')              { fighter.defenseMod  -= 15; fighter.statdwnTurns.defense  = 3; dlog(`  statdwn: defense −15 for 3 turns (now ${effDefense(fighter)})`, 'info'); }
-    if (t === 'accuracy')             { fighter.accuracyMod -= 15; fighter.statdwnTurns.accuracy = 3; dlog(`  statdwn: accuracy −15 for 3 turns (now ${effAccuracy(fighter)})`, 'info'); }
+    if (t === 'atk' || t === 'power')  { fighter.atkMod      -= 20; fighter.statdwnTurns.atk      = 3; dlog(`  statdwn: atk −20 for 3 turns (now eff ${effAtk(fighter)})`, 'info'); }
+    if (t === 'speed')                 { fighter.speedMod    -= 20; fighter.statdwnTurns.speed    = 3; dlog(`  statdwn: speed −20 for 3 turns (now eff ${effSpeed(fighter)})`, 'info'); }
+    if (t === 'defense')               { fighter.defenseMod  -= 15; fighter.statdwnTurns.defense  = 3; dlog(`  statdwn: defense −15 for 3 turns (now eff ${effDefense(fighter)})`, 'info'); }
+    if (t === 'accuracy')              { fighter.accuracyMod -= 15; fighter.statdwnTurns.accuracy = 3; dlog(`  statdwn: accuracy −15 for 3 turns (now eff ${effAccuracy(fighter)})`, 'info'); }
   }
 }
 
 function removeStatus(fighter, status) {
   fighter.statuses = fighter.statuses.filter(s => s !== status);
-  dlog(`  ${fighter.name} lost status: ${status}`, 'info');
+  dlog(`  ${fighter.name} lost status: ${status} (remaining: [${fighter.statuses.join(', ') || 'none'}])`, 'info');
 }
 
 // ── Pre-action checks ─────────────────────────────────────────────────────
 function canAct(fighter) {
   if (fighter.statuses.includes('sleep')) {
     fighter.sleepTurns--;
-    dlog(`  ${fighter.name} sleep tick (${fighter.sleepTurns} turns left)`, 'info');
+    dlog(`  ${fighter.name} sleep tick — ${fighter.sleepTurns} turns remaining`, 'info');
     if (fighter.sleepTurns <= 0) {
       removeStatus(fighter, 'sleep');
+      dlog(`  ${fighter.name} WOKE UP!`, 'ok');
       return { can: true, msg: ` 💤 ${fighter.name} woke up!` };
     }
     return { can: false, msg: ` 💤 ${fighter.name} is fast asleep…` };
   }
   if (fighter.statuses.includes('paralyze') && Math.random() < 0.35) {
-    dlog(`  ${fighter.name} paralysis triggered — skipping turn`, 'info');
+    dlog(`  ${fighter.name} paralysis triggered — turn skipped`, 'battle');
     return { can: false, msg: ` ⚡ ${fighter.name} is paralyzed and can't move!` };
   }
   if (fighter.statuses.includes('confuse') && Math.random() < 0.33) {
     const dmg = rand(8, 15);
     fighter.hp = Math.max(0, fighter.hp - dmg);
-    dlog(`  ${fighter.name} hurt itself from confusion (${dmg} dmg)`, 'warn');
+    dlog(`  ${fighter.name} hurt itself from confusion for ${dmg} (HP now ${fighter.hp})`, 'warn');
     return { can: false, msg: ` 😵 ${fighter.name} hurt itself for ${dmg}!` };
   }
   return { can: true, msg: '' };
@@ -1074,24 +1411,27 @@ function canAct(fighter) {
 // ── End-of-turn status ticks ──────────────────────────────────────────────
 function tickStatuses(fighter) {
   let msg = '';
+  dlog(`  tickStatuses: ${fighter.name} — statuses=[${fighter.statuses.join(', ') || 'none'}]`, 'info');
 
   if (fighter.statuses.includes('burn')) {
     const d = Math.round(fighter.maxHp * 0.06);
     fighter.hp = Math.max(0, fighter.hp - d);
     msg += ` 🔴 ${fighter.name} took ${d} burn damage!`;
-    dlog(`  ${fighter.name} burn tick: −${d} HP`, 'info');
+    dlog(`  ${fighter.name} burn tick: −${d} HP (now ${fighter.hp}/${fighter.maxHp})`, 'info');
   }
   if (fighter.statuses.includes('poison')) {
     const d = Math.round(fighter.maxHp * 0.08);
     fighter.hp = Math.max(0, fighter.hp - d);
     msg += ` 🟣 ${fighter.name} took ${d} poison damage!`;
-    dlog(`  ${fighter.name} poison tick: −${d} HP`, 'info');
+    dlog(`  ${fighter.name} poison tick: −${d} HP (now ${fighter.hp}/${fighter.maxHp})`, 'info');
   }
   if (fighter.statuses.includes('confuse')) {
     fighter.confuseTurns--;
+    dlog(`  ${fighter.name} confusion tick: ${fighter.confuseTurns} turns remaining`, 'info');
     if (fighter.confuseTurns <= 0) {
       removeStatus(fighter, 'confuse');
       msg += ` 😵 ${fighter.name} snapped out of confusion!`;
+      dlog(`  ${fighter.name} snapped out of confusion`, 'ok');
     }
   }
 
@@ -1101,72 +1441,59 @@ function tickStatuses(fighter) {
     if (fighter.statupTurns[stat] > 0) {
       fighter.statupTurns[stat]--;
       anyStatup = true;
+      dlog(`  ${fighter.name} statup[${stat}] tick: ${fighter.statupTurns[stat]} turns left`, 'info');
       if (fighter.statupTurns[stat] === 0) {
-        if (stat === 'atk')      fighter.atkMod      = Math.max(0, fighter.atkMod      - 20);
-        if (stat === 'speed')    fighter.speedMod    = Math.max(0, fighter.speedMod    - 20);
-        if (stat === 'defense')  fighter.defenseMod  = Math.max(0, fighter.defenseMod  - 15);
-        if (stat === 'accuracy') fighter.accuracyMod = Math.max(0, fighter.accuracyMod - 15);
-        dlog(`  ${fighter.name} statup[${stat}] expired`, 'info');
-        msg += ` 📈 ${fighter.name}'s ${stat} boost faded.`;
-      } else {
-        anyStatup = true; // still active
+        if (stat === 'atk')      { fighter.atkMod      = Math.max(0, fighter.atkMod      - 20); dlog(`  ${fighter.name} statup[atk] expired`, 'info'); }
+        if (stat === 'speed')    { fighter.speedMod    = Math.max(0, fighter.speedMod    - 20); dlog(`  ${fighter.name} statup[speed] expired`, 'info'); }
+        if (stat === 'defense')  { fighter.defenseMod  = Math.max(0, fighter.defenseMod  - 15); dlog(`  ${fighter.name} statup[defense] expired`, 'info'); }
+        if (stat === 'accuracy') { fighter.accuracyMod = Math.max(0, fighter.accuracyMod - 15); dlog(`  ${fighter.name} statup[accuracy] expired`, 'info'); }
       }
     }
   }
-  if (!anyStatup && fighter.statuses.includes('statup')) removeStatus(fighter, 'statup');
+  if (!anyStatup) removeStatus(fighter, 'statup');
 
-  // Per-stat statdown expiry
+  // Per-stat statdwn expiry
   let anyStatdwn = false;
   for (const stat of ['atk','speed','defense','accuracy']) {
     if (fighter.statdwnTurns[stat] > 0) {
       fighter.statdwnTurns[stat]--;
       anyStatdwn = true;
+      dlog(`  ${fighter.name} statdwn[${stat}] tick: ${fighter.statdwnTurns[stat]} turns left`, 'info');
       if (fighter.statdwnTurns[stat] === 0) {
-        if (stat === 'atk')      fighter.atkMod      = Math.min(0, fighter.atkMod      + 20);
-        if (stat === 'speed')    fighter.speedMod    = Math.min(0, fighter.speedMod    + 20);
-        if (stat === 'defense')  fighter.defenseMod  = Math.min(0, fighter.defenseMod  + 15);
-        if (stat === 'accuracy') fighter.accuracyMod = Math.min(0, fighter.accuracyMod + 15);
-        dlog(`  ${fighter.name} statdwn[${stat}] expired`, 'info');
-        msg += ` 📉 ${fighter.name}'s ${stat} drop faded.`;
-      } else {
-        anyStatdwn = true;
+        if (stat === 'atk')      { fighter.atkMod      = Math.min(0, fighter.atkMod      + 20); dlog(`  ${fighter.name} statdwn[atk] expired`, 'info'); }
+        if (stat === 'speed')    { fighter.speedMod    = Math.min(0, fighter.speedMod    + 20); dlog(`  ${fighter.name} statdwn[speed] expired`, 'info'); }
+        if (stat === 'defense')  { fighter.defenseMod  = Math.min(0, fighter.defenseMod  + 15); dlog(`  ${fighter.name} statdwn[defense] expired`, 'info'); }
+        if (stat === 'accuracy') { fighter.accuracyMod = Math.min(0, fighter.accuracyMod + 15); dlog(`  ${fighter.name} statdwn[accuracy] expired`, 'info'); }
       }
     }
   }
-  if (!anyStatdwn && fighter.statuses.includes('statdwn')) removeStatus(fighter, 'statdwn');
+  if (!anyStatdwn) removeStatus(fighter, 'statdwn');
 
   return msg;
 }
 
 // ── Win/loss check ────────────────────────────────────────────────────────
 function checkDead() {
-  if (state.player.hp <= 0) { endBattle(false); return true; }
-  if (state.enemy.hp  <= 0) { endBattle(true);  return true; }
-  return false;
-}
+  const { player, enemy } = state;
+  if (player.hp <= 0 || enemy.hp <= 0) {
+    state.over = true;
+    const won  = enemy.hp  <= 0;
+    const lost = player.hp <= 0;
 
-function endBattle(playerWon) {
-  state.over = true;
-  dlog(`=== BATTLE END: ${playerWon ? state.player.name + ' WON 🏆' : state.player.name + ' LOST 💀'} after ${state.turn} turns ===`,
-       playerWon ? 'ok' : 'warn');
-  render();
-  setTimeout(() => {
-    const res = document.getElementById('over-result');
-    const det = document.getElementById('over-details');
-    const msg = document.getElementById('over-msg');
-    if (playerWon) {
-      res.textContent = '🏆 YOU WIN!';
-      res.style.color = '#f5c842';
-      msg.textContent = `${state.player.name} defeated ${state.enemy.name}!`;
-    } else {
-      res.textContent = '💀 YOU LOST!';
-      res.style.color = '#e85d5d';
-      msg.textContent = `${state.player.name} fainted…`;
-    }
-    det.textContent =
-      `PWR: ${state.player.name} ${state.player._power} vs ${state.enemy.name} ${state.enemy._power}`;
+    dlog(`=== BATTLE OVER ===`, 'battle');
+    dlog(`${player.name} HP=${player.hp} | ${enemy.name} HP=${enemy.hp}`, 'battle');
+    dlog(`Result: ${won ? 'PLAYER WINS' : 'PLAYER LOSES'}`, won ? 'ok' : 'warn');
+
+    document.getElementById('over-result').textContent   = won ? '🏆 YOU WIN!' : '💀 YOU LOST!';
+    document.getElementById('over-result').style.color   = won ? 'var(--green)' : 'var(--red)';
+    document.getElementById('over-details').textContent  = `${player.name} vs ${enemy.name} — Turn ${state.turn}`;
+    document.getElementById('over-msg').textContent      = won
+      ? `${player.name} defeated ${enemy.name}!`
+      : `${enemy.name} knocked out ${player.name}!`;
     show('screen-over');
-  }, 500);
+    return true;
+  }
+  return false;
 }
 
 // ════════════════════════════════════════════════════════════════════════
@@ -1174,29 +1501,25 @@ function endBattle(playerWon) {
 // ════════════════════════════════════════════════════════════════════════
 
 function render() {
-  ['player', 'enemy'].forEach(side => {
-    const f   = state[side];
-    const pct = clamp(f.hp / f.maxHp, 0, 1);
+  if (!state) return;
 
+  [['player', state.player], ['enemy', state.enemy]].forEach(([side, f]) => {
+    const pct = f.hp / f.maxHp;
     const bar = document.getElementById(`${side}-hp-bar`);
-    bar.style.width      = (pct * 100) + '%';
+    bar.style.width      = `${Math.max(0, pct * 100)}%`;
     bar.style.background = pct > 0.5 ? '#56c87a' : pct > 0.25 ? '#e8943a' : '#e85d5d';
     document.getElementById(`${side}-hp-text`).textContent = `${f.hp} / ${f.maxHp}`;
-
-    document.getElementById(`${side}-name`).textContent = f.name;
+    document.getElementById(`${side}-name`).textContent    = f.name;
     const tEl = document.getElementById(`${side}-type`);
     tEl.textContent = f.type || '';
     tEl.className   = `fighter-type type-${f.type || 'Normal'}`;
-
-    document.getElementById(`${side}-emoji`).textContent = f.emoji || '❓';
-
+    document.getElementById(`${side}-emoji`).textContent   = f.emoji || '❓';
     document.getElementById(`${side}-stats`).innerHTML = [
       `<span class="stat-mini">⚔️ <span>${effAtk(f)}</span></span>`,
       `<span class="stat-mini">💨 <span>${effSpeed(f)}</span></span>`,
       `<span class="stat-mini">🛡️ <span>${effDefense(f)}%</span></span>`,
       `<span class="stat-mini">🎯 <span>${effAccuracy(f)}%</span></span>`,
     ].join('');
-
     document.getElementById(`${side}-statuses`).innerHTML =
       f.statuses.map(s => `<span class="status-chip ${STATUS_CHIP_CLASS[s] || ''}">${STATUS_EMOJI[s] || ''} ${s}</span>`).join('')
       + (f.flinched ? `<span class="status-chip status-flinch">😦 flinch</span>` : '');
@@ -1205,15 +1528,12 @@ function render() {
   const t = state.turn;
   document.getElementById('turn-label').textContent  = `TURN ${t}`;
   document.getElementById('turn-label2').textContent = `TURN ${t}`;
-
   const diff = state.player._power - state.enemy._power;
   document.getElementById('power-diff-label').textContent =
     diff > 0 ? `▲ +${diff}` : diff < 0 ? `▼ ${diff}` : '≈ even';
 }
 
-function setLog(html) {
-  document.getElementById('log').innerHTML = html;
-}
+function setLog(html) { document.getElementById('log').innerHTML = html; }
 
 function disableMoves(disabled) {
   document.querySelectorAll('.move-btn').forEach(b => b.disabled = disabled);
@@ -1221,7 +1541,7 @@ function disableMoves(disabled) {
 
 function animatePop(id) {
   const el = document.getElementById(id);
-  if (!el) return;
+  if (!el) { dlog(`animatePop: element "${id}" not found!`, 'warn'); return; }
   el.classList.remove('pop');
   void el.offsetWidth;
   el.classList.add('pop');
@@ -1237,12 +1557,13 @@ function show(id) {
     const el = document.getElementById(s);
     if (el) el.classList.toggle('hidden', s !== id);
   });
-  dlog(`Screen: ${id}`, 'info');
+  dlog(`Screen changed → "${id}"`, 'info');
 }
 
 document.getElementById('flee-btn').onclick = () => {
   if (confirm('Flee the battle?')) {
     dlog('Player fled the battle.', 'warn');
+    selectedEnemyId = null;
     show('screen-select');
     state = null;
   }
@@ -1250,14 +1571,248 @@ document.getElementById('flee-btn').onclick = () => {
 
 document.getElementById('play-again-btn').onclick = () => {
   dlog('Play again — returning to select screen', 'info');
+  selectedId      = null;
+  selectedEnemyId = null;
+  document.getElementById('opponent-section').classList.add('hidden');
   show('screen-select');
   state = null;
 };
 
 // ════════════════════════════════════════════════════════════════════════
+//  TEST FAKEMON PANEL
+// ════════════════════════════════════════════════════════════════════════
+
+let testerCollapsed = true;
+
+function toggleTester() {
+  testerCollapsed = !testerCollapsed;
+  document.getElementById('tester-body').classList.toggle('collapsed', testerCollapsed);
+  document.getElementById('tester-toggle').textContent = testerCollapsed ? 'SHOW ▼' : 'HIDE ▲';
+}
+
+async function runTester() {
+  const raw     = document.getElementById('json-input').value.trim();
+  const report  = document.getElementById('tester-report');
+  const btn     = document.getElementById('tester-run-btn');
+
+  if (!raw) {
+    report.innerHTML = '<div class="issue-row issue-warn"><span class="issue-icon">⚠</span><span class="issue-msg">Paste your JSON first!</span></div>';
+    return;
+  }
+
+  // ── Step 1: Parse JSON ────────────────────────────────────────────────
+  let data;
+  try {
+    data = JSON.parse(raw);
+  } catch (e) {
+    // Show a helpful parse error with context
+    let hint = e.message;
+    let contextHtml = '';
+    const posMatch = e.message.match(/position (\d+)/);
+    if (posMatch) {
+      const pos     = parseInt(posMatch[1]);
+      const before  = raw.substring(Math.max(0, pos - 40), pos);
+      const at      = raw.substring(pos, pos + 1) || '(end of file)';
+      const after   = raw.substring(pos + 1, pos + 40);
+      contextHtml = `
+        <div style="margin-top:8px;background:#0a0a1a;border-radius:var(--rs);padding:10px;font-family:'Courier New',monospace;font-size:11px;line-height:1.7;">
+          <span style="color:#555580">${escHtmlDebug(before)}</span><span style="background:#6a0000;color:#ff9090;padding:0 2px;border-radius:2px;">${escHtmlDebug(at)}</span><span style="color:#555580">${escHtmlDebug(after)}</span>
+        </div>
+        <div style="margin-top:6px;font-size:11px;color:#d0a030;">
+          💡 Common causes: missing comma between fields, extra comma at the end, unmatched <code>{</code> or <code>[</code>, or a missing quote.
+        </div>`;
+    }
+    report.innerHTML = `
+      <div class="issue-row issue-error" style="flex-direction:column;align-items:flex-start;">
+        <div style="display:flex;gap:8px;align-items:center;"><span class="issue-icon">✗</span><span class="issue-msg" style="font-weight:700;">JSON Syntax Error — cannot parse your file</span></div>
+        <div style="margin-top:4px;font-size:11px;color:#ff9090;">${escHtmlDebug(hint)}</div>
+        ${contextHtml}
+      </div>`;
+    return;
+  }
+
+  // ── Step 2: Validate structure ────────────────────────────────────────
+  const { errors, warnings, valid } = FakemonScorer.validateFakemon(data);
+
+  // ── Step 3: Build the report (power calc if valid) ────────────────────
+  report.innerHTML = '<div class="report-computing">⚙ computing power level… (this takes a moment)</div>';
+  btn.disabled = true;
+
+  // yield to browser so the "computing" message renders before the heavy sync work
+  await new Promise(r => setTimeout(r, 30));
+
+  let power = null;
+  if (valid) {
+    power = FakemonScorer.calcPowerLevel(data);
+  }
+
+  btn.disabled = false;
+  report.innerHTML = buildReport(data, errors, warnings, power);
+}
+
+function buildReport(data, errors, warnings, power) {
+  const ALL_TYPES = ['Fire','Water','Air','Earth','Electric','Ice','Poison','Dark','Ghost','Metal','Nature','Normal'];
+
+  // ── Hero card ─────────────────────────────────────────────────────────
+  const powerColor = power === null ? '#555580'
+    : power >= 70 ? '#e85d5d'
+    : power >= 50 ? '#e8943a'
+    : power >= 30 ? '#f5c842'
+    : '#56c87a';
+  const powerRating = power === null ? '— (fix errors first)'
+    : power >= 75 ? '🔥 Very Strong'
+    : power >= 55 ? '⚡ Above Average'
+    : power >= 40 ? '⚖️ Balanced'
+    : power >= 25 ? '🌿 Below Average'
+    : '🐣 Very Weak';
+
+  const typeClass = data.type ? `type-${data.type}` : '';
+
+  let heroHtml = `
+    <div class="report-hero">
+      <div class="report-emoji">${data.emoji || '❓'}</div>
+      <div class="report-info">
+        <div class="report-name">${escHtmlDebug(data.name || '(no name)')} <span class="fighter-type ${typeClass}" style="font-size:10px;">${escHtmlDebug(data.type || '?')}</span></div>
+        <div class="report-meta">id: <span>${escHtmlDebug(data.id || '?')}</span> &nbsp;·&nbsp; by <span>${escHtmlDebug(data.createdBy || '?')}</span></div>
+        ${data.description ? `<div style="font-size:11px;color:var(--muted);margin-top:2px;font-style:italic;">"${escHtmlDebug(data.description)}"</div>` : ''}
+        <div class="power-bar-wrap">
+          <div class="power-bar-label">
+            <span>POWER LEVEL</span>
+            <span style="color:${powerColor}">${power !== null ? power : '—'} / 100</span>
+          </div>
+          <div class="power-bar-track">
+            <div class="power-bar-fill" style="width:${power ?? 0}%;background:${powerColor};"></div>
+          </div>
+          <span class="power-rating" style="color:${powerColor}">${powerRating}</span>
+        </div>
+      </div>
+    </div>`;
+
+  // ── Issues (errors + warnings + ok) ──────────────────────────────────
+  let issuesHtml = `<div class="report-issues"><div class="report-section-title">▸ VALIDATION RESULTS</div>`;
+  if (errors.length === 0 && warnings.length === 0) {
+    issuesHtml += `<div class="issue-row issue-ok"><span class="issue-icon">✓</span><span class="issue-msg">No errors or warnings — your JSON looks great!</span></div>`;
+  }
+  errors.forEach(e => {
+    issuesHtml += `<div class="issue-row issue-error"><span class="issue-icon">✗</span><span class="issue-msg">${escHtmlDebug(e)}</span></div>`;
+  });
+  warnings.forEach(w => {
+    issuesHtml += `<div class="issue-row issue-warn"><span class="issue-icon">⚠</span><span class="issue-msg">${escHtmlDebug(w)}</span></div>`;
+  });
+  if (errors.length > 0) {
+    issuesHtml += `<div class="issue-row issue-error" style="margin-top:4px;"><span class="issue-icon">!</span><span class="issue-msg" style="font-weight:700;">Fix all red errors before submitting your pull request. Power level cannot be calculated until errors are resolved.</span></div>`;
+  }
+  issuesHtml += `</div>`;
+
+  // ── Stats ─────────────────────────────────────────────────────────────
+  const atk = data.atk ?? data.power ?? 100;
+  const hp  = data.hp      ?? 100;
+  const spd = data.speed   ?? 90;
+  const def = data.defense ?? 10;
+  const acc = data.accuracy ?? 90;
+
+  function statBar(val, max, color) {
+    const pct = Math.min(100, Math.round((val / max) * 100));
+    return `<div class="sc-bar"><div class="sc-fill" style="width:${pct}%;background:${color};"></div></div>`;
+  }
+
+  let statsHtml = `<div class="report-stats-grid">
+    <div class="stat-cell"><div class="sc-label">❤️ HP</div><div class="sc-val">${hp}</div>${statBar(hp, 200, '#56c87a')}</div>
+    <div class="stat-cell"><div class="sc-label">⚔️ ATK</div><div class="sc-val">${atk}</div>${statBar(atk, 200, '#e85d5d')}</div>
+    <div class="stat-cell"><div class="sc-label">💨 SPEED</div><div class="sc-val">${spd}</div>${statBar(spd, 150, '#80c0ff')}</div>
+    <div class="stat-cell"><div class="sc-label">🛡️ DEF</div><div class="sc-val">${def}%</div>${statBar(def, 80, '#f5c842')}</div>
+    <div class="stat-cell"><div class="sc-label">🎯 ACC</div><div class="sc-val">${acc}%</div>${statBar(acc, 100, '#d890ff')}</div>
+    <div class="stat-cell"><div class="sc-label">🃏 MOVES</div><div class="sc-val">${Array.isArray(data.moves) ? data.moves.length : 0}</div>${statBar(Array.isArray(data.moves) ? data.moves.length : 0, 8, '#e8943a')}</div>
+  </div>`;
+
+  // ── Moves ─────────────────────────────────────────────────────────────
+  let movesHtml = '';
+  if (Array.isArray(data.moves) && data.moves.length > 0) {
+    movesHtml = `<div class="report-moves"><div class="report-section-title">▸ MOVES</div>`;
+    data.moves.forEach((m, i) => {
+      const spd    = m.speed || 'medium';
+      const isHeal = m.damage && m.damage[1] < 0;
+      const hasDmg = m.damage && m.damage[1] > 0;
+      const dmgStr = isHeal ? `heals ${Math.abs(m.damage[0])} HP`
+        : hasDmg ? `${m.damage[0]}–${m.damage[1]} dmg`
+        : 'no damage';
+
+      // Build status tags
+      let statusStr = '';
+      const statuses = FakemonScorer.getMoveStatuses(m);
+      if (statuses.length > 0) {
+        statusStr = ' · ' + statuses.map(se =>
+          `${se.status}${se.statusChance && se.statusChance < 1 ? ` (${Math.round(se.statusChance*100)}%)` : ''}${se.statTarget ? ` [${se.statTarget}]` : ''}`
+        ).join(' + ');
+      }
+
+      // Warn if move looks wrong
+      let moveWarn = '';
+      if (!m.id) moveWarn += ' <span style="color:#f5c842;font-size:9px;">⚠ no id</span>';
+      if (!hasDmg && !isHeal && statuses.length === 0) moveWarn += ' <span style="color:#e85d5d;font-size:9px;">✗ does nothing!</span>';
+
+      movesHtml += `
+        <div class="move-row">
+          <div style="flex:1;min-width:0;">
+            <div class="move-row-name">${escHtmlDebug(m.name || m.id || `Move ${i+1}`)}${moveWarn}</div>
+            <div class="move-row-detail">${dmgStr}${statusStr}</div>
+            ${m.desc ? `<div class="move-row-detail" style="font-style:italic;">${escHtmlDebug(m.desc)}</div>` : ''}
+          </div>
+          <span class="move-row-badge mb-${spd}">${spd}</span>
+        </div>`;
+    });
+    movesHtml += '</div>';
+  }
+
+  // ── Type matchup table ────────────────────────────────────────────────
+  let typeHtml = '';
+  if (data.type) {
+    typeHtml = `<div class="report-type-table"><div class="report-section-title">▸ YOUR TYPE MATCHUPS (attacking)</div>
+      <div class="type-matchup-grid">`;
+    ALL_TYPES.forEach(defType => {
+      const mult = FakemonScorer.typeMultiplier(data.type, defType);
+      const cls  = mult === 2 ? 'tc-super' : mult === 0.5 ? 'tc-weak' : 'tc-norm';
+      const label = mult === 2 ? '2× SUPER' : mult === 0.5 ? '½× WEAK' : '1× normal';
+      typeHtml += `<div class="type-cell ${cls}"><div class="tc-type">${defType}</div><div class="tc-mult">${label}</div></div>`;
+    });
+    typeHtml += '</div></div>';
+  }
+
+  // ── Comparison to class ───────────────────────────────────────────────
+  let compHtml = '';
+  if (power !== null && ALL_FAKEMON.length > 0) {
+    const sorted    = [...ALL_FAKEMON].sort((a, b) => a._power - b._power);
+    const rank      = sorted.filter(f => f._power < power).length + 1;
+    const total     = sorted.length;
+    const strongest = sorted[sorted.length - 1];
+    const weakest   = sorted[0];
+    const avg       = Math.round(sorted.reduce((s, f) => s + f._power, 0) / total);
+    compHtml = `
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:12px 14px;margin-bottom:12px;">
+        <div class="report-section-title">▸ HOW YOU COMPARE TO THE CLASS</div>
+        <div style="font-size:12px;color:var(--muted);line-height:1.8;">
+          Your power: <strong style="color:${powerColor}">${power}</strong> &nbsp;·&nbsp;
+          Class avg: <strong style="color:var(--text)">${avg}</strong> &nbsp;·&nbsp;
+          Class rank: <strong style="color:var(--text)">#${rank} of ${total}</strong><br>
+          Strongest in class: <strong style="color:var(--red)">${escHtmlDebug(strongest.name)} (${strongest._power})</strong> &nbsp;·&nbsp;
+          Weakest: <strong style="color:var(--green)">${escHtmlDebug(weakest.name)} (${weakest._power})</strong>
+        </div>
+      </div>`;
+  } else if (power !== null) {
+    compHtml = `<div style="background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:10px 14px;margin-bottom:12px;font-size:11px;color:var(--muted);">
+      Class comparison will show once the game loads other Fakemon.
+    </div>`;
+  }
+
+  return heroHtml + issuesHtml + compHtml + statsHtml + movesHtml + typeHtml;
+}
+
+// ════════════════════════════════════════════════════════════════════════
 //  BOOT
 // ════════════════════════════════════════════════════════════════════════
-dlog('fakemon-battle.js loaded — starting up!', 'ok');
+dlog('=== fakemon-battle.html loaded — starting up! ===', 'ok');
+dlog('If you see errors below, read them carefully — they tell you exactly what is wrong.', 'info');
+dlog('Filter by ERROR to find problems fast. Green = good, Red = needs fixing.', 'info');
 loadAll();
 </script>
 </body>
