@@ -219,6 +219,17 @@ h1 {
 .matchup-badge {
   font-size: 9px; margin-top: 4px;
 }
+.test-badge {
+  display: inline-block; margin-top: 5px;
+  font-family: var(--px); font-size: 5px; letter-spacing: 0.5px;
+  color: #80d8f0; background: rgba(128,216,240,0.10);
+  border: 1px solid #40a8c0; border-radius: 4px;
+  padding: 2px 6px;
+}
+.fakemon-choice.is-test {
+  border-color: #40a8c0;
+  box-shadow: 0 0 0 1px #40a8c0, 0 4px 16px rgba(128,216,240,0.12);
+}
 
 #matchup-hint { text-align:center; font-size:12px; margin:10px 0 0; min-height:20px; }
 #matchup-hint.fair   { color:#56c87a; }
@@ -915,13 +926,14 @@ function buildSelectScreen() {
   dlog(`Building player select grid with ${ALL_FAKEMON.length} options…`, 'info');
   ALL_FAKEMON.forEach(f => {
     const card = document.createElement('div');
-    card.className = 'fakemon-choice';
+    card.className = 'fakemon-choice' + (f._isTest ? ' is-test' : '');
     card.dataset.id = f.id;
     card.innerHTML = `
       <span class="choice-emoji">${f.emoji || '❓'}</span>
       <div class="choice-name">${f.name}</div>
       <div class="choice-type">${f.type || ''}</div>
       <div class="choice-power">⭐ PWR ${f._power}</div>
+      ${f._isTest ? '<span class="test-badge">🧪 YOUR TEST</span>' : ''}
     `;
     card.onclick = () => selectPlayerFakemon(f.id);
     grid.appendChild(card);
@@ -972,6 +984,7 @@ function buildOpponentGrid(player) {
       <div class="choice-type">${f.type || ''}</div>
       <div class="choice-power">PWR ${f._power} (${diffStr})</div>
       <div class="matchup-badge ${matchCls}" style="color:${matchCls === 'fair' ? 'var(--green)' : matchCls === 'uneven' ? 'var(--orange)' : 'var(--red)'}">${matchText}</div>
+      ${f._isTest ? '<span class="test-badge">🧪 YOUR TEST</span>' : ''}
     `;
     card.onclick = () => selectOpponentFakemon(f.id, player);
     grid.appendChild(card);
@@ -1804,7 +1817,54 @@ function buildReport(data, errors, warnings, power) {
     </div>`;
   }
 
-  return heroHtml + issuesHtml + compHtml + statsHtml + movesHtml + typeHtml;
+  // ── Use in Battle button ──────────────────────────────────────────────
+  let battleBtnHtml = '';
+  if (power !== null) {
+    // Store on window so the onclick can reference it without embedding JSON in HTML
+    window._lastTestedFakemon = { data, power };
+    battleBtnHtml = `
+      <button onclick="addTestFakemonToRoster()"
+        style="display:block;width:100%;margin-top:4px;font-family:var(--px);font-size:8px;letter-spacing:1px;
+               padding:12px;background:#0a1e28;color:#80d8f0;
+               border:1.5px solid #40a8c0;border-radius:var(--r);cursor:pointer;transition:background 0.15s,color 0.15s;"
+        onmouseover="this.style.background='#40a8c0';this.style.color='#0a1420';"
+        onmouseout="this.style.background='#0a1e28';this.style.color='#80d8f0';">
+        🧪 USE IN BATTLE
+      </button>
+      <p style="text-align:center;font-size:10px;color:var(--muted);margin-top:6px;">
+        Adds your Fakemon to the battle roster so you can pick it on the select screen.
+        Warnings are OK — errors must be fixed first.
+      </p>`;
+  }
+
+  return heroHtml + issuesHtml + compHtml + statsHtml + movesHtml + typeHtml + battleBtnHtml;
+}
+
+function addTestFakemonToRoster() {
+  const stored = window._lastTestedFakemon;
+  if (!stored) { dlog('addTestFakemonToRoster: no test fakemon stored!', 'error'); return; }
+  const { data, power } = stored;
+  // Remove any previous test entry (same id or previous _isTest entry)
+  const prevIdx = ALL_FAKEMON.findIndex(f => f._isTest || f.id === data.id);
+  if (prevIdx !== -1) {
+    dlog(`Removing previous test Fakemon "${ALL_FAKEMON[prevIdx].name}" from roster`, 'info');
+    ALL_FAKEMON.splice(prevIdx, 1);
+  }
+
+  const entry = { ...data, _power: power, _isTest: true };
+  ALL_FAKEMON.push(entry);
+  dlog(`🧪 Test Fakemon "${entry.name}" (PWR ${power}) added to roster — ${ALL_FAKEMON.length} total fighters`, 'ok');
+
+  // Rebuild select grids if the select screen is visible or has been built
+  if (!document.getElementById('screen-select').classList.contains('hidden')) {
+    buildSelectScreen();
+    // Re-hide the opponent section since player selection is now stale
+    selectedId      = null;
+    selectedEnemyId = null;
+    document.getElementById('opponent-section').classList.add('hidden');
+    document.getElementById('start-btn').disabled = true;
+    dlog('Select screen rebuilt with test Fakemon included', 'info');
+  }
 }
 
 // ════════════════════════════════════════════════════════════════════════
