@@ -3,7 +3,7 @@
   "name":        "Cityboy",
   "createdBy":   "Liam Johnson",
   "emoji":       "🧍",
-  "type":        "Metal ⚙️",
+  "type":        "Metal",
   "description": "A powerful creature with city tech.",
   "hp":       100,
   "power":    100,
@@ -13,12 +13,12 @@
 
   "moves": [
     {
-      "id":           "",
+      "id":           "1",
       "name":         "⚙️ Computer Phone",
       "desc":         "A fancy computer phone that is used by the City Boy. Might cause temporary shock.",
       "speed":        "fast",
       "damage": [20, 25],
-      "status":       "Paralyze",
+      "status":       "paralyze",
       "statusChance": 0.5
     },
     {
