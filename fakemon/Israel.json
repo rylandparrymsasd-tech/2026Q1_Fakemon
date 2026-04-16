@@ -1,0 +1,66 @@
+{
+  "id": "Israel",
+  "name": "Foreign Country",
+  "createdBy": "Kyan Olugbile",
+  "emoji": "🇮🇱",
+  "type": "Normal",
+
+ 
+  "hp": 70,      
+  "power": 100,    
+  "speed": 40,     
+  "defense": 25,  
+  "accuracy": 75, 
+
+  "description": "A country that is definitely not Israel",
+
+  "moves": [
+
+   
+    {
+      "id": "Jericho 3",
+      "name": "Jericho 3",
+      "desc": "A ICBM that is fast acting but does low to medium damage",
+      "speed": "fast",
+      "damage": [30, 60],
+      "status": null,
+      "statusChance": 0
+    },
+
+   
+    {
+      "id": "F35",
+      "name": "A stealth plane that does precision strikes",
+      "desc": "A lightning-fast punch",
+      "speed": "fast",
+      "damage": [5, 15],
+      "status": "paralyze",
+      "statusChance": 1
+    },
+
+   
+    {
+      "id": "Iron Domee",
+      "name": "Missile Defence",
+      "desc": "A missile defence system that will prevent incoming missiles. Sometimes works but sometimes doesn't",
+      "speed": "fast",
+      "damage": [-10, 0],
+      "status": null,
+      "statusChance": 0
+    },
+
+    
+    {
+      "id": "America",
+      "name": "Help",
+      "desc": "Brings in an allied country that is definitely not the us to assist in gear. Pretty slow however",
+      "speed": "slow",
+      "damage": [-10, -30],
+      "status": null,
+      "statusChance": 0
+    }
+
+   
+
+  ]
+}
