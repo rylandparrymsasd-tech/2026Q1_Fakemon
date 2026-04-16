@@ -1,0 +1,72 @@
+{
+  "id":          "draghsock",
+  "name":        "dragshock",
+  "createdBy":   "rayan labady",
+  "emoji":       "🐲",
+  "type":        "⚡ Electric",
+  "description": "a dragon that flies and has a Electric aura.",
+  "hp":       2000,
+  "power":    500,
+  "speed":    2500,
+  "defense":  650,
+  "accuracy": 750,
+
+  "moves": [
+    {
+      "id":           "flash",
+      "name":         "⚡flash",
+      "desc":         "a superfast attack.",
+      "speed":        "fast",
+      "damage": [100, 100],
+      "status":       "paralyze",
+      "statusChance": 1.0
+    },
+    {
+      "id":           "drogon",
+      "name":         "⚡drogon",
+      "desc":         "the fakemon powers up and gets stronger.",
+      "speed":        "medium",
+      "damage": [100, 100],
+      "status":       "burn",
+      "statusChance": 0.3
+    },
+    {
+      "id":           "Zeus",
+      "name":         "⚡zeus",
+      "desc":         "the fakemon shoots the enemy with a bunch of thunder bolts.",
+      "speed":        "fast",
+      "damage": [150, 200],
+      "status":       "paralyze",
+      "statusChance": 1.0
+    },
+    {
+      "id":           "Zeus super",
+      "name":         "⚡ Zeus super",
+      "desc":         "the fakemon rapidly shoots thunder bolt at the enemy until 5 hits them.",
+      "speed":        "fast",
+      "damage": [200, 250],
+      "status":       "paralyze",
+      "statusChance": 1.0
+    },
+    {
+      "id":           "Zeus mega",
+      "name":         "⚡ Zeus mega",
+      "desc":         "the fakemon rapidly shoots thunder bolt at the enemy until 7 hits them.",
+      "speed":        "fast",
+      "damage": [225, 275],
+      "status":       "paralyze",
+      "statusChance": 1.0
+    },
+    {
+      "id":    "Zeus ultra",
+      "name":  "⚡ Zeus ultra",
+      "desc":  "the fakemon rapidly shoots thunder bolt at the enemy until 15 hits them",
+      "speed": "fast",
+      "damage": [275, 300],
+      "status":       "paralyze",
+      "statusChance":1.0
+
+    }
+
+  ]
+}
