@@ -1,0 +1,72 @@
+{
+  "id": "Gorgrigralla",
+  "name": "Gorgrigralla Devourer of Bananas",
+  "createdBy": "Ethan",
+  "emoji": "🐲",
+  "type": "Nature",
+
+  
+  "hp": 160,       
+  "power": 130,    
+  "speed": 40,    
+  "defense": 140,  
+  "accuracy": 80, 
+
+  "description": "He probably eats enough Nanab Berries to become somewhat radioactive.",
+
+  "moves": [
+
+   
+{
+  "id": "move_one",
+  "name": "Head Bash",
+  "desc": "Bash Head.",
+  "speed": "slow",
+  "damage": [80, 150],
+  "statuses": [
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "speed"
+    }
+  ]
+},
+
+   
+    {
+      "id": "move_two",
+      "name": "⚔️ Quick Slash",
+      "desc": "Gorilla.",
+      "speed": "fast",
+      "damage": [30, 40],
+      "status": null,
+      "statusChance": 0
+    },
+
+    
+    {
+      "id": "move_three",
+      "name": "💊 Risky Pill",
+      "desc": "Restore 25 HP.",
+      "speed": "slow",
+      "damage": [-25, 25],
+      "status": null,
+      "statusChance": 0
+    },
+
+    
+    {
+      "id": "move_four",
+      "name": "😵 Radioactive Nanab Berry",
+      "desc": "Throws a Nanab Berry",
+      "speed": "medium",
+      "damage": [15, 20],
+      "status": "poison",
+  
+      "statusChance": 1.0
+    }
+
+
+
+  ]
+}

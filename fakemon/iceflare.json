@@ -1,0 +1,3101 @@
+{
+  "id": "iceflare",
+  "name": "Iceflare",
+  "createdBy": "Max Mallory",
+  "emoji": "❄️🔥",
+  "type": "Fire",
+
+  "hp": 400,       
+  "power": 400,    
+  "speed": 100,    
+  "defense": 400, 
+  "accuracy": 100, 
+
+  "description": "A short description of your Fakemon.",
+
+  "moves": [
+
+    
+    {
+      "id": "flare_blitz",
+      "name": "Flare Blitz",
+      "desc": "Big damage move that may burn",
+      "speed": "medium",
+      "damage": [220, 250],
+      "status": "burn",
+      "statusChance": 1
+    },
+
+    {
+      "id": "icicle_crash",
+      "name": "Icicle Crash",
+      "desc": "a slow, big move that does so much damage it makes them fall asleep.",
+      "speed": "slow",
+      "damage": [360, 400],
+      "status": "sleep",
+      "statusChance": 1
+    },
+
+    {
+      "id": "searing_speed",
+      "name": "Searing Speed",
+      "desc": "An extremely fast move that does small ammounts of damage, and lowers opponents stats",
+      "speed": "fast",
+      "damage": [150, 200],
+      "statuses": [
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget" : "atk"
+      
+    },
+   {
+      "status": "statdwn",
+      "statusChance": 0.8,
+      "statTarget": "atk"
+      
+    },
+        {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "speed"
+      
+    },
+        {
+      "status": "statdwn",
+      "statusChance": 0.8,
+      "statTarget": "speed"
+      
+    },
+
+         {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "accuracy"
+      
+    },
+        {
+      "status": "statdwn",
+      "statusChance": 0.8,
+      "statTarget": "accuracy"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    }
+
+        ,
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "accuracy"
+      
+    },
+
+         {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "accuracy"
+      
+    },
+
+         {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "accuracy"
+      
+    },
+
+         {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "accuracy"
+      
+    },
+
+         {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "accuracy"
+      
+    },
+
+         {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "accuracy"
+      
+    },
+
+         {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "accuracy"
+      
+    },
+
+         {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "accuracy"
+      
+    },
+
+         {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "accuracy"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "defense"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    },
+
+    {
+      "status": "statdwn",
+      "statusChance": 1,
+      "statTarget": "atk"
+      
+    }
+
+  ]
+
+    },
+
+    {
+      "id": "recover",
+      "name": "Melt",
+      "desc": "Restore HP.",
+      "speed": "slow",
+      "damage": [-200, -375]
+
+    },
+
+    {
+      "id": "burning_stab",
+      "name": "Burning Stab",
+      "desc": "Flinches the opponent",
+      "speed": "fast",
+      "damage": [50, 100],
+      "status": "flinch",
+      "statusChance": 1.0
+    },
+
+    {
+      "id": "freeze_off",
+      "name": "Freeze Off",
+      "desc": "Increases all stats",
+      "speed": "medium",
+      "damage": [0, 0],
+      "statuses": [
+      {
+        "status": "statup",
+        "statTarget" : "atk",
+        "statusChance": 1
+      },
+      
+      {
+        "status": "statup",
+        "statTarget" : "atk",
+        "statusChance": 1
+      },
+
+      {
+        "status": "statup",
+        "statTarget" : "atk",
+        "statusChance": 0.9
+      },
+
+      {
+        "status": "statup",
+        "statTarget" : "atk",
+        "statusChance": 0.8
+      },
+
+      {
+        "status": "statup",
+        "statTarget" : "defense",
+        "statusChance": 1
+      },
+
+      {
+        "status": "statup",
+        "statTarget" : "defense",
+        "statusChance": 1
+      },
+
+      {
+        "status": "statup",
+        "statTarget" : "defense",
+        "statusChance": 0.9
+      },
+      {
+        "status": "statup",
+        "statTarget" : "defense",
+        "statusChance": 0.8
+      },
+
+      {
+        "status": "statup",
+        "statTarget" : "speed",
+        "statusChance": 1
+      },
+
+      {
+        "status": "statup",
+        "statTarget" : "speed",
+        "statusChance": 1
+      },
+
+      {
+        "status": "statup",
+        "statTarget" : "speed",
+        "statusChance": 0.9
+      },
+
+      {
+        "status": "statup",
+        "statTarget" : "speed",
+        "statusChance": 0.8
+      }
+  ]
+    }
+  ]
+}

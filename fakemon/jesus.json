@@ -1,0 +1,72 @@
+{
+ "id": "sea_salt",
+ "name": "Sea Salt",
+ "createdBy": "Jesus Taylor",
+ "emoji": "🧂",
+ "type": "Electric",
+ "hp": 500,
+ "power": 400,
+ "speed": 450, 
+ "defense": 200,
+ "accuracy": 85, 
+ "color": "#D3D3D3",
+ "description": "Old man with money power.",
+ "moves": [
+   {
+     "id": "orbital_strike",
+     "name": "The Hammer",
+     "desc": "Price; Four hundred billion dollars. A slow, powerful beam that nearly garauntees a sleep status.",
+     "speed": "slow",
+     "damage": [100, 200],
+     "statuses": [
+      { "status": "sleep", "statusChance": 0.90 },
+      { "status": "flinch", "statusChance": 1.0 }
+     ]
+   },
+   {
+     "id": "weave",
+     "name": "Weave",
+     "desc": "Price; 7.54 billion dollars per teleport. A series of rapid teleportation whilst healing, chance for confusion.",
+     "speed": "fast",
+     "damage": [-40, -100],
+     "status": "confuse",
+     "statusChance": 0.35
+   },
+   {
+     "id": "drone_barrage",
+     "name": "Re-animen",
+     "desc": "Price; estimately 1 trillion for the entire fleet. Advanced, humanoid robots that overwhelm the enemy.",
+     "speed": "medium",
+     "damage": [10, 110],
+     "status": null,
+     "statusChance": 0
+   },
+   {
+     "id": "bombs",
+     "name": "Bomb Squad",
+     "desc": "Prics; unknown. Soldiers surround the enemy, planting bombs which will explode.",
+     "speed": "medium",
+     "damage": [10, 180],
+     "status": "burn",
+     "statusChance": 0.25
+   },
+   {
+     "id": "kill_switch",
+     "name": "Kill Switch",
+     "desc": "Price; IDK like 2k for production??? A supersonic noise device capable of bringing most anyone to their knees.",
+     "speed": "fast",
+     "damage": [10, 14],
+     "status": "paralyze",
+     "statusChance": 1.0
+   },
+   {
+     "id": "body_enhancement",
+     "name": "Cybernetic Re-Enhancement",
+     "desc": "A CYBERPUNK REFERENCE?????.",
+     "speed": "fast",
+     "damage": [0, 0],
+     "status": "statup",
+     "statusChance": 1.0
+   }
+ ]
+}

@@ -1,0 +1,66 @@
+{
+  "id":          "milo",
+  "name":        "Milo Reinhold",
+  "createdBy":   "Ethan",
+  "emoji":       "🐲",
+  "type":        "Normal",
+  "description": "It's Milo.",
+  "hp":       100,
+  "power":    100,
+  "speed":    90,
+  "defense":  -10,
+  "accuracy": 90,
+
+  "moves": [
+    {
+      "id":           "War_Thunder",
+      "name":         "War Thunder Rant",
+      "desc":         "He rants about Warthunder.",
+      "speed":        "medium",
+      "damage": [20, 40],
+      "status":       null,
+      "statusChance": 0
+    },
+    {
+      "id":           "Political_Opinion",
+      "name":         "Political Opinion",
+      "desc":         "A headache inducing rant with a 30% chance to confuse.",
+      "speed":        "medium",
+      "damage": [12, 18],
+      "status":       "Confuse",
+      "statusChance": 0.3
+    },
+    {
+      "id":           "Confidence",
+      "name":         "High Self Confidence",
+      "desc":         "Restores 10 HP.",
+      "speed":        "slow",
+      "damage": [-25, -25],
+      "status":       null,
+      "statusChance": 0
+    },
+    {
+      "id":           "Baseballgame",
+      "name":         "Baseball Game",
+      "desc":         "Sharply raises your own ATK.",
+      "speed":        "fast",
+      "damage": [0, 0],
+      "status":       "statup",
+      "statusChance": 1.0,
+      "statTarget":   "atk"
+    },
+  
+    {
+      "id":    "move_six",
+      "name":  "Warning shot",
+      "desc":  "Hits, then scares!",
+      "speed": "slow",
+      "damage": [0, 0],
+      "statuses": [
+        { "status": "Flinch",  "statusChance": 1 },
+        { "status": "Paralyze", "statusChance": 1 }
+      ]
+    }
+
+  ]
+}

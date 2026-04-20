@@ -1,0 +1,60 @@
+{
+  "id": "poltergiest",
+  "name": "Poltergiest",
+  "createdBy": "Jayden S.",
+  "emoji": "😵‍💫",
+  "type": "Ghost",
+  "hp": 100,
+  "color": "#E24B4A",
+  "description": "Pretty cool guy. From alternate universe 75738.",
+  "moves": [
+    {
+      "id": "air_raid",
+      "name": "Air Raid",
+      "desc": "Scythe attack from above.",
+      "speed": "medium",
+      "damage": [
+        18,
+        24
+      ],
+      "status": null,
+      "statusChance": 0
+    },
+    {
+      "id": "invisible_attack",
+      "name": "Invisible Attack",
+      "desc": "Confuses the enemy.",
+      "speed": "fast",
+      "damage": [
+        14,
+        20
+      ],
+      "status": "confuse",
+      "statusChance": 0.40
+    },
+    {
+      "id": "boomering_scythe",
+      "name": "Boomering Scythe",
+      "desc": "Scythe throw that hs a chance to come back for a second time.",
+      "speed": "fast",
+      "damage": [
+        14,
+        20
+      ],
+      "status": "poison",
+      "statusChance": 1.0
+    },
+    {
+      "id": "serum_help",
+      "name": "Serum",
+      "desc": "Get help from a friend.",
+      "speed": "slow",
+      "damage": [
+        -25,
+        -25
+      ],
+      "status": null,
+      "statusChance": 0
+    }
+  ]
+}

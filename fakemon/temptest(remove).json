@@ -1,0 +1,25 @@
+{
+  "id":          "test",
+  "name":        "test",
+  "createdBy":   "benjamin",
+  "emoji":       "🧪",
+  "type":        "poison",
+  "description": "A fakemon that lives im using to test code.",
+  "hp":       50,
+  "power":    50,
+  "speed":    50,
+  "defense":  50,
+  "accuracy": 50,
+
+  "moves": [
+    {
+      "id":           "test1",
+      "name":         "test1",
+      "desc":         "test1.",
+      "speed":        "fast",
+      "damage":         [49,50],
+      "status":       null,
+      "statusChance": 0
+    }
+  ]
+}

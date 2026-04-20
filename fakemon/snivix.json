@@ -1,0 +1,75 @@
+{
+  "id":          "snivix",
+  "name":        "Snivix",
+  "createdBy":   "Milo Reinhold",
+  "emoji":       "🍃",
+  "type":        "Nature",
+  "description": "A fast but low HP build with high damage moves.",
+  "hp":       20,
+  "power":    110,
+  "speed":    120,
+  "defense":  50,
+  "accuracy": 99,
+
+  "moves": [
+    {
+      "id":           "poisonscratch",
+      "name":         "☠️ Poison Scratch",
+      "desc":         "A poisonous scratch.",
+      "speed":        "fast",
+      "damage": [10, 60],
+      "status":       "poison",
+      "statusChance": 0.8
+    },
+    {
+      "id":           "potassiampoisoning",
+      "name":         "☠️ Potassiam Poisoning",
+      "desc":         "You stuff 135,000 bananas down your opponents throat.",
+      "speed":        "medium",
+      "damage": [1, 1000000000000000],
+      "status":       "paralyze",
+      "statusChance": 0.99
+    },
+    {
+      "id":           "popastim",
+      "name":         "💊 Pop a Stim",
+      "desc":         ".Pop a Stim and go full health",
+      "speed":        "slow",
+      "damage": [-20, -20],
+      "status":       "confuse",
+      "statusChance": 0.3
+    },
+    {
+      "id":           "saveyourstrength",
+      "name":         "📈 Eat a Banana",
+      "desc":         "Bananae=big boy.",
+      "speed":        "fast",
+      "damage": [0, 0],
+      "status":       "statup",
+      "statusChance": 0.99,
+      "statTarget":   "defense"
+    },
+    {
+      "id":           "blindaguy",
+      "name":         "📉 Blinding",
+      "desc":         "Call Max in to flash the opponent.",
+      "speed":        "fast",
+      "damage": [0, 100],
+      "status":       "statdwn",
+      "statusChance": 0.99,
+      "statTarget":   "speed"
+    },
+    {
+      "id":    "damage",
+      "name":  "😵 Emotional Damage",
+      "desc":  "Emotional Damage!",
+      "speed": "medium",
+      "damage": [10, 10],
+      "statuses": [
+        { "status": "paralyze",  "statusChance": 0.9 },
+        { "status": "confuse", "statusChance": 0.9 }
+      ]
+    }
+
+  ]
+}

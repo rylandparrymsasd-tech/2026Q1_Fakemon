@@ -1,0 +1,75 @@
+{
+  "id":         "donut",
+  "name":        "donut",
+  "createdBy":   "Rowan James Rogers",
+  "emoji":       "🍩",
+  "type":        "Fire",
+  "description": "A inocent destructive donut.",
+  "hp":       189,
+  "power":    119,
+  "speed":    90,
+  "defense":  66,
+  "accuracy": 390,
+
+  "moves": [
+    {
+      "id":           "Doh!",
+      "name":         "🔥 Doh!",
+      "desc":         "A straightforward attack.",
+      "speed":        "fast",
+      "damage": [15, 90],
+      "status":       null,
+      "statusChance": 0
+    },
+    {
+      "id":           "mmm donut",
+      "name":         "a tasty donut",
+      "desc":         "A burning bite with a 30% chance to burn.",
+      "speed":        "medium",
+      "damage": [12, 18],
+      "status":       "burn",
+      "statusChance": 0.365
+    },
+    {
+      "id":           "healing_donut",
+      "name":         "💊 pastry of healing",
+      "desc":         "Restores 45 HP.",
+      "speed":        "slow",
+      "damage": [-45, -45],
+      "status":       null,
+      "statusChance": 0
+    },
+    {
+      "id":           "Sugar Rush!",
+      "name":         "Donut energy",
+      "desc":         "Sharply raises your own ATK.",
+      "speed":        "fast",
+      "damage": [4, 5],
+      "status":       "statup",
+      "statusChance": 1.0,
+      "statTarget":   "atk"
+    },
+    {
+      "id":           "frosting blast",
+      "name":         "📉 Cinder Smoke",
+      "desc":         "Thick donut frosting clouds the enemy's vision.",
+      "speed":        "medium",
+      "damage": [15, 15],
+      "status":       "statdwn",
+      "statusChance": 1.0,
+      "statTarget":   "speed"
+    },
+    {
+      "id":    "Donut breath",
+      "name":  "😵 breath of pastry",
+      "desc":  "Hits, then may poison AND confuse!",
+      "speed": "slow",
+      "damage": [10, 16],
+      "statuses": [
+        { "status": "poison",  "statusChance": 0.5 },
+        { "status": "confuse", "statusChance": 0.40 }
+      ]
+    }
+
+  ]
+}

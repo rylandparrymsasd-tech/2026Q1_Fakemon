@@ -1,0 +1,67 @@
+{
+  "id": "kirby",
+  "name": "Kirby",
+  "createdBy": "Johann Smit",
+  "emoji": "🦑",
+  "type": "Normal",
+
+
+  "hp": 140,       
+  "power": 120,    
+  "speed": 120,    
+  "defense": 40,  
+  "accuracy": 100, 
+
+  "description": "It's Kirby! He succ, slash, heal, and confuse. He is also evil.",
+
+  "moves": [
+
+    
+    {
+      "id": "move_one",
+      "name": "Ultra Succy",
+      "desc": "A sucking attack with a chance to force sleep.",
+      "speed": "fast",
+      "damage": [14, 90],
+      "status": "sleep",
+      "statusChance": 0.5
+    },
+
+
+    {
+      "id": "move_two",
+      "name": "⚔️ Quick Slash",
+      "desc": "A lightning-fast sword slash.",
+      "speed": "fast",
+      "damage": [30, 40],
+      "status": null,
+      "statusChance": 0
+    },
+
+  
+    {
+      "id": "move_three",
+      "name": "💊 FOOD",
+      "desc": "Restore 25 HP and gives you stat up.",
+      "speed": "fast",
+      "damage": [-25, -25],
+      "status": "statup",
+      "statusChance": 1
+    },
+
+
+    {
+      "id": "move_four",
+      "name": "😵 Confuse Ray",
+      "desc": "Scrambles the enemy's brain. No damage, just chaos.",
+      "speed": "medium",
+      "damage": [90, 0],
+      "status": "confuse",
+      "statusChance": 1.0
+    }
+
+   
+ 
+
+  ]
+}

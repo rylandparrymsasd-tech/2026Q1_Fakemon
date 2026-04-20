@@ -1,0 +1,76 @@
+{
+  "id": "david",
+  "name": "David Baszucki",
+  "createdBy": "Jayden S.",
+  "emoji": "🔓",
+  "type": "Ice",
+  "hp": 105,
+  "color": "#185FA5",
+  "description": "The CEO of Roblox. I hope he doesn't make any bad decisions for the company!",
+  "moves": [
+    {
+      "id": "attack_1",
+      "name": "Locked Chat",
+      "desc": "You can't talk unless you pass age verification.",
+      "speed": "fast",
+      "damage": [16, 20],
+      "status": "paralyze",
+      "statusChance": 0.25
+    },
+    {
+      "id": "attack_2",
+      "name": "Dynamic Face",
+      "desc": "A horrifying face that chomps on their enemies.",
+      "speed": "medium",
+      "damage": [18, 24],
+      "status": null,
+      "statusChance": 0
+    },
+    {
+      "id": "attack_3",
+      "name": "Money",
+      "desc": "David LOVES money!",
+      "speed": "slow",
+      "damage": [-25, -25],
+      "status": null,
+      "statusChance": 0
+    },
+    {
+      "id": "attack_4",
+      "name": "Inability to Build",
+      "desc": "You're supposed to unlock Roblox Plus for that!.",
+      "speed": "slow",
+      "damage": [0, 0],
+      "status": "paralyze",
+      "statusChance": 1.0
+    },
+
+    {
+      "id": "attack_5",
+      "name": "Roblox Destruction",
+      "desc": "The game becomes so boring that you fall asleep.",
+      "speed": "medium",
+      "damage": [14, 20],
+      "status": "sleep",
+      "statusChance": 0.3
+    },
+    {
+      "id": "attack_6",
+      "name": "Looking like a pizza face",
+      "desc": "Attack on people with acne that destroys their confidence.",
+      "speed": "slow",
+      "damage": [0, 0],
+      "status": "statdwn",
+      "statusChance": 1.0
+    },
+    {
+      "id": "attack_7",
+      "name": "Let's just ignore all the horrible people in this game!",
+      "desc": "A CEO so horrible that you'd rather go outside.",
+      "speed": "slow",
+      "damage": [0, 0],
+      "status": "sleep",
+      "statusChance": 0.8
+    }
+  ]
+}

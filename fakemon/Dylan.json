@@ -1,0 +1,59 @@
+{
+  "id": "yourfakemon",
+  "name": "naoya zenin",
+  "createdBy": "Dylan lange",
+  "emoji": "⚡♂",
+  "type": "Electric",
+
+  "hp": 85,
+  "power": 75,
+  "speed": 150,
+  "defense": 5,
+  "accuracy": 99,
+
+  "description": "a jujistsu sorcerer with the cursed technique to turn anything he touches into a frame (the last pose they were in kinda like one frame of animation) for one second he also has the ablity to move in 24 frames so he could move extremly fast while other fakemon cant keep up with him but his defense power and hp are low to make up for this he also has a very high ego",
+
+  "moves": [
+
+    {
+      "id": "move_one",
+      "name": "quick frame",
+      "desc": "naoya grab his oppenment and turns them into a frame and punches through them",
+      "speed": "medium",
+      "damage": [14, 20],
+      "status": "paralyze",
+      "statusChance": 0.5
+    },
+
+    {
+      "id": "move_two",
+      "name": "desisive strikes",
+      "desc": "using his quick speed you run toward the openment and punch them repeatetly very quickly",
+      "speed": "fast",
+      "damage": [20, 25],
+      "status": null,
+      "statusChance": 0
+    },
+
+    {
+      "id": "move_three",
+      "name": "bleedout",
+      "desc": "you use a hidden cursed tool to stab the oppenment near you",
+      "speed": "medium",
+      "damage": [15, 25],
+      "status": null,
+      "statusChance": 0
+    },
+
+    {
+      "id": "move_four",
+      "name": "domain exapansion, time cell moon palace",
+      "desc": "Creates a barrier around himself where people cant escape from where your cursed techniqe hits everyone in it, unless you dont move while in the domain parts of your body become frames and break, this can range from your whole body to the cells on your skin.",
+      "speed": "medium",
+      "damage": [0, 65],
+      "status": "poison",
+      "statusChance": 0.5
+    }
+
+  ]
+}

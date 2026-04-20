@@ -1,0 +1,49 @@
+{
+  "id": "mitofish",
+  "name": "Mitofish",
+  "createdBy": "Brandon Moore",
+  "emoji": "🦈",
+  "type": "Water",
+
+  "hp": 60,
+  "power": 80,
+  "speed": 100,
+  "defense": 5,
+  "accuracy": 95,
+
+  "description": "a fish that can multiply",
+
+  "moves": [
+
+    {
+      "id": "fishhit",
+      "name": "FISH SLAP",
+      "desc": "a fish slapping someone.",
+      "speed": "medium",
+      "damage": [7,10],
+      "status": null,
+      "statusChance": 0
+    },
+
+    {
+      "id": "mitose",
+      "name": "mitose",
+      "desc": "WHERE DID THE SECOND FISH COME FROM",
+      "speed": "fast",
+      "damage": [-60, -60],
+      "status": "statup",
+      "statusChance": 1
+    },
+
+    {
+      "id": "fishbomb",
+      "name": "detonate",
+      "desc": "THE FISH ARE REACHING CRITICAL MASS",
+      "speed": "slow",
+      "damage": [100, 100],
+      "status": null,
+      "statusChance": 0
+    }
+
+  ]
+}

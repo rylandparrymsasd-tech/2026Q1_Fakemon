@@ -1,0 +1,73 @@
+{
+  "id":          "yourfakemon",
+  "name":        "Yuji itadori",
+  "createdBy":   "Dylan Lange ",
+  "emoji":       "✂🩸",
+  "type":        "Normal",
+  "description": "Yuji is a modern day sorcerer who was breed to have mutiple techniqes, most of his primary ones include the shrine technique which gives him dismantle and cleave, then blood manipulation which lets him do alot but he uses piercing blood the easyist, these attacks paired with his incredible strength and soul touching ablitly makes him an extremly strong sorcerer.",
+  "hp":       90,
+  "power":    135,
+  "speed":    105,
+  "defense":  15,
+  "accuracy": 75,
+
+  "moves": [
+    {
+      "id":           "move_one",
+      "name":         "Soul strike",
+      "desc":         "Yuji punches his opponent reaching their soul",
+      "speed":        "medium",
+      "damage": [19,35],
+      "status":       null,
+      "statusChance": 0
+    },
+    {
+      "id":           "move_two",
+      "name":         "Cleave",
+      "desc":         "Yuji grabs his opponent either on the legs or arms and uses cleave cutting their body and their soul",
+      "speed":        "medium",
+      "damage": [25,35],
+      "status":       "null",
+      "statusChance": 0.3
+    },
+    {
+      "id":           "move_three",
+      "name":         "RCT",
+      "desc":         "Restores at max 35 HP.",
+      "speed":        "slow",
+      "damage": [-25, -35],
+      "status":       null,
+      "statusChance": 0
+    },
+    {
+      "id":           "move_four",
+      "name":         "Piercing blood 🩸",
+      "desc":         "using blood manipulation shoots out a beam of blood cutting anyone who it hits",
+      "speed":        "fast",
+      "damage": [10, 35],
+      "status":       "statup",
+      "statusChance": 1.0
+    },
+    {
+      "id":           "move_five",
+      "name":         "black flash chain",
+      "desc":         "Yuji hits you with 1-5 black flashes touching your soul each time ",
+      "speed":        "medium",
+      "damage": [10, 50],
+      "status":       "statdwn",
+      "statusChance": 1.0
+    },
+    {
+      "id":    "move_six",
+      "name":  "Domain expansion,Benevolent Shrine",
+      "desc":  "Yuji hits your soul having a full conversation with your soul in the blink of an eye stunning your fakemon while also hitting your soul with his cleave technique multiple times",
+      "speed": "fast",
+      "damage": [25, 70],
+      "statuses": [
+        { "status": "statdwn",  "statusChance": 0.5 },
+        { "status": "Sleep", "statusChance": 1.0 }
+      ]
+    }
+
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "id":          "bigboy",
+  "name":        "BigBoy",
+  "createdBy":   "Wyatt Arnold",
+  "emoji":       "💥",
+  "type":        "Metal",
+  "description": "A man who has suffered from his gluttony. Very big and bald.",
+  "hp":       200,
+  "power":    250,
+  "speed":    15,
+  "defense":  150,
+  "accuracy": 85,
+
+  "moves": [
+    {
+      "id": "slam",
+      "name": "💥 Slam",
+      "desc": "A powerful full-body slam.",
+      "speed": "medium",
+      "damage": [16, 22],
+      "status": null,
+      "statusChance": 0
+    },
+    {
+      "id": "mega_stomp",
+      "name": "🦶 Mega Stomp",
+      "desc": "Slow but devastatingly powerful.",
+      "speed": "slow",
+      "damage": [26, 34],
+      "status": null,
+      "statusChance": 0
+    },
+    {
+      "id":           "move_three",
+      "name":         "💊 Eat",
+      "desc":         "Restores 25 HP.",
+      "speed":        "slow",
+      "damage": [-25, -25],
+      "status":       null,
+      "statusChance": 0
+    },
+    {
+      "id":           "move_four",
+      "name":         "📈 Power Up",
+      "desc":         "Sharply raises your own ATK.",
+      "speed":        "fast",
+      "damage": [0, 0],
+      "status":       "statup",
+      "statusChance": 1.0,
+      "statTarget":   "atk"
+    },
+    {
+      "id":           "move_five",
+      "name":         "📉 Cinder Smoke",
+      "desc":         "Thick smoke clouds the enemy's vision.",
+      "speed":        "medium",
+      "damage": [0, 0],
+      "status":       "statdwn",
+      "statusChance": 1.0,
+      "statTarget":   "speed"
+    },
+    {
+      "id":    "move_six",
+      "name":  "😵 Bad Breath",
+      "desc":  "Hits, then may poison AND confuse!",
+      "speed": "slow",
+      "damage": [10, 16],
+      "statuses": [
+        { "status": "poison",  "statusChance": 0.5 },
+        { "status": "confuse", "statusChance": 0.4 }
+      ]
+    }
+
+  ]
+}

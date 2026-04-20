@@ -1,0 +1,50 @@
+{
+  "id": "Hornet",
+  "name": "Hornet",
+  "createdBy": "Brandon Moore",
+  "emoji": "🕷️",
+  "type": "Normal",
+
+  "hp": 90,
+  "power": 100,
+  "speed": 110,
+  "defense": 10,
+  "accuracy": 100,
+
+  "description": "A short description of your Fakemon.",
+
+  "moves": [
+
+    {
+      "id": "nail",
+      "name": "nail",
+      "desc": "a nail. thats it.",
+      "speed": "fast",
+      "damage": [20, 25],
+      "status": null,
+      "statusChance": 0
+    },
+
+    {
+      "id": "silkgun",
+      "name": "silkshot",
+      "desc": "WHO GAVE IT A GU-",
+      "speed": "fast",
+      "damage": [25, 29],
+      "status": null,
+      "statusChance": 0
+    },
+
+    {
+      "id": "bind",
+      "name": "bind",
+      "desc": "fixes shell with silk",
+      "speed": "slow",
+      "damage": [-25, -25],
+      "status": null,
+      "statusChance": 0
+    }
+
+
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "id":          "burgersandfries",
+ "name": "Hi there! Okay, so I hope you're ready because this order's going to be a masterpiece — some might call it excessive, I call it thorough meal planning. Starting off strong, I'm gonna need one burger, freshly made, made-to-order, straight off the grill. Not a 'it's been sitting around since the morning rush but we'll pretend it's fresh' burger — I mean the kind where you can hear the patties sizzling when they hit the grill. Please make sure the bun is lightly toasted — golden brown but not, you know, 'campfire tragedy.' I want that soft-crisp texture when I pick it up. Add cheese, real cheese that melts like it's dedicating itself to the moment, not just slouched on top in surrender. Add lettuce that crunches, tomato slices thick enough to taste like actual tomatoes, crunchy pickles, onions (grilled or raw, I trust your onion intuition), and your special sauce — the stuff of legend, the sauce so good it should come with a warning label. Please be generous with it. No timid streak of sauce down the middle like a dotted line, I want the full coverage — coast-to-coast flavor. If possible, give the burger a dignified assembly, like every ingredient's proud of its place. This is not a side character, this burger's the star of the show. Now, for the fries — oh boy, we're going to need two large fries. Because, truthfully, who are we kidding? One order of fries is just the 'appetizer fry,' gone before we even drive away. I want those fries hot, crispy, seasoned just right — not those lifeless, lukewarm ones at the bottom of the basket that have given up hope. You know the perfect fry? That one that snaps in half and still leaves salt dust on your fingers. Yeah, all like that please. And I'll need extra ketchup. Like… an unreasonable amount. The kind of ketchup supply that makes people question my life choices. Toss in some mustard packets, too, and maybe a few ranch cups if possible. Oh, and if you've got one of those fancy fry seasoning shakers, surprise me — I'm open to adventure. For my drink, I'll go with a medium soda — but not a basic one, give me something with personality. Maybe a cola, maybe a mix. If you've got one of those soda fountains with flavor options, I'll take cola with cherry, vanilla, or even lime, whatever feels right in your heart. But please, not too much ice, I want to drink the soda, not play 'defrost simulator' later. Make it cold enough to refresh the soul though — I want to feel like a protagonist in a soda commercial, maybe with some dramatic background music playing somewhere. Next up, we're adding a chicken sandwich. Has to be the crispy kind — not grilled, not oven-baked, full golden-fried glory. Please no pickles on this one, I've reached my pickle quota for the day, but pile on that mayo. Spread it evenly, not clumped in one corner like an afterthought. A bit of lettuce, a bit of tomato, balance it out. Make sure the chicken's juicy, like the kind that still crackles lightly when you pull it apart. If the bun's warm, I already know you care about the craft, and I respect that. Now, I'm going to need an order of onion rings. These can't just be rings in name only — I'm talking properly battered, thick golden loops of fried perfection. You know, the kind that stay crunchy even after five minutes in the bag. Hit me with some dipping sauce variety too: ranch, barbecue, honey mustard, maybe even that spicy aioli if you've got some secret stash back there. And please, fill the container completely — there's nothing sadder than opening a box and finding only four lonely rings staring back at you like, 'Yeah, we didn't expect to see you either.' And I can't leave without a side salad. I know, balance — yin and yang. Give me that crisp lettuce base, maybe some chopped carrots or cabbage for the look, a sprinkle of shredded cheese, and croutons — lots of croutons. Ranch dressing, obviously, and if you've got two cups, that's even better. If cherry tomatoes are an option, toss a few in there. Every hero needs their green counterpart. Now, for dessert, let's talk milkshake. I'd like a chocolate milkshake so thick it could double as a building material. I want to have to fight gravity to get it through the straw. Load it up with whipped cream, a swirl of chocolate syrup, and a cherry on top like a good traditionalist move. If you've got those dome lids, that's ideal — I love a shake that looks taller than it has any right to be. And hey, if you can toss in a little extra syrup for dipping fries into the shake — yeah, I said it — that would be an elite move. Fries and milkshakes together are divine. Actually, scratch that — let's add a dessert on top of dessert. If you've got cookies, brownies, cinnamon sticks, or literally anything involving melted chocolate, I'm sold. A gooey cookie with chocolate still half-melted inside would be perfect, something that makes me second-guess every life decision leading up to this point in the best way possible. If you have pie slices back there, say apple or chocolate cream, I'll trust your judgment — dealer's choice. And toss in napkins because the sugar storm is approaching fast. Now, for logistical perfection — could you please pack everything neatly for takeout? Fries and onion rings together, but not crammed so they steam each other into sadness. Keep the burger container upright (I beg you — upside-down burgers are a tragedy). Put the salad somewhere it can breathe, maybe on top or safely tucked on the side. Milkshake upright — I'll cry if it spills, emotionally and physically. Seal the sauces tight so none of them pull a 'surprise leak.' Just overall, make this bag the Sistine Chapel of takeout packaging — a structure of harmony and heat control. And finally, could you label each thing, please? Burger, chicken sandwich, salad, dessert, all crystal clear. I'd rather not play mystery food roulette when I get home. Throw in plenty of napkins — honestly, double it. And utensils too, even though I'll definitely eat everything with my hands anyway. That feeling of having a plastic fork I'll never use just completes the order. I know this is a lot, but this meal isn't just food, it's performance art. A feast forged in hunger and ambition. So yeah, that should do it — one fully loaded burger, two large fries, a medium soda, a crispy chicken sandwich, onion rings, a ranch-powered salad, a milkshake defying physics, and a sweet treat finale. Pack it all with pride, because this isn't just an order — it's a lifestyle choice.",
+"createdBy":   "Johann",
+  "emoji":       "🍔",
+  "type":        "Normal",
+  "description": "A fakemon that lives in the burger joint around the corner.",
+  "hp":       100,
+  "power":    999,
+  "speed":    55,
+  "defense":  90,
+  "accuracy": 740,
+
+
+  "moves": [
+    {
+      "id":           "patty_bun",
+      "name":         "Put The Patty On The Bun",
+      "desc":         "Working a respectable job at a fast-food joint.",
+      "speed":        "fast",
+      "damage":         [2, 90],
+      "status":       null,
+      "statusChance": 0
+    },
+    {
+      "id":           "burnt_crisp",
+      "name":         "Burnt To A Crisp",
+      "desc":         "You failed to cook a burger patty.",
+      "speed":        "slow",
+      "damage":         [89, 90],
+      "status":       "burn",
+      "statusChance": 0.635
+    },
+    {
+      "id":           "pickles",
+      "name":         "Can you add pickles to that?",
+      "desc":         "The pickles might be sour enough to stun your opponent.",
+      "speed":        "medium",
+      "damage":         [1, 2],
+      "status":       "paralyze",
+      "statusChance": 0.5
+    },
+    {
+      "id":           "xtra_pickles",
+      "name":         "Can you add EXTRA pickles to that?",
+      "desc":         "The pickles are so sour that it stuns your opponent.",
+      "speed":        "fast",
+      "damage":         [1, 2],
+      "status":       "paralyze",
+      "statusChance": 1
+    },
+    {
+      "id":           "xtra_onion",
+      "name":         "Extra Onion Slam",
+      "desc":         "Boo Hoo! I'm not crying, you're crying!",
+      "speed":        "fast",
+      "damage":         [89, 90],
+      "status":       "statdwn",
+      "statTarget": "defense",
+      "statusChance": 1
+    }
+  ]
+}
+
+
+

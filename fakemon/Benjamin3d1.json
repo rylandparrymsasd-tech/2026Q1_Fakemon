@@ -1,0 +1,109 @@
+{
+  "id": "Benjamin3d1",
+  "name": "Banbulabs A1 mini 3d printer",
+  "createdBy": "Benjamin",
+  "emoji": "🖨️",
+  "type": "Metal",
+
+  "hp": 100,
+  "atk": 70,
+  "speed": 40,
+  "defense": 10,
+  "accuracy": 70,
+
+  "description": "medium speed 3d printer.",
+  "moves": [
+    {
+      "id": "3dweapon",
+      "name": "⚔️ 3d printed weapon",
+      "desc": "A printed 3d weapon.",
+      "speed": "fast",
+      "damage": [20, 25],
+      "status": "flinch",
+      "statusChance": 0.1
+    },
+    {
+      "id": "extruder",
+      "name": "🔥 hot extruder",
+      "desc": "A use a hot 3d printer extruder to burn enemys.",
+      "speed": "medium",
+      "damage": [20, 25],
+      "status": "burn",
+      "statusChance": 1
+    },
+    {
+      "id": "plate",
+      "name": "🔥 hot plate",
+      "desc": "A use a warm 3d printer plate to flinch enemys.",
+      "speed": "medium",
+      "damage": [10, 15],
+      "status": "flinch",
+      "statusChance": 0.1
+    },
+    {
+      "id": "calibrate",
+      "name": "📈 calibrate",
+      "desc": "recalibrate 3d printer-accuracy rise.",
+      "speed": "medium",
+      "damage": [0, 0],
+      "status": "statup",
+      "statusChance": 1.0,
+      "statTarget": "accuracy"
+    },
+    {
+      "id": "Maintenance",
+      "name": "💊 Maintenance",
+      "desc": "Restore 0 to 25 HP and gives stat up effect",
+      "speed": "medium",
+      "damage": [0, -25],
+      "statusChance": 1.0,
+      "statTarget": "accuracy"
+    },
+    {
+      "id": "smoke_machine",
+      "name": "🌫️ new smoke machine",
+      "desc": "3d printer starts smoking.",
+      "speed": "fast",
+      "damage": [0, 0],
+      "status": "statdwn",
+      "statusChance": 1.0,
+      "statTarget": "accuracy"
+    },
+    {
+      "id": "fumes",
+      "name": "☣️ toxic fumes",
+      "desc": "No proper ventilation filiment is non food safe.",
+      "speed": "medium",
+      "damage": [10,15],
+      "status": "poison",
+      "statusChance": 1.0
+    },
+    {
+      "id": "replace",
+      "name": "💊 replace parts",
+      "desc": "Replace all parts of 3d printer fixes all damage... why didnt you just but a new printer?.",
+      "speed": "medium",
+      "damage": [-100, -100],
+      "status": null,
+      "statusChance": 0
+    },
+    {
+      "id": "bore",
+      "name": "🌈 multicolor print",
+      "desc": "A long multicolor print that bores the enemy to sleep.",
+      "speed": "medium",
+      "damage": [0,0],
+      "status": "sleep",
+      "statusChance": 0.9
+    },
+    {
+      "id": "benchy",
+      "name": "benchy",
+      "desc": "print a benchy.",
+      "speed": "fast",
+      "damage": [0,0],
+      "status": "confuse",
+      "statusChance": 0.5
+    }
+  ]
+}

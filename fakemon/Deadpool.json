@@ -1,0 +1,75 @@
+{
+  "id":          "Deadpool",
+  "name":        "Deadpool",
+  "createdBy":   "Jim Carey",
+  "emoji":       "👺",
+  "type":        "Chaos",
+  "description": "based on the charachter deapool from marvel.",
+  "hp":       145,
+  "power":    110,
+  "speed":    99,
+  "defense":  89,
+  "accuracy": 98,
+
+  "moves": [
+    {
+      "id":           "Duel Katana",
+      "name":         "Duel katana",
+      "desc":         "A straightforward attack.",
+      "speed":        "medium",
+      "damage": [15, 22],
+      "status":       null,
+      "statusChance": 0
+    },
+    {
+      "id":           "move_two",
+      "name":         "Bye Bye Bye",
+      "desc":         "A powerfull blow.",
+      "speed":        "fast",
+      "damage": [12, 18],
+      "status":       "burn",
+      "statusChance": 0.5
+    },
+    {
+      "id":           "move_three",
+      "name":         "Human sheild",
+      "desc":         "Restores 45 HP.",
+      "speed":        "slow",
+      "damage": [-25, -25],
+      "status":       null,
+      "statusChance": 0
+    },
+    {
+      "id":           "move_four",
+      "name":         "📈 morning coffee",
+      "desc":         "Sharply raises your own ATK.",
+      "speed":        "fast",
+      "damage": [0, 0],
+      "status":       "statup",
+      "statusChance": 1.0,
+      "statTarget":   "atk"
+    },
+    {
+      "id":           "move_five",
+      "name":         "📉 Look_A_distraction ",
+      "desc":         "Thick smoke clouds the enemy's vision.",
+      "speed":        "medium",
+      "damage": [0, 0],
+      "status":       "statdwn",
+      "statusChance": 1.0,
+      "statTarget":   "speed"
+    },
+    {
+      "id":    "move_six",
+      "name":  "😵 monday breath",
+      "desc":  "Hits, then may poison AND confuse!",
+      "speed": "slow",
+      "damage": [10, 16],
+      "statuses": [
+        { "status": "poison",  "statusChance": 0.5 },
+        { "status": "confuse", "statusChance": 0.4 }
+      ]
+    }
+
+  ]
+}

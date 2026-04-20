@@ -1,0 +1,59 @@
+{
+  "id": "yourfakemon",
+  "name": "theultimategoopa",
+  "createdBy": "Your Full Name",
+  "emoji": "🥜",
+  "type": "Fire",
+
+  "hp": 1000,
+  "power": 500,
+  "speed": 100000,
+  "defense": 40,
+  "accuracy": 100,
+
+  "description": "naoya but a",
+
+  "moves": [
+
+    {
+      "id": "move_one",
+      "name": "👊 fast punch",
+      "desc": "A physical attack that always goes first",
+      "speed": "fast",
+      "damage": [13, 16],
+      "status": "speed up",
+      "statusChance": 100
+    },
+
+    {
+      "id": "move_two",
+      "name": "⚔️ dagger slash",
+      "desc": "a fast dagger swipe based on how much speed up status effects are stacked",
+      "speed": "fast",
+      "damage": [15,40 ],
+      "status": bleed,
+      "statusChance": 0
+    },
+
+    {
+      "id": "move_three",
+      "name": "💊 Heal Move",
+      "desc": "Restore 25 HP.",
+      "speed": "slow",
+      "damage": [-25, -25],
+      "status": null,
+      "statusChance": 0
+    },
+
+    {
+      "id": "move_four",
+      "name": "😵 Confuse Ray",
+      "desc": "Scrambles the enemy's brain. No damage, just chaos.",
+      "speed": "medium",
+      "damage": [0, 0],
+      "status": "confuse",
+      "statusChance": 1.0
+    }
+
+  ]
+}

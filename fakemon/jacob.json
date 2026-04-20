@@ -1,0 +1,59 @@
+{
+  "id": "Conquest",
+  "name": "Conquest",
+  "createdBy": "Jacob Cash Kuntz",
+  "emoji": "💀",
+  "type": "Metal",
+
+  "hp": 700,
+  "power": 400,
+  "speed": 300,
+  "defense": 121,
+  "accuracy": 300,
+
+  "description": "The oldest Viltrumite, also the 2nd most powerful, spent the last 2000 years conquering planets for the Viltrum Empire.",
+
+  "moves": [
+
+    {
+      "id": "move_one",
+      "name": "Body Shot",
+      "desc": "Heavy Punch to stomach.",
+      "speed": "medium",
+      "damage": [14,30],
+      "status": "flinch",
+      "statusChance": 0.35
+    },
+
+    {
+      "id": "move_two",
+      "name": "Uppercut",
+      "desc": "A heavy punch to the jaw",
+      "speed": "medium",
+      "damage": [50, 60],
+      "status": "confuse",
+      "statusChance": 1
+    },
+
+    {
+      "id": "move_three",
+      "name": "💊 Heal Move",
+      "desc": "Restore 25 HP.",
+      "speed": "slow",
+      "damage": [-25, -25],
+      "status": null,
+      "statusChance": 0
+    },
+
+    {
+      "id": "move_four",
+      "name": "Face Smash",
+      "desc": "A heavy crushing move to the head,potential for skull crushing",
+      "speed": "slow",
+      "damage": [120, 180],
+      "status": "confuse",
+      "statusChance": 1.0
+    }
+
+  ]
+}

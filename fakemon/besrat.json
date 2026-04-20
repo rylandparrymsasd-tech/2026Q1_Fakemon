@@ -1,0 +1,60 @@
+  {
+  "id": "besrat",
+  "name": "besrat",
+  "createdBy": "Besrat Fikre",
+  "emoji": "🔥",
+  "type": "Fire",
+
+  "hp": 140,
+  "power": 500,
+  "speed": 200,
+  "defense": 35,
+  "accuracy": 100,
+
+  "description": "A short description of your Fakemon.",
+
+  "moves": [
+
+    {
+      "id": "finisher_charged",
+      "name": "🔥 Finisher charged",
+      "desc": "A slashing attack to parylyze the opponent.",
+      "speed": "fast",
+      "damage": [14, 20],
+      "status": "burn",
+      "statusChance": 0.35
+    },
+
+    {
+      "id": "rko_tsunami",
+      "name": "⚔️ 🌊 RKO TSUNAMI",
+      "desc": "A lightning-fast water slap.",
+      "speed": "fast",
+      "damage": [22, 28],
+      "status": null,
+      "statusChance": 0.55
+    },
+
+    {
+      "id": "health_power+",
+      "name": "💊 Health Power+",
+      "desc": "Restore 45 HP.",
+      "speed": "slow",
+      "damage": [-45, -45],
+      "status": null,
+      "statusChance": 0
+    },
+
+    {
+      "id": "burner_finisher",
+      "name": "😵 🔥 Burner Finisher",
+      "desc": "Burns the enemy's brain. A lot of damage and chaos.",
+      "speed": "fast",
+      "damage": [32, 38],
+      "status": "burn",
+      "statusChance": 1.0
+    }
+
+  ]
+}
+  

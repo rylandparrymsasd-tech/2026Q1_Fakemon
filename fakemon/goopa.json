@@ -1,0 +1,75 @@
+{
+  "id":          "goopa",
+  "name":        "goopa",
+  "createdBy":   "beni r",
+  "emoji":       "🐲",
+  "type":        "goop",
+  "description": "a burnt peanut looking for revenge.",
+  "hp":       67,
+  "power":    6767,
+  "speed":    4167,
+  "defense":  1000000,
+  "accuracy": 900,
+
+  "moves": [
+    {
+      "id":           "Goop_burn",
+      "name":         "🔥 goop_burn",
+      "desc":         "A straightforward attack.",
+      "speed":        "medium",
+      "damage": [41, 67],
+      "status":       null,
+      "statusChance": 0
+    },
+    {
+      "id":           "Goop_chew",
+      "name":         "🔥 Goop_chew ",
+      "desc":         "A burning bite with a 30% chance to burn.",
+      "speed":        "medium",
+      "damage": [41, 67],
+      "status":       "burn",
+      "statusChance": 0.3
+    },
+    {
+      "id":           "eat_a_peanut",
+      "name":         "💊 peanut eat",
+      "desc":         "Restores 25 HP.",
+      "speed":        "slow",
+      "damage": [-41, -41],
+      "status":       null,
+      "statusChance": 0
+    },
+    {
+      "id":           "Goopa_crew",
+      "name":         "📈 goop empowerment",
+      "desc":         "Sharply raises your own ATK.",
+      "speed":        "fast",
+      "damage": [0, 0],
+      "status":       "statup",
+      "statusChance": 500,
+      "statTarget":   "atk"
+    },
+    {
+      "id":           "move_five",
+      "name":         "📉 Cinder Smoke",
+      "desc":         "Thick smoke clouds the enemy's vision.",
+      "speed":        "medium",
+      "damage": [0, 0],
+      "status":       "statdwn",
+      "statusChance": 1.0,
+      "statTarget":   "speed"
+    },
+    {
+      "id":    "move_six",
+      "name":  "😵 Chaos Breath",
+      "desc":  "Hits, then may poison AND confuse!",
+      "speed": "slow",
+      "damage": [41, 67],
+      "statuses": [
+        { "status": "poison",  "statusChance": 1.5 },
+        { "status": "confuse", "statusChance": 1.4 }
+      ]
+    }
+
+  ]
+}

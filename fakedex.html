@@ -108,6 +108,21 @@ h1 {
 .dlog-warn  { color: #f5c842; }
 .dlog-error { color: #e85d5d; font-weight: bold; }
 .dlog-score { color: #f0a0f0; }
+.filtered-out { display: none; }
+
+/* ── DEBUG FILTER BUTTONS ── */
+.debug-filter-btn {
+  font-family: var(--px); font-size: 6px; color: #503060;
+  background: none; border: 1px solid #3a2a60; border-radius: 4px;
+  padding: 2px 6px; cursor: pointer;
+  transition: color 0.15s, border-color 0.15s; letter-spacing: 0.5px;
+}
+.debug-filter-btn:hover,
+.debug-filter-btn.active  { color: #a080f0; border-color: #a080f0; }
+.debug-filter-btn.f-ok.active    { color: #56c87a; border-color: #56c87a; }
+.debug-filter-btn.f-warn.active  { color: #f5c842; border-color: #f5c842; }
+.debug-filter-btn.f-error.active { color: #e85d5d; border-color: #e85d5d; }
+.debug-filter-btn.f-score.active { color: #f0a0f0; border-color: #f0a0f0; }
 #debug-clear {
   font-family: var(--px); font-size: 7px; color: #503060;
   background: none; border: none; cursor: pointer; padding: 3px 8px;
@@ -150,6 +165,19 @@ h1 {
   font-family: var(--px); font-size: 7px; color: #333355; letter-spacing: 1px;
 }
 .gc-emoji { font-size: 42px; display: block; margin-bottom: 10px; line-height: 1; }
+.gc-img {
+  width: 52px; height: 52px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 10px;
+  image-rendering: pixelated;
+}
+.modal-img {
+  width: 80px; height: 80px;
+  object-fit: contain;
+  display: block;
+  image-rendering: pixelated;
+}
 .gc-name  { font-family: var(--px); font-size: 7px; color: var(--text); margin-bottom: 6px; letter-spacing: 1px; }
 .gc-type  { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 20px; display: inline-block; margin-bottom: 6px; }
 .gc-author { font-size: 9px; color: #444466; margin-top: 4px; }
@@ -299,8 +327,13 @@ h1 {
   <div id="debug-panel">
     <div id="debug-header" onclick="toggleDebug()">
       <span id="debug-header-label">🐛 DEBUG CONSOLE <span id="debug-count" style="color:#7060b0;">(0 messages)</span></span>
-      <div style="display:flex;gap:6px;align-items:center;">
-        <button id="debug-clear" onclick="event.stopPropagation();clearDebug()">CLEAR</button>
+      <div id="debug-controls" style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;" onclick="event.stopPropagation()">
+        <button class="debug-filter-btn f-all active" onclick="setFilter('all')">ALL</button>
+        <button class="debug-filter-btn f-ok"         onclick="setFilter('ok')">✓ OK</button>
+        <button class="debug-filter-btn f-warn"       onclick="setFilter('warn')">⚠ WARN</button>
+        <button class="debug-filter-btn f-error"      onclick="setFilter('error')">✗ ERROR</button>
+        <button class="debug-filter-btn f-score"      onclick="setFilter('score')">⭐ SCORE</button>
+        <button id="debug-clear" onclick="clearDebug()">CLEAR</button>
         <button id="debug-toggle">HIDE ▲</button>
       </div>
     </div>
@@ -325,19 +358,35 @@ h1 {
 //  DEBUG SYSTEM
 // ════════════════════════════════════════════════════════════════════════
 let debugCollapsed = false;
-let debugMsgCount = 0;
+let debugMsgCount  = 0;
+let activeFilter   = 'all';
+
+const DEBUG_ICONS = { info:'ℹ', ok:'✓', warn:'⚠', error:'✗', score:'⭐' };
+
+function escHtmlDebug(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function shortName(name, len = 36) {
+  if (!name) return '???';
+  if (name.length <= len) return name;
+  return name.slice(0, len) + '\u2026';
+}
 
 function dlog(msg, type = 'info') {
   debugMsgCount++;
   const body = document.getElementById('debug-body');
-  const el = document.createElement('div');
-  el.className = `dlog dlog-${type}`;
-  const ts = new Date().toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
-  const prefix = { info: 'ℹ', ok: '✓', warn: '⚠', error: '✗', score: '⭐' }[type] || 'ℹ';
-  el.textContent = `[${ts}] ${prefix} ${msg}`;
+  const el   = document.createElement('div');
+  el.className    = `dlog dlog-${type}`;
+  el.dataset.type = type;
+  const ts   = new Date().toLocaleTimeString('en-US', { hour12:false, hour:'2-digit', minute:'2-digit', second:'2-digit' });
+  const icon = DEBUG_ICONS[type] || 'ℹ';
+  el.innerHTML = `<span class="dlog-ts">[${ts}]</span> <span class="dlog-icon">${icon}</span> <span class="dlog-msg">${escHtmlDebug(String(msg))}</span>`;
+  if (activeFilter !== 'all' && type !== activeFilter) el.classList.add('filtered-out');
   body.appendChild(el);
   body.scrollTop = body.scrollHeight;
-  document.getElementById('debug-count').textContent = `(${debugMsgCount} messages)`;
+  const visible = body.querySelectorAll('.dlog:not(.filtered-out)').length;
+  document.getElementById('debug-count').textContent = `(${debugMsgCount} total, ${visible} shown)`;
   if (type === 'error') console.error(`[FAKEDEX] ${msg}`);
   else if (type === 'warn') console.warn(`[FAKEDEX] ${msg}`);
   else console.log(`[FAKEDEX] ${msg}`);
@@ -352,8 +401,22 @@ function toggleDebug() {
 function clearDebug() {
   document.getElementById('debug-body').innerHTML = '';
   debugMsgCount = 0;
-  document.getElementById('debug-count').textContent = '(0 messages)';
+  document.getElementById('debug-count').textContent = '(0 total, 0 shown)';
   dlog('Debug log cleared.', 'info');
+}
+
+function setFilter(type) {
+  activeFilter = type;
+  document.querySelectorAll('.debug-filter-btn').forEach(btn => btn.classList.remove('active'));
+  const activeBtn = document.querySelector(`.debug-filter-btn.f-${type}`);
+  if (activeBtn) activeBtn.classList.add('active');
+  document.querySelectorAll('.dlog').forEach(el => {
+    const t = el.dataset.type || 'info';
+    el.classList.toggle('filtered-out', type !== 'all' && t !== type);
+  });
+  const body    = document.getElementById('debug-body');
+  const visible = body.querySelectorAll('.dlog:not(.filtered-out)').length;
+  document.getElementById('debug-count').textContent = `(${debugMsgCount} total, ${visible} shown)`;
 }
 
 // ════════════════════════════════════════════════════════════════════════
@@ -392,9 +455,23 @@ async function loadAll() {
       dlog(`${entry.id}: SKIPPED power calc (has errors)`, 'warn');
     });
 
+    if (good.length > 0) {
+      const sorted = [...good].sort((a,b) => b._power - a._power);
+      dlog(`Power ranking: ${sorted.map(e => `${shortName(e.name)}=${e._power}`).join(' > ')}`, 'score');
+    }
+    // CREATORS ROSTER
+    const working = DEXDATA.filter(e => !e._error);
+    const broken  = DEXDATA.filter(e =>  e._error);
+    dlog('========================================', 'ok');
+    dlog('STUDENT CONTRIBUTORS', 'ok');
+    dlog(`  Working (${working.length}): ${working.map(e => `${e.createdBy||'?'} (${e.name})`).join(', ') || 'none'}`, 'ok');
+    dlog(`  Errored (${broken.length}): ${broken.map(e => `${e.createdBy||'?'} (${e.id})`).join(', ') || 'none'}`, broken.length > 0 ? 'warn' : 'ok');
+    dlog('========================================', 'ok');
+
     buildGallery();
   } catch (e) {
     dlog(`FATAL: ${e.message}`, 'error');
+    dlog('Is fakemon/fakemonlist.json missing or malformed? Check the path and JSON syntax.', 'warn');
     document.getElementById('gallery-loading').textContent = 'Failed to load fakemon list. Check the debug console.';
   }
 }
@@ -443,7 +520,13 @@ async function loadEntry(id, num) {
     }
 
     warnings.forEach(w => dlog(`  [${id}] ⚠ ${w}`, 'warn'));
-    dlog(`  [${id}] ✓ ${entry.name} loaded OK`, 'ok');
+    dlog(`  [${id}] ✓ ${entry.name} loaded OK — type:${entry.type} HP:${entry.hp??100} ATK:${entry.atk??entry.power??100} SPD:${entry.speed??90} DEF:${entry.defense??10} ACC:${entry.accuracy??90} moves:${(entry.moves||[]).length}`, 'ok');
+    if ((entry.moves||[]).length === 0) {
+      dlog(`  [${id}] ⚠ WARNING: No moves found! Battle will crash.`, 'warn');
+    }
+    (entry.moves||[]).forEach((m, i) => {
+      dlog(`    Move[${i}] "${m.name}" — speed:${m.speed||'medium'} damage:${JSON.stringify(m.damage)}`, 'info');
+    });
     return entry;
 
   } catch (e) {
@@ -479,6 +562,19 @@ function diagnoseBadJSON(raw) {
 }
 
 // ════════════════════════════════════════════════════════════════════════
+//  IMAGE HELPER
+// ════════════════════════════════════════════════════════════════════════
+
+function dexAvatar(entry, imgClass, emojiClass) {
+  const src = `fakemon/images/${entry.id}.png`;
+  return `<span class="choice-avatar">` +
+    `<img src="${src}" class="${imgClass}" alt="${escHtmlDebug(entry.name || entry.id)}" ` +
+    `onerror="this.style.display='none';this.nextElementSibling.style.display='block'">` +
+    `<span class="${emojiClass}" style="display:none">${entry.emoji || '❓'}</span>` +
+    `</span>`;
+}
+
+// ════════════════════════════════════════════════════════════════════════
 //  GALLERY
 // ════════════════════════════════════════════════════════════════════════
 
@@ -493,7 +589,7 @@ function buildGallery() {
       card.innerHTML = `
         <span class="gc-num">#${String(entry._num).padStart(3,'0')}</span>
         <span class="gc-emoji">❌</span>
-        <div class="gc-name">${entry.id}</div>
+        <div class="gc-name" title="${escHtmlDebug(entry.id)}">${shortName(entry.id)}</div>
         <div class="gc-error">⚠ Load error</div>
         <div class="gc-author" style="color: #804040;">${entry.createdBy || 'Unknown author'}</div>
       `;
@@ -501,8 +597,8 @@ function buildGallery() {
     } else {
       card.innerHTML = `
         <span class="gc-num">#${String(entry._num).padStart(3,'0')}</span>
-        <span class="gc-emoji">${entry.emoji || '❓'}</span>
-        <div class="gc-name">${entry.name}</div>
+        ${dexAvatar(entry, 'gc-img', 'gc-emoji')}
+        <div class="gc-name" title="${escHtmlDebug(entry.name)}">${shortName(entry.name)}</div>
         <span class="gc-type type-${entry.type || 'Normal'}">${entry.type || 'Normal'}</span>
         <div class="gc-power">⭐ PWR ${entry._power}</div>
         <div class="gc-author">by ${entry.createdBy || 'Unknown'}</div>
@@ -625,7 +721,13 @@ function openModal(entry) {
 
   content.innerHTML = `
     <div class="modal-header">
-      <div class="modal-emoji">${entry.emoji || '❓'}</div>
+      <div class="modal-emoji">${
+        `<span class="choice-avatar">` +
+        `<img src="fakemon/images/${entry.id}.png" class="modal-img" alt="${entry.name}" ` +
+        `onerror="this.style.display='none';this.nextElementSibling.style.display='block'">` +
+        `<span style="display:none;font-size:48px">${entry.emoji || '❓'}</span>` +
+        `</span>`
+      }</div>
       <div class="modal-title">
         <div class="modal-name">${entry.name}</div>
         <div class="modal-author">by ${entry.createdBy || 'Unknown'} · <span class="gc-type type-${entry.type||'Normal'}" style="font-size:10px;">${entry.type||'Normal'}</span></div>

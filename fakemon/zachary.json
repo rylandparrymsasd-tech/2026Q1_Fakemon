@@ -1,0 +1,68 @@
+{
+ "id": "zachary.json",
+ "name": "Manic Macho Legs Cat",
+ "emoji": ">w<",
+ "createdBy": " zachary villanueva",
+ "type": "Fire",
+
+
+ "hp": 430,
+ "power": 100,
+ "speed": 66,
+ "defense": 350,
+ "accuracy": 100,
+
+
+ "description": "Manic Macho Legs Cat, fell into a tub of black licorish, enhansed the beauty of his legs and power of his long distance attacks, popularity is down though, now with fire based attacks.",
+
+
+ "moves": [
+
+
+   {
+     "id": "Fireball_Attack",
+     "name": "🔥 Manic Foot",
+     "desc": "A fireball attack with a chance to burn creates several explosions.",
+     "speed": "slow",
+     "damage": [110, 130],
+     "status": "burn",
+     "statusChance": 0.99
+   },
+
+
+   {
+     "id": "fury_of_feet",
+     "name": "⚔️ Fury of Feet",
+     "desc": "A lightning-fast claw swipe. No frills.",
+     "speed": "fast",
+     "damage": [10, 24],
+     "status": "burn",
+     "statusChance": 0.50
+   },
+
+
+   {
+     "id": "leg_day",
+     "name": "💊 Leg Day",
+     "desc": "Restore 50 HP.",
+     "speed": "fast",
+     "damage": [-50, -50],
+     "status": null,
+     "statusChance": 0
+   },
+
+
+   {
+     "id": "foot",
+     "name": "Fire Foot",
+     "desc": "kicks out with foot random chance of damage",
+     "speed": "medium",
+     "damage": [0, 250],
+     "status": "burn",
+     "statusChance": 1
+   }
+
+
+ ]
+}
+

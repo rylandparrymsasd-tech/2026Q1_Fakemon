@@ -1,0 +1,88 @@
+{
+  "id": "BenjaminBE1",
+  "name": "QuickShot",
+  "createdBy": "Benjamin John Bero Alcantara",
+  "emoji": "🏹",
+  "type": "Nature",
+
+  "hp": 80,
+  "power": 85,
+  "speed": 70,
+  "defense": 15,
+  "accuracy": 85,
+
+  "description": "An old wooden bow with high hitting plus fast moves",
+
+  "moves": [
+
+    {
+      "id": "Poison_arrow",
+      "name": "💉 Poison arrow",
+      "desc": "A medium damage arrow with a posion side effect.",
+      "speed": "medium",
+      "damage": [15, 20],
+      "status": "poison",
+      "statusChance": 1.0
+    },
+
+    {
+      "id": "Fast_fire",
+      "name": "Fast fire",
+      "desc": "A volly of arrows fired fast yet weakly.",
+      "speed": "fast",
+      "damage": [10, 15],
+      "status": null,
+      "statusChance": 0
+    },
+
+    {
+      "id": "Between_ends",
+      "name": "💊 Between ends",
+      "desc": "Restore 10 HP and gives stat up effect",
+      "speed": "slow",
+      "damage": [-10, -10],
+      "status": "statup",
+      "statusChance": 1.0,
+      "statTarget": "accuracy"
+
+    },
+
+    {
+      "id": "warning_shot",
+      "name": "➵ Warning shot",
+      "desc": "A warning shot that paralyzes target.",
+      "speed": "medium",
+      "damage": [0, 0],
+      "status": "paralyze",
+      "statusChance": 1.0
+    },
+
+    {
+      "id": "volley",
+      "name": "🎯 volley fire",
+      "desc": "A high damage many arrow volley.",
+      "speed": "slow",
+      "damage": [20, 25],
+      "status": null,
+      "statusChance": 0
+    },
+    {
+      "id": "percision",
+      "name": "🎯 Percision shot",
+      "desc": "A high damage arrow.",
+      "speed": "slow",
+      "damage": [30,35],
+      "status": null,
+      "statusChance": 0
+    },
+    {
+      "id": "sleep",
+      "name": "💤 sleep",
+      "desc": "A less posionous arrow.",
+      "speed": "slow",
+      "damage": [10,15],
+      "status": "sleep",
+      "statusChance": 1
+    }
+  ]
+}

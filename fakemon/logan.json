@@ -1,0 +1,54 @@
+{
+  "id": "logan",
+  "name": "logan",
+  "createdBy": "Johann Smit",
+  "emoji": "🐵",
+  "type": "Ghost",
+
+
+  "hp": 1000,       
+  "power": 1,    
+  "speed": 1,    
+  "defense": 1,  
+  "accuracy": 1, 
+
+  "description": "It's Logan! Eww he's stinky.",
+
+  "moves": [
+
+    
+    {
+      "id": "stank_breath",
+      "name": "Breathe",
+      "desc": "It is a poisonous attack of logan's breath.",
+      "speed": "slow",
+      "damage": [100, 900],
+      "status": "sleep",
+      "statusChance": 1
+    },
+
+
+    {
+      "id": "stank_fart",
+      "name": "Fart",
+      "desc": "A totally lightning-fast stinky fart.",
+      "speed": "slow",
+      "damage": [90, 100],
+      "status": null,
+      "statusChance": 0
+    },
+
+  
+    {
+      "id": "heal",
+      "name": "Whatever'food' logan has in his pocket",
+      "desc": "Restore 1 HP and gives you stat down.",
+      "speed": "fast",
+      "damage": [-1, -2],
+      "status": "statdwn",
+      "statusChance": 1
+    }
+ 
+
+  ]
+}

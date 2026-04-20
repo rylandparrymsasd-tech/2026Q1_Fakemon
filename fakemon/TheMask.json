@@ -1,0 +1,75 @@
+{
+  "id":          "TheMask",
+  "name":        "TheMask",
+  "createdBy":   "Rowan James Rogers",
+  "emoji":       "🐲",
+  "type":        "Fire",
+  "description": "A cartoony destructive charachter who will do destroy you like it is the loony tunes.",
+  "hp":       100,
+  "power":    100,
+  "speed":    90,
+  "defense":  10,
+  "accuracy": 90,
+
+  "moves": [
+    {
+      "id":           "A tommy gun!",
+      "name":         "A tommy gun",
+      "desc":         "A straightforward attack.",
+      "speed":        "medium",
+      "damage": [35, 42],
+      "status":       null,
+      "statusChance": 0
+    },
+    {
+      "id":           "Cartoon Hammer",
+      "name":         "🔥 cartoon hammer",
+      "desc":         "Owch thats gotta hurt.",
+      "speed":        "fast",
+      "damage": [12, 18],
+      "status":       "burn",
+      "statusChance": 0.4
+    },
+    {
+      "id":           "Hold me closer ed",
+      "name":         "💊hold me closer ed",
+      "desc":         "Restores 45 HP.",
+      "speed":        "slow",
+      "damage": [-45, -45],
+      "status":       null,
+      "statusChance": 0
+    },
+    {
+      "id":           "whirlwind",
+      "name":         "📈 convenient whirlwind",
+      "desc":         "Sharply raises your own ATK.",
+      "speed":        "fast",
+      "damage": [0, 0],
+      "status":       "statup",
+      "statusChance": 1.0,
+      "statTarget":   "atk"
+    },
+    {
+      "id":           "dramatic entrance",
+      "name":         "📉dramatic re entrance ",
+      "desc":         "Thick smoke clouds the enemy's vision.",
+      "speed":        "medium",
+      "damage": [0, 0],
+      "status":       "statdwn",
+      "statusChance": 1.0,
+      "statTarget":   "speed"
+    },
+    {
+      "id":    "morning breath",
+      "name":  "😵 morning Breath",
+      "desc":  "Hits, then may poison AND confuse!",
+      "speed": "slow",
+      "damage": [10, 16],
+      "statuses": [
+        { "status": "poison",  "statusChance": 0.5 },
+        { "status": "confuse", "statusChance": 0.4 }
+      ]
+    }
+
+  ]
+}

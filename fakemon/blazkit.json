@@ -5,12 +5,16 @@
   "emoji": "🦊",
   "type": "Fire",
   "hp": 88,
+  "atk": 110,
+  "speed": 120,
+  "defense": 5,
+  "accuracy": 95,
   "color": "#D85A30",
   "description": "A scrappy fox that fights dirty and fast. Low HP, but overflowing with status tricks.",
   "moves": [
     {
-      "id": "ember_bite",
-      "name": "🔥 Ember Bite",
+      "id": "blaze_bite",
+      "name": "🔥 Blaze Bite",
       "desc": "A scorching bite. May burn.",
       "speed": "fast",
       "damage": [14, 20],
@@ -20,11 +24,11 @@
     {
       "id": "quick_slash",
       "name": "⚔️ Quick Slash",
-      "desc": "A lightning-fast claw swipe.",
+      "desc": "A lightning-fast claw swipe. May cause flinch.",
       "speed": "fast",
       "damage": [18, 24],
-      "status": null,
-      "statusChance": 0
+      "status": "flinch",
+      "statusChance": 0.25
     },
     {
       "id": "fox_fire",
@@ -42,7 +46,8 @@
       "speed": "fast",
       "damage": [0, 0],
       "status": "statup",
-      "statusChance": 1.0
+      "statusChance": 1.0,
+      "statTarget": "atk"
     },
     {
       "id": "tail_venom",
@@ -56,11 +61,12 @@
     {
       "id": "smoke_shroud",
       "name": "🌫️ Smoke Shroud",
-      "desc": "Vanishes in smoke, lowering enemy ATK.",
+      "desc": "Vanishes in smoke, lowering enemy accuracy.",
       "speed": "fast",
       "damage": [0, 0],
       "status": "statdwn",
-      "statusChance": 1.0
+      "statusChance": 1.0,
+      "statTarget": "accuracy"
     },
     {
       "id": "ember_lull",
@@ -72,13 +78,13 @@
       "statusChance": 0.8
     },
     {
-      "id": "shock_pounce",
-      "name": "⚡ Shock Pounce",
-      "desc": "Static-charged leap. May paralyze on landing.",
-      "speed": "fast",
-      "damage": [0, 0],
-      "status": "paralyze",
-      "statusChance": 1.0
+      "id": "fox_mend",
+      "name": "💊 Fox Mend",
+      "desc": "Licks wounds clean with a flame-warmed tongue. Restores HP.",
+      "speed": "slow",
+      "damage": [-20, -20],
+      "status": null,
+      "statusChance": 0
     }
   ]
 }

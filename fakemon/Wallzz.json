@@ -1,0 +1,64 @@
+{
+  "id": "wallzz",
+  "name": "wallzz",
+  "createdBy": "Sean McGarry",
+  "emoji": "🧱",
+  "type": "Earth",
+
+  
+  "hp": 145,       
+  "power": 25,    
+  "speed": 65,     
+  "defense": 60,  
+  "accuracy": 60, 
+
+  "description": "Its a brick wall but a fakemon wall.",
+
+  "moves": [
+
+    
+    {
+      "id": "Harden",
+      "name": "🧱 Hard",
+      "desc": "Makes the opponent feel pain after they hit, because it hurts to hit a wall. Has a chance to flinsh the opponent",
+      "speed": "slow",
+      "damage": [11, 20],
+      "status": "flinch",
+      "statusChance": 0.8
+    },
+
+    
+    {
+      "id": "Nothing",
+      "name": "💨 Nothing...",
+      "desc": "Its a wall. what is it supposd to do?",
+      "speed": "medium",
+      "damage": [0, 0],
+      "status": "statup",
+      "statusChance": 0.2
+    },
+
+    
+    {
+      "id": "Repair",
+      "name": "🛠️ Repair",
+      "desc": "Restore around 30 HP.",
+      "speed": "fast",
+      "damage": [-25, -35],
+      "status": null,
+      "statusChance": 0
+    },
+
+    {
+      "id": "Stronk",
+      "name": "Tuff",
+      "desc": "This wall is now stronger...",
+      "speed": "medium",
+      "damage": [-10, 11],
+      "status": "statup",
+      "statusChance": 1.0
+    }
+
+   
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "id": "kyan",
+  "name": "HoodGuy",
+  "createdBy": "Kyan Olugbile",
+  "emoji": "🐲",
+  "type": "Fire",
+
+ 
+  "hp": 140,      
+  "power": 110,    
+  "speed": 110,     
+  "defense": 0,  
+  "accuracy": 70, 
+
+  "description": "A strong Fakemon",
+
+  "moves": [
+
+   
+    {
+      "id": "Phone Call",
+      "name": "99 Assist",
+      "desc": "A attack that can have your freinds come and assist you",
+      "speed": "medium",
+      "damage": [1, 60],
+      "status": "sleep",
+      "statusChance": 0.1
+    },
+
+   
+    {
+      "id": "Right Hook",
+      "name": "⚔️ Right Hook",
+      "desc": "A lightning-fast punch",
+      "speed": "fast",
+      "damage": [18, 29],
+      "status": null,
+      "statusChance": 0
+    },
+
+   
+    {
+      "id": "Shiesty",
+      "name": "💊 Shiesty",
+      "desc": "Restore 10 HP.",
+      "speed": "slow",
+      "damage": [-10, -10],
+      "status": null,
+      "statusChance": 0
+    },
+
+    
+    {
+      "id": "disguise",
+      "name": "😵 disguise",
+      "desc": "Makes you look like a average white person",
+      "speed": "medium",
+      "damage": [0, 0],
+      "status": "confuse",
+      "statusChance": 1.0
+    }
+
+   
+
+  ]
+}

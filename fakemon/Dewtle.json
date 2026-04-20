@@ -1,0 +1,54 @@
+{
+  "id":          "Dewtle",
+  "name":        "Dewtle",
+  "createdBy":   "Owen Marlow",
+  "emoji":       "🐢",
+  "type":        "Water",
+  "description": "A bright blue sea turtle who uses it's heavy weight to crush shells and eat them.",
+  "hp":       80,
+  "power":    50,
+  "speed":    20,
+  "defense":  50,
+  "accuracy": 95,
+
+  "moves": [
+    {
+      "id":           "move_one",
+      "name":         "💧 Splash",
+      "desc":         "Attacks the target by shooting a jet of water.",
+      "speed":        "medium",
+      "damage": [15, 16],
+      "status":       null,
+      "statusChance": 0
+    },
+    {
+      "id":           "move_two",
+      "name":         "💥 Crush",
+      "desc":         "A heavy crush with a 50% chance the enemy flinches.",
+      "speed":        "slow",
+      "damage": [40, 50],
+      "status":       "flinch",
+      "statusChance": 0.5
+    },
+    {
+      "id":           "move_three",
+      "name":         "💊 Giga Recover",
+      "desc":         "Restores 50 HP.",
+      "speed":        "slow",
+      "damage": [-49, -50],
+      "status":       null,
+      "statusChance": 0
+    },
+    {
+  "id": "iron_skin",
+  "name": "🛡️ Iron Skin",
+  "desc": "Hardens the outer shell to take less damage.",
+  "speed": "fast",
+  "damage": [0, 0],
+  "status": "statup",
+  "statusChance": 1.0,
+  "statTarget": "defense"
+}
+
+  ]
+}
