@@ -1,0 +1,65 @@
+{
+  "id": "helloerror_1",
+  "name": "Wizard Lizard",
+  "createdBy": "Ryland Parry",
+  "emoji": "🦎",
+  "type": "Nature",
+  "hp": 80,
+  "atk": 95,
+  "speed": 110,
+  "defense": 25,
+  "accuracy": 95,
+  "description": "The wizard of lizard",
+  "moves": [
+    {
+      "id": "helloerror_m1",
+      "name": "Energy Snap",
+      "speed": "fast",
+      "damage": [
+        5,
+        6
+      ],
+      "status": "paralyze",
+      "statusChance": 0.85,
+      "desc": "Quick bolt of energy that usually stuns the opponent."
+    },
+    {
+      "id": "helloerror_m2",
+      "name": "Dust Devil",
+      "speed": "slow",
+      "damage": [
+        25,
+        34
+      ],
+      "status": "confuse",
+      "statusChance": 1,
+      "desc": "storm that traps the enemy with a sandy storm of pain."
+    },
+    {
+      "id": "helloerror_m3",
+      "name": "Tail Regeneration",
+      "speed": "medium",
+      "damage": [
+        -15,
+        -20
+      ],
+      "status": "statup",
+      "statusChance": 1,
+      "desc": "Tail grows back and rejoins the fight.",
+      "statTarget": "defense"
+    },
+    {
+      "id": "helloerror_m4",
+      "name": "Feisty Flare",
+      "speed": "medium",
+      "damage": [
+        6,
+        10
+      ],
+      "status": "burn",
+      "statusChance": 1,
+      "desc": "Casts small flames upon the enemy."
+    }
+  ]
+}
+
